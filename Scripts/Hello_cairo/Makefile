@@ -14,3 +14,6 @@ $(EXECUTABLE): $(OBJECTS)
 
 .c.o:
 	$(CC) $(CFLAGS) $(LIBS) $< -o $@ 
+
+clean: 
+	rm $(OBJECTS) $(EXECUTABLE)

@@ -1,7 +1,9 @@
 #include <cairo.h>
 int main()
 {
-    cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 240, 80);
+    cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
+                                                          240,
+                                                          80);
     cairo_t *cr = cairo_create(surface);
     cairo_select_font_face(cr,
                            "serif",
