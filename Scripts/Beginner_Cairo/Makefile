@@ -1,4 +1,12 @@
-main.o: main.c
-	gcc -o main.o main.c $(shell pkg-config --cflags --libs cairo) -lm
+CC=gcc
+LIBS=`pkg-config --cflags --libs cairo`
+LDFLAGS=-lm
+SOURCES=main.c
+OBJECTS=$(SOURCES:.c=.out)
+
+
+$(OBJECTS): $(SOURCES)
+	$(CC) -o $(OBJECTS) $(SOURCES) $(LIBS) $(LDFLAGS)
+
 clean:
-	rm -f main.o main.png
+	rm -f $(OBJECTS) grafica.png
