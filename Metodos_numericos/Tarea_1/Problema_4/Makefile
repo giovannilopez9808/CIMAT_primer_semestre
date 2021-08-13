@@ -1,11 +1,11 @@
 CC=gcc
-LDFLAGS=-lm
+LDFLAGS=-lm -std=c11
 SOURCES=main.c
 OBJECTS=$(SOURCES:.c=.out)
 
 
 $(OBJECTS): $(SOURCES)
-	$(CC) -o $(OBJECTS) $(SOURCES) $(LDFLAGS)
+	$(CC) $(CDFLAGS) -o $(OBJECTS) $(SOURCES) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJECTS) 
