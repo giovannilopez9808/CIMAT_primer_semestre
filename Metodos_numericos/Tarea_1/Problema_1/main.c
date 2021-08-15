@@ -22,6 +22,7 @@ float evaluate_function(int select, float x)
         return function2(x);
         break;
     default:
+        return 0;
         break;
     }
 }
