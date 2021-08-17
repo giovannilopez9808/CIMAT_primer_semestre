@@ -41,12 +41,12 @@ long double obtain_variance_one_pass(double data[], int size)
     for (int i = 0; i < size; i++)
     {
         // Suma de los terminos al cuadrado
-        sum_x2 += pow(data[i], 2);
+        sum_x2 += powl(data[i], 2);
         // Suma para obtener el promedio
         mean += data[i];
     }
     mean = mean / size;
-    mean = pow(mean, 2);
+    mean = powl(mean, 2);
     sum_x2 = sum_x2 / size;
     return sum_x2 - mean;
 }
