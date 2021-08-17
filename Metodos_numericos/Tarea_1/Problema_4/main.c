@@ -16,7 +16,7 @@ double obtain_mean(double data[], int size)
     mean = mean / size;
     return mean;
 }
-double obtain_variance_two_pass(double data[], int size)
+long double obtain_variance_two_pass(double data[], int size)
 {
     /* 
     Obtiene la varianza de una lista de datos dada y su tamaño siguiendo el algoritmo de two-pass
@@ -30,14 +30,14 @@ double obtain_variance_two_pass(double data[], int size)
     variance = variance / size;
     return variance;
 }
-double obtain_variance_one_pass(double data[], int size)
+long double obtain_variance_one_pass(double data[], int size)
 {
     /* 
     Obtiene la varianza de una lista de datos dada y su tamaño siguiendo el algoritmo de one-pass
      */
     // Inicializacion de las sumas
-    double mean = 0.0;
-    double sum_x2 = 0.0;
+    long double mean = 0.0;
+    long double sum_x2 = 0.0;
     for (int i = 0; i < size; i++)
     {
         // Suma de los terminos al cuadrado
@@ -57,11 +57,11 @@ void obtain_mean_and_variances(double data[], int size)
      */
     double mean = obtain_mean(data, size);
     double variance = obtain_variance_two_pass(data, size);
-    double variance_2 = obtain_variance_one_pass(data, size);
+    long double variance_2 = obtain_variance_one_pass(data, size);
     printf("--------------------------------------\n");
     printf("El promedio de los datos es:\n%lf\n", mean);
     printf("La varianza usando el algoritmo two-pass de los datos es:\n%lf\n", variance);
-    printf("La varianza usando el algoritmo one-pass de los datos es:\n%lf\n", variance_2);
+    printf("La varianza usando el algoritmo one-pass de los datos es:\n%Lf\n", variance_2);
 }
 int read_size()
 {
@@ -92,7 +92,7 @@ void custom_data()
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
 }
-void test_data()
+void data_1()
 {
     double data[] = {0.00,
                      0.01,
@@ -107,6 +107,27 @@ void test_data()
     int size = 10;
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
+}
+void data_2()
+{
+    double data[] = {123456789.00,
+                     123456789.01,
+                     123456789.02,
+                     123456789.03,
+                     123456789.04,
+                     123456789.05,
+                     123456789.06,
+                     123456789.07,
+                     123456789.08,
+                     123456789.09};
+    int size = 10;
+    // Ejecuccion de los algoritmos
+    obtain_mean_and_variances(data, size);
+}
+void test_data()
+{
+    data_1();
+    data_2();
 }
 int main()
 {
