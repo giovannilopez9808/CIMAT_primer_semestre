@@ -84,11 +84,41 @@ void read_data(double data[], int size)
         scanf("%lf", &data[i]);
     }
 }
-int main()
+void custom_data()
 {
     int size = read_size();
     double data[size];
     read_data(data, size);
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
+}
+void test_data()
+{
+    double data[] = {0.00,
+                     0.01,
+                     0.02,
+                     0.03,
+                     0.04,
+                     0.05,
+                     0.06,
+                     0.07,
+                     0.08,
+                     0.09};
+    int size = 10;
+    // Ejecuccion de los algoritmos
+    obtain_mean_and_variances(data, size);
+}
+int main()
+{
+    char test;
+    printf("¿Deseas usar el programa con los datos de prueba?(Y/n): ");
+    scanf("%c", &test);
+    if (test == 'Y' || test == 'y')
+    {
+        test_data();
+    }
+    else
+    {
+        custom_data();
+    }
 }
