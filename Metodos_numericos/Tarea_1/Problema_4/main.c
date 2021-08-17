@@ -3,7 +3,6 @@
 /* 
 Asume you have n values x, evaluate the sample mean, sample variance with two-pass algorithm and one-pass algorithm
  */
-
 double obtain_mean(double data[], int size)
 {
     /*
@@ -64,34 +63,32 @@ void obtain_mean_and_variances(double data[], int size)
     printf("La varianza usando el algoritmo two-pass de los datos es:\n%lf\n", variance);
     printf("La varianza usando el algoritmo one-pass de los datos es:\n%lf\n", variance_2);
 }
+int read_size()
+{
+    /* 
+    Lectura del tamaño de los datos
+     */
+    int size;
+    printf("Escribe el total de datos tienes:\n");
+    scanf("%d", &size);
+    return size;
+}
+void read_data(double data[], int size)
+{
+    /* 
+    Lectura de los datos
+     */
+    for (int i = 0; i < size; i++)
+    {
+        printf("Escribe el numero de la posición %d de %d:\n", i + 1, size);
+        scanf("%lf", &data[i]);
+    }
+}
 int main()
 {
-    double data[] = {0.00,
-                     0.01,
-                     0.02,
-                     0.03,
-                     0.04,
-                     0.05,
-                     0.06,
-                     0.07,
-                     0.08,
-                     0.09};
-    // Obtiene el tamaño de los datos
-    int size = sizeof(data) / sizeof(data[0]);
+    int size = read_size();
+    double data[size];
+    read_data(data, size);
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
-    double data2[] = {123456789.00,
-                      123456789.01,
-                      123456789.02,
-                      123456789.03,
-                      123456789.04,
-                      123456789.05,
-                      123456789.06,
-                      123456789.07,
-                      123456789.08,
-                      123456789.09};
-    // Obtiene el tamaño de los datos
-    size = sizeof(data2) / sizeof(data2[0]);
-    // Ejecuccion de los algoritmos
-    obtain_mean_and_variances(data2, size);
 }
