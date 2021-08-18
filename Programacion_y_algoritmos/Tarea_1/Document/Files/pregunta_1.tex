@@ -1,0 +1,11 @@
+\item \textbf{Resumen de la publicación \textit{S. Kumar and P. K . Singh ``An overview of modern cache memory and performance analysis of replacement policies'' 2016 IEEE International Conference on Engineering and Technology (ICETECH), 2016, pp. 210-214, doi: 10.1109/ICETECH.2016.7569243}}
+
+La cache de un procesador es una memoria más rápida que la memoria principal. La existencia de la cache evita que el sistema busque una misma información en la memoria principal. El rendimiento de la cache es basada en tres parámetros: \textit{miss rate, miss penalty y average access time}.
+
+El sistema de memoria de un uniprocesador esta diseñada por niveles de cache, el cual suministra datos e instrucciones a un solo procesador. Para multiprocesadores, el cache es solo un componente del sistema de memoria, el cual se le añade una interconexión entre chips, coherencia y consistencia de datos. En procesadores multicore cada core esta conectado a registros de ALU, pipeline, unidades de control, L1 y cache.
+
+Las tres principales unidades de un procesador es la unidad de instrucción, unidad de ejecución y unidad de almacenamiento. La unidad de instrucción es la responsable de organizar busquedad y decodificaciones de un programa. La unidad de ejecución es la responsable de la lógica, aritmética y ejecutar las acciones que le da la unidad de instrucción. La unidad de almacenamiento establece una conexión entre la unidad de instrucción y ejecución.
+
+Existen técnicas de mapeo para determinar la organización del cache. Las técnicas de mapeo son usadas para mapear un número largo en los bloques de la memoria principal en pocas lineas de la memoria cache y asignar bits. Las tres técnicas de mapeo son \textit{direct mapping, associative mapping y set associative mapping}. La técnica que es considerada mejor es set associative mapping, esto porque tiene un mejor hit rate y access time.
+
+Las politicas del cache deciden la consistencia y mantenimiento entre lineas de la cache correspondientes a los bloques de memoria principal.
