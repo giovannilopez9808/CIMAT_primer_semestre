@@ -54,8 +54,9 @@ void obtain_upper_bounds(double xi, double xf, double dx)
             max_R4 = r4;
         }
     }
-    printf("El limite superior de |f(x)-P4(x)| es:\t%lf\n", max_f_and_approx);
-    printf("El limite superior de |R4(x)| es:\t%lf\n", max_R4);
+    printf("El limite superiores encontrados son\n");
+    printf("\t|f(x)-P4(x)|\t= %lf\n", max_f_and_approx);
+    printf("\t|R4(x)|\t\t= %lf\n", max_R4);
 }
 void calculate_integral(double xi, double xf, double dx)
 {
@@ -74,11 +75,11 @@ int main()
     int n = 10000;
     double xi = 0.0, xf = 0.4;
     double dx = (xf - xi) / n;
-    obtain_upper_bounds(xi,
-                        xf,
-                        dx);
     calculate_integral(xi,
                        xf,
                        dx);
+    obtain_upper_bounds(xi,
+                        xf,
+                        dx);
     return 0;
 }
