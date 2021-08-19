@@ -6,3 +6,7 @@
 *.log
 *.synctex.gz
 *-eps-converted-to.pdf
+*.bbl
+*.bl
+*.bbl
+*.blg
