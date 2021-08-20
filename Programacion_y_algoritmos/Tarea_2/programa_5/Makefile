@@ -1,5 +1,5 @@
 CC=gcc
-LDFLAGS=-std=c11
+LDFLAGS=-std=c11 -lm
 SOURCES=main.c
 CDFLAGS=-Wall
 OBJECTS=$(SOURCES:.c=.out)
