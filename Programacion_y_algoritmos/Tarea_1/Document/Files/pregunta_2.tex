@@ -1,24 +1,60 @@
 \item \textbf{Describir detalladamente los paradigmas de computación principales y su relacion. Dar ejemplos de cada paradigma.}
 
 Los paradigmas de programación indica un método de realizar cómputos ,la estructura y organización de las tareas que se deben realizar en un programa. Los paradigmas principales están basados en diferentes modelos de cómputo, por lo tanto afectan a las construcciones más básicas de un programa. Los paradigmas principales son:
+
 \begin{itemize}
-      \item Imperativo.
-      \item Declarativo.
+      \item Estructurado.
       \item Lógico.
       \item Funcional.
       \item Orientado a objetos.
 \end{itemize}
-\subsubsection*{Imperativo}
-El paradigma imperativo consiste en en una serie de sentencias ejecutadas según un control de flujo explícito que modifican el estado del programa.
-\subsubsection*{Declarativo}
-El paradigma declarativo se describe en términos de su respuesta, pero no se define explícitammente qué propiedades se espera que presente el resultado\cite{Daintith_2008}.Contiene un control del flujo que esta asociado a una composición de funciones, recursividad y/o técnicas de reescritura y unificación.
-\subsubsection*{Lógico}
-El paradigma lógico consiste en declarar una serie de hechos conocidos y relacionados. Se debe establecer una serie de propiedades para que en la ejecución se base en un mecanismo deductivo.
-\cite{satori_2021,rodriguez_2003}
-\subsubsection*{Funcional}
-En las matemáticas se establecio el concepto de \textit{función}, las cuales establecen una relación entre los parámetros y el resultado. Un programa consiste en la definición de una o más funciones. Para la ejecución del programa se establecen parámetros y el programa realiza las operaciones necesarias para obtener el resultado.\cite{Fokker_1996}
-\subsubsection*{Orientado a objetos}
-Un lenguaje de programación orientado a objetos puede contener el paradigma imperativo, funcional o lógico. Lo que caracteriza este estilo es la forma de manejar la información basada en los conceptos clase, objeto y herencia.
+\subsection*{Estructurado}
+El paradigma estructurado consiste en en una serie de sentencias ejecutadas según un control de flujo explícito que modifican el estado del programa.\cite{rodriguez_2003}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}[style=CStyle]
+      total=0;
+      for (i=1; i<=10; i++)
+      {
+            total=total+1
+      }
+\end{lstlisting}
+\subsection*{Lógico}
+El paradigma lógico se describe en términos de su respuesta, pero no se define explícitammente qué propiedades se espera que presente el resultado\cite{Daintith_2008}.Contiene un control del flujo que esta asociado a una composición de funciones, recursividad y/o técnicas de reescritura y unificación.\cite{satori_2021,bratko_2012}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}[style=CStyle]
+      mujer(maria).
+      mujer(luisa).
+      mujer(juana).
+      mujer(alicia)
+      toca_guitarra(luisa).
+      toca_guitarra(maria).
+      oye_musica(X) :- toca_guitarra(X).
+
+      input:      ?-mujer(maria)
+      output:     true
+
+      input:      ?-mujer(ana)
+      output:     false
+\end{lstlisting}
+\subsection*{Funcional}
+En las matemáticas se establecio el concepto de \textit{función}, las cuales establecen una relación entre los parámetros y el resultado. Un programa consiste en la definición de una o más funciones. Para la ejecución del programa se establecen parámetros y el programa realiza las operaciones necesarias para obtener el resultado.\cite{Fokker_1996} Hace uso del cálculo lambda.
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}[style=CStyle]
+      void suma(int n1, int n2){
+            printf("La suma es %d",n1+n2);
+      }
+      int main(){
+            suma(1,2);
+      }
+\end{lstlisting}
+\subsection*{Orientado a objetos}
+Un lenguaje de programación orientado a objetos puede contener el paradigma imperativo, funcional o lógico. Lo que caracteriza este estilo es la forma de manejar la información basada en los conceptos clase, objeto y herencia.\cite{rodriguez_2003}
 \begin{itemize}
       \item Clase
 
@@ -29,4 +65,18 @@ Un lenguaje de programación orientado a objetos puede contener el paradigma imp
       \item Herencia
 
             Propiedad por la que es posible construir una nueva clase a partir de una ya existente.
+
 \end{itemize}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}[language=python]
+class person:
+      def __init__(self,name: str):
+            self.name=name
+
+person1=person("Carlos")
+print(person1.name)
+
+>Carlos
+\end{lstlisting}
