@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-long int obtain_len_of_number(long int number)
+long int obtain_number_of_digits(long int number)
 {
     /* 
     Obtiene el numero de digitos del numero
@@ -13,7 +13,7 @@ long int obtain_len_of_number(long int number)
     }
     return len;
 }
-void convert_int_to_list(long int size, long int number, int number_array[])
+void integer_to_list(long int size, long int number, int number_array[])
 {
     /* 
     Convierte el numero entero en una lista de datos, cada elemento de la lista es un dígito del número
@@ -50,11 +50,11 @@ int main()
     long int number;
     printf("Ingresa el número que quieres escribir al reves: ");
     scanf("%ld", &number);
-    long int size = obtain_len_of_number(number);
+    long int size = obtain_number_of_digits(number);
     int number_array[size];
-    convert_int_to_list(size,
-                        number,
-                        number_array);
+    integer_to_list(size,
+                    number,
+                    number_array);
     long int result = join_numbers(number_array,
                                    size);
     printf("El número al reves es:\t%ld\n",
