@@ -1,3 +1,36 @@
 \subsubsection*{4) Programa que imprima un número entero dado de n dígitos al revés. Ejem, entrada:79373, salida: 37397.}
 
-Problema terminado
+La estructura del código es la siguiuente:
+\begin{lstlisting}[language=python]
+    n = 79373
+    size = obtain_number_of_digits(n)
+    number_list=integer_to_list(n)
+    # number_list = [7, 9, 3, 7, 3]
+    n_flip = 0
+    for i=0,1,2,...,size-1:
+        n_flip+=number_list[size-i-1]*10^(i)
+    print(n_flip)
+
+    > output: 37397
+\end{lstlisting}
+
+La manera de obtener el número de dígitos en un número entero es contar las veces que se puede dividir el número entre 10 hasta obtener un número menor a 1. Ya obtenido esto se creo una lista donde cada elemento contiene un dígito del número que queremos escribir al revés. La sustracción de cada digito se obtuvo con la ecuación \ref{eq:obtain_digit}.
+\begin{equation}
+    list[i]=number*10^{i-n}- \sum_{j=0}^{i-1} list[j] * 10^{i-j} \qquad \forall i=1,2,\dots
+    \label{eq:obtain_digit}
+\end{equation}
+donde  i es la posición del dígito que queremos sustraer, n es el número total de dígitos que tenemos, number es el número entero que queremos escribir al revés y list es la lista que contiene a cada dígito. Al ser esta una ecuación recursiva, se necesita saber su valor inicial $(list[0])$. El calculo del valor inicial esta descrito en la ecuación \ref{eq:first_digit}.
+\begin{equation}
+    list[0] = number *10^{-n}
+    \label{eq:first_digit}
+\end{equation}
+El valor del número al revés se calculó con la ecuación \ref{eq:number_flip}.
+\begin{equation}
+    number_{flip} = \sum_{i=0}^{n} list[n-i]*10^{n-i}
+    \label{eq:number_flip}
+\end{equation}
+
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. La manera de ejecutar el programa es con la siguiente linea:
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -std=c11 -lm
+\end{lstlisting}
