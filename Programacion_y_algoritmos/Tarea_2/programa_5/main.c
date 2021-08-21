@@ -50,4 +50,5 @@ int main()
     scanf("%d", &n);
     long double fx = function(x, n);
     printf("f(%lf) = %Lf\n", x, fx);
+    return 0;
 }
