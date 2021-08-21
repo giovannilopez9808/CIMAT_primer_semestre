@@ -82,13 +82,13 @@ void obtain_fraction_subtraction(int fraction1[], int fraction2[], int result[])
     // Calculo de la segunda fraccion auxiliar
     obtain_aux_fraction(fraction2,
                         result[1]);
-    // Suma de los dividendos de las fracciones auxiliares
+    // Resta de los dividendos de las fracciones auxiliares
     result[0] = fraction1[0] - fraction2[0];
 }
 void obtain_fraction_multiplication(int fraction1[], int fraction2[], int result[])
 {
     /* 
-    Realiza la suma de las dos fracciones obtiendo el minimo comun multiplo de los divisores
+    Realiza la multiplicación de las dos fracciones
      */
     result[0] = fraction1[0] * fraction2[0];
     result[1] = fraction1[1] * fraction2[1];
@@ -96,7 +96,7 @@ void obtain_fraction_multiplication(int fraction1[], int fraction2[], int result
 void obtain_fraction_division(int fraction1[], int fraction2[], int result[])
 {
     /* 
-    Realiza la suma de las dos fracciones obtiendo el minimo comun multiplo de los divisores
+    Realiza la division de las dos fracciones
      */
     result[0] = fraction1[0] * fraction2[1];
     result[1] = fraction1[1] * fraction2[0];
