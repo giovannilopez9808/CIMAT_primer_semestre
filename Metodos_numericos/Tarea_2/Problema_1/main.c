@@ -40,10 +40,10 @@ void obtain_upper_bounds(double xi, double xf, double dx)
 {
     double res, r4;
     long double max_f_and_approx = 0.0;
-    double max_R4 = 0.0;
+    long double max_R4 = 0.0;
     for (double x = xi; x < xf + dx; x += dx)
     {
-        r4 = obtain_ri_term(x, 4);
+        r4 = obtain_ri_term(x, 5);
         res = fabsl(function(x) - function_approximation(x, 4));
         if (res > max_f_and_approx)
         {
@@ -55,9 +55,8 @@ void obtain_upper_bounds(double xi, double xf, double dx)
         }
     }
     printf("El limite superiores encontrados son\n");
-    printf("\t|f(x)-P4(x)|\t= %0.16Lf\n", max_f_and_approx);
-    printf("Size %ld\n",sizeof(max_f_and_approx));
-    printf("\t|R4(x)|\t\t= %lf\n", max_R4);
+    printf("\t|f(x)-P4(x)|\t= %0.10Lf\n", max_f_and_approx);
+    printf("\t|R4(x)|\t\t= %0.10Lf\n", max_R4);
 }
 void calculate_integral(double xi, double xf, double dx)
 {
