@@ -45,6 +45,15 @@ void custom_data()
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
 }
+void print_dataset(double data[], int size)
+{
+    printf("--------------------------------------\n");
+    printf("Los datos usados son");
+    for (int i = 0; i < size; i++)
+    {
+        printf(" %lf\n", data[i]);
+    }
+}
 void data_1()
 {
     double data[] = {0.00,
@@ -58,6 +67,8 @@ void data_1()
                      0.08,
                      0.09};
     int size = 10;
+    print_dataset(data,
+                  size);
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
 }
@@ -74,6 +85,8 @@ void data_2()
                      123456789.08,
                      123456789.09};
     int size = 10;
+    print_dataset(data,
+                  size);
     // Ejecuccion de los algoritmos
     obtain_mean_and_variances(data, size);
 }
