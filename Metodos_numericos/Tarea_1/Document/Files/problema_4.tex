@@ -1,0 +1,38 @@
+\item \textbf{Assume you have $n$ values $x_i$.}
+\begin{enumerate}
+    \item \textbf{Evaluate the sample mean}
+          \begin{equation*}
+              \mu= \frac{1}{n} \sum_{i=1}^n x_i
+          \end{equation*}
+    \item \textbf{Evaluate the sample variance}
+          \begin{enumerate}
+              \item \textbf{You can evaluate the sample variance using a two-pass algorithm}
+                    \begin{equation*}
+                        \sigma_2 = \frac{1}{n} \sum_{i=1}^n (x_i-\mu)^2
+                    \end{equation*}
+              \item \textbf{You can also evaluate the sample variance using the one-pass algorithm}
+                    \begin{equation*}
+                        \sigma_1 = \left(\frac{1}{n} \sum_{i=1}^n x_i^2 \right) - \mu^2
+                    \end{equation*}
+          \end{enumerate}
+          \textbf{Write two functions, one for each algorithm, and test themon the two cases below:}
+          \begin{itemize}
+              \item $x_i \in \{0,0.01,0.02,\dots,0.09 \}$
+              \item $y_i \in \{123456789.0,123456788.01,\dots,123456789.09\}$
+          \end{itemize}
+\end{enumerate}
+
+El programa que contiene a cada método se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. La media, varianza con el \textbf{two-pass algorithm} y \textbf{one-pass algorithm} se encuentran en las funciones \textit{obtain\_mean, obtain\_variance\_two\_pass y obtain\_variance\_one\_pass} respectivamente. Los valores encontrados para el conjunto de datos se encuentran en la tabla \ref{table:results4}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccc} \hline
+        Datos & $\mu$            & $\sigma_2$ & $\sigma_1$ \\ \hline
+        $x_i$ & 0.045000         & 0.000825   & 0.000825   \\
+        $y_i$ & 123456789.045000 & 0.000825   & 0.002930   \\ \hline
+    \end{tabular}
+    \caption{Resultados obtenidos con cada conjunto de datos con los algoritmos de media y varianza}
+    \label{table:results4}
+\end{table}
+La primera aproximación a este problema fue realizada con todas las variables definidas con el tipo double. En ese caso $\mu,\sigma_2,  \sigma_1$ para el conjunto de datos $x_i$ daban resultados iguales a los mostrados en la tabla \ref{table:results4}. En cambio para el conjunto $y_i$, el valor de $\sigma_2$ fue de 10.
+
+Checando las bibliografía acerca de los métodos de obtener la varianza se menciona que el algoritmo de one-pass al tener una gran cantidad de dígitos o cifras significativas al momento de restar estas cifras perderemos esta precisión\cite{cook_2021}. Eso fue lo que exactamente paso con los resultados que se muestran en la tabla \ref{table:results4}.
