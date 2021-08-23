@@ -67,11 +67,23 @@
               \label{fig:problema2_interpretacion2}
           \end{figure}
 \end{itemize}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=4cm]{Graphics/circle_3_1.eps}
-    \includegraphics[width=4cm]{Graphics/circle_3_2.eps}
-    \includegraphics[width=4cm]{Graphics/circle_3_3.eps}
-    \includegraphics[width=4cm]{Graphics/circle_3_4.eps}
-    \caption{}
-\end{figure}
+\begin{itemize}
+    \item Otra interpretación a la que llegamos en la siguiente: Cualquier segmento puede ser caracterizado mediante el uso del punto medio de sus intersecciones con la circunferencia. Si dibujamos una linea recta del centro hasta este punto medio nos daremos cuenta que se formara una circunferencia de radio menor (C'). Tomando de referencia la figura \ref{fig:problema2_interpretacion1}, notaremos que la circunferencia C' tiene radio $m_{max}$. Entonces, la probabilidad de obtener una linea recta de longitud mayor o igual a $\sqrt{3}$ puede calcularse como:
+          \begin{align*}
+              P(d>\sqrt{3}) & = \frac{A(C')}{A(C)}         \\
+                            & = \frac{\pi m_{max}^2}{\pi}  \\
+                            & = m_{max}^2                  \\
+                            & = \left(\frac{1}{2}\right)^2 \\
+              P(d>\sqrt{3}) & = \frac{1}{4}
+          \end{align*}
+          Por lo tanto, bajo esta interpretación la probabilidad es de  $\frac{1}{4}$. En la figura \ref{fig:examples_interpretation} se representa esta interpretación con lineas rectas generadas aleatoriamente.
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=4cm]{Graphics/circle_3_1.eps}
+              \includegraphics[width=4cm]{Graphics/circle_3_2.eps}
+              \includegraphics[width=4cm]{Graphics/circle_3_3.eps}
+              \includegraphics[width=4cm]{Graphics/circle_3_4.eps}
+              \caption{}
+              \label{fig:examples_interpretation}
+          \end{figure}
+\end{itemize}
