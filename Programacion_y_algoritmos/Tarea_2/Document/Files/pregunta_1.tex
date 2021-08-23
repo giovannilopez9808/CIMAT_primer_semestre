@@ -1,4 +1,6 @@
 \section*{Problema 1}
 \textbf{¿Cuál es la diferencia entre el format \%i y \%d? Dé un ejemplo. ¿C es la diferencia entre la declaración bool y \_Bool en C?}
 
-La diferencia entre el formato
+La diferencia entre el formato \%i y \%d se encuentra en la funcion \textit{scanf}. Los dos formatos admiten la lectura de números enteros. El \%i admite entradas en hexadecimal y octal, estos deben estar precedido de 0x y 0 respectivamente.
+
+La palabra \textit{bool} no fue reservada antes de C99, se usa la palabra clave \textit{\_Bool}, entonces \textit{bool} es un alias para \textit{\_Bool} si se incluye stdbool.h en el encabezado.
