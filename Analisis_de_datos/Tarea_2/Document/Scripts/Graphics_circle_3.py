@@ -43,6 +43,8 @@ def draw_lines(r: float, x: list):
              color=color)
     plt.scatter(x_mean, y_mean,
                 color="#000000")
+    plt.scatter(x, y,
+                color="#e85d04")
     plt.text(x_mean*0.95, y_mean*0.95,
              "{:.3f}".format(len))
 

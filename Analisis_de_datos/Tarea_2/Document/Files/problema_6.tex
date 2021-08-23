@@ -1,2 +1,17 @@
 \subsection*{Problema 6}
 \textbf{Tienes una bolsa con 6 pelotas rojas y 10 pelotas verdes. Eliges al azar una pelota y la sacas de la bolsa. De nuevo, eliges al azar una pelota de la bolsa (ahora con 15 pelotas). Calcula la probabilidad de obtener una pelota roja.}
+
+La probabilidad de obtener la pelota roja en el primer intento (R$_1$) es de $\frac{6}{16}$. Suponiendo que no se obtuvo en el primer intento, entonces la probabilidad de obtener una pelota roja (R$_2$) y la anterior fue verde (V$_1$) es
+\begin{align*}
+    P(R_2\cap V_1) & = P(V_1) (R_2)                                         \\
+                   & = \left(\frac{10}{16}\right) \left(\frac{6}{15}\right) \\
+                   & = \frac{60}{240}
+\end{align*}
+entonces, la probabilidad de obtener una pelota roja es:
+\begin{align*}
+    P(R) & = P(R_1) + P(R_2\cap V_1)       \\
+         & = \frac{6}{16} + \frac{60}{240} \\
+         & = \frac{6}{16}+ \frac{6}{24}    \\
+         & = \frac{30}{48}                 \\
+    P(R) & = \frac{5}{8}
+\end{align*}
