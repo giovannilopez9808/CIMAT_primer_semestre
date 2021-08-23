@@ -1,4 +1,5 @@
-\item \textbf{Riemann sums can be used to estimate the area under the curve $y =f (x)$ in the interval $[a, b]$. Left-and right-endpoint approximations, with subintervals of the same width, are special kinds of Riemann sums, ie,
+\section*{Problema 4}
+\textbf{Riemann sums can be used to estimate the area under the curve $y =f (x)$ in the interval $[a, b]$. Left-and right-endpoint approximations, with subintervals of the same width, are special kinds of Riemann sums, ie,
     \begin{center}
         Left-endpoint approximation:
     \end{center}
@@ -20,21 +21,13 @@
     \end{equation*}
 }
 
-El programa que emplea los dos algoritmos se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. Los resultados de cada integral se muestran en la tabla \ref{table:resultados4} y el programa arroja los resultados en la terminal como se muestra en la figura \ref{fig:resultados4}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{Graphics/problema4_ss.png}
-    \caption{Resultados impresos en la termianl obtenidos por el programa}
-    \label{fig:resultados4}
-\end{figure}
-En la figura \ref{fig:integracion} se muestra la representación gráfica de los algoritmos Left-endpoint y Right-endpoint.
+El programa que emplea los dos algoritmos se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. Los resultados de cada integral se muestran en la tabla \ref{table:resultados4}. En la figura \ref{fig:integracion} se muestra la representación gráfica de los algoritmos Left-endpoint y Right-endpoint.
 \begin{figure}[H]
     \centering
     \includegraphics[width=17cm]{Graphics/integration.eps}
     \caption{Representación gráfica de los algoritmos left-endpoint (izquierda) y right-endpoint (derecha).}
     \label{fig:integracion}
 \end{figure}
-La diferencia obtenida entre los dos algoritmos de integración es de 0.157080.
 \begin{table}[H]
     \centering
     \begin{tabular}{lc} \hline
@@ -45,3 +38,10 @@ La diferencia obtenida entre los dos algoritmos de integración es de 0.157080.
     \caption{Resultados de los algoritmos de integración con los parámetros especificados para $f(x)=sin(x)$}
     \label{table:resultados4}
 \end{table}
+La diferencia obtenida entre los dos algoritmos de integración es de 0.157080.
+
+El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. El comando para compilarlo es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -lm -std=c11
+\end{lstlisting}

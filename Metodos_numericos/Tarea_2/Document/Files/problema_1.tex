@@ -1,4 +1,5 @@
-\item \textbf{Find the fourth Taylor polynomial $P_4(x)$ for the function $f (x) = xe^{x^2}$ about $x_0 = 0$.}
+\section*{Problema 1}
+\textbf{Find the fourth Taylor polynomial $P_4(x)$ for the function $f (x) = xe^{x^2}$ about $x_0 = 0$.}
 
 Como se sabe que
 \begin{equation*}
@@ -33,11 +34,9 @@ por lo tanto, la función a implementar es:
 
           El resultado de la integral usando el polinomio $P_4(x)$ es de 0.086784.
 \end{enumerate}
-Los resultados anteriores pueden ser verificados en el script contenido en la carpeta \textcolor{citecolor}{Problema\_1}, los valores del salida del programa son los que se muestran en la figura \ref{fig:problema1ss}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{Graphics/problema1_ss.png}
-    \caption{Captura de pantalla de los valores de salida del programa.}
-    \label{fig:problema1ss}
-\end{figure}
 Con esto se comprueba la precisión que se puede obtener al escribir una función como serie de potencias.
+El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Problema\_1}. El comando para compilarlo es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -lm -std=c11
+\end{lstlisting}
