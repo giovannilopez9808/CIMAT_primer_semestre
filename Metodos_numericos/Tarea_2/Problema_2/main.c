@@ -1,25 +1,18 @@
 #include <stdio.h>
 #include <math.h>
-float float_function(double x)
+double function(double x)
 {
     /* 
-    Obtiene el valor de la funcion usando unicamente float
-     */
-    return 1 / (sqrtf(powf(x, 2) + 1) - x);
-}
-double double_function(double x)
-{
-    /* 
-    Obtiene el valor de la funcion usando unicamente double
+    Obtiene el valor de la funcion
      */
     return 1 / (sqrt(pow(x, 2) + 1) - x);
 }
-long double long_double_function(double x)
+double function_racionalized(double x)
 {
-    /* 
-    Obtiene el valor de la funcion usando unicamente long double
-    */
-    return 1 / (sqrtl(powl(x, 2) + 1) - x);
+    /*
+Obtiene el valor de la funcion  racionalizada
+ */
+    return sqrt(pow(x, 2) + 1) + x;
 }
 void init_program(double x)
 {
@@ -28,20 +21,18 @@ void init_program(double x)
      */
     printf("------------------------------\n");
     printf("Para x\t= %lf\n", x);
-    // Ejecuta la funcion tipo float
-    float ffx = float_function(x);
-    printf("ffx(x)\t= %f\n", ffx);
-    // Ejecuta la funcion tipo double
-    double dfx = double_function(x);
-    printf("dfx(x)\t= %lf\n", dfx);
-    // Ejecuta la funcion tipo long double
-    long double dlfx = long_double_function(x);
-    printf("dlfx(x)\t= %Lf\n", dlfx);
+    // Evalua la fncion
+    double fx = function(x);
+    printf("f(x)\t= %lf\n", fx);
+    // Evalua la función racionalizada
+    double frx = function_racionalized(x);
+    printf("fr(x)\t= %lf\n", frx);
+    printf("RD(x)\t= %lf\n", fabs(frx - fx));
 }
 int main()
 {
     // Numero de potenicas de 10 que usara
-    int n = 11;
+    int n = 8;
     double x;
     for (int i = 0; i < n; i++)
     {
