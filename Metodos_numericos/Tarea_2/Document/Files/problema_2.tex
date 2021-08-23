@@ -1,24 +1,31 @@
 \item \textbf{Implement a function to comput
-    \begin{equation*}
+    \begin{equation}
         f(x)=\frac{1}{\sqrt{x^2+1}-x}
-    \end{equation*}
+        \label{eq:ejercicio2}
+    \end{equation}
     When evaluating the previous function we can lose accuracy, transform the right hand side to avoid error (or improve the accuracy). Implement the transformed expression and compare the results with the original function. Note: use values of x greater than 10000.}
 
-Se crearon una serie de funciones donde se calculará $f(x)$, como entrada recibiran un número del tipo double y daran de salida un número float, double y long double. Los resultados de cada función con diferentes valores de x se encuentran enlistados en la tabla \ref{table:problema2}.
+La función \ref{eq:ejercicio2} puede provocar problemas con números grandes, ya que el termino $\sqrt{x^2+1}$ puede tener un valor muy cercano a $x$, provocando asi el obtener el resultado de 1/0. Racionalizando la función se obtiene lo siguiente:
+\begin{align}
+    f(x) & = \frac{1}{\sqrt{x^2+1}-x}                                                     \nonumber \\
+         & = \frac{1}{\sqrt{x^2+1}-x} \left(\frac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}+x} \right) \nonumber \\
+         & = \frac{\sqrt{x^2+1}+x}{x^2+1-x^2}                                             \nonumber \\
+         & = \frac{\sqrt{x^2+1}+x}{1}                                                     \nonumber \\
+    f(x) & = \sqrt{x^2+1}+x \label{eq:ejercicio2_racionalizada}
+\end{align}
+Se crearon dos funciones donde se calculará $f(x)$ con las ecuaciones \ref{eq:ejercicio2} y \ref{eq:ejercicio2_racionalizada}, como entrada recibiran un número del tipo double y daran de salida un número de tipo double. Los resultados de cada función con diferentes valores de x se encuentran enlistados en la tabla \ref{table:problema2}.
 \begin{table}[H]
     \centering
     \begin{tabular}{llll} \hline
-        \textbf{x}         & \textbf{float f(x)} & \textbf{double f(x)} & \textbf{long double f(x)} \\ \hline
-        1.000000           & 2.414214            & 2.414214             & 2.414214                  \\
-        10.000000          & 20.050020           & 20.049876            & 20.049876                 \\
-        100.000000         & 200.109924          & 200.005000           & 200.005000                \\
-        1000.000000        & 2048.000000         & 2000.000500          & 2000.000500               \\
-        10000.000000       & inf                 & 19999.999778         & 20000.000050              \\
-        100000.000000      & inf                 & 200000.223331        & 199999.999937             \\
-        1000000.000000     & inf                 & 1999984.771129       & 2000000.005050            \\
-        10000000.000000    & inf                 & 19884107.851852      & 19999847.711292           \\
-        100000000.000000   & inf                 & inf                  & 200056700.832606          \\
-        10000000000.000000 & inf                 & inf                  & inf                       \\ \hline
+        \textbf{x}      & \textbf{Ecuación \ref{eq:ejercicio2}} & \textbf{Ecuación \ref{eq:ejercicio2_racionalizada}} & \textbf{Diferencia} \\ \hline
+        1.000000        & 2.414214                              & 2.414214                                            & 0.000000            \\
+        10.000000       & 20.049876                             & 20.049876                                           & 0.000000            \\
+        100.000000      & 200.005000                            & 200.005000                                          & 0.000000            \\
+        1000.000000     & 2000.000500                           & 2000.000500                                         & 0.000000            \\
+        10000.000000    & 19999.999778                          & 20000.000050                                        & 0.000272            \\
+        100000.000000   & 200000.223331                         & 200000.000005                                       & 0.223326            \\
+        1000000.000000  & 1999984.771129                        & 2000000.000001                                      & 15.228871           \\
+        10000000.000000 & 19884107.851852                       & 20000000.000000                                     & 115892.148148       \\ \hline
     \end{tabular}
     \caption{Valores de x para las diferences funciones.}
     \label{table:problema2}
