@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <math.h>
-int factorial(int n)
+double factorial(int n)
 {
     /* 
     Definicion del factorial
     */
-    int result = 1;
+    double result = 1;
     for (int i = 1; i < n + 1; i++)
     {
         result = result * i;
     }
     return result;
 }
-double obtain_ri_term(double x, int i)
+double obtain_ai(int i)
 {
-    return pow(x, i) / factorial(i);
+    double ai = 1 / factorial(i);
+    printf("%lf\n", ai);
+    return ai;
 }
 double function_approximation(double x, int n)
 {
@@ -22,10 +24,11 @@ double function_approximation(double x, int n)
     Definicion de la funcion aproximada.
     f(x)=\sum_{i=0}^n (x^i)/i!
      */
-    double fx = 1.0;
-    for (int i = 1; i < n + 1; i++)
+    double fx = obtain_ai(n);
+    for (int i = n - 1; i >= 0; i--)
     {
-        fx += obtain_ri_term(x, i);
+        printf("%d\t%lf\n", i, fx);
+        fx = obtain_ai(i) + x * fx;
     }
     return fx;
 }
@@ -55,7 +58,7 @@ void test_problem()
     Entorno para mostrar los valores de prueba
      */
     int n = 10;
-    double x = 1.0;
+    double x = 2.0;
     print_result(x, n);
 }
 void init_program()
