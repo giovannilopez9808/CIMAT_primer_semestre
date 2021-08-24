@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
-int factorial(int n)
+double factorial(int n)
 {
     /* 
     Definicion del factorial
     */
-    int result = 1;
+    double result = 1;
     for (int i = 1; i < n + 1; i++)
     {
         result = result * i;
@@ -17,23 +17,35 @@ double function(double x)
     /* 
     Definicion de la funcion
      */
-    return x * exp(x * x);
+    return x * exp(pow(x, 2));
+}
+double obtain_ai(int i)
+{
+    /* 
+    Obtiene el coeficiente i-esimo de la suma
+     */
+    double ai;
+    ai = 1 / factorial(i);
+    return ai;
 }
 double obtain_ri_term(double x, int i)
 {
-    return pow(x, 2 * i + 1) / factorial(i);
+    /* 
+    Obtiene el ri termino de la suma
+     */
+    return pow(x, 2 * i + 1) * obtain_ai(i);
 }
 double function_approximation(double x, int n)
 {
     /* 
-    Definicion de la funcion aproximada.
-    f(x)=\sum_{i=0}^n (x^{2i+1})/i!
+    Definicion de la funcion aproximada haciendo uso de la ecuacion de recursividad
      */
-    double fx = x;
-    for (int i = 1; i < n + 1; i++)
+    double fx = obtain_ai(n);
+    for (int i = n - 1; i >= 0; i--)
     {
-        fx += obtain_ri_term(x, i);
+        fx = obtain_ai(i) + pow(x, 2) * fx;
     }
+    fx = x * fx;
     return fx;
 }
 void obtain_upper_bounds(double xi, double xf, double dx)
@@ -45,10 +57,16 @@ void obtain_upper_bounds(double xi, double xf, double dx)
     {
         r4 = obtain_ri_term(x, 5);
         res = fabsl(function(x) - function_approximation(x, 4));
+        /* 
+        Obtiene la cota superior de la diferencia entre la funcion y la ecuacion aproximada
+         */
         if (res > max_f_and_approx)
         {
             max_f_and_approx = res;
         }
+        /* 
+        Obtiene la cota superior del R4 
+         */
         if (r4 > max_R4)
         {
             max_R4 = r4;
