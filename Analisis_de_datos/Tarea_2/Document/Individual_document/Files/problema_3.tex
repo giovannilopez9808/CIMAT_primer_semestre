@@ -1,0 +1,52 @@
+\pagebreak
+\section*{Problema 3}
+\textbf{Se rompe una barra en tres piezas en 2 lugares elegidos completamente al azar. Calcula la probabilidad que la longitud de la pieza de en medio sea al menos dos veces la diferencia de las longitudes de las demás dos piezas (nota: se toma como diferencia de 2 y 3, 1, o sea, siempre es positiva).}
+
+Para simplificar cálculos y sin perder generalidad, supondremos que tratamos con una barra de largo 1, de manera que al extremo izquierdo de la barra le corresponde el 0, y al derecho el 1. Además, al romper la barra en tres piezas llamaremos $x$ al extremo izquierdo de la pieza de en medio y $y$ a su extremo derecho. De forma que el conjunto de todos los puntos $x$ e $y$ que se obtienen al romper la barra en tres es:
+\begin{equation*}
+    \Omega = \{(x,y):x,y\in \left(0,1\right), x < y \}
+\end{equation*}
+Siendo
+\begin{align*}
+    A & = \{(x,y)\in \Omega: y-x \geq 2\mid 1-y - (x-0) \mid\}
+      & = \{(x,y)\in \Omega: y-x \geq 2\mid 1-(y+x) \mid\}
+\end{align*}
+
+el conjunto de todos los $x$ e $y$ tales que la longitud de la pieza de en medio sea al menos dos veces la diferencia de las longitudes de las otras dos piezas.
+
+Las condiciones a las que estamos sujetos son
+\begin{equation*}
+    y-x\geq 2-2y-2x\ \land\ 2-2y-2x \geq x-y,\ y>x
+\end{equation*}
+
+esto es
+\begin{equation*}
+    y\geq \frac{2-x}{3}\ \land\ y\leq2-3x,\ y>x
+\end{equation*}
+
+o escrito de otra forma
+\begin{equation*}
+    \frac{2-x}{3}\leq y\leq 2-3x,\ y>x.
+\end{equation*}
+
+La intersección de las rectas que delimitan los intervalos se da cuando
+\begin{equation*}
+    \frac{2-x}{3}= 2-3x,
+\end{equation*}
+
+y esto sucede cuando $x = 1/2$, que al sustituir en una de las rectas nos da $y=1/2$.
+
+Para la ecuación $y= (2-x)/3$ se tiene que $y = 2/3$ cuando $x = 0$, y para $y= 2-3x$, se tiene que $y = 2$ cuando $x = 0$ y $y=1$ cuando $x =1/3$. Todo esto nos da la base para calcular la probabilidad de obtener un elemento de $A$, que se puede hacer de la siguiente manera:
+\begin{equation*}
+    P(A) = \frac{\int_{0}^{\frac{1}{3}}\int_{\frac{2-x}{3}}^{1}dydx+\int_{\frac{1}{3}}^{\frac{1}{2}}\int_{\frac{2-x}{3}}^{2-3x}dydx}{\frac{1}{2}}
+\end{equation*}
+
+Donde el $1/2$ del denominador es el área total que representa a $\Omega$
+\begin{equation*}
+    P(A) =2\left(\int_{0}^{\frac{1}{3}}\left[1-\left(\frac{2-x}{3}\right)\right] dx + \int_{\frac{1}{3}}^{\frac{1}{2}}\left[(2-3x)-\left(\frac{2-x}{3}\right)\right]dx\right)
+\end{equation*}
+
+Que al integrar y realizar los cálculos aritméticos necesarios nos lleva a que la probabilidad de que la longitud de la pieza de en medio sea al menos dos veces la diferencia de las longitudes de las otras dos piezas es
+\begin{equation*}
+    P(A) = 2\left(\frac{1}{6}\right) = \frac{1}{3}
+\end{equation*}
