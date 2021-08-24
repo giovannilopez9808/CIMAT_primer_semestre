@@ -1,5 +1,16 @@
 #include <stdio.h>
-#include <math.h>
+long double power(double a, int n)
+{
+    /* 
+    Funcion que eleva un numero a a la potencia n, donde n>=0
+    */
+    long double result = 1.0;
+    for (int i = 0; i < n; i++)
+    {
+        result = result * a;
+    }
+    return result;
+}
 long double factorial(int n)
 {
     /* 
@@ -25,7 +36,7 @@ long double obtain_ri_term(double x, int i)
     {
         sign = -1;
     }
-    ri = sign * powl(x, 2 * i) / factorial(i);
+    ri = sign * power(x, 2 * i) / factorial(i);
     return ri;
 }
 long double function(double x, int n)

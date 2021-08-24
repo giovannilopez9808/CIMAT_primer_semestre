@@ -1,5 +1,16 @@
 #include <stdio.h>
-#include <math.h>
+double power(double a, int n)
+{
+    /* 
+    Funcion que eleva un numero a a la potencia n, donde n>=0
+    */
+    double result = 1.0;
+    for (int i = 0; i < n; i++)
+    {
+        result = result * a;
+    }
+    return result;
+}
 long int obtain_number_of_digits(long int number)
 {
     /* 
@@ -19,15 +30,15 @@ void integer_to_list(long int size, long int number, int number_array[])
     Convierte el numero entero en una lista de datos, cada elemento de la lista es un dígito del número
      */
     //  Primer digito del numero
-    number_array[0] = number / pow(10, size);
+    number_array[0] = number / power(10, size);
     for (int i = 1; i < size + 1; i++)
     {
         // Guarda el number[0:i]
-        number_array[i] = number / pow(10, size - i);
+        number_array[i] = number / power(10, size - i);
         for (int j = 0; j < i; j++)
         {
             // Elimina los numero de las decenas, centenas, etc para dejar unicamente la unidad
-            number_array[i] -= number_array[j] * pow(10, i - j);
+            number_array[i] -= number_array[j] * power(10, i - j);
         }
     }
 }
@@ -40,7 +51,7 @@ long int join_numbers(int numbers_array[], long int size)
     for (int i = size; i >= 0; i--)
     {
         // Suma los digitos multiplicando su potencia por 10
-        result += numbers_array[i] * pow(10, i);
+        result += numbers_array[i] * power(10, i);
     }
     return result;
 }
