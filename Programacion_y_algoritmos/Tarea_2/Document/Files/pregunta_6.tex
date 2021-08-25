@@ -1,2 +1,36 @@
 \section*{Problema 6}
 \textbf{Programa que convierta un número decimal a cualquier base.}
+
+La estructura del código es la siguiente:
+\begin{lstlisting}[language=python]
+    basis = 16
+    number = 2342
+    number_c = ""
+    while(number!=0):
+        residue = number % basis
+        number = int(number / basis)
+        number_c += integer_to_ascii(residue)
+    number_c = inverse_string(number_c)
+    print(number_c)
+
+    > output: 926
+\end{lstlisting}
+
+Para hacer una prueba de este algorimo usaremos la base 16 con el número 2342. El algoritmo desglosado se muestra en la tabla \ref{table:test_problem6}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccc} \hline
+        \textbf{Operación} & \textbf{Cociente} & \textbf{Residuo} & \textbf{ASCII(Residuo)} \\ \hline
+        2342 / 16          & 146               & 6                & 6                       \\
+        146 / 16           & 9                 & 2                & 2                       \\
+        9 / 16             & 0                 & 9                & 9                       \\\hline
+    \end{tabular}
+    \caption{Prueba del algoritmo de conversion de base con el número 2342 y la base 16.}
+    \label{table:test_problem6}
+\end{table}
+donde como resultado que el número 2342 en base 16 es 926.
+
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_6}. La manera de ejecutar el programa es con la siguiente linea:
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -std=c11
+\end{lstlisting}
