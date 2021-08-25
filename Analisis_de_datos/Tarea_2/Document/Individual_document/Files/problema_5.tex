@@ -1,3 +1,4 @@
+\pagebreak
 \subsection*{Problema 5}
 \textbf{En un examen de opción múltiple, se sabe que la probabilidad que alguien sepa la respuesta correcta es 0.4. Si no sabe la respuesta, la persona elige al azar una respuesta. Cada pregunta tiene 4 posibles respuestas. Para una pregunta particular: si alguien da la respuesta correcta, ¿ cuál es la probabilidad que adivinó?}
 
@@ -7,3 +8,13 @@ Sea A el evento que un alumno sepa la respuesta correcta y B que conteste correc
     P(B)     & = 0.25 \\
     P(B|A^c) & = 0.25
 \end{align*}
+
+A partir de la definción del evento A y B, se quiere conocer $P(A^c|B)$. Realizando el calculo se obtiene lo siguiente:
+\begin{align*}
+    P(A^c|B) & = \frac{P(B|A^c)P(A^c)}{P(B)}   \\
+             & = \frac{P(B|A^c)(1-P(A))}{P(B)} \\
+             & =\frac{(0.25)(1-0.4)}{0.25}     \\
+    P(A^c|B) & = 0.6
+\end{align*}
+
+Con este resultado comprobamos que el suceso A y B son independientes, entonces. Esto se pudo haber comprobado desde el calculo de $P(B)$ y $P(B|A^c)$.
