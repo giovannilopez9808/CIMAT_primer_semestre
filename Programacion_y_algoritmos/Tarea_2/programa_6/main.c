@@ -14,19 +14,19 @@ char integer_to_ascii(int number)
         return (char)(number - 10 + 'A');
     }
 }
-void print_number(char result[], int size, int base)
+void print_number(char result[], int size, int basis)
 {
     /* 
     Imprime el numero en la nueva base
      */
-    printf("El numero en base %d es: ", base);
+    printf("El numero en base %d es: ", basis);
     for (int i = size; i >= 0; i--)
     {
         printf("%c", result[i]);
     }
     printf("\n");
 }
-void convert_number(int number, int base, char result[])
+void convert_number(int number, int basis, char result[])
 {
     /* 
     Convierte cualquier numero dado a la base especificada
@@ -35,30 +35,30 @@ void convert_number(int number, int base, char result[])
     int index = 0;
     while (number != 0)
     {
-        // Obtiene el residuo del numero con la base
-        residue = number % base;
+        // Obtiene el residuo del numero con la basis
+        residue = number % basis;
         // Convierte el residuo a un caracter ascii
         result[index] = integer_to_ascii(residue);
         index++;
         // Obtiene la division del numero sin el residuo
-        number = number / base;
+        number = number / basis;
     }
     print_number(result,
                  index,
-                 base);
+                 basis);
 }
 
 int main()
 {
-    int base;
+    int basis;
     int number;
     char result[100];
     printf("Ingresa la base a la cual se desea convertir el numero: ");
-    scanf("%d", &base);
-    printf("Ingresa el numero que quieres convertir a la base %d: ", base);
+    scanf("%d", &basis);
+    printf("Ingresa el numero que quieres convertir a la base %d: ", basis);
     scanf("%d", &number);
     convert_number(number,
-                   base,
+                   basis,
                    result);
     return 0;
 }
