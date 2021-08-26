@@ -1,0 +1,56 @@
+\section*{Problema 1}
+\textbf{Use four-digit rounding arithmetic and the quadratic formulas to find the
+    most accurate approximations to the roots of the following quadratic equa-
+    tions. Also use the form of the quadratic formula by rationalizing the
+    numerator. Compute the absolute errors and relative errors.}
+\begin{align}
+    \frac{1}{3}x^2 - \frac{123}{4}x +\frac{1}{6} & = 0 \label{eq:funcion1} \\
+    \frac{1}{3}x^2 + \frac{123}{4}x -\frac{1}{6} & = 0 \label{eq:funcion2}
+\end{align}
+
+La ecuación cuadrática es:
+\begin{equation}
+    x = \frac{-b\pm \sqrt{b^2-4ac}}{2a}
+    \label{eq:problema1}
+\end{equation}
+
+Realizando el proceso de racionalización se obtiene que:
+\begin{align}
+    x & = \frac{-b\pm \sqrt{b^2-4ac}}{2a}\left(\frac{b\pm \sqrt{b^2-4ac}}{b\pm \sqrt{b^2-4ac}}\right) \nonumber \\
+      & = \frac{-b^2+b^2-4ac}{2a(b\pm \sqrt{b^2-4ac})}                                   \nonumber              \\
+    x & = \frac{-2c}{b\pm \sqrt{b^2-4ac}} \label{eq:problema1raiz}
+\end{align}
+
+Los resultados del programa se encuentran en la tabla \ref{table:resultados1}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llll} \hline
+        \textbf{Problema}                           & \textbf{Función}                & \multicolumn{1}{c}{$\mathbf{x_1}$} & \multicolumn{1}{c}{$\mathbf{x_2}$} \\ \hline
+        \multirow{2}{*}{Problema \ref{eq:funcion1}} & Ecuación \ref{eq:problema1}     & 0.0054                             & -92.2646                           \\
+                                                    & Ecuación \ref{eq:problema1raiz} & 0.005420                           & -92.255420                         \\
+        \multirow{2}{*}{Problema \ref{eq:funcion2}} & Ecuación \ref{eq:problema1}     & 0.0054                             & 92.2538                            \\
+                                                    & Ecuación \ref{eq:problema1raiz} & 0.005420                           & 92.244580                          \\ \hline
+    \end{tabular}
+    \caption{Resultados de las raices de las ecuaciones \ref{eq:funcion1} y \ref{eq:funcion2} usando las ecuaciones \ref{eq:problema1} y \ref{eq:problema1raiz}.}
+    \label{table:resultados1}
+\end{table}
+
+Para este caso se definieron la diferencia relativa y absoluta de la siguiente manera:
+\begin{equation*}
+    DA = \left|Y-X \right| \qquad DR = \frac{DA}{Y}*100
+\end{equation*}
+donde $Y$ son los resultados usando la ecuación \ref{eq:problema1raiz} y $X$ son los resultados de usar la ecuación \ref{eq:problema1}.
+Obtiendo así, los calculos de la diferencia absoluta y diferencia relativa mostrados en la tabla \ref{table:difabsolute}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llll}
+        \hline
+        \multicolumn{1}{c}{\textbf{Problema}}       & \textbf{Valores} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Diferencia\\ absoluta\end{tabular}}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Diferencia\\ Relativa\end{tabular}}}    \\ \hline
+        \multirow{2}{*}{Problema \ref{eq:funcion1}} & x1               & 0.000020                                               & 0.369004                                               \% \\
+                                                    & x2               & 0.009183                                               & 0.009954                                               \% \\
+        \multirow{2}{*}{Problema \ref{eq:funcion2}} & x1               & 0.009219                                               & 0.009994                                               \% \\
+                                                    & x2               & 0.009183                                               & 0.009954                                               \% \\ \hline
+    \end{tabular}
+    \caption{Diferencias absolutas y relativas de los resultados de la tabla \ref{table:resultados1}.}
+    \label{table:difabsolute}
+\end{table}

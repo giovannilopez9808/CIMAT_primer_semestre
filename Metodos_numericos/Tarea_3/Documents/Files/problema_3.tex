@@ -1,0 +1,20 @@
+\section*{Problema 3}
+\textbf{Find the number of terms of the exponential series such that their sum gives the value of e\textsuperscript{x} correct to six decimal places at x = 1.}
+
+El procedimiento para encontrar la respuesta a este problema fue el siguiente:
+\begin{lstlisting}
+    n_term = 1
+    fx = round(exp(1.0),6)
+    fx_approx = round(approx(x,n_term),6)
+    while fx != fx_approx:
+        n_term++
+        fx_approx = round(approx(x,n_term),6)
+\end{lstlisting}
+
+El número de terminos de la serie de la función $f(x)=e^x$ necesaria para que coincida su valor numérico a seis decimales es 9.
+
+El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Problema\_3}. El comando para compilarlo es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -lm -std=c11
+\end{lstlisting}
