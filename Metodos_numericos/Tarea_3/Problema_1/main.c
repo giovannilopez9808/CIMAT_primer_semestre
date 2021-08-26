@@ -13,6 +13,9 @@ void obtain_root_with_four_digits(double a, double b, double c)
     /* 
     Realiza el calculo de las raices de una función cuadratica usando la ecuación cuadratica a cuatro digitos
      */
+    a = round_custom(a, 4);
+    b = round_custom(b, 4);
+    c = round_custom(c, 4);
     double power_b = round_custom(b * b, 4);
     double ab4 = round_custom(-4 * a * c, 4);
     double square = round_custom(sqrt(power_b + ab4), 4);
