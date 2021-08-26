@@ -16,7 +16,6 @@ double function(double x)
      */
     double fx;
     fx = x * cos(x) * sin(x) / (x - sin(x));
-    printf("El valor de f(x) es: %lf\n", fx);
     return fx;
 }
 double function_four_digits(double x)
@@ -54,8 +53,37 @@ double obtain_RD(double x, double y)
     RD = fabs(x - y) * 100 / y;
     return RD;
 }
+double calculate_limit(double x, double limit)
+{
+    double fi = function(x);
+    double fs = function(-x);
+    double diff = fabs(fs - fi);
+    if (diff < 10e-6)
+    {
+        limit = (fi + fs) / 2;
+        printf("El límite es %lf\n", limit);
+    }
+    return limit;
+}
+void find_limit()
+{
+    double limit = -999;
+    double x = 1;
+    int i = 1;
+    while (limit == -999 && i < 16)
+    {
+        limit = calculate_limit(x, limit);
+        x = x / 2;
+        i++;
+    }
+    if (limit == -999)
+    {
+        printf("El limite no existe\n");
+    }
+}
 int main()
 {
+    find_limit();
     double x = 0.1;
     double fx_approx = function_with_series(x);
     double fx_4 = function_four_digits(x);
