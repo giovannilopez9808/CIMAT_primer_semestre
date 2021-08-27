@@ -37,3 +37,52 @@ El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Pr
 \begin{lstlisting}[language=bash]
     gcc -Wall -o main.out main.c -lm -std=c11
 \end{lstlisting}
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -o main.out main.c -lm -std=c11
+\end{lstlisting}
+
+El output esperado del programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ------------------------------
+    Para x	= 1.000000
+    f(x)	= 2.414214
+    fr(x)	= 2.414214
+    RD(x)	= 0.000000
+    ------------------------------
+    Para x	= 10.000000
+    f(x)	= 20.049876
+    fr(x)	= 20.049876
+    RD(x)	= 0.000000
+    ------------------------------
+    Para x	= 100.000000
+    f(x)	= 200.005000
+    fr(x)	= 200.005000
+    RD(x)	= 0.000000
+    ------------------------------
+    Para x	= 1000.000000
+    f(x)	= 2000.000500
+    fr(x)	= 2000.000500
+    RD(x)	= 0.000000
+    ------------------------------
+    Para x	= 10000.000000
+    f(x)	= 19999.999778
+    fr(x)	= 20000.000050
+    RD(x)	= 0.000272
+    ------------------------------
+    Para x	= 100000.000000
+    f(x)	= 200000.223331
+    fr(x)	= 200000.000005
+    RD(x)	= 0.223326
+    ------------------------------
+    Para x	= 1000000.000000
+    f(x)	= 1999984.771129
+    fr(x)	= 2000000.000001
+    RD(x)	= 15.228871
+    ------------------------------
+    Para x	= 10000000.000000
+    f(x)	= 19884107.851852
+    fr(x)	= 20000000.000000
+    RD(x)	= 115892.148148
+\end{lstlisting}

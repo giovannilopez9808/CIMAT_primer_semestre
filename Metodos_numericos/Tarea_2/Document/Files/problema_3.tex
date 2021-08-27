@@ -10,8 +10,43 @@
     \end{equation*}
 }
 
+Expandiendo hasta $n=3$, se obtiene que:
+\begin{align*}
+    f(x) & = a_0+a_1x+a_2x^2+a_3x^3 \\
+         & = a_0+x(a_1+x(a_2+xa_3))
+\end{align*}
+
+Por lo que podemos obtener una ecuación recursiva de tal manera que:
+\begin{align*}
+    P_0 & = a_n                \\
+    P_1 & = a_{n-1}+xP_0       \\
+    P_2 & = a_{n-2}+xP_{1}     \\
+        & \qquad \vdots        \\
+    P_i & = a_{n-i} + xP_{i-1} \\
+        & \qquad \vdots        \\
+    P_n & = a_{0} +xP_{n-1}    \\
+\end{align*}
+
 El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Problema\_3}. El comando para compilarlo es el siguiente:
 
 \begin{lstlisting}[language=bash]
     gcc -Wall -o main.out main.c -lm -std=c11
+\end{lstlisting}
+
+El output esperado del programa es el siguiente:
+
+\textbf{Caso de datos de prueba}
+\begin{lstlisting}[language=bash]
+    Deseas usar el programa con los datos de prueba?(Y/n): y
+    f(2.000000) = 7.388995
+\end{lstlisting}
+
+\textbf{Caso de datos de introducidos por usuario}
+\begin{lstlisting}[language=bash]
+    Deseas usar el programa con los datos de prueba?(Y/n): n
+    Escribe el numero de terminos de la serie que quieres calcular:
+    4
+    Escribe el numero de x que quieres evaluar:
+    -2
+    f(-2.000000) = 0.333333    
 \end{lstlisting}
