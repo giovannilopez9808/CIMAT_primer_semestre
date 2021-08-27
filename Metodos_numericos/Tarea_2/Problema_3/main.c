@@ -15,7 +15,6 @@ double factorial(int n)
 double obtain_ai(int i)
 {
     double ai = 1 / factorial(i);
-    printf("%lf\n", ai);
     return ai;
 }
 double function_approximation(double x, int n)
@@ -27,7 +26,6 @@ double function_approximation(double x, int n)
     double fx = obtain_ai(n);
     for (int i = n - 1; i >= 0; i--)
     {
-        printf("%d\t%lf\n", i, fx);
         fx = obtain_ai(i) + x * fx;
     }
     return fx;
