@@ -20,7 +20,7 @@ void print_equation(double a, double b, double c)
     /* 
     Realiza la impresion de la ecuacion que se analizara
      */
-    printf("Ecuación a analizar:\n ");
+    printf("Ecuacion a analizar:\n ");
     print_sign(a);
     printf("x2 ");
     print_sign(b);
@@ -102,7 +102,7 @@ void obtain_roots(double a, double b, double c, double results1[], double result
                                  b,
                                  c,
                                  results2);
-    printf("\nLa diferencia absoluta y RD es:\n");
+    printf("\nLa diferencia absoluta y la diferencia relativa es:\n");
     // Calculo de la AD y RD para x1
     obtain_AD_and_RD(results1[0],
                      results2[0],

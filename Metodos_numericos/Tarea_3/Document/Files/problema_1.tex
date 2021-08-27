@@ -59,3 +59,36 @@ El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_1}. Para 
 \begin{lstlisting}[language=bash]
     gcc -Wall -o main.out main.c -lm -std=c11    
 \end{lstlisting}
+
+El output esperado del programa es el siguiente:
+\begin{lstlisting}[language=bash]
+    ----------------------------------
+    Ecuacion a analizar:
+    +0.333333 x2 +30.750000 x -0.166667 
+
+    El resultado usando la ecuacion racionalizada es:
+    x1 = 0.005420	x2 = -92.255420
+    El resultado usando redondeando a cuatro digitos es:
+    x1 = 0.005400	x2 = -92.264603
+
+    La diferencia absoluta y la diferencia relativa es:
+    Para x1
+        AD = 0.000020	 RD = 0.365475 
+    Para x2
+        AD = 0.009183	 RD = 0.009953 
+
+    ----------------------------------
+    Ecuacion a analizar:
+    +0.333333 x2 -30.750000 x +0.166667 
+
+    El resultado usando la ecuacion racionalizada es:
+    x1 = 92.244580	x2 = 0.005420
+    El resultado usando redondeando a cuatro digitos es:
+    x1 = 92.253799	x2 = 0.005400
+
+    La diferencia absoluta y la diferencia relativa es:
+    Para x1
+        AD = 0.009220	 RD = 0.009994 
+    Para x2
+        AD = 0.000020	 RD = 0.377269 
+\end{lstlisting}

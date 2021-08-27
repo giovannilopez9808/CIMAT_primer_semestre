@@ -18,3 +18,20 @@ El programa de este problema se encuentra en la carpeta \textcolor{citecolor}{Pr
 \begin{lstlisting}[language=bash]
     gcc -Wall -o main.out main.c -lm -std=c11
 \end{lstlisting}
+
+El output esperado del programa es el siguiente:
+\begin{lstlisting}[language=bash]
+    -----------------------------------
+    n	f(x)		f_approx(x)
+    1	2.718282	2.000000
+    2	2.718282	2.500000
+    3	2.718282	2.666667
+    4	2.718282	2.708334
+    5	2.718282	2.716667
+    6	2.718282	2.718056
+    7	2.718282	2.718254
+    8	2.718282	2.718279
+    9	2.718282	2.718282
+
+    Se obtuvo la igualdad usando 9 terminos de la serie
+\end{lstlisting}

@@ -30,7 +30,7 @@ double function_four_digits(double x)
     float up = round_custom(x_4 * sin_x * cos_x, 4);
     float down = round_custom(x_4 - sin_x, 4);
     double fx_4 = round_custom(up / down, 4);
-    printf("El valor de f(x) redondeado a 4 decimales es: %0.4f\n", fx_4);
+    printf("\tCon redondeo a 4 decimales es: %0.4f\n", fx_4);
     return fx_4;
 }
 double function_with_series(double x)
@@ -44,7 +44,7 @@ double function_with_series(double x)
     double sinx = round_custom(sin_with_series(x, 2), 4);
     fx = round_custom(x * cosx * sinx, 4) / round_custom(x - sinx, 4);
     fx = round_custom(fx, 4);
-    printf("El valor de f(x) con series es: %0.4lf\n", fx);
+    printf("\tCon series es: %0.4lf\n", fx);
     return fx;
 }
 double obtain_RD(double x, double y)
@@ -61,7 +61,7 @@ double calculate_limit(double x, double limit)
     if (diff < 10e-6)
     {
         limit = (fi + fs) / 2;
-        printf("El límite es %lf\n", limit);
+        printf("es %lf\n", limit);
     }
     return limit;
 }
@@ -70,6 +70,7 @@ void find_limit()
     double limit = -999;
     double x = 1;
     int i = 1;
+    printf("El limite cuando f(x) tiende a cero ");
     while (limit == -999 && i < 16)
     {
         limit = calculate_limit(x, limit);
@@ -78,19 +79,21 @@ void find_limit()
     }
     if (limit == -999)
     {
-        printf("El limite no existe\n");
+        printf("no existe\n");
     }
 }
 int main()
 {
     find_limit();
     double x = 0.1;
+    printf("El valor de f(x)\n");
     double fx_approx = function_with_series(x);
     double fx_4 = function_four_digits(x);
     double fx = function(x);
     double RD_fx_4 = obtain_RD(fx_4, fx);
     double RD_fx_approx = obtain_RD(fx_approx, fx);
-    printf("La RD con fx con redondeo a 4 decimales es: %.4lf\n", RD_fx_4);
-    printf("La RD con fx con series es: %.4lf\n", RD_fx_approx);
+    printf("La diferencia relativa de f(x)\n");
+    printf("\tCon redondeo a 4 decimales es: %.4lf\n", RD_fx_4);
+    printf("\tCon series es: %.4lf\n", RD_fx_approx);
     return 0;
 }
