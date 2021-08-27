@@ -14,6 +14,9 @@ double factorial(int n)
 }
 double obtain_ai(int i)
 {
+    /*
+     Obtiene el coeficiente i-esimo de la serie
+     */
     double ai = 1 / factorial(i);
     return ai;
 }
