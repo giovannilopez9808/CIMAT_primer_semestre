@@ -2,7 +2,7 @@
 \textbf{Find the number of terms of the exponential series such that their sum gives the value of e\textsuperscript{x} correct to six decimal places at x = 1.}
 
 El procedimiento para encontrar la respuesta a este problema fue el siguiente:
-\begin{lstlisting}
+\begin{lstlisting}[language=python]
     n_term = 1
     fx = round(exp(1.0),6)
     fx_approx = round(approx(x,n_term),6)
