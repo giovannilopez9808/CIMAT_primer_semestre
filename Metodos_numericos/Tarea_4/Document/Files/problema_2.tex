@@ -1,6 +1,54 @@
 \section*{Problema 2}
 \textbf{Use the previous methods to compute a zero of the following functions:}
-\begin{align*}
-    e^x+2^{-x} + 2cos(x) - 6 & =0  \qquad 1\leq   x \leq 2 \\
-    ln(x1)+cos(x-1)          & =0  \qquad 1.3\leq x \leq 2
-\end{align*}
+\begin{align}
+    e^x+2^{-x} + 2cos(x) - 6 & =0  \qquad 1\leq   x \leq 2  \label{eq:function1_problema2} \\
+    ln(x1)+cos(x-1)          & =0  \qquad 1.3\leq x \leq 2 \label{eq:function2_problema2}
+\end{align}
+
+El parámetro de entrada para el método de Newton es el valor intermedio del intervalo definido como:
+
+\begin{equation*}
+    x_{m}= \frac{x_1-x_0}{2}
+\end{equation*}
+
+Usando los métodos del problema 1 se obtuvieron los resultados mostrados en la tabla \ref{table:solutions_problema2}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccc} \hline
+        \textbf{Función}                     & \textbf{Bisección} & \textbf{Newton} & \textbf{Secante} \\ \hline
+        Función \ref{eq:function1_problema2} & 1.829383           & 1.829384        & 1.829384         \\
+        Función \ref{eq:function2_problema2} & 1.397748           & 1.397748        & 1.397748         \\ \hline
+    \end{tabular}
+    \caption{Soluciones a las ecuaciones \ref{eq:function1_problema2} y \ref{eq:function2_problema2} usando los métodos de bisección, Newton y secante.}
+    \label{table:solutions_problema2}
+\end{table}
+
+
+El output esperado del programa es el siguiente:
+\begin{lstlisting}[language=bash]
+    ----------------------------------------
+    Raices de la funcion 1 en el intervalo
+    [1.000000,2.000000] con el metodo:
+        Biseccion:
+        x = 1.829383
+        Newton:
+        x = 1.829384
+        Secante:
+        x = 1.829384
+    
+    ----------------------------------------
+    Raices de la funcion 2 en el intervalo
+    [1.300000,2.000000] con el metodo:
+        Biseccion:
+            x = 1.397748
+            Newton:
+            x = 1.397748
+        Secante:
+            x = 1.397748
+\end{lstlisting}
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para compilar el programa se debe ingresar la siguiente linea:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -pedantic -ansi -o main.out main.c -lm -std=c11    
+\end{lstlisting}
