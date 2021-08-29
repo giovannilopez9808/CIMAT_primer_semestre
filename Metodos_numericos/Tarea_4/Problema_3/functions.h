@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <math.h>
 double stopping_criteria(double x0, double x1)
 {

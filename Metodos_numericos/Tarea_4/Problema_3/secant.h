@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <math.h>
 void obtain_new_x_secant(double (*f)(double), double *x0, double *x1)
 {
     /* 

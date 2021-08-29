@@ -1,6 +1,11 @@
 #include "bisection.h"
 #include "newton.h"
 #include "secant.h"
+void print_problem(double x0, double x1)
+{
+    printf("\n----------------------------------------\n");
+    printf("Raices de la funcion en el intervalo\n[%lf,%lf] con el método:\n", x0, x1);
+}
 double middle(double x0, double x1)
 {
     double x = (x0 + x1) / 2.0;
@@ -21,8 +26,7 @@ void select_functions()
         x0 = -1.0;
         x1 = 0.0;
         x_middle = middle(x0, x1);
-        printf("\n----------------------------------------\n");
-        printf("Raices de la funcion en el intervalo\n[%lf,%lf] con el método:\n", x0, x1);
+        print_problem(x0, x1);
         bisection_method(function, x0, x1);
         newton_method(function, x0);
         secant_method(function, x0, x1);
@@ -30,8 +34,7 @@ void select_functions()
         x0 = 0.0;
         x1 = 1.0;
         x_middle = middle(x0, x1);
-        printf("\n----------------------------------------\n");
-        printf("Raices de la funcion en el intervalo\n[%lf,%lf] con el método:\n", x0, x1);
+        print_problem(x0, x1);
         bisection_method(function, x0, x1);
         newton_method(function, x_middle);
         secant_method(function, x0, x1);
