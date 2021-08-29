@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <math.h>
 double obtain_derivative(double (*f)(double), double x)
 {
     /* 
@@ -39,8 +37,8 @@ void newton_method(double (*f)(double), double x0)
     // Inicializacion del numero de intentos
     int attempt = 0;
     // Maximo de intentos
-    int max_attempt = 100;
-    while (fabs(x - x0) > tau && fabs(f(x)) > tau && attempt < max_attempt)
+    int max_attempt = log2(fabs(x0) / tau);
+    while (stopping_criteria(x0, x) > tau && attempt < max_attempt)
     {
         x0 = x;
         // Calculo de la derivada en x
@@ -61,7 +59,7 @@ void newton_method(double (*f)(double), double x0)
     // Impresion de salida si se llego al maximo de intentos
     if (attempt >= max_attempt)
     {
-        printf("\t\tAlgoritmo terminado por\n\t\tmaximo de intentos\n");
+        printf("\t\tAlgoritmo terminado por\n\t\tmaximo de intentos (%d)\n", max_attempt);
     }
     // Impresion del resultado, si es que lo hubo
     if ((attempt < max_attempt) && (df != 0.0))

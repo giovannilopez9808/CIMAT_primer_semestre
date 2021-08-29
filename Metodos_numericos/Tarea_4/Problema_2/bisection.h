@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include "functions.h"
 double obtain_new_x_bisection(double x0, double x1)
 {
     /* 
@@ -32,12 +33,6 @@ void obtain_new_interval(double (*f)(double), double *x0, double *x1, double *x)
     }
     *x = obtain_new_x_bisection(*x0, *x1);
 }
-double stopping_criteria(double x0, double x1)
-{
-    double diff = fabs(x1 - x0);
-    double max_value = fmax(1.0, fabs(x1));
-    return diff / max_value;
-}
 void bisection_method(double (*f)(double), double x0, double x1)
 {
     /* 
@@ -49,7 +44,7 @@ void bisection_method(double (*f)(double), double x0, double x1)
     printf("\tBiseccion:\n");
     double x = obtain_new_x_bisection(x0, x1);
     // Tolerancia de la busqueda
-    double tau = 10e-6;
+    double tau = 1e-6;
     // inicio de la busqueda
     while (stopping_criteria(x0, x1) > tau)
     {

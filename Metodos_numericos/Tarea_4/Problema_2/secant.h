@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <math.h>
 void obtain_new_x_secant(double (*f)(double), double *x0, double *x1)
 {
     /* 
@@ -23,9 +21,9 @@ void secant_method(double (*f)(double), double x0, double x1)
         x0 -> limite inferior del intervalo
         x1 -> limite superior del intervalo
     */
-    double tau = 10e-6;
+    double tau = 1e-6;
     printf("\tSecante:\n");
-    while (fabs(x1 - x0) > tau && fabs(f(x1)) > tau)
+    while (stopping_criteria(x0, x1) > tau)
     {
         obtain_new_x_secant(f, &x0, &x1);
     }
