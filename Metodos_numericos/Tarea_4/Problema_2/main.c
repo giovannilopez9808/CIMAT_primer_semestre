@@ -19,7 +19,7 @@ void select_functions()
         x0 = 1.0;
         x1 = 2.0;
         printf("\n----------------------------------------\n");
-        printf("Raices de la funcion 1 con el método:\n");
+        printf("Raices de la funcion 1 en el intervalo\n[%lf,%lf] con el método:\n", x0, x1);
         bisection_method(function_1, x0, x1);
         newton_method(function_1, x0);
         secant_method(function_1, x0, x1);
@@ -27,7 +27,7 @@ void select_functions()
         x0 = 1.3;
         x1 = 2.0;
         printf("\n----------------------------------------\n");
-        printf("Raices de la funcion 2 con el método:\n");
+        printf("Raices de la funcion 2 en el intervalo\n[%lf,%lf] con el método:\n", x0, x1);
         bisection_method(function_2, x0, x1);
         newton_method(function_2, x0);
         secant_method(function_2, x0, x1);

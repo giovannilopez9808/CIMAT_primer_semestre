@@ -39,14 +39,14 @@ void newton_method(double (*f)(double), double x0)
     // Inicializacion del numero de intentos
     int attempt = 0;
     // Maximo de intentos
-    int max_attempt = 20;
+    int max_attempt = 100;
     while (fabs(x - x0) > tau && fabs(f(x)) > tau && attempt < max_attempt)
     {
         x0 = x;
         // Calculo de la derivada en x
         df = obtain_derivative(f, x);
         // Si la derivada es cercana a 0 el algoritmo se detiene
-        if (df < tau)
+        if (df == 0.0)
         {
             break;
         }
@@ -54,17 +54,17 @@ void newton_method(double (*f)(double), double x0)
         attempt++;
     }
     // Impresion de salida si la derivada es cercana a 0
-    if (df < tau)
+    if (df == tau)
     {
         printf("\t\tAlgoritmo terminado por\n\t\tobtener una derivada cercana a 0\n");
     }
     // Impresion de salida si se llego al maximo de intentos
     if (attempt >= max_attempt)
     {
-        printf("\t\tAlgoritmo terminado por\n\t\tmaximo de intentos");
+        printf("\t\tAlgoritmo terminado por\n\t\tmaximo de intentos\n");
     }
     // Impresion del resultado, si es que lo hubo
-    if ((attempt >= max_attempt) || (df > tau))
+    if ((attempt < max_attempt) && (df != 0.0))
     {
         printf("\t\tx = %lf\n", x);
     }
