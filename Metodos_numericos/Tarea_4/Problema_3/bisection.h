@@ -32,6 +32,12 @@ void obtain_new_interval(double (*f)(double), double *x0, double *x1, double *x)
     }
     *x = obtain_new_x_bisection(*x0, *x1);
 }
+double stopping_criteria(double x0, double x1)
+{
+    double diff = fabs(x1 - x0);
+    double max_value = fmax(1.0, fabs(x1));
+    return diff / max_value;
+}
 void bisection_method(double (*f)(double), double x0, double x1)
 {
     /* 
@@ -45,7 +51,7 @@ void bisection_method(double (*f)(double), double x0, double x1)
     // Tolerancia de la busqueda
     double tau = 10e-6;
     // inicio de la busqueda
-    while (fabs(x1 - x0) > tau && fabs(f(x)) > tau)
+    while (stopping_criteria(x0, x1) > tau)
     {
         // Calculo de la posible raiz
         obtain_new_interval(f, &x0, &x1, &x);
