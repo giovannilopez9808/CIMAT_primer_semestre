@@ -1,2 +1,62 @@
 \section*{Problema 1}
 \textbf{Implement the following algorithms: Bisection, Newton, ans Secant methods.}
+\subsubsection*{Método de bisección}
+
+El método de bisección se basa en que si encontramos un intervalo $[a,b]$, tal que $f(a)f(b)<0$, entonces por el teorema del valor intermedio, el intervalo $[a,b]$ contiene al menos una raíz de  la función $f$. Entonces en este método se ira acotando el intervalo para localizar la raíz.
+
+El criterio para detener la búsqueda es definido en la ecuación \ref{eq:stopping_criteria_bisection}.
+
+\begin{equation}
+    \frac{|b-a|}{max\{1,|b|\}} < \epsilon
+    \label{eq:stopping_criteria_bisection}
+\end{equation}
+
+donde $\epsilon=10^{-6}$.
+La implementación de este algoritmo se encuentra dentro de las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{bisection.h}.
+
+\subsection*{Método de Newton}
+
+El método de Newton supone que existe una $f\in C^2[a,b]$ y $x_0\in [a,b]$. Se tiene que se puede aproximar a la raíz $x_r$ tal que $f(x_0)\neq 0$ y $|x_r-x_0|\ll 1$. Entonces $x_r$ puede aproximarse usando la secuencia de la ecuación \ref{eq:sequence_newton}.
+
+\begin{equation}
+    x_{k+1} = x_k - \frac{f(x_k)}{f'(x_{k})}
+    \label{eq:sequence_newton}
+\end{equation}
+
+Los criterios empleados para detener la búsqueda son los siguientes:
+\begin{itemize}
+    \item Máximo de intentos:
+
+          Se uso el máximo de intentos definido en la ecuación \ref{eq:max_attempts_newton}.
+
+          \begin{equation}
+              K_{max} = log_2 \left(\frac{x_0}{\epsilon}\right)
+              \label{eq:max_attempts_newton}
+          \end{equation}
+
+          donde $\epsilon=10^{-6}$.
+
+    \item Diferencia relativa:
+
+          Se empleo el criterio de la ecuación \ref{eq:stopping_criteria_bisection} usando como $b=x_{k+1}$ y $a=x_{k}$.
+\end{itemize}
+
+La implementación de este algoritmo se encuentra dentro de las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{newton.h}.
+
+\subsection*{Método de la secante}
+
+El método de la secante es semejante al de Newton. Su diferencia radica en que el método de Newton necesita el valor de la derivada, en cambio el método de la secante aproxima este valor. La aproximación es calculada en la ecuación \ref{eq:secante}.
+
+\begin{equation}
+    f'(x_k) = \frac{f(x_k)-f(x_{k-1})}{x_{k}-x_{k-1}}
+    \label{eq:secante}
+\end{equation}
+
+Por lo tanto, la secencia para la aproximación de la raíz es definida en la ecuación \ref{eq:sequence_secante}.
+
+\begin{equation}
+    x_{k+1} = \frac{x_{k-1}f(x_k)-x_kf(x_{k-1})}{f(x_k)-f(x_{k-1})}
+    \label{eq:sequence_secante}
+\end{equation}
+
+El criterio para detener la búsqueda del algoritmo que se empleo es el definido en la ecuación \ref{eq:stopping_criteria_bisection}. La implementación de este algoritmo se encuentra dentro de las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{secant.h}.
