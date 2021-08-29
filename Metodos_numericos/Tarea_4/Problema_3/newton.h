@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <math.h>
 double obtain_derivative(double (*f)(double), double x)
 {
     /* 
@@ -7,7 +5,7 @@ double obtain_derivative(double (*f)(double), double x)
     (*f) -> funcion que recibe un dato double y devuelve un double
     x -> posible raiz de la funcion
      */
-    double h = 1e-6;
+    double h = 1e-4;
     double df = f(x + h) - f(x);
     df = df / h;
     return df;
@@ -46,7 +44,7 @@ void newton_method(double (*f)(double), double x0)
         // Calculo de la derivada en x
         df = obtain_derivative(f, x);
         // Si la derivada es cercana a 0 el algoritmo se detiene
-        if (df == 0.0)
+        if (fabs(df) < tau)
         {
             break;
         }
@@ -54,9 +52,9 @@ void newton_method(double (*f)(double), double x0)
         attempt++;
     }
     // Impresion de salida si la derivada es cercana a 0
-    if (df == tau)
+    if (fabs(df) < tau)
     {
-        printf("\t\tAlgoritmo terminado por\n\t\tobtener una derivada cercana a 0\n");
+        printf("\t\tAlgoritmo terminado por\n\t\tobtener una derivada cercana a 0 (%lf)\n", df);
     }
     // Impresion de salida si se llego al maximo de intentos
     if (attempt >= max_attempt)
@@ -64,7 +62,7 @@ void newton_method(double (*f)(double), double x0)
         printf("\t\tAlgoritmo terminado por\n\t\tmaximo de intentos (%d)\n", max_attempt);
     }
     // Impresion del resultado, si es que lo hubo
-    if ((attempt < max_attempt) && (df != 0.0))
+    if ((attempt < max_attempt) && (fabs(df) > tau))
     {
         printf("\t\tx = %lf\n", x);
     }
