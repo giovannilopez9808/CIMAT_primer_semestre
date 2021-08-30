@@ -1,7 +1,7 @@
 CC=gcc
 LDFLAGS=-std=c11
 SOURCES=main.c
-CDFLAGS=-Wall
+CDFLAGS=-Wall -pedantic -ansi
 OBJECTS=$(SOURCES:.c=.out)
 
 
