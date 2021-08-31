@@ -1,3 +1,12 @@
+#include <math.h>
+float round_custom(double number, int decimal)
+{
+    /* 
+    Realiza el redondeo de un numero dado los decimales
+     */
+    double ten_power = pow(10, decimal);
+    return roundf(number * ten_power) / ten_power;
+}
 double factorial(int n)
 {
     /* 
@@ -52,7 +61,7 @@ double sin_with_series(double x, int n)
     double sinx = obtain_ai_sin_term(n);
     for (int i = n - 1; i >= 0; i--)
     {
-        sinx = obtain_ai_sin_term(i) + x * x * sinx;
+        sinx = round_custom(obtain_ai_sin_term(i), 4) + round_custom(x * x * sinx, 4);
     }
     sinx = x * sinx;
     return sinx;
@@ -65,7 +74,7 @@ double cos_with_series(double x, int n)
     double cosx = obtain_ai_cos_term(n);
     for (int i = n - 1; i >= 0; i--)
     {
-        cosx = obtain_ai_cos_term(i) + x * x * cosx;
+        cosx = round_custom(obtain_ai_cos_term(i), 4) + round_custom(x * x * cosx, 4);
     }
     return cosx;
 }

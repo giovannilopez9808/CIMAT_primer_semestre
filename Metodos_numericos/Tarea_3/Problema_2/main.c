@@ -1,14 +1,5 @@
 #include "functions.h"
 #include <stdio.h>
-#include <math.h>
-float round_custom(double number, int decimal)
-{
-    /* 
-    Realiza el redondeo de un numero dado los decimales
-     */
-    double ten_power = pow(10, decimal);
-    return roundf(number * ten_power) / ten_power;
-}
 double function(double x)
 {
     /* 
