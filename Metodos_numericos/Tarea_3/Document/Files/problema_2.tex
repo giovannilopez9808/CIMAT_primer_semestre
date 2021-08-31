@@ -1,7 +1,7 @@
 \section*{Problema 2}
 \textbf{Let}
 \begin{equation}
-      f(x) = \frac{xcos(x)sin(x)}{x-sin(x)}
+      f(x) = \frac{xcos(x)-sin(x)}{x-sin(x)}
       \label{eq:problem2fx}
 \end{equation}
 \begin{enumerate}
@@ -21,17 +21,17 @@
 
 El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para compilar el programa se debe ingresar la siguiente linea:
 \begin{lstlisting}[language=bash]
-      gcc -Wall -o main.out main.c -lm -std=c11    
+      gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -lm -std=c11
 \end{lstlisting}
 
 El output esperado del programa es el siguiente:
 
 \begin{lstlisting}[language=bash]
-      El limite cuando f(x) tiende a cero no existe
+      El limite cuando f(x) tiende a cero es -2.000000
       El valor de f(x)
-            Con series es: 49.5000
-            Con redondeo a 4 decimales es: 49.5000
+            Con series es: -1.5000
+            Con redondeo a 4 decimales es: -1.5000
       La diferencia relativa de f(x)
-            Con redondeo a 4 decimales es: 16.9889
-            Con series es: 16.9889
+            Con redondeo a 4 decimales es: 24.9625
+            Con series es: 24.9625      
 \end{lstlisting}
