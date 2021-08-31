@@ -118,20 +118,19 @@ void obtain_roots(double a, double b, double c, double results1[], double result
            results[0],
            results[1]);
 }
-void select_case()
+void select_case(int choice)
 {
     /* 
     Conjunto de dataset de prueba
      */
     double a, b, c;
     double results1[2], results2[2];
-    switch (1)
+    switch (choice)
     {
-
     case 1:
         /* 
-    1/3 x^2 - 123/4 x + 1/6 = 0
-     */
+        1/3 x^2 - 123/4 x + 1/6 = 0
+        */
         a = 1.0 / 3.0;
         b = 123.0 / 4.0;
         c = -1.0 / 6.0;
@@ -140,10 +139,11 @@ void select_case()
                      c,
                      results1,
                      results2);
+        break;
     case 2:
         /* 
-    1/3 x^2 + 123/4 x - 1/6 = 0
-     */
+        1/3 x^2 + 123/4 x - 1/6 = 0
+        */
         a = 1.0 / 3.0;
         b = -123.0 / 4.0;
         c = 1.0 / 6.0;
@@ -152,12 +152,17 @@ void select_case()
                      c,
                      results1,
                      results2);
+        break;
     default:
         break;
     }
 }
 int main()
 {
-    select_case();
+    for (int choice = 1; choice <= 2; choice++)
+    {
+        select_case(choice);
+    }
+
     return 0;
 }
