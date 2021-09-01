@@ -63,14 +63,14 @@ int main()
     float fx_approx = function_approximation(x, n_term);
     // Se detendra cuando la aproximacion sea igual a la funcion
     printf("-----------------------------------\nn\tf(x)\t\tf_approx(x)\n");
-
-        printf("%d\t%f\t%f\n",n_term,fx,fx_approx);
+    printf("%d\t%f\t%f\n", n_term, fx, fx_approx);
     while (fx != fx_approx)
     {
         n_term++;
         fx_approx = function_approximation(x, n_term);
-        printf("%d\t%f\t%f\n",n_term,fx,fx_approx);
+        printf("%d\t%f\t%f\n", n_term, fx, fx_approx);
     }
+    printf("-----------------------------------\n");
     printf("\nSe obtuvo la igualdad usando %d terminos de la serie\n", n_term);
     return 0;
 }
