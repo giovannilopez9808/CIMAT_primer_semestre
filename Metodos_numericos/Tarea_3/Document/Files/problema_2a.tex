@@ -1,11 +1,11 @@
-Como queremos entrar el límite cuando x tiende a 0 de la ecuación \ref{eq:problem2fx}. Tenemos que comprobar si el límite por la izquierda y por la derecha es igual. Esto es:
+Como queremos encontrar el límite cuando x tiende a 0 de la ecuación \ref{eq:problem2fx}. Tenemos que comprobar si el límite por la izquierda y por la derecha existe y es igual. Esto es:
 
 \begin{equation*}
     \underset{x\rightarrow 0^-}{lim} f(x) = L_i
     \qquad
     \underset{x\rightarrow 0^+}{lim} f(x) = L_s
 \end{equation*}
-El límite existira si y solo sí $L_i=L_s=L$ y es igual a L. Como el límite que queremos comprobar se encuentra en 0, realizaremos esta busqueda a partir del intervalo $[-1,1]$. En cada iteración este intervalo se ira reduciendo una cuarta parte, esto es que en la siguiente iteración el intervalo será $[-0.5,0.5]$. Así hasta obtener una diferencia de $L_i$ y $L_s$ menor a $10^{-6}$ o al haber realizado 16 iteraciones.
+El límite existira si y solo sí $L_i=L_s=L$ y es igual a L. Como el límite que queremos comprobar se encuentra en 0, realizaremos esta busqueda a partir del intervalo $[-1,1]$. En cada iteración este intervalo se ira reduciendo a la mitad, esto es que en la siguiente iteración el intervalo será $[-0.5,0.5]$. El número de iteraciones fue 12, al final se comprobo si la diferencia $|L_s-L_i|$ era menos a $10^{-6}$. Si lo es, entonces ese es el valor medio de $L_s$ y $L_i$ es el límite de la función.
 
 El programa arrojo los resultados mostrados en la tabla \ref{table:limiteizquierda} y \ref{table:limitederecha}.
 \begin{figure}[H]

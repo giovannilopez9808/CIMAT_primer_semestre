@@ -19,7 +19,7 @@
             \input{Files/problema_2d.tex}
 \end{enumerate}
 
-El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para compilar el programa se debe ingresar la siguiente linea:
+Con los resultados mostrados en las tablas \ref{table:resultados1} y \ref{table:results2d}  se puede aclarar que el redondear a cuatro decimales la funciones seno y coseno es equivalente a usar hasta el tercer término de la expansión por serie de Maclaurin. El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para compilar el programa se debe ingresar la siguiente linea:
 \begin{lstlisting}[language=bash]
       gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -lm -std=c11
 \end{lstlisting}
@@ -27,11 +27,30 @@ El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para 
 El output esperado del programa es el siguiente:
 
 \begin{lstlisting}[language=bash]
+      ----------------------------------
+      x		Li		x		Ls
+      -1.000000	-1.899770	1.000000	-1.899770
+      -0.500000	-1.974985	0.500000	-1.974985
+      -0.250000	-1.993749	0.250000	-1.993749
+      -0.125000	-1.998437	0.125000	-1.998437
+      -0.062500	-1.999609	0.062500	-1.999609
+      -0.031250	-1.999902	0.031250	-1.999902
+      -0.015625	-1.999976	0.015625	-1.999976
+      -0.007812	-1.999994	0.007812	-1.999994
+      -0.003906	-1.999998	0.003906	-1.999998
+      -0.001953	-2.000000	0.001953	-2.000000
+      -0.000977	-2.000000	0.000977	-2.000000
+      -0.000488	-2.000000	0.000488	-2.000000
+      
       El limite cuando f(x) tiende a cero es -2.000000
+      
+      ----------------------------------
       El valor de f(x)
             Con series es: -1.5000
             Con redondeo a 4 decimales es: -1.5000
+      
+      ----------------------------------
       La diferencia relativa de f(x)
             Con redondeo a 4 decimales es: 24.9625
-            Con series es: 24.9625      
+            Con series es: 24.9625
 \end{lstlisting}
