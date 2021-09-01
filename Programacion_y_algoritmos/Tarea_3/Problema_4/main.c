@@ -1,10 +1,10 @@
-#include "functions.h"
+#include "quick_sort.h"
 #include <stdlib.h>
 #include <time.h>
 void fill_numbers(int numbers[], int size)
 {
     /* 
-    Llenado aleatorio de numeros
+    Llenado aleatorio de numeros entre -50 y 50
      */
     for (int i = 0; i < size; i++)
     {
@@ -64,10 +64,10 @@ void test_data()
 {
     // Inicailizacion para los numeros aleatorios
     srand(time(NULL));
-    // Tamaño de numeros 1
-    int size_1 = rand() % 10 + 1;
-    // Tamaño de numeros 2
-    int size_2 = rand() % 10 + 1;
+    // Tamaño de numeros 1 entre 1-20
+    int size_1 = rand() % 20 + 1;
+    // Tamaño de numeros 2 entre 1-20
+    int size_2 = rand() % 20 + 1;
     // Tamaño de numeros 3
     int size_3 = size_1 + size_2;
     int numbers_1[size_1];
