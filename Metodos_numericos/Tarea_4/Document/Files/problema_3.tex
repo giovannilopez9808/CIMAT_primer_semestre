@@ -1,25 +1,25 @@
 \section*{Problema 3}
 \textbf{The fourth-degree polynomial:}
 \begin{equation}
-    f(x)= 230x^4+18x^3+9x^2-221x-9
-    \label{eq:function_problema3}
+	f(x)= 230x^4+18x^3+9x^2-221x-9
+	\label{eq:function_problema3}
 \end{equation}
 \textbf{has two real zeros, one in [-1, 0] and the other in [0, 1]. Attempt to approximate these zeros to within 10\textsuperscript{6} using the algorithms implemented in exercise (1). Use the endpoints of each interval as the initial approximations in the Bisection and Secant algorithms and the midpoints as the initial approximation for the Newton Method.}
 
 Usando los métodos del problema 1, se obtuvieron los resultados mostrados en la tabla \ref{table:results_problema3}. Con estos resultados se comprueba que el método de la secante puede salir del intervalo que se le dio como parámetro y encontrar una solución.
 \begin{table}[H]
-    \centering
-    \begin{tabular}{lccc}
-        \hline
-        \textbf{Intervalos} & \textbf{Bisección} & \textbf{Newton} & \textbf{Secante} \\ \hline
-        $[-1,0]$            & -0.040661          & -0.040659       & -0.040659        \\
-        $[0,1]$             & 0.962399           & 0.962398        & -0.040659        \\ \hline
-    \end{tabular}
-    \caption{Resultados obtenidos usando la ecuación \ref{eq:function_problema3} usando los métodos de bisección, Newton y secante.}
-    \label{table:results_problema3}
+	\centering
+	\begin{tabular}{lccc}
+		\hline
+		\textbf{Intervalos} & \textbf{Bisección} & \textbf{Newton} & \textbf{Secante} \\ \hline
+		$[-1,0]$            & -0.040661          & -0.040659       & -0.040659        \\
+		$[0,1]$             & 0.962399           & 0.962398        & -0.040659        \\ \hline
+	\end{tabular}
+	\caption{Resultados obtenidos usando la ecuación \ref{eq:function_problema3} usando los métodos de bisección, Newton y secante.}
+	\label{table:results_problema3}
 \end{table}
 
-El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_2}. Para compilar el programa se debe ingresar la siguiente linea:
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_3}. Para compilar el programa se debe ingresar la siguiente linea:
 
 \begin{lstlisting}[language=bash]
     gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -lm -std=c11
