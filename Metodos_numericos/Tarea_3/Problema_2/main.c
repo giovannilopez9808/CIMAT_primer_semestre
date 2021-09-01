@@ -1,5 +1,9 @@
 #include "functions.h"
 #include <stdio.h>
+void print_lines()
+{
+    printf("\n----------------------------------\n");
+}
 double function(double x)
 {
     /* 
@@ -7,6 +11,8 @@ double function(double x)
      */
     double down = x - sin(x);
     double up = x * cos(x) - sin(x);
+    // Descomentar para obetner un límite que no existe y comentar la linea de  arriba
+    // double up = x * cos(x) * sin(x);
     double fx = up / down;
     return fx;
 }
@@ -49,9 +55,10 @@ double calculate_limit(double x, double *diff)
 {
     double fi = function(x);
     double fs = function(-x);
+    printf("%lf\t%lf\t%lf\t%lf\n", -x, fs, x, fi);
     double limit;
     *diff = fabs(fs - fi);
-    if (*diff < 1e-7)
+    if (*diff < 1e-6)
     {
         limit = (fs + fi) / 2;
     }
@@ -66,12 +73,13 @@ void find_limit()
     double diff = 1;
     double limit = 1;
     double x = 1;
-    printf("El limite cuando f(x) tiende a cero ");
+    printf("x\t\tLi\t\tx\t\tLs\n");
     for (int i = 0; i < 12; i++)
     {
         limit = calculate_limit(x, &diff);
         x = x / 2;
     }
+    printf("\nEl limite cuando f(x) tiende a cero ");
     if (diff > 1e-6)
     {
         printf("no existe\n");
@@ -83,14 +91,17 @@ void find_limit()
 }
 int main()
 {
+    print_lines();
     find_limit();
     double x = 0.1;
+    print_lines();
     printf("El valor de f(x)\n");
     double fx_approx = function_with_series(x);
     double fx_4 = function_four_digits(x);
     double fx = function(x);
     double RD_fx_4 = obtain_RD(fx_4, fx);
     double RD_fx_approx = obtain_RD(fx_approx, fx);
+    print_lines();
     printf("La diferencia relativa de f(x)\n");
     printf("\tCon redondeo a 4 decimales es: %.4lf\n", RD_fx_4);
     printf("\tCon series es: %.4lf\n", RD_fx_approx);
