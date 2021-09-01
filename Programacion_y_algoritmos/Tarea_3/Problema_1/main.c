@@ -1,44 +1,54 @@
 #include <stdio.h>
-void read_string(char string[], int *size)
+void print_lines()
 {
-    scanf("%[^\n]s", string);
-    for (int i = 0; i < 256; i++)
-    {
-        if (string[i] == '\0')
-        {
-            break;
-        }
-        *size = *size + 1;
-    }
+    printf("\n------------------------");
+    printf("------------------------\n");
 }
-char inverse_string(char string[], char inverse[], int size)
+int reverse_number(int number)
 {
-    for (int i = size; i > 0; i--)
+    /* 
+    Regresa el numero escrito al reves
+     */
+    // Inicializacion del numerp
+    int reverse = 0;
+    // Variable auxiliar
+    int aux;
+    while (number != 0)
     {
-        inverse[i - 1] = string[size - i];
+        // Obtiene el primer digito del numero
+        aux = number % 10;
+        // Suma el primer digito del numero y los anteriores les multiplica por 10
+        reverse = reverse * 10 + aux;
+        // Eliminacion del primer digito
+        number /= 10;
     }
-    inverse[size + 1] = '\0';
-    return *inverse;
+    return reverse;
 }
-void is_palindrome(char string[], char inverse[], int size)
+void is_palindrome(int number)
 {
-    for (int i = 0; i < size; i++)
+    /* 
+    Funcion que verifica si un numero es palindromo
+     */
+    // Obtiene el numero escrito al reves
+    int reverse = reverse_number(number);
+    printf("El numero %d ", number);
+    if (number != reverse)
     {
-        if (string[i] != inverse[i])
-        {
-            printf("La palabra %s no es palindromo\n", string);
-            return;
-        }
+        printf("no ");
     }
-    printf("La palabra %s si es palindromo\n", string);
+    else
+    {
+        printf("si ");
+    }
+    printf("es palindromo\n");
 }
 int main()
 {
-    char inverse[256];
-    char string[256];
-    int size = 0;
-    read_string(string, &size);
-    inverse_string(string, inverse, size);
-    is_palindrome(string, inverse, size);
+    int number;
+    print_lines();
+    printf("Escribe el numero que quieres saber si es palindromo:\n");
+    scanf("%d", &number);
+    print_lines();
+    is_palindrome(number);
     return 0;
 }
