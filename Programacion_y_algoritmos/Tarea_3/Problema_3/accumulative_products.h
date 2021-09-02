@@ -7,7 +7,7 @@ void products(int numbers[], long int product[], int size)
     {
         all_product *= numbers[i];
     }
-    // Divide el elemento i de los numeros con el producto de todos
+    // Divide el elemento i de los numeros con el producto de todos para obtener el producto acumulado de i
     for (i = 0; i < size; i++)
     {
         product[i] = all_product / numbers[i];

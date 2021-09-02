@@ -1,5 +1,8 @@
 void read_numbers(int numbers[], int size)
 {
+    /* 
+    Lectura de los datos dado un tamaño de estos
+     */
     for (int i = 0; i < size; i++)
     {
         printf("Escribe el numero %d de %d: ", i + 1, size);
