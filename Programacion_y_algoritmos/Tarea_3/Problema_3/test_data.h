@@ -5,7 +5,6 @@ void fill_numbers(int numbers[], int size)
     /* 
     Llenado de numeros aleatorios entre 1 y 20
      */
-    srand(time(NULL));
     for (int i = 0; i < size; i++)
     {
         numbers[i] = rand() % 20 + 1;
@@ -13,7 +12,8 @@ void fill_numbers(int numbers[], int size)
 }
 void test_data()
 {
-    int size = 5;
+    srand(time(NULL));
+    int size = rand() % 20 + 1;
     int numbers[size];
     long int product[size];
     fill_numbers(numbers, size);
