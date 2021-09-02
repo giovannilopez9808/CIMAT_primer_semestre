@@ -1,2 +1,42 @@
 \section*{Problema 1}
 \textbf{Programa que verifique si un número de entrada dado es palíndomo. Un palíndromo, es un número o string que se lee igual en un sentido que en otro (por ejemplo: Ana, 121…). Usar una función que regrese un numero invertido (al revés).}
+
+El algoritmo que se creo es el siguiente:
+\begin{lstlisting}[language=python]
+    reverse = 0
+    number = 12345
+    while number != 0:
+        aux = number % 10
+        reverse = reverse * 10 + aux
+        number = number / 10
+\end{lstlisting}
+
+Al final la variable reverse contendra el numero escrito al reves, esto es porque la operación de la linea 4 se obtiene el número que se encuentra en la posicion de las unidades, por ende es sumada en la linea 4. Al ser number una variable de tipo entero entonces al momento de realizar la operación de la linea 5 el numero de la parte decimal es eliminada, por ende en la proxima iteración en la linea 3 se tomara el que se encontraba en la posicion de las centenas. La función que realiza el algoiritmo es llamada \textcolor{title}{reverse} y se encuentra en el archivo \textcolor{citecolor}{reverse.h}.
+
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_1}. Para compilar se uso el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+El output esperado para un número palindromo es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ------------------------------------------------
+    Escribe el numero que quieres saber si es palindromo:
+    123454321
+
+    ------------------------------------------------
+    El numero 123454321 si es palindromo
+\end{lstlisting}
+
+El output esperado para un número no palindromo es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ------------------------------------------------
+    Escribe el numero que quieres saber si es palindromo:
+    123456789
+
+    ------------------------------------------------
+    El numero 123456789 no es palindromo
+\end{lstlisting}
