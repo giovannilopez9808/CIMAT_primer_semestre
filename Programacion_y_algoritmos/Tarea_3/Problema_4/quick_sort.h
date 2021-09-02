@@ -48,8 +48,6 @@ void sorted(int numbers[], int start, int last)
                last);
     }
 }
-
-// function to print the array
 void print_array(int numbers[], int size)
 {
     /* 
