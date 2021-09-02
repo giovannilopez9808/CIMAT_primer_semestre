@@ -1,2 +1,82 @@
 \section*{Problema 4}
 \textbf{Escribe una función que reciba dos arreglos de enteros ordenados en forma no decreciente, y combine dichos arreglos en un solo arreglo también ordenado en forma no decreciente.}
+
+Se creo un programa el cual recibe dos listas de numeros de $n_1$ y $n_2$, donde $n_1$ y $n_2$ pueden tomar cualquier valor entero positivo. Estas listas pueden estar desordenadas, ya que internamente se ordenan de menor a mayor cada lista. Este paso se realiza siguiendo el algoritmo de \textit{quick sort} el cual se encuentra en el archivo \textcolor{title}{quick\_sort.h}. La acción de unir a estas dos listas se encuentra el el archivo \textcolor{title}{merge.h}. El algoritmo que se empleo es el siguiente:
+
+\begin{lstlisting}[language=python]
+    i = 0
+    j = 0
+    k = 0
+    while i<n1 or j<n2:
+        if data1[i] < data2[j]:
+            if i<n1:
+                merge[k] = data1[i]
+                i += 1
+            else:
+                merge[k] = data2[j]
+                j += 1
+        else:
+            if i<n1:
+                merge[k] = data2[j]
+                j += 1
+            else:
+                merge[k] = data1[i]
+                i += 1
+        k += 1
+\end{lstlisting}
+
+Las variables inicializadas en las lineas 1 al 3 son las encargadas del control en las posiciones de los datos 1, datos 2 y su union (merge). El ciclo iniciado en la linea 4 se detendra cuando las posiciones de cada arreglo hayan llegado a su maximo dando por resultado el arreglo merge con todos los datos. El if de la linea 5 decide que lista de datos será asignada, ya que se quiere un arreglo creciente. Los if de las lineas 6 y 13 realizan el control de no acceder a un valor de una lista dos veces o a una memoria invalida, ya que, puede darse el caso que un arreglo haya sido escrito totalmente en merge y su ultimo elemento sea menor a los elementos restantes del otro arreglo que aun no han sido escritos.\\
+
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}.
+El programa tiene la opción de recibir valores de un usuario o crear datos de forma aleatoria. El output esperado del programa con los valores $data_1=\{-1,4,6,1\}$ y $data_2=\{30,1,4,2,5,7\}$ es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    Deseas usar el programa con los datos de prueba?(Y/n): n
+    Escribe el tamano de los datos 1: 4
+    Escribe el tamano de los datos 2: 6
+
+    Datos 1:
+    Escribe el numero 1 de 4: -1
+    Escribe el numero 2 de 4: 4
+    Escribe el numero 3 de 4: 6
+    Escribe el numero 4 de 4: 1
+
+    Datos 2:
+    Escribe el numero 1 de 6: 30
+    Escribe el numero 2 de 6: 1
+    Escribe el numero 3 de 6: 4
+    Escribe el numero 4 de 6: 2
+    Escribe el numero 5 de 6: 5
+    Escribe el numero 6 de 6: 7
+
+
+    Numbers 1:
+    -1 1 4 6 
+
+    Numbers 2:
+    1 2 4 5 7 30 
+
+    Merge numbers:
+    -1 1 1 2 4 4 5 6 7 30 
+\end{lstlisting}
+
+El output para los valores generados aleatoriamente es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    Deseas usar el programa con los datos de prueba?(Y/n): y
+
+    Numbers 1:
+    -46 -25 -15 27 39 
+
+    Numbers 2:
+    -50 -43 -32 8 13 38 48 
+
+    Merge numbers:
+    -50 -46 -43 -32 -25 -15 8 13 27 38 39 48 
+
+\end{lstlisting}
+
+El comando para compilar el programa es el siguiente:
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}

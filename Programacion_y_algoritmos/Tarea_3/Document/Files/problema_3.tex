@@ -4,3 +4,57 @@
     a[i] = \prod_{j\neq i} a[j]
     \label{eq:product_problem3}
 \end{equation}
+
+El algoritmo que se ideo es el siguiente:
+
+\begin{lstlisting}[language=python]
+    all_product=1
+    size=len(data)
+    product = []
+    for i in range(size):
+        all_product = all_product * data[i]
+    for i in range(size):
+        product.push(all_product / data[i])
+\end{lstlisting}
+
+En el ciclo de la linea 4 se calcula el producto de todos los números contenidos en la lista de datos. En el ciclo de la linea 6 se guardan los productos acumulados siguiendo la ecuación \ref{eq:product_problem3}. Se esta manera se obtiene con una complejidad de O(n). El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_3}. El programa acepta valores de entrada especificando cuantos valores se introducira. Un ejemplo de esto es con la siguiente lista de valores: $data=\{3,5,3,2\}$, el output que da el programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    Deseas usar el programa con los datos de prueba?(Y/n): n
+
+    Escribe el tamano de los datos: 4
+    Escribe el numero 1 de 4: 3
+    Escribe el numero 2 de 4: 5
+    Escribe el numero 3 de 4: 3
+    Escribe el numero 4 de 4: 2
+
+    ------------------------------------------------
+
+    Numbers	Product
+    3		30
+    5		18
+    3		30
+    2		45
+\end{lstlisting}
+
+Los datos de ejemplo son creados aleatoriamente. El output de uno de ellos es el siguiente:
+
+\begin{lstlisting}
+    Deseas usar el programa con los datos de prueba?(Y/n): y
+
+    ------------------------------------------------
+
+    Numbers	Product
+    8		87210
+    17		41040
+    2		348840
+    19		36720
+    9		77520
+    15		46512
+\end{lstlisting}
+
+El comando para compilar el programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
