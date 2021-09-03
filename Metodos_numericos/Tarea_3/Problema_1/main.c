@@ -32,6 +32,9 @@ float round_custom(double number, int decimal)
 {
     /* 
     Realiza el redondeo de un numero dado los decimales
+    input:
+    + number: numero a redondear
+    + decimal: decimales a redondear
      */
     double ten_power = pow(10, decimal);
     return roundf(number * ten_power) / ten_power;
@@ -40,6 +43,11 @@ void obtain_root_with_four_digits(double a, double b, double c, double results[]
 {
     /* 
     Realiza el calculo de las raices de una función cuadratica usando la ecuación cuadratica a cuatro digitos
+    inputs:
+    + a: coeficiente del termino x2
+    + b: coeficiente del termino x
+    + c: coeficiente del termino independiente
+    + results: arreglo de rango 2
      */
     a = round_custom(a, 4);
     b = round_custom(b, 4);
@@ -61,6 +69,11 @@ void obtain_root_with_rationalizing(double a, double b, double c, double results
 {
     /* 
     Realiza el calculo de las raices de una función cuadratica usando la ecuación cuadratica racionalizada
+    inputs:
+    + a: coeficiente del termino x2
+    + b: coeficiente del termino x
+    + c: coeficiente del termino independiente
+    + results: arreglo de rango 2
      */
     double discriminant = pow(b, 2) - 4 * a * c;
     double down1 = b + sqrt(discriminant);
@@ -78,6 +91,10 @@ void obtain_AD_and_RD(double x, double y, double results[])
 {
     /* 
     Realiza el calculo de la diferencia absoluta y relativa
+    inputs: 
+    + x: valor a medir
+    + y: valor de refencia
+    + results: arreglo de dos dimensiones que guardara a AD y RD
      */
     double AD = fabs(y - x);
     double RD = fabs(AD * 100 / y);
