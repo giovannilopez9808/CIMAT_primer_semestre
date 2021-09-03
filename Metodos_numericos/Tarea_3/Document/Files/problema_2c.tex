@@ -33,9 +33,9 @@ Transformando estas ecuaciones a una ecuación recursiva se obtiene que
 
 Por lo tanto, la ecuación que se calculara es la siguiente:
 \begin{equation}
-    f_c(x) = \frac{x \left(\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i+1)!}\right) \left(x^{2i+1}\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i)!} x^{2i}\right)}{x-\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i+1)!} x^{2i+1}}
+    f_c(x) = \frac{x\left(\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i)!} x^{2i}\right)- \left(\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i+1)!}x^{2i+1}\right) }{x-\sum\limits_{i=0}^{n=2} \frac{(-1)^i}{(2i+1)!} x^{2i+1}}
     \label{eq:problema_fc}
 \end{equation}
 
-Cada término de las series fue redondeado a cuatro decimales usando la función \textcolor{citecolor}{round\_custom()}.
-Evaluando la función en $x=0.1$, se obtiene como resultado que $f(x=0.1)=49.5000$.
+Cada término de la ecuación \ref{eq:problema_fc} fue redondeado como en la ecuación \ref{eq:problema2b}. A su vez cada término de las series fue redondeado a cuatro decimales usando la función \textcolor{citecolor}{round\_custom()}.
+Evaluando la función en $x=0.1$, se obtiene como resultado que $f(x=0.1)=-1.,5000$.
