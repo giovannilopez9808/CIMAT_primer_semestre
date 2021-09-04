@@ -26,11 +26,11 @@ plt.scatter(x2_max, y2_max,
             c="#2d6a4f",
             s=30)
 plt.plot(x, y1,
-         label="$f_1(x)=-sin(x)+x^2+1$",
+         label="$f(x)=-sin(x)+x^2+1$",
          color="#6930c3",
          lw=3)
 plt.plot(x, y2,
-         label="$f_2(x)=sin(x)-x^2+1$",
+         label="$f(x)=sin(x)-x^2+1$",
          color="#48bfe3",
          lw=3)
 plt.xlim(-1, 1)
