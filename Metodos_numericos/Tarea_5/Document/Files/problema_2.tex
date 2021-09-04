@@ -41,4 +41,55 @@ En el caso que se quiera aplicar el algoritmo para obtener el valor máximo de u
 La implementación del algoritmo se encuentra en la carpeta \textcolor{title}{Problema\_3a} y \textcolor{title}{Problema\_3b} en el archivo \textcolor{citecolor}{bisection.h}.
 
 \subsection*{Método de Newton}
+
+El método de Newton supone que tenemos una $f$, la cual es de clase $C^2$, lo cual quiere decir que la primer y segunda derivada de $f$ son continuas. El algoritmo del descendiente es el siguiente:
+Dado un valor pequeño de h, donde $h>0$, entonces el siguiente valor de x es:
+
+\begin{equation}
+    x_{k+1} = x_k -hf'(x_k)
+    \label{eq:descent_algorithm}
+\end{equation}
+
+Con la ecuación \ref{eq:descent_algorithm} se obtienen los siguientes casos:
+\begin{itemize}
+    \item Si $f'(x_0)>0$ entonces $x_{k+1}<x_0$, ya que existe $\delta>0$ para $f'(x)>0$ para todo $|x-x_0|<\delta$. Por lo tanto $f$ es creciente en el interalo.
+    \item Si $f'(x_0)<0$ entonces $x_{k+1}>x_0$, ya que existe $\delta>0$ para $f'(x)<0$ para todo $|x-x_0|<\delta$. Por lo tanto $f$ es decreciente en el interalo.
+\end{itemize}
+
+Podemos aproximar la función $f$ usando una serie de Taylor hasta segundo orden. Entnces:
+
+\begin{equation*}
+    f(x) \approx q(x) \overset{def}{=} f(x_0)+ f'(x_0)(x-x_0) + \frac{1}{2} f''(x_0)(x-x_0)^2
+\end{equation*}
+
+Por lo que al querer minimizar $f$, el método de Newton genera la siguiente secuencia
+
+\begin{equation*}
+    x_{k+1} = arg \underset{x}{min} q(x)
+\end{equation*}
+
+Calculando la primer derivada de $q(x)$, obtenemos lo siguiente:
+
+\begin{align*}
+    q'(x) & = f'(x_k)+ f''(x_k) (x-x_k)
+\end{align*}
+
+En donde al encontrar sus valores críticos, obtenemos la secuencia para el método de Newton (ecuación \ref{eq:secuancia_newton}).
+
+\begin{equation}
+    x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}
+    \label{eq:secuancia_newton}
+\end{equation}
+
+El algoritmo del método de Newton es el siguiente:
+
+\begin{lstlisting}[language=python]
+    input: df, ddf, x0, tolerancia
+    output: x, aproxximacion de sus valores criticos
+    while |df| > tolerancia:
+        x = x- df/dff
+    return x
+\end{lstlisting}
+
+La implementación del método de Newton se encuentra en las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{newton.h}.
 \subsection*{Método de secante}
