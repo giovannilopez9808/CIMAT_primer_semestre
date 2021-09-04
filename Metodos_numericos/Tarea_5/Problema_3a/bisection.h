@@ -44,7 +44,7 @@ void bisection_method(double (*f)(double), double x0, double x1)
     double tau = 1e-12;
     // Inicializacion del numero de intentos
     int attempt = 0;
-    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
+    printf("\t\tIteraciones\tAproximación\tTolerancia\n");
     // inicio de la busqueda
     while (stopping_criteria(x0, x1) > tau)
     {
@@ -54,4 +54,5 @@ void bisection_method(double (*f)(double), double x0, double x1)
         printf("\t\t\t%d\t%.12lf\t%.12lf\n", attempt, x, stopping_criteria(x0, x1));
     }
     printf("\t\tSolucion: x = %.12lf\n", x);
+    printf("\t\tPunto de interes: (%.12f , %.12f)\n", x, f(x));
 }

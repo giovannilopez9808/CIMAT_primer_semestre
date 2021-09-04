@@ -26,7 +26,7 @@ void secant_method(double (*f)(double), double x1, double x0)
     printf("\tSecante:\n");
     // Inicializacion del numero de intentos
     int attempt = 0;
-    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
+    printf("\t\tIteraciones\tAproximación\tTolerancia\n");
     while (fabs(df) > tau)
     {
         obtain_new_x_secant(f, &x0, &x1);
@@ -35,4 +35,5 @@ void secant_method(double (*f)(double), double x1, double x0)
         printf("\t\t\t%d\t%.12lf\t%.12lf\n", attempt, x1, fabs(df));
     }
     printf("\t\tSolucion: x = %.12lf\n", x1);
+    printf("\t\tPunto de interes: (%.12f , %.12f)\n", x1, f(x1));
 }

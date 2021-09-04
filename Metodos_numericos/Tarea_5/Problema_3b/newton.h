@@ -25,7 +25,7 @@ void newton_method(double (*f)(double), double x0)
     double tau = 1e-12;
     // Inicializacion del numero de intentos
     int attempt = 0;
-    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
+    printf("\t\tIteraciones\tAproximación\tTolerancia\n");
     while (fabs(derivate(f, x)) > tau)
     {
         x0 = x;
@@ -49,5 +49,6 @@ void newton_method(double (*f)(double), double x0)
     if ((fabs(df) > tau))
     {
         printf("\t\tSolucion: x = %.12lf\n", x);
+        printf("\t\tPunto de interes: (%.12f , %.12f)\n", x, f(x));
     }
 }
