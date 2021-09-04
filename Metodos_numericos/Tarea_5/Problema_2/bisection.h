@@ -41,12 +41,17 @@ void bisection_method(double (*f)(double), double x0, double x1)
     printf("\tBiseccion:\n");
     double x = obtain_new_x_bisection(x0, x1);
     // Tolerancia de la busqueda
-    double tau = 1e-6;
+    double tau = 1e-12;
+    // Inicializacion del numero de intentos
+    int attempt = 0;
+    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
     // inicio de la busqueda
     while (stopping_criteria(x0, x1) > tau)
     {
         // Calculo de la posible raiz
         obtain_new_interval(f, &x0, &x1, &x);
+        attempt++;
+        printf("\t\t\t%d\t%.12lf\t%.12lf\n", attempt, x, stopping_criteria(x0, x1));
     }
-    printf("\t\tx = %lf\n", x);
+    printf("\t\tSolucion: x = %.12lf\n", x);
 }

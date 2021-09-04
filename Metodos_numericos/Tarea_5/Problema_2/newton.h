@@ -22,9 +22,10 @@ void newton_method(double (*f)(double), double x0)
     // Inicializacion de la variable de busqueda
     double x = x0 + 1;
     // Tolerancia
-    double tau = 1e-6;
+    double tau = 1e-12;
     // Inicializacion del numero de intentos
     int attempt = 0;
+    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
     while (fabs(derivate(f, x)) > tau)
     {
         x0 = x;
@@ -37,6 +38,7 @@ void newton_method(double (*f)(double), double x0)
         }
         x = obtain_new_x_newton(f, x);
         attempt++;
+        printf("\t\t\t%d\t%.12lf\t%.12lf\n", attempt, x, fabs(derivate(f, x)));
     }
     // Impresion de salida si la derivada es cercana a 0
     if (fabs(df) < tau)
@@ -46,6 +48,6 @@ void newton_method(double (*f)(double), double x0)
     // Impresion del resultado, si es que lo hubo
     if ((fabs(df) > tau))
     {
-        printf("\t\tx = %lf\n", x);
+        printf("\t\tSolucion: x = %.12lf\n", x);
     }
 }
