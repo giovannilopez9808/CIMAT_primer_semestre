@@ -92,4 +92,32 @@ El algoritmo del método de Newton es el siguiente:
 \end{lstlisting}
 
 La implementación del método de Newton se encuentra en las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{newton.h}.
+
 \subsection*{Método de secante}
+
+El método de la secante es una alternativa al método de Newton. Supongamos que no se tiene la manera de obtener la segunda derivada de $f$. Entonces podemos aproximar este valor con la ecuación \ref{eq:approximation_second_derivate}.
+
+\begin{equation}
+    f''(x_k) = \frac{f'(x_k)-f'(x_{k-1})}{x_k-x_{k-1}}
+    \label{eq:approximation_second_derivate}
+\end{equation}
+
+Sustituyendo la ecuación \ref{eq:approximation_second_derivate} en \ref{eq:secuancia_newton}, obtenemos lo siguiente:
+
+\begin{align}
+    x_{k+1} & = x_k - \frac{x_k-x_{k-1}}{f'(x_k)-f'(x_{k-1})} f'(x_k) \nonumber                  \\
+    x_{k+1} & = \frac{f'(x_k)x_{k-1}-f'(x_k)x_k}{f'(x_k)-f'(x_{k-1})} \label{eq:sequence_secant}
+\end{align}
+
+Por lo tanto, el algoritmo del método de la secante es el siguiente:
+
+\begin{lstlisting}[language=python]
+    input: df, x0, x1, tolerancia
+    output: x1, aproxximacion de sus valores criticos
+    while |df| > tolerancia:
+        x2 = x1 - df(x1)(x1-x0)/(df(x1)-df(x0))
+        x0, x1 = x1, x2
+    return x1
+\end{lstlisting}
+
+La implementación del método de Newton se encuentra en las carpetas \textcolor{citecolor}{Problema\_2} y \textcolor{citecolor}{Problema\_3} en el archivo \textcolor{title}{secant.h}.
