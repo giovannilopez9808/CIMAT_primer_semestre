@@ -21,13 +21,18 @@ void secant_method(double (*f)(double), double x1, double x0)
         x0 -> limite inferior del intervalo
         x1 -> limite superior del intervalo
     */
-    double tau = 1e-6;
+    double tau = 1e-12;
     double df = derivate(f, x0);
     printf("\tSecante:\n");
+    // Inicializacion del numero de intentos
+    int attempt = 0;
+    printf("\t\tInteraciones\tAproximación\tTolerancia\n");
     while (fabs(df) > tau)
     {
         obtain_new_x_secant(f, &x0, &x1);
         df = derivate(f, x0);
+        attempt++;
+        printf("\t\t\t%d\t%.12lf\t%.12lf\n", attempt, x1, fabs(df));
     }
-    printf("\t\tx = %lf\n", x1);
+    printf("\t\tSolucion: x = %.12lf\n", x1);
 }
