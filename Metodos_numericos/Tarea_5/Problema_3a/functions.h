@@ -1,6 +1,9 @@
 #include <math.h>
 double derivate(double (*f)(double), double x)
 {
+    /* 
+    Calcula la derivada de una funcion
+     */
     double df;
     double h = 1e-6;
     df = f(x + h) - f(x);
@@ -9,6 +12,9 @@ double derivate(double (*f)(double), double x)
 }
 double double_derivate(double (*f)(double), double x)
 {
+    /* 
+    Calcula la segunda derivada de una funcion
+     */
     double h = 1e-6;
     double df0 = derivate(f, x);
     double df1 = derivate(f, x + h);
