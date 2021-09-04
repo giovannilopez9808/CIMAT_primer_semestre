@@ -1,3 +1,44 @@
 \section*{Problema 2}
-\textbf{Implement the following algorithms: Bisection, Newton, and Secant meth-
-    ods for optimization in 1D.}
+\textbf{Implement the following algorithms: Bisection, Newton, and Secant methods for optimization in 1D.}
+
+\subsection*{Método de bisección}
+
+El método de bisección supone que la función $f$ es unimodal, esto quiere decir que existe un único valor crítico. La función $f$ también debe de cumplir que es continuamente diferenciable. Dada una x en el intervalo $[a_0,b_0]$, el método obtiene una secuencia de intervalos tal que:
+
+\begin{equation*}
+    [a_0,b_0]\supset [a_1,b_1]\supset [a_2,b_2] \supset \dots \supset [a_k,b_k]
+\end{equation*}
+
+En cada intervalo, el valor crítico estara contenido. El algoritmo para obtener el valor mínimo de una función es el siguiente:
+\begin{lstlisting}[language=python]
+    input: df(x), [a,b], tolerancia
+    output: x, approximacion valor minimo
+    x=(a+b)/2
+    while |b-a| > tolerancia:
+        if (df(x) > 0):
+            b=x
+        else:
+            a=x
+        x=(a+b)/2
+    return x
+\end{lstlisting}
+
+En el caso que se quiera aplicar el algoritmo para obtener el valor máximo de una función se deberá realizar una modificación en la linea 4, ya que si no, el algoritmo arrojara como resultado alguno de los extremos del intervalo. La modificación sería la siguiente:
+
+\begin{lstlisting}[language=python]
+    input: df(x), [a,b], tolerancia
+    output: x, approximacion valor maximo
+    x=(a+b)/2
+    while |b-a| > tolerancia:
+        if (df(x) < 0):
+            b=x
+        else:
+            a=x
+        x=(a+b)/2
+    return x
+\end{lstlisting}
+
+La implementación del algoritmo se encuentra en la carpeta \textcolor{title}{Problema\_3a} y \textcolor{title}{Problema\_3b} en el archivo \textcolor{citecolor}{bisection.h}.
+
+\subsection*{Método de Newton}
+\subsection*{Método de secante}
