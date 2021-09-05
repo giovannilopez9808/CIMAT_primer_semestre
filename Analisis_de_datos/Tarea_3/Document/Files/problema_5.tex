@@ -1,2 +1,42 @@
 \section*{Problema 5}
 \textbf{Considera una secuencia de lanzamientos independientes de una moneda. Calcula la probabilidad que en el veintésimo lanzamiento se obtiene por cuarta vez aguila. En promedio ¿cuántas veces se va a tener que lanzar la moneda para obtener por cuarta vez aguila?}
+
+Como cada lanzamiento es independiente y la probabilidad se mantiene en cada uno de ellos, entonces llamaremos a A, la probabilidad de obtener aguila, entonces, su probabilidad de obtener un evento $l$ en A es la siguiente:
+
+\begin{equation*}
+    P(A) = \frac{1}{2}
+\end{equation*}
+
+El evento de interés, que llamaremos B, es obtener cuatro aguilas en veinte lanzamientos, en el cual, el ultimo lanzamiento obtenemos una aguila, entonces podemos realizar el calculo de obtener tres aguilar en 19 lanzamientos y la probabilidad de obtener un aguila, ya que al ser independientes los eventos de cada lanzamiento este no afectara al ultimo lanzamiento. La probabilidad de obtener tres aguilas en 19 lanzamientos podemos calcularla usando la distribucion binomial. Entonces, se tiene que:
+
+\begin{align*}
+    P(X=3) & = \left(\begin{matrix}
+        19 \\
+        3
+    \end{matrix}\right)(P(A))^3(1-P(A))^{19-3}                                 \\
+           & = \left(\begin{matrix}
+            19 \\
+            3
+        \end{matrix}\right)\left(\frac{1}{2}\right)^3\left(\frac{1}{2}\right)^{16} \\
+    P(X=3) & = \left(\begin{matrix}
+            19 \\
+            3
+        \end{matrix}\right)\left(\frac{1}{2}\right)^{19}
+\end{align*}
+
+Entonces, la probabilidad que se presente el evento B es:
+\begin{align*}
+    P(B,A) & = P(B)P(A)                                                                                    \\
+           & =\left(\begin{matrix}
+            19 \\
+            3
+        \end{matrix}\right)\left(\frac{1}{2}\right)^{19} \left(\frac{1}{2}\right) \\
+           & =\left(\begin{matrix}
+            19 \\
+            3
+        \end{matrix}\right)\left(\frac{1}{2}\right)^{20}                          \\
+           & = \frac{969}{2^20}                                                                            \\
+           & = \frac{969}{1048576}                                                                         \\
+    P(B,A) & = 0.00092411
+\end{align*}
+
