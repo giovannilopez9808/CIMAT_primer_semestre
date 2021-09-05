@@ -35,8 +35,31 @@ Entonces, la probabilidad que se presente el evento B es:
             19 \\
             3
         \end{matrix}\right)\left(\frac{1}{2}\right)^{20}                          \\
-           & = \frac{969}{2^20}                                                                            \\
+           & = \frac{969}{2^{20}}                                                                          \\
            & = \frac{969}{1048576}                                                                         \\
     P(B,A) & = 0.00092411
 \end{align*}
+
+Sea N el numero de lanzamientos, entonces calculando $E[N]$, se obtiene que:
+
+\begin{align*}
+    E[N] & = E\left[\sum_i N_i\right] \\
+         & = \sum_i E[N_i]
+\end{align*}
+
+Separando el evento en cuatro diferences, lanzaremos cada moneda hasta que se obtenga un aguila, entonces este lo podemos llevar a una distribución geométrica, por ende su valor esperado es
+\begin{equation*}
+    E[N_i] = \frac{1}{p}
+\end{equation*}
+
+entonces, el promedio de numero de lanzamientos es:
+
+\begin{align*}
+    E[N ] & = \sum_{i=1}^4 E[N_i]      \\
+          & = \sum_{i=4}^4 \frac{1}{p} \\
+          & = \frac{4}{p}              \\
+          & = \frac{4}{\frac{1}{2}}    \\
+    E[N ] & = 8
+\end{align*}
+
 
