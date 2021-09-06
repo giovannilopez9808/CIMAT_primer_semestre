@@ -1,2 +1,25 @@
 \section*{Problema 7}
 \textbf{Se debe sujetar N personas a una prueba de sangre para detectar la posible presencia de una cierta enfermedad. Con ese fin se dividen las personas al azar en subgrupos de tamaño k (puedes suponer que N es un múltiple de k). Se toma una muestra de sangre de cada persona y se mezclan las que pertenecen a personas de un mismo subgrupo; se aplica la prueba a estas k mezclas. Si el resultado es positivo, se sujeta cada persona del subgrupo correspondiente a una prueba separada. Suponiendo que la probabilidad de tener la enfermedad es 0.01, y que la presencia de la enfermedad entre las personas ocurre de manera independiente: calcula el promedio del número de pruebas que se va a tener que aplicar.}
+
+Como se tienen grupos de k personas, entonces podemos decir que se formaran m grupos, ya que $N=mk$, entonces tenemos inicialmente que se aplicarán $N/k$ pruebas. La presencia de la enfermedad es independiente entre personas, por lo que podemos suponer que se trara de una distribucion binomial con probabilidad $p=0.01$. Entonces si llamamos a el total de pruebas como P, se tiene lo siguiente:
+
+\begin{align*}
+    E(P) & = E\left(\sum_m P_m \right) \\
+         & = \sum_m E (P_m)
+\end{align*}
+
+Al tratarse de una distribucion binomial, entonces:
+
+\begin{align*}
+    E(P) & =  \sum_m E(P_m)              \\
+         & = \sum_m kp                   \\
+         & = mkp                         \\
+         & = \left(\frac{N}{k}\right) kp \\
+         & = Np
+\end{align*}
+
+Como se aplicaran pruebas a cada integrante del grupo si se detecta positiva la prueba grupal, entonces se tiene que el promedio del número de pruebas que se aplicaran es:
+
+\begin{equation*}
+    \bar{P} = \frac{N}{k} + Npk
+\end{equation*}
