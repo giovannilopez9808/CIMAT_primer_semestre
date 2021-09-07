@@ -90,20 +90,43 @@ int is_avaliable(char matrix[size][size], int pos[])
     }
     return 0;
 }
-// int is_any_avaliable(char matrix[size][size], int pos[])
-// {
-// }
+int is_any_avaliable(char matrix[size][size], int pos[])
+{
+    int move[2] = {0, 0};
+    int move_aux[2];
+    int avaliable = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        select_move(move, i);
+        generate_move(move_aux, pos, move);
+        if (is_in_the_box(move_aux))
+        {
+            if (is_avaliable(matrix, move_aux))
+            {
+                avaliable += 1;
+            }
+        }
+    }
+    if (avaliable == 0)
+    {
+        return 0;
+    }
+    return 1;
+}
 void random_walk(int pos[], char matrix[size][size])
 {
     int letter = 11;
     int random;
-    // Si es 1 es porque aun hay un camino que escoger
-    int in_box = 1;
     int move[2];
     int move_aux[2];
     matrix[pos[0]][pos[1]] = 'A';
-    while (letter < 35 && in_box)
+    while (letter < 36)
     {
+        if (!is_any_avaliable(matrix, pos))
+        {
+            printf("Break\n");
+            break;
+        }
         random = generate_random_number();
         select_move(move, random);
         generate_move(move_aux, pos, move);
@@ -117,14 +140,10 @@ void random_walk(int pos[], char matrix[size][size])
                 letter++;
             }
         }
-        print(matrix);
-        printf("\n\n");
-        // letter++;
     }
 }
 int main()
 {
-    // 10 hasta 37
     int pos[2] = {0, 0};
     char matrix[size][size];
     srand(time(NULL));
