@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #define size 10
+#define max_letters 36
 char integer_to_ascii(int number)
 {
     /* 
@@ -93,15 +94,15 @@ int is_avaliable(char matrix[size][size], int pos[])
 int is_any_avaliable(char matrix[size][size], int pos[])
 {
     int move[2] = {0, 0};
-    int move_aux[2];
+    int pos_aux[2];
     int avaliable = 0;
     for (int i = 0; i < 4; i++)
     {
         select_move(move, i);
-        generate_move(move_aux, pos, move);
-        if (is_in_the_box(move_aux))
+        generate_move(pos_aux, pos, move);
+        if (is_in_the_box(pos_aux))
         {
-            if (is_avaliable(matrix, move_aux))
+            if (is_avaliable(matrix, pos_aux))
             {
                 avaliable += 1;
             }
@@ -118,9 +119,9 @@ void random_walk(int pos[], char matrix[size][size])
     int letter = 11;
     int random;
     int move[2];
-    int move_aux[2];
+    int pos_aux[2];
     matrix[pos[0]][pos[1]] = 'A';
-    while (letter < 36)
+    while (letter < max_letters)
     {
         if (!is_any_avaliable(matrix, pos))
         {
@@ -128,13 +129,13 @@ void random_walk(int pos[], char matrix[size][size])
         }
         random = generate_random_number();
         select_move(move, random);
-        generate_move(move_aux, pos, move);
-        if (is_in_the_box(move_aux))
+        generate_move(pos_aux, pos, move);
+        if (is_in_the_box(pos_aux))
         {
-            if (is_avaliable(matrix, move_aux))
+            if (is_avaliable(matrix, pos_aux))
             {
-                pos[0] = move_aux[0];
-                pos[1] = move_aux[1];
+                pos[0] = pos_aux[0];
+                pos[1] = pos_aux[1];
                 matrix[pos[0]][pos[1]] = integer_to_ascii(letter);
                 letter++;
             }
@@ -143,9 +144,9 @@ void random_walk(int pos[], char matrix[size][size])
 }
 int main()
 {
-    int pos[2] = {0, 0};
-    char matrix[size][size];
     srand(time(NULL));
+    int pos[2] = {rand() % size, rand() % size};
+    char matrix[size][size];
     initialize_matrix(matrix);
     random_walk(pos, matrix);
     print(matrix);
