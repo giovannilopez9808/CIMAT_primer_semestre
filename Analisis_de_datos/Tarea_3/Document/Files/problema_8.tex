@@ -38,3 +38,34 @@ Como el único número que no ha sido obtenido es $\Omega_k$, entonces, la proba
         }
 \end{lstlisting}
 \textbf{Supongamos que el orden de los elementos es totalmente al azar. Define X el número de veces que se actualiza la variable max. Calcula EX (usa el inciso anterior).}
+
+Sea A el conjunto de números tal que
+
+\begin{equation*}
+    A=\{ A_i \in \mathbb{N} : A_i \neq A_j \forall i,j\}
+\end{equation*}
+
+donde
+
+\begin{equation*}
+    A_{max} = max(A)
+\end{equation*}
+
+La variable max se actualizará hasta que esta obtenga el valor de $A_{max}$, ya que al ser el número máximo en el conjunto A entonces habremos encontrado lo que queremos. La probabilidad de obtener a $A_{max}$ en el intento i es:
+
+\begin{equation*}
+    P(A_i) = \prod_{j=1}^i \frac{n-j}{n-j+1} = \frac{n-i}{n}
+\end{equation*}
+
+Entonces, el valor esperado de las veces en que A$_{max}$ es obtenido es:
+
+\begin{align*}
+    E(A) & = \sum_i^n i P(A_i)                                                  \\
+         & = \sum_i^n i \left[\frac{n-i}{n}\right]                              \\
+         & = \sum_i^n i - \frac{1}{n} \sum_i^n i^2                              \\
+         & = \frac{n(n+1)}{2} - \frac{1}{n} \left[\frac{n(n+1)(2n+1)}{6}\right] \\
+         & = \left(\frac{n+1}{2}\right) \left(n - \frac{2n+1}{3} \right)        \\
+         & = \left( \frac{n+1}{2} \right) \left(\frac{3n-2n-1}{3} \right)       \\
+         & = \frac{(n+1)(n-1)}{6}                                               \\
+    E(A) & = \frac{n^2-1}{6}
+\end{align*}
