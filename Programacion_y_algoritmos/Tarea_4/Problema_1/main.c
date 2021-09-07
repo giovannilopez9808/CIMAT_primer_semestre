@@ -124,7 +124,6 @@ void random_walk(int pos[], char matrix[size][size])
     {
         if (!is_any_avaliable(matrix, pos))
         {
-            printf("Break\n");
             break;
         }
         random = generate_random_number();
