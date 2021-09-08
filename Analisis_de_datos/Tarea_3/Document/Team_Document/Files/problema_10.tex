@@ -46,3 +46,57 @@ $$
 $$
 \subsection*{Problema 10b}
 \textbf{Decimos que un nodo del grafo está aislado si todas las aristas que llegan (o salen) están bloqueadas. Calcula el promedio del número de nodos aislados.}
+
+Sea i el número de aristas que salen del nodo y $a_i$ el número de nodos que tienen i aristas. El promedio de nodos aislados puede ser calculado como la suma del promedio de los $a_i$ nodos, entonces:
+
+\begin{align}
+    E(A) & = \sum_i E(A_i)     \nonumber     \\
+    E(A) & = \sum_i a_i P(a_i) \label{eq:ea}
+\end{align}
+
+donde $P(a_i)$ es la probabilidad que todas las aristas del nodo $a_i$ esten bloqueadas. Como la probabilidad que una arista este bloqueda es independiente de las demas, entonces se obtiene que $P(a_i)$ es:
+
+\begin{align*}
+    P(a_i) & = \prod_i P(a_{ii})                \\
+           & =P(a_{i1})P(a_{i2})\dots P(a_{ii})
+\end{align*}
+
+Como la probabilidad es la misma en todas las aristas entonces:
+
+\begin{equation}
+    P(a_i) = q^i
+    \label{eq:pai}
+\end{equation}
+
+Entonces, usando la ecuación \ref{eq:pai} en la ecuación \ref{eq:ea} se obtiene que:
+
+\begin{align}
+    E(A) & = \sum_i a_i P(a_i) \nonumber                \\
+         & =  \sum_i a_i q^i             \label{eq:ea2}
+\end{align}
+
+Los nodos que componen a los conjuntos $a_i$ del mapa (figura \ref{fig:map_with_letters}) son los siguientes:
+\begin{equation*}
+    a_i = \left\lbrace \begin{matrix}
+        a_2 = & \left\lbrace
+        \begin{matrix}
+            A, B, C, H, J, E
+        \end{matrix} \right\rbrace  \\
+        a_3 = & \left\lbrace
+        \begin{matrix}
+            I,G
+        \end{matrix} \right\rbrace  \\
+        a_4 = & \left\lbrace
+        \begin{matrix}
+            D, F
+        \end{matrix} \right\rbrace \\
+    \end{matrix} \right.
+\end{equation*}
+
+Por lo tanto, los coeficientes son 6, 2, 2 para los nodos $a_2,a_3,a_4$ respectivamente. Introduciendo esta información en la ecuación \ref{eq:ea2} se obtiene:
+
+\begin{equation}
+    E(A)= 6q^2 + 2q^3 + 2q^4
+\end{equation}
+
+lo cual es el promedio que un nodo este aislado.
