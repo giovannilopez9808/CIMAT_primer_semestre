@@ -20,6 +20,9 @@ char integer_to_ascii(int number)
 }
 void initialize_matrix(char matrix[size][size])
 {
+    /* 
+    Inicializa la matriz con puntos
+     */
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
@@ -30,6 +33,9 @@ void initialize_matrix(char matrix[size][size])
 }
 void print(char matrix[size][size])
 {
+    /* 
+    Escribe en pantalla el estado de la matriz
+     */
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
@@ -41,6 +47,9 @@ void print(char matrix[size][size])
 }
 int is_in_the_box(int pos[])
 {
+    /* 
+    Recibe la nueva posicion de la letra a imprimir, si esta dentro del área devuelve 1, si no devuelve 0
+     */
     for (int i = 0; i < 2; i++)
     {
         if ((pos[i] < 0) || (pos[i] >= size))
@@ -52,10 +61,17 @@ int is_in_the_box(int pos[])
 }
 int generate_random_number()
 {
+    /* 
+    Genera aleatoriamente numeros entre 0,1,2,3
+     */
     return rand() % 4;
 }
 void generate_move(int new_pos[], int pos[], int move[])
 {
+    /* 
+    Realiza el movimiento de la posicion hacia una nueva dependiendo del movimiento antes escogido.
+     */
+
     for (int i = 0; i < 2; i++)
     {
         new_pos[i] = pos[i] + move[i];
@@ -63,20 +79,27 @@ void generate_move(int new_pos[], int pos[], int move[])
 }
 void select_move(int move[], int number)
 {
+    /* 
+    Selecciona el movimiento dependiendo del valor del numero aleatorio
+     */
     move[0] = 0;
     move[1] = 0;
     switch (number)
     {
     case 0:
+        // Movimiento hacia arriba
         move[1] = 1;
         break;
     case 1:
+        // Movimiento hacia abajo
         move[1] = -1;
         break;
     case 2:
+        // Movimiento hasta la izquierda
         move[0] = -1;
         break;
     case 3:
+        // Movimiento hasta la derecha
         move[0] = 1;
         break;
     default:
@@ -85,6 +108,9 @@ void select_move(int move[], int number)
 }
 int is_avaliable(char matrix[size][size], int pos[])
 {
+    /* 
+    Verifica si la celda seleccionada esta disponible, si lo esta regresa 1, si no 0
+     */
     if (matrix[pos[0]][pos[1]] == '.')
     {
         return 1;
@@ -93,8 +119,13 @@ int is_avaliable(char matrix[size][size], int pos[])
 }
 int is_any_avaliable(char matrix[size][size], int pos[])
 {
+    /* 
+    Verifica si alguna de las celdas vecinas esta disponible, si alguna no esta regresa 1, si todas estan ocupadas regresa 0
+     */
     int move[2] = {0, 0};
+    // Posicion auxiliar generada para no modificar la posicion actual
     int pos_aux[2];
+    // Contador de celdas disponibles
     int avaliable = 0;
     for (int i = 0; i < 4; i++)
     {
@@ -108,21 +139,27 @@ int is_any_avaliable(char matrix[size][size], int pos[])
             }
         }
     }
+    // Si todas estan ocupadas
     if (avaliable == 0)
     {
         return 0;
     }
+    // Si hay alguna disponible
     return 1;
 }
 void random_walk(int pos[], char matrix[size][size])
 {
+    // Inicio de las letras
     int letter = 11;
     int random;
+    // Guardara el movimiento que se realizara en cada paso
     int move[2];
+    // Posicion auxiliar generada para no modificar la posicion actual
     int pos_aux[2];
     matrix[pos[0]][pos[1]] = 'A';
     while (letter < max_letters)
     {
+        // Si todas estan ocupadas se detiene la caminata
         if (!is_any_avaliable(matrix, pos))
         {
             break;
@@ -130,12 +167,16 @@ void random_walk(int pos[], char matrix[size][size])
         random = generate_random_number();
         select_move(move, random);
         generate_move(pos_aux, pos, move);
+        // Validacion del movimiento dentro de la cja
         if (is_in_the_box(pos_aux))
         {
+            // Validacion de la disponibilidad de la celda
             if (is_avaliable(matrix, pos_aux))
             {
+                // Guardado de la posicion
                 pos[0] = pos_aux[0];
                 pos[1] = pos_aux[1];
+                // Marcado del paso
                 matrix[pos[0]][pos[1]] = integer_to_ascii(letter);
                 letter++;
             }
@@ -145,10 +186,15 @@ void random_walk(int pos[], char matrix[size][size])
 int main()
 {
     srand(time(NULL));
+    // Generacion de la posicion
     int pos[2] = {rand() % size, rand() % size};
+    // Creacion de la matriz
     char matrix[size][size];
+    // Inicializacion de la matriz
     initialize_matrix(matrix);
+    // Caminata
     random_walk(pos, matrix);
+    // Impresion del estado
     print(matrix);
     return 0;
 }
