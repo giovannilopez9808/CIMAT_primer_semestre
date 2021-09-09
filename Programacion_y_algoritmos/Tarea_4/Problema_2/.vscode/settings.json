@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "algorithms.h": "c",
+    "results.h": "c",
+    "recognise_simbols.h": "c",
+    "quick_sort.h": "c"
+  }
+}
