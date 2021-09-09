@@ -2,21 +2,10 @@
 #include <stdio.h>
 #include <time.h>
 #define size 10
-#define max_letters 36
-char integer_to_ascii(int number)
+#define max_letters 26
+char inetegr_to_letter(int number)
 {
-    /* 
-    Si un numero es mayor a 9, este tomara el valor en la tabla ascii, si no retornara el mismo numero pero de tipo caracter
-     */
-    if (number >= 0 && number <= 9)
-    {
-        // Se tiene que llevar a ascii, si no el resultado no se guardara
-        return (char)(number + '0');
-    }
-    else
-    {
-        return (char)(number - 10 + 'A');
-    }
+    return (char)(number + 'A');
 }
 void initialize_matrix(char matrix[size][size])
 {
@@ -150,7 +139,7 @@ int is_any_avaliable(char matrix[size][size], int pos[])
 void random_walk(int pos[], char matrix[size][size])
 {
     // Inicio de las letras
-    int letter = 11;
+    int letter = 1;
     int random;
     // Guardara el movimiento que se realizara en cada paso
     int move[2];
@@ -177,7 +166,7 @@ void random_walk(int pos[], char matrix[size][size])
                 pos[0] = pos_aux[0];
                 pos[1] = pos_aux[1];
                 // Marcado del paso
-                matrix[pos[0]][pos[1]] = integer_to_ascii(letter);
+                matrix[pos[0]][pos[1]] = inetegr_to_letter(letter);
                 letter++;
             }
         }
@@ -203,6 +192,8 @@ void decide_case()
     // Inicializacion de la matriz
     initialize_matrix(matrix);
     // Caminata
+    print(matrix);
+    printf("\n");
     random_walk(pos, matrix);
     // Impresion del estado
     print(matrix);
