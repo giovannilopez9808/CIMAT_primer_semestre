@@ -183,18 +183,33 @@ void random_walk(int pos[], char matrix[size][size])
         }
     }
 }
-int main()
+void decide_case()
 {
-    srand(time(NULL));
-    // Generacion de la posicion
-    int pos[2] = {rand() % size, rand() % size};
-    // Creacion de la matriz
+    char test;
     char matrix[size][size];
+    int pos[2];
+    printf("¿Deseas usar el programa con los datos de prueba?(Y/n): ");
+    scanf("%c", &test);
+    if (test == 'Y' || test == 'y')
+    {
+        pos[0] = rand() % size;
+        pos[1] = rand() % size;
+    }
+    else
+    {
+        printf("Escribe la posicion x y donde quieres iniciar.\nEscribir con un espacio entre los numeros: ");
+        scanf("%d %d", &pos[0] - 1, &pos[1] - 1);
+    }
     // Inicializacion de la matriz
     initialize_matrix(matrix);
     // Caminata
     random_walk(pos, matrix);
     // Impresion del estado
     print(matrix);
+}
+int main()
+{
+    srand(time(NULL));
+    decide_case();
     return 0;
 }
