@@ -192,8 +192,6 @@ void decide_case()
     // Inicializacion de la matriz
     initialize_matrix(matrix);
     // Caminata
-    print(matrix);
-    printf("\n");
     random_walk(pos, matrix);
     // Impresion del estado
     print(matrix);
