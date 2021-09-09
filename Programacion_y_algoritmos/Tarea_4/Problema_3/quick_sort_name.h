@@ -15,7 +15,7 @@ int compare_names(struct person *person1, struct person *person2)
     }
     return compare;
 }
-int partition(struct person **pointers, int low, int high)
+int reduce_sort(struct person **pointers, int low, int high)
 {
 
     struct person *aux;
@@ -53,7 +53,7 @@ void sorted(struct person **pointers, int start, int last)
     if (start < last)
     {
         int numbers_partition;
-        numbers_partition = partition(pointers, start, last);
+        numbers_partition = reduce_sort(pointers, start, last);
         // Ordena la parte inferior
         sorted(pointers,
                start,

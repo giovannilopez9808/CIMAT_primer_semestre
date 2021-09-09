@@ -8,7 +8,7 @@ void swap(int *number1, int *number2)
     *number2 = aux;
 }
 
-int partition(int numbers[], int positions[], int low, int high)
+int reduce_sort(int numbers[], int positions[], int low, int high)
 {
     // Seleccion del pivote
     int pivot = numbers[high];
@@ -42,7 +42,7 @@ void sorted(int numbers[], int positions[], int start, int last)
     if (start < last)
     {
         int numbers_partition;
-        numbers_partition = partition(numbers, positions, start, last);
+        numbers_partition = reduce_sort(numbers, positions, start, last);
         // Ordena la parte inferior
         sorted(numbers,
                positions,
