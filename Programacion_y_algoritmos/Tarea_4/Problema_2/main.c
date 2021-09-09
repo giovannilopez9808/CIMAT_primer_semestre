@@ -25,5 +25,6 @@ int main(int argc, char *argv[])
     write_probabilities(probabilities, total);
     sorted(probabilities, positions_probabilities, 0, number_letters - 1);
     print_probabilities(probabilities, positions_probabilities, total);
+    write_conditional_probabilities(probabilities, positions_probabilities, data);
     return 0;
 }

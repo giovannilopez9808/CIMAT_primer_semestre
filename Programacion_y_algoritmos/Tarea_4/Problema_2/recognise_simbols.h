@@ -43,3 +43,7 @@ int equal_capital_and_lower_letters(int letter)
     }
     return position;
 }
+char obtain_capital_letter(int i)
+{
+    return i + 'A';
+}
