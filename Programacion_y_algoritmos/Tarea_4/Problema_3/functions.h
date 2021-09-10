@@ -30,3 +30,8 @@ void print_names(struct person **pointers, int size)
                pointers[i]->name);
     }
 }
+void print_lines()
+{
+    printf("-----------------");
+    printf("-----------------\n");
+}

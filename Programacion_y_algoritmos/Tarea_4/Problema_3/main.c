@@ -14,9 +14,13 @@ int main(int argc, char *argv[])
     fscanf(file, "%d", &size);
     struct person *pointers[size], names[size];
     read_names(file, size, names, pointers);
+    print_lines();
+    printf("Nombres desordenados\n\n");
     print_names(pointers, size);
     sorted(pointers, 0, size - 1);
     printf("\n\n");
+    print_lines();
+    printf("Nombres ordenados\n\n");
     print_names(pointers, size);
     return 0;
 }
