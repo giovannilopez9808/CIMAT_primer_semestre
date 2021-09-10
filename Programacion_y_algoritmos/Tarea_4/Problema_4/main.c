@@ -21,7 +21,7 @@ void initialize_data(int data[size], int positions[size])
     for (int i = 0; i < size; i++)
     {
         positions[i] = i;
-        data[i] = generate_random_number(50);
+        data[i] = generate_random_number(1000);
     }
 }
 void print_data(int data[size], int positions[size], int max)
