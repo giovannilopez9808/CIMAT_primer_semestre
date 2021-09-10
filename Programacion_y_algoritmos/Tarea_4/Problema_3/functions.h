@@ -15,7 +15,15 @@ int order_names(char name1[], char name2[])
         {
             return compare;
         }
-        i++;
+        i = i + 1;
+    }
+    if (name1[i] == '\0' && name2[i] != '\0')
+    {
+        return -name2[i];
+    }
+    if (name2[i] == '\0' && name1[i] != '\0')
+    {
+        return name1[i];
     }
     return 0;
 }
