@@ -9,6 +9,22 @@ void valid_file(FILE *file)
         exit(1);
     }
 }
+int obtain_number_persons(FILE *file)
+{
+    char letter;
+    int size = 0;
+    letter = fgetc(file);
+    while (letter != EOF)
+    {
+        letter = fgetc(file);
+        if (letter == '\n')
+        {
+            size++;
+        }
+    }
+    fclose(file);
+    return size+1;
+}
 void read_names(FILE *file, int size, struct person *names, struct person **positions)
 {
     /* 
@@ -22,4 +38,5 @@ void read_names(FILE *file, int size, struct person *names, struct person **posi
                names[i].name);
         positions[i] = &names[i];
     }
+    fclose(file);
 }
