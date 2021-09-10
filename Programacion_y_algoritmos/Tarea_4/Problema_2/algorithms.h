@@ -35,9 +35,6 @@ void valid_second_letter(FILE *text_file, char *letter1, char *letter2, int prob
         *letter2 = fgetc(text_file);
         count_individual_data(*letter1,
                               probabilities);
-        if (is_a_space(*letter2))
-        {
-        }
     }
 }
 void obtain_data(FILE *text_file, int data[number_letters][number_letters], int probabilities[number_letters])
