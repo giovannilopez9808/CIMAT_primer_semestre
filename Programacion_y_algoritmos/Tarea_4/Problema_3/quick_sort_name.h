@@ -4,14 +4,14 @@ int compare_names(struct person *person1, struct person *person2)
     Realiza la comparacion de los nombres, si el primer apellido es igual compara el segundo. Si el segundo apellido es igual compara el nombre
      */
     int compare;
-    compare = strcmp(person1->last_name_1, person2->last_name_1);
+    compare = order_names(person1->last_name_1, person2->last_name_1);
     if (compare == 0)
     {
-        compare = strcmp(person1->last_name_2, person2->last_name_2);
+        compare = order_names(person1->last_name_2, person2->last_name_2);
     }
     if (compare == 0)
     {
-        compare = strcmp(person1->name, person2->name);
+        compare = order_names(person1->name, person2->name);
     }
     return compare;
 }
