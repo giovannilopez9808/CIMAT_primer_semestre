@@ -10,7 +10,7 @@ Para este problema se definidio como una constante global el tamaño de la matri
     \label{fig:initial_state_problem1}
 \end{figure}
 
-Una casilla se considera disponible si su valor es igual a ``.". Antes de obtener el siguiente paso de cada iteracion el programa verifica si sus vecinos estan disponibles. Si existe al menos una casilla disponible entonces el programa sigue (figura \ref{fig:example_walk}), si no el programa termina ya que no podra seguir la caminata (figura \ref{fig:example_block}). El siguinte paso de la iteración se obtiene con la función \textit{rand()}. Se calcula el modulo del número obtenido con 4. Con esto nos aseguramos que el número se encuentre en el conjunto $\{0, 1, 2 ,3\}$.
+Una casilla se considera disponible si su valor es igual a ``.". Antes de obtener el siguiente paso de cada iteracion el programa verifica si sus vecinos estan disponibles. Si existe al menos una casilla disponible entonces el programa sigue ejecutandose (figura \ref{fig:example_walk}), si no el programa termina ya que no podrá seguir la caminata (figura \ref{fig:example_block}). El siguinte paso de la iteración se obtiene con la función \textit{rand()}. Se calcula el modulo del número obtenido con 4. Con esto nos aseguramos que el número se encuentre en el conjunto $\{0, 1, 2 ,3\}$.
 \begin{center}
     \begin{minipage}{0.48\linewidth}
         \begin{figure}[H]
