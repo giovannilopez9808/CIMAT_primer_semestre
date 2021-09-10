@@ -1,10 +1,11 @@
 // Definicion de las letras y simbolos en ascii
 #define final_letter_lower 122
-#define begin_letter_lower 87
+#define begin_letter_lower 97
 #define final_letter_cap 90
 #define begin_letter_cap 65
 #define number_letters 26
 #define space 32
+#define enter 10
 int is_a_space(int letter)
 {
     /* 
@@ -16,12 +17,25 @@ int is_a_space(int letter)
     }
     return 0;
 }
+int is_a_enter(int letter)
+{
+    /* 
+    Reconoce si un caracter es un enter, si lo es regresa 1, si no regresa 0
+     */
+    if (letter == enter)
+    {
+        return 1;
+    }
+    return 0;
+}
 int is_a_letter(int letter)
 {
     /* 
     Reconoce si el caracter se entra entre A y z en el codigo ascii, si lo esta regresa 1, si no 0
      */
-    if ((letter >= begin_letter_cap) && (letter <= final_letter_lower))
+    int is_capital_letter = ((letter >= begin_letter_cap) && (letter <= final_letter_cap));
+    int is_lower_letter = ((letter >= begin_letter_lower) && (letter <= final_letter_lower));
+    if ((is_lower_letter) || (is_capital_letter))
     {
         return 1;
     }
@@ -35,7 +49,7 @@ int equal_capital_and_lower_letters(int letter)
     int position;
     if (letter >= begin_letter_lower)
     {
-        position = letter - begin_letter_lower - 10;
+        position = letter - begin_letter_lower;
     }
     else
     {

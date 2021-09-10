@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 {
     // Dont print warming
     (void)argc;
+    (void)argv;
     // Matriz de a a la z más el total de las columans y filas
     int data[number_letters][number_letters];
     int probabilities[number_letters];
@@ -17,6 +18,8 @@ int main(int argc, char *argv[])
     FILE *text_file;
     // Lectura del archivo
     text_file = fopen(argv[1], "r");
+    // text_file = fopen("don_quijote.txt", "r");
+    // text_file = fopen("test.txt", "r");
     initialize_data(data, probabilities, positions_probabilities);
     valid_file(text_file);
     obtain_data(text_file, data, probabilities);

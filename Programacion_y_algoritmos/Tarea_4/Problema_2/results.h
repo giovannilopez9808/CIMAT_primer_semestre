@@ -90,12 +90,13 @@ void print_probabilities(int probabilities[number_letters], int positions[number
     Imprime todas las probabilidades de las letras
      */
     print_lines();
+    (void)total;
     printf("Probabilidades de cada letra\n");
     for (int i = 0; i < number_letters; i++)
     {
-        printf("P(%c) = %2.6lf %% \n",
+        printf("P(%c) = %d %% \n",
                obtain_capital_letter(positions[i]),
-               probabilities[i] * 100.0 / total);
+               probabilities[i]);
     }
     print_lines();
 }

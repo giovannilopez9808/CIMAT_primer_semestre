@@ -1,4 +1,4 @@
-void count_data(int letter1, int letter2, int data[number_letters][number_letters])
+void obtain_conditional_probability(int letter1, int letter2, int data[number_letters][number_letters])
 {
     /* 
     Realiza el conteo y lo ubica en la matriz de 26x27, esto para despues calcular la probabilidad condicional
@@ -23,42 +23,53 @@ void valid_second_letter(FILE *text_file, char *letter1, char *letter2, int prob
     // Variable auxiliar usada para evitar warmings
     char letter_aux = *letter1;
     (void)letter_aux;
+    (void)probabilities;
     // Validacion si es una letra
-    if (!is_a_letter(*letter2))
+    while (!is_a_letter(*letter2) && (*letter2 != EOF || *letter1 != EOF))
     {
-        // Si no lo es, entonces se puede tratar de un punto, coma o espacio
-        if (!is_a_space(*letter2))
-        {
-            // Si no es un espacio entonces es un punto o coma, entonces se lo salta
-            *letter2 = fgetc(text_file);
-        }
-        // Si es un espacio, entonces lo siguiente es una letra
         *letter1 = fgetc(text_file);
-        // Contador de la ultima letra antes de un espacio, coma o punto.
-        count_individual_data((int)*letter1, probabilities);
+        while (!is_a_letter(*letter1) && *letter1 != EOF)
+        {
+            *letter1 = fgetc(text_file);
+        }
         *letter2 = fgetc(text_file);
+        if (is_a_space(*letter2))
+        {
+            count_individual_data(*letter1,
+                                  probabilities);
+        }
     }
 }
 void obtain_data(FILE *text_file, int data[number_letters][number_letters], int probabilities[number_letters])
 {
-    char letter1,
-        letter2;
+    char letter1, letter2;
     letter1 = fgetc(text_file);
     letter2 = fgetc(text_file);
     // Conteo de la primer letra
     while (letter1 != EOF && letter2 != EOF)
     {
         // Validacion de la segunda letra
-        valid_second_letter(text_file, &letter1, &letter2, probabilities);
-        // Conteo de las probabilidades condicionales
-        count_data(letter1, letter2, data);
-        // Intercambio de las letras
-        letter1 = letter2;
-        count_individual_data(letter1, probabilities);
-        letter2 = fgetc(text_file);
-        // Conteo de la probabilidad de cada letra
-        // Validacion por si se encuentra cerca del final del archivo
-        valid_second_letter(text_file, &letter1, &letter2, probabilities);
+        valid_second_letter(text_file,
+                            &letter1,
+                            &letter2,
+                            probabilities);
+        if (letter1 != EOF && letter2 != EOF)
+        {
+            // Conteo de las probabilidades condicionales
+            obtain_conditional_probability(letter1,
+                                           letter2,
+                                           data);
+            // Intercambio de las letras
+            letter1 = letter2;
+            letter2 = fgetc(text_file);
+            count_individual_data(letter1,
+                                  probabilities);
+        }
+    }
+    if (letter2 != EOF)
+    {
+        count_individual_data(letter2,
+                              probabilities);
     }
     fclose(text_file);
 }
