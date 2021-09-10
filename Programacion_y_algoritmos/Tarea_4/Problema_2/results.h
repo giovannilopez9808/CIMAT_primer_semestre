@@ -48,6 +48,7 @@ void write_conditional_probabilities(int probabilities[number_letters], int posi
      */
     char letter_i,
         letter_j;
+    (void)probabilities;
     //  Recorrido para las 10 letras
     for (int i = 0; i < 10; i++)
     {
@@ -90,13 +91,12 @@ void print_probabilities(int probabilities[number_letters], int positions[number
     Imprime todas las probabilidades de las letras
      */
     print_lines();
-    (void)total;
     printf("Probabilidades de cada letra\n");
-    for (int i = 0; i < number_letters; i++)
+    for (int i = 0; i < 10; i++)
     {
-        printf("P(%c) = %d %% \n",
+        printf("P(%c) = %lf %% \n",
                obtain_capital_letter(positions[i]),
-               probabilities[i]);
+               probabilities[i] * 100.0 / total);
     }
     print_lines();
 }
