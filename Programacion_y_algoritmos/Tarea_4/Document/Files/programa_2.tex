@@ -6,3 +6,69 @@
     \item  \textbf{Probabilidad (P) de aparición de cada una de las letras del alfabeto (no haga diferencia entre minúsculas y mayúsculas)}
     \item \textbf{P(x$|$y), para (x,y) $\mathbb{\in}$ (a,…,z,A,…,Z) de las 10 letras (x) más frecuentes.}
 \end{itemize}
+
+Al querer obtener la probabilidad de una letra x en el texto ($P(x)$) y la probabilidad que una letra y se encuentre después de una letra x ($P(y|x)$), entonces el programa se ideo para encontrar los casos de tener una letra continua a la otra, ignorando signos de puntuación y saltos de linea.  Esta operación se realiza en la función \textcolor{title}{valid\_second\_letter}, la cual se encuentra en el archivo \textcolor{citecolor}{algorithms.h}. La función tiene la siguiente estructura:
+
+\begin{lstlisting}[style=CStyle]
+        void valid_second_letter(FILE *text_file, char *letter1, char *letter2, int probabilities[number_letters])
+    {
+        while (!is_a_letter(*letter2) && (*letter2 != EOF || *letter1 != EOF))
+        {
+            *letter1 = fgetc(text_file);
+            while (!is_a_letter(*letter1) && *letter1 != EOF)
+            {
+                *letter1 = fgetc(text_file);
+            }
+            *letter2 = fgetc(text_file);
+            count_individual_data(*letter1,
+                                probabilities);
+        }
+    }
+\end{lstlisting}
+
+donde las variables letter1 y letter2 son apuntadores a caracteres, y letter1 siempre es el caracter antes de letter2 en el texto. Al inicio de verificara que letter2 sea una letra y letter1 y letter2 sean diferentes al final del texto. Si letter2 no es una letra y letter 1 y letter2 no son el final del texto, entonces se buscará que letter1 sea una letra, en este espacio de busqueda puede darse el caso que letter1 sea una letra pero letter 2 no, entonces se introduce el contador para las posibles letras que entren en este caso (linea 11). Ya que letter1 es una letra, entonces se leera el siguiente caracter del texto que será guardado en letter2, si es una letra entonces el proceso de validación termina. Si no se reinicia el proceso de busqueda de letter1.
+
+
+Al verificar que letter1 y letter2 son letras, entonces se sumaran contadores para ese evento, esto será guardado en un arreglo de 26x26. Todo el proceso de lectura, validación y conteo de probabilidades se encuentra en la función \textcolor{title}{obtain\_data} en el archivo \textcolor{citecolor}{algorithms.h}. La función esta descrita de la siguiente manera:
+
+\begin{lstlisting}[style=CStyle]
+    char letter1, letter2;
+    letter1 = fgetc(text_file);
+    letter2 = fgetc(text_file);
+    while (letter1 != EOF && letter2 != EOF)
+    {
+        // Validacion de la segunda letra
+        valid_second_letter(text_file,
+                            &letter1,
+                            &letter2,
+                            probabilities);
+        if (letter1 != EOF && letter2 != EOF)
+        {
+            // Conteo de las probabilidades condicionales
+            obtain_conditional_probability(letter1,
+                                           letter2,
+                                           data);
+            // Intercambio de las letras
+            letter1 = letter2;
+            letter2 = fgetc(text_file);
+            count_individual_data(letter1,
+                                  probabilities);
+        }
+    }
+\end{lstlisting}
+
+En la linea 12 se realiza la validación de las variables letter1 y letter2 no sean el final del archivo, ya que como acaban de salir de la validación de letras aqui podemos asegurar que es una letra o es el final del archivo. En las lineas 18 y 19 se realiza la variable letter1 toma el valor de letter2, como letter2 era una letra entonces realizamos el conteo individual de esta letra (linea 20). Este proceso se repetira hasta que letter1 o letter2 sean el final del archivo.
+
+El output producido con el archivo \textit{don\_quijote.txt} es el contenido en el archivo \textcolor{citecolor}{output\_don\_qui\-jote.txt}. Además de los archivos \textcolor{citecolor}{sample\_spcae.csv} y \textcolor{citecolor}{probabilities.csv}, los cuales contienen las probabilidades condiciones y probabilidades de cada letra respectivamente.
+
+El comando para ejecutar el programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ./main.out don_quijote.txt
+\end{lstlisting}
+
+Y la compilación del mismo con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
