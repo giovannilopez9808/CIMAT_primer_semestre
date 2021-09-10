@@ -1,3 +1,105 @@
 \section*{Problema 3}
 
 \textbf{Dado una lista de nombres (strings) de N personas (apellido paterno, apellido materno, Nombre(s)), escribir un programa que ordene los nombres alfabéticamente usando un arreglo de apuntadores. Los nombres pueden tener distintas longitudes; cuando un nombre sea prefijo de otro, considerar al nombre mas corto como menor. El ordenamiento debe ser a través de una función que reciba el arreglo de apuntadores.}
+
+Se creo una estructura la cual contiene tres elementos para el apellido paterno, apellido materno y nombre(s). Cada linea del archivo de nombres será una persona diferente. El orden que se opto fue primero por apellido paterno, si se encuentra que son iguales pasa a ordenar comparando el apellido materno y por último el nombre de la persona. Se utilizo la función \textcolor{title}{sorted} creada en tareas anetriores. Se modifico para comparar nombres con la función \textcolor{title}{compare\_names} y \textcolor{title}{order\_names}. La función \textcolor{title}{order\_names} es la siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    int order_names(char name1[], char name2[])
+    {
+        int i = 0;
+        int compare;
+        while (name1[i] != '\0' && name2[i] != '\0')
+        {
+            compare = name1[i] - name2[i];
+            if (compare != 0)
+            {
+                return compare;
+            }
+            i = i + 1;
+        }
+        if (name1[i] == '\0' && name2[i] != '\0')
+        {
+            return -name2[i];
+        }
+        if (name2[i] == '\0' && name1[i] != '\0')
+        {
+            return name1[i];
+        }
+        return 0;
+    }
+\end{lstlisting}
+
+Los parámetros name1 y name2 son introducidos a partir de un puntero hacia la estructura. En la linea 10 se devuelve el producto de la ``resta'' de caracteres de la linea 7. Si este valor es menor a 0 entonces name2 tiene un orden alfabético mayor que name1. Si son iguales entonces el valor de su resta es 0. En el caso en que un nombre o apellido sea prefijo de otro entonces el ciclo iniciado en la linea 5 terminará, ya que uno de los nombres habra llegado al final. Si name1 que llego a su final, entonces se devolverá el negativo de la i-esima letra de name2 (linea 16), si name2 llego a su final, entonces se devolverá la i-esima letra de name1 (linea 20).
+
+Se uso el archivo \textcolor{citecolor}{names.txt} que contiene los siguientes nombres:
+
+\begin{lstlisting}[language=bash]
+    Venere Bookamer Art Art 
+    Paprocki Kampa Lenna Lenna
+    Paprocki Kampa Lenna Le
+    Dar Biddy Josephine Josephine
+    Darakjy Biddy Josephine Josephine
+    Foller Gillaspie Donette Donette
+    Butt Motley James James
+    Morasca Harabedian Simona Simona
+    Paprocki Kampa Lenna Lo
+    Tollner Hixenbaugh Mitsue Mitsue
+    Dilliard Oles Leota Leota
+    Foller Gilla Donette Donette
+    Paprocki Kampa Le
+    Wieser Ankeny Sage
+\end{lstlisting}
+
+El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_3}. Para ejecutar el programa se uso el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out names.txt
+\end{lstlisting}
+
+El cual produce el siguiente output:
+
+\begin{lstlisting}
+    ----------------------------------
+    Nombres desordenados
+    
+    Venere Bookamer Art Art 
+    Paprocki Kampa Lenna Lenna
+    Paprocki Kampa Lenna Le
+    Dar Biddy Josephine Josephine
+    Darakjy Biddy Josephine Josephine
+    Foller Gillaspie Donette Donette
+    Butt Motley James James
+    Morasca Harabedian Simona Simona
+    Paprocki Kampa Lenna Lo
+    Tollner Hixenbaugh Mitsue Mitsue
+    Dilliard Oles Leota Leota
+    Foller Gilla Donette Donette
+    Paprocki Kampa Le
+    Wieser Ankeny Sage
+    
+    
+    ----------------------------------
+    Nombres ordenados
+    
+    Butt Motley James James
+    Dar Biddy Josephine Josephine
+    Darakjy Biddy Josephine Josephine
+    Dilliard Oles Leota Leota
+    Foller Gilla Donette Donette
+    Foller Gillaspie Donette Donette
+    Morasca Harabedian Simona Simona
+    Paprocki Kampa Le
+    Paprocki Kampa Lenna Le
+    Paprocki Kampa Lenna Lenna
+    Paprocki Kampa Lenna Lo
+    Tollner Hixenbaugh Mitsue Mitsue
+    Venere Bookamer Art Art 
+    Wieser Ankeny Sage
+\end{lstlisting}
+
+La compilación el programa se uso el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
