@@ -1,3 +1,71 @@
 \section*{Problema 4}
 
 \textbf{Programa que encuentre los tres números mayores de un arreglo de enteros, especificando su posición (índice) original en el arreglo de entrada.}
+
+El programa que genera 20 números aleatorios entre 0 y 100, este valor puede ser cambiado en la definición de la linea 5 del archivo \textcolor{citecolor}{main.c}. La posición inicial de cada número se establece cuando es generado. Esta posición es guardada en un arreglo de dimensión 20.
+
+En seguida se utilizo el algoritmo de quick sort, el cual fue modificado para recibir el arreglo de posiciones originales de cada número. En la función \textcolor{title}{reduce\_sort} del archivo \textcolor{citecolor}{quick\_sort.} es la siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    int reduce_sort(int numbers[], int positions[], int low, int high)
+    {
+        int pivot = numbers[high];
+        int i = low;
+        for (int j = low; j <= high - 1; j++)
+        {
+            if (numbers[j] >= pivot)
+            {
+                swap(&numbers[i], &numbers[j]);
+                swap(&positions[i], &positions[j]);
+                i++;
+            }
+        }
+        swap(&numbers[i], &numbers[high]);
+        swap(&positions[i], &positions[high]);
+        return i;
+    }
+\end{lstlisting}
+
+Se añadio la linea 10 y 15 para seguir la posición de cada valor que es ordenado. El algoritmo ordena de mayor a menor los valores contenidos en la variable numbers. El programa se encuentra en la carpeta \textcolor{citecolor}{Problema\_4}. Uno de los output del programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ----------------------------------
+    Impresion de los 20 primeros datos
+
+    Posicion	Valor
+    0		995
+    1		225
+    2		52
+    3		410
+    4		653
+    5		652
+    6		40
+    7		411
+    8		954
+    9		38
+    10		564
+    11		416
+    12		714
+    13		416
+    14		902
+    15		851
+    16		169
+    17		243
+    18		707
+    19		393
+
+    ----------------------------------
+    Impresion de los 3 primeros datos
+
+    Posicion	Valor
+    0		995
+    8		954
+    14		902
+\end{lstlisting}
+
+
+La compilación del programa fue realizadacon el siguiente comando.
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
