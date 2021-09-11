@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "read_files.h"
 #include "print_results.h"
-#include "solution_diag.h"
+#include "solution.h"
 int main()
 {
     FILE *file_matrix, *file_results;
