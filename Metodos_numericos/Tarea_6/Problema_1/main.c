@@ -14,19 +14,19 @@ int main()
     file_results = fopen("V_DIAG.txt", "r");
     valid_file(file_matrix);
     valid_file(file_results);
+    // Lectura de los datos de la matriz
     read_dimension(file_matrix,
                    dimension_matrix);
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
+    // Lectura de lo datos de la matriz de resultados
     read_dimension(file_results,
                    dimension_result);
     read_matrix(file_results,
                 dimension_result,
                 &results);
-    print_initial_state(matrix,
-                        dimension_matrix,
-                        results);
+    // Resuelve el sistema de ecuaciones
     solve_diagonal_matrix(matrix,
                           dimension_matrix,
                           results,
