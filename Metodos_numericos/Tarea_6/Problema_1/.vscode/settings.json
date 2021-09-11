@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "read_file.h": "c",
+    "solution_diag.h": "c",
+    "functions.h": "c"
+  }
+}
