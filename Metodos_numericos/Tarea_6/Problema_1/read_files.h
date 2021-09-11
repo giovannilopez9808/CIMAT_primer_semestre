@@ -23,7 +23,7 @@ void read_matrix(FILE *file, int dimension[], double **matrix)
     {
         for (int j = 0; j < dimension[1]; j++)
         {
-            fscanf(file, "%lf", (*matrix + i * dimension[1] + j));
+            fscanf(file, "%lf", (*matrix + j * dimension[1] + i));
         }
     }
 }
