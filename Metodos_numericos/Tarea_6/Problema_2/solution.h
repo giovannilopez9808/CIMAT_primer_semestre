@@ -18,6 +18,7 @@ void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], do
         result_i = *(results + i);
         // Obtiene el termino a_i
         matrix_ii = *(matrix + i * dimension_matrix[0] + i);
+        // Validacion de la solucion
         valid_solution(matrix_ii);
         for (int j = dimension_matrix[0] - 1; j > i; j--)
         {
