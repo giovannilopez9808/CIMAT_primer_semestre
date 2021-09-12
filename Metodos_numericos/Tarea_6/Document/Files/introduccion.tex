@@ -1,0 +1,65 @@
+\section{Introducción}
+
+Una matriz A de m$\times$n es un ordenamiento rectangular de m por n númros distribuidos en un orden definido de m filas y n columnas.
+\begin{equation}
+    A = \begin{pmatrix}
+        a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & a_{23} & \cdots & a_{2n} \\
+        \vdots & \vdots & \vdots & \vdots & \vdots \\
+        a_{m1} & a_{m2} & a_{m3} & \cdots & a_{mn} \\
+    \end{pmatrix}
+    \label{eq:def_matrix}
+\end{equation}
+
+donde $a_{ij}$ es el i,j-ésimo elemento de A. Se define una matriz cuadrada si y solo si $m=n$. Una matriz diagonal es una matriz cuadrada, en la que los elementos $a_{ij}$ son iguales a 0 para $i\neq j$ y  es un escalar para $i=j$. Se define a una matriz triangular superior aquellas matrices cuadradas que sus elementos $a_{ij}$ son iguales a cero para $i>j$. Para una matriz triangular inferior es el caso contrario, sus elementos $a_{ij}$ son iguales a cero para $i<j$.
+
+Una ecuación lineal es una expresión del tipo:
+
+\begin{equation}
+    a_1x_1+a_2x_2+a_3x_3+\cdots + a_nx_n = b
+    \label{eq:linear_equation}
+\end{equation}
+
+donde $x_{1,2,\dots,n}$ se denominan como variables, $a_{1,2,\dots,n}$ son los coeficientes de cada termino y $b$ es un término constante. Un sistema de ecuaciones lineales es un conjunto de m ecuaciones lineales en las cuales contienen n variables.
+
+\begin{equation}
+    \left\lbrace \begin{matrix}
+        a_{11}x_{11}+a_{12}x_{12}+\cdots + a_{1n}x_{1n} = b_{1} \\
+        a_{21}x_{21}+a_{22}x_{22}+\cdots + a_{2n}x_{2n} = b_{2} \\
+        \vdots                                                  \\
+        a_{m1}x_{m1}+a_{m2}x_{m2}+\cdots + a_{mn}x_{mn} = b_{m}
+    \end{matrix} \right.
+    \label{eq:linear_equations}
+\end{equation}
+
+Las operaciones definidas sobre las matrices y sobre las ecuaciones son idénticas, por lo tanto, es posible realizar la escritura de un sistema de ecuaciones en forma matricial. Cada elemento de la matriz A (ecuación \ref{eq:def_matrix}) correspondera a un coeficiente del sistema de ecuaciones (ecuación \ref{eq:linear_equations}), donde cada fila representará a una ecuación lineal.
+
+\begin{equation}
+    \begin{pmatrix}
+        a_{11}x_{11}+a_{12}x_{12}+\cdots + a_{1n}x_{1n} = b_{1} \\
+        a_{21}x_{21}+a_{22}x_{22}+\cdots + a_{2n}x_{2n} = b_{2} \\
+        \vdots                                                  \\
+        a_{m1}x_{m1}+a_{m2}x_{m2}+\cdots + a_{mn}x_{mn} = b_{m}
+    \end{pmatrix} \rightarrow
+    \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \vdots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1    \\
+        x_2    \\
+        \vdots \\
+        x_m
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_m
+    \end{pmatrix}
+    \label{eq:representation_le_to_matrix}
+\end{equation}
+
+La parte derecha de la ecuación \ref{eq:representation_le_to_matrix} puede escribirse como $AX=B$, esta es llamada la ecuación matricial del sistema.

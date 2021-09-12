@@ -1,0 +1,60 @@
+\subsection{Matriz diagonal}
+
+Suponiendo que se tiene un sistema de ecuaciones de  n ecuaciones donde los coeficientes son iguales a cero excepto cuando el la posición del coeficiente coincide con el número de la ecuación. Entonces representando el sistema de ecuaciones antes descrito en una ecuación matricial se obtiene lo siguiente:
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11} & 0      & \cdots & 0      \\
+        0      & a_{22} & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & a_{nn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1    \\
+        x_2    \\
+        \vdots \\
+        x_n
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n
+    \end{pmatrix}
+\end{equation*}
+
+realizando la multiplicación de matrices se obtiene que:
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11}x_{1} \\
+        a_{22}x_{2} \\
+        \vdots      \\
+        a_{nn}x_{n}
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n    \\
+    \end{pmatrix}
+\end{equation*}
+
+por igualación de términos se obtiene que las soluciones del sistema de ecuaciones son descritas como:
+
+\begin{equation*}
+    x_i = \frac{b_i}{a_{ii}}
+\end{equation*}
+
+El algoritmo planteado para realizar la solución a este tipo de sistema de ecuaciones es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // input: matriz, vector_b
+    // output: solutions
+    for(i = 1; i <= n; i++)
+    {
+        solutions[i] = vector_b[i] / matriz[i][i]
+    }
+\end{lstlisting}
+
+La imprementación de este problema se encuentra en la carpeta \folder{Problema\_1}. La función \script{solve\_diagonal\_matrix} esta contenido en el archivo \file{solution.h}

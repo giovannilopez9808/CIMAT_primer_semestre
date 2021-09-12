@@ -1,0 +1,66 @@
+\subsection{Matriz triangular inferior}
+
+Suponiendo que se tiene un sistema de ecuaciones de n ecuaciones donde los coeficientes son iguales a cero cuando la posición del coeficiente es mayor a el número de la ecuación. Entonces representando el sistema de ecuaciones antes descrito en una ecuación matricial se obtiene lo siguiente:
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11} & 0      & \cdots & 0      \\
+        a_{21} & a_{22} & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1    \\
+        x_2    \\
+        \vdots \\
+        x_n
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n
+    \end{pmatrix}
+\end{equation*}
+
+realizando la multiplicación de matrices de obtiene que:
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11}x_{1}             \\
+        a_{21}x_{1}+a_{22}x_{2} \\
+        \vdots                  \\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_{n}
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n    \\
+    \end{pmatrix}
+\end{equation*}
+
+reduciendo esto a una expresión generalizada se obtiene que la solución de la i-ésima variable es:
+
+\begin{equation*}
+    x_i = \frac{b_{i}-\sum\limits_{j=1}^{i-1} a_{ij}x_{j}}{a_{ii}}
+\end{equation*}
+
+El algoritmo planteado para realizar la solución a este tipo de ecuacioes es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // input: matriz, vector_b
+    // output: solutions
+    for(i = 1; i <= n; i++)
+    {
+        sum_i = 0
+        for(j = 1; j <= i-1; j++)
+        {
+            sum_i += matriz[i][j]*solutions[j]
+        }
+        solutions[i] = (vector_b[i] - sum_i) / matriz[i][i]
+    }
+
+\end{lstlisting}
+
+La imprementación de este problema se encuentra en la carpeta \folder{Problema\_3}. La función \script{solve\_triangular\_inferior\_matrix} esta contenido en el archivo \file{solution.h}

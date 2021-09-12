@@ -12,5 +12,12 @@
 {0pt}
 {2cm}
 \input{Files/titulo.tex}
-\input{Files/texto.tex}
+\tableofcontents
+\input{Files/introduccion.tex}
+\input{Files/metodos.tex}
+\let\Section\section
+\def\section*#1{\Section{#1}}
+\bibliographystyle{plainnat}
+\bibliography{references}
+\nocite{*}
 \end{document}

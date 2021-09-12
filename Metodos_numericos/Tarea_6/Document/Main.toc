@@ -1,0 +1,8 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducción}{1}{section.1}%
+\contentsline {section}{\numberline {2}Métodos}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Matriz diagonal}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Matriz triangular superior}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Matriz triangular inferior}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Eliminación Gaussiana}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Referencias\markboth {\MakeUppercase {Referencias}}{\MakeUppercase {Referencias}}}{4}{section.3}%
