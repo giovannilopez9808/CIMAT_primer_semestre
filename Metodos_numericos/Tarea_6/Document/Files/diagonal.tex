@@ -46,6 +46,7 @@ por igualación de términos se obtiene que las soluciones del sistema de ecuaci
     x_i = \frac{b_i}{a_{ii}}
 \end{equation*}
 
+Se dice que el sistema no tiene solución cuando alguno de  los elementos de la diagonal ($a_{ii}$) es igual a cero.
 El algoritmo planteado para realizar la solución a este tipo de sistema de ecuaciones es el siguiente:
 
 \begin{lstlisting}[style=CStyle]
@@ -53,6 +54,7 @@ El algoritmo planteado para realizar la solución a este tipo de sistema de ecua
     // output: solutions
     for(i = 1; i <= n; i++)
     {
+        valid_solution(matriz[i][i])
         solutions[i] = vector_b[i] / matriz[i][i]
     }
 \end{lstlisting}

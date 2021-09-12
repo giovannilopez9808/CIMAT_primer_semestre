@@ -1,0 +1,19 @@
+\section{Compilación y comandos de ejecucción}
+
+Los programas contenidos en cada carpeta de los problemas fue compilado usando el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+La forma de ejecutarse es con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out matriz vector
+\end{lstlisting}
+
+donde matriz es el nombre de archivo que contiene la matriz y vector contiene el vector columna. Por ejemplo, para la matriz diagonal el comando seria:
+
+\begin{lstlisting}[language=bash]
+    ./main.out M_DIAG.txt V_DIAG.txt
+\end{lstlisting}

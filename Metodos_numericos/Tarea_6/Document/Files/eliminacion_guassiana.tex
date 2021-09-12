@@ -1,1 +1,150 @@
 \subsection{Eliminación Gaussiana}
+
+Suponiendo que se tiene un sistema de ecuaciones de  n ecuaciones con n coeficientes, donde cada coeficiente es un número real. Entonces representando el sistema de ecuaciones como una ecuación matricial se obtiene lo siguiente:
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1    \\
+        x_2    \\
+        \vdots \\
+        x_n
+    \end{pmatrix} =
+    \begin{pmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n
+    \end{pmatrix}
+\end{equation*}
+
+Llamaremos a la matriz expandida aquella matriz de tamaño n$\times$n+1, tal que:
+
+\begin{equation}
+    \left(\begin{matrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn}
+        \end{matrix}\right| \left.
+    \begin{matrix}
+            b_1    \\
+            b_2    \\
+            \vdots \\
+            b_n
+        \end{matrix}
+    \right)
+    \label{eq:extended_matrix}
+\end{equation}
+
+Se realizaran operaciones entre renglones de la matriz extendida (\ref{eq:extended_matrix}) de tal manera que se llegue a una matriz triangular superior. Se obtendra un término que llamaremos $r_ij$, el cual esta definido como en la ecuación \ref{eq:def_ratio}.
+
+\begin{equation}
+    r_{ji} = \frac{a_{ii}}{a_{ji}}
+    \label{eq:def_ratio}
+\end{equation}
+
+Donde la posición j, es el número de fila que será restada por la fila i. Por ejemplo, para iniciar se tomara a $i=1$, y se restara la fila 2 ($j=2$), esto para obtener que el elemento $a_{21}$ sea igual a 0. Aplicando este proceso a la matriz \ref{eq:extended_matrix} se obtiene el siguiente resultado:
+
+\begin{equation*}
+    \left(\begin{matrix}
+        a_{11}       & a_{12}       & \cdots & a_{1n}       \\
+        a_{21}r_{21} & a_{22}r_{21} & \cdots & a_{2n}r_{21} \\
+        \vdots       & \vdots       & \ddots & \vdots       \\
+        a_{n1}       & a_{n2}       & \cdots & a_{nn}
+    \end{matrix}\right| \left.
+    \begin{matrix}
+        b_1r_{21} \\
+        b_2       \\
+        \vdots    \\
+        b_n
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Restando la linea 2 con la linea 1 se obtiene lo siguiente:
+
+\begin{equation*}
+    \left(\begin{matrix}
+        a_{11}              & a_{12}              & \cdots & a_{1n}              \\
+        a_{21}r_{21}-a_{11} & a_{22}r_{21}-a_{12} & \cdots & a_{2n}r_{21}-a_{1n} \\
+        \vdots              & \vdots              & \ddots & \vdots              \\
+        a_{n1}              & a_{n2}              & \cdots & a_{nn}
+    \end{matrix}\right| \left.
+    \begin{matrix}
+        b_1       \\
+        b_2r_{21} \\
+        \vdots    \\
+        b_n
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Donde el termino $a_{21}r_{21}-a_{11}=0$, renombrando a cada termino de la fila 2, como $a_{2i}^*$, se obtiene que:
+
+\begin{equation*}
+    \left(\begin{matrix}
+        a_{11} & a_{12}   & \cdots & a_{1n}   \\
+        0      & a_{22}^* & \cdots & a_{2n}^* \\
+        \vdots & \vdots   & \ddots & \vdots   \\
+        a_{n1} & a_{n2}   & \cdots & a_{nn}
+    \end{matrix}\right| \left.
+    \begin{matrix}
+        b_1    \\
+        b_2^*  \\
+        \vdots \\
+        b_n
+    \end{matrix}
+    \right)
+\end{equation*}
+
+repitiendo este proceso con las demás filas se llega a la siguiente matriz:
+
+\begin{equation*}
+    \left(\begin{matrix}
+        a_{11} & a_{12}   & \cdots & a_{1n}   \\
+        0      & a_{22}^* & \cdots & a_{2n}^* \\
+        \vdots & \vdots   & \ddots & \vdots   \\
+        0      & a_{n2}^* & \cdots & a_{nn}^*
+    \end{matrix}\right| \left.
+    \begin{matrix}
+        b_1    \\
+        b_2^*  \\
+        \vdots \\
+        b_n^*
+    \end{matrix}
+    \right)
+\end{equation*}
+
+El proceso se repetira tomando el valor de cada diagonal de la siguiente fila y restando las filas que estan por debajo de esta, para asi obtener una matriz triangular superior y aplicar el método de solución antes descrito para este sistema de ecuaciones.
+
+El algoritmo planteado para realizar la solución a este tipo de sistemas de ecuaciones es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matriz, vector_b
+    // output: solutions
+    for(i = 1; i <= n-1; i++)
+    {
+        a_ii = matriz[i][i]
+        b_i = vector_b[i]
+        for(j = i + 1; j <= n; j++)
+        {
+            a_ij = matriz[i][j]
+            ratio_ji = a_ii / a_ij
+            b_j = b_j * ratio_ji - b_i
+            for(k = i; k < n,k++)
+            {
+                matriz_ik = matriz[i][k]
+                matriz_jk = matriz_jk * ratio_ji - matriz_ik
+            }
+        }
+    }
+    solve_triangular_superior_matrix(matrix,vector_b)
+\end{lstlisting}
+
+La imprementación de este problema se encuentra en la carpeta \folder{Problema\_4}. La función \script{solve\_gaussian\_matrix} esta contenido en el archivo \file{solution.h}

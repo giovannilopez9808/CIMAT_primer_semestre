@@ -46,6 +46,7 @@ reduciendo esto a una expresión generalizada se obtiene que la solución de la 
     x_i = \frac{b_{i}-\sum\limits_{j=1}^{i-1} a_{ij}x_{j}}{a_{ii}}
 \end{equation*}
 
+Se dice que el sistema de ecuaciones no tiene solución cuando algún elemento de la diagonal $(a_{ii})$ es igual a cero.
 El algoritmo planteado para realizar la solución a este tipo de ecuacioes es el siguiente:
 
 \begin{lstlisting}[style=CStyle]
@@ -54,6 +55,7 @@ El algoritmo planteado para realizar la solución a este tipo de ecuacioes es el
     for(i = 1; i <= n; i++)
     {
         sum_i = 0
+        valid_solution(matriz[i][i])
         for(j = 1; j <= i-1; j++)
         {
             sum_i += matriz[i][j]*solutions[j]

@@ -4,14 +4,15 @@
 #include "read_files.h"
 #include "print_results.h"
 #include "solution.h"
-int main()
+int main(int argc, char *argv[])
 {
+    (void)argc;
     FILE *file_matrix, *file_results;
     double *matrix, *results, *solutions;
     int dimension_matrix[2],
         dimension_result[2];
-    file_matrix = fopen("test_matrix.txt", "r");
-    file_results = fopen("test_result.txt", "r");
+    file_matrix = fopen(argv[1], "r");
+    file_results = fopen(argv[2], "r");
     // file_matrix = fopen("M_LARGE.txt", "r");
     // file_results = fopen("V_LARGE.txt", "r");
     // file_matrix = fopen("no_solution_matrix.txt", "r");

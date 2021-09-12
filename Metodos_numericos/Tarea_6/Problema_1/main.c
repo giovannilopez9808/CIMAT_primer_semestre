@@ -4,14 +4,15 @@
 #include "read_files.h"
 #include "print_results.h"
 #include "solution.h"
-int main()
+int main(int argc, char *argv[])
 {
+    (void)argc;
     FILE *file_matrix, *file_results;
     double *matrix, *results, *solutions;
     int dimension_matrix[2],
         dimension_result[2];
-    file_matrix = fopen("M_DIAG.txt", "r");
-    file_results = fopen("V_DIAG.txt", "r");
+    file_matrix = fopen(argv[1], "r");
+    file_results = fopen(argv[2], "r");
     valid_file(file_matrix);
     valid_file(file_results);
     // Lectura de los datos de la matriz
