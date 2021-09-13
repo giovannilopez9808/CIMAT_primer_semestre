@@ -1,14 +1,11 @@
-void Fill_initial_values_LU_matrix(double *matrix, double *L, double *U, int dimension_matrix[])
+void Fill_initial_values_U_matrix(double *U, int dimension_matrix[])
 {
-    double *L_i0, *U_ii, m_i0;
+    double *U_ii;
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
 
-        L_i0 = (L + i * dimension_matrix[0]);
-        m_i0 = *(matrix + i * dimension_matrix[0]);
         U_ii = (U + i * dimension_matrix[0] + i);
         *U_ii = 1;
-        *L_i0 = m_i0;
     }
 }
 void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)
@@ -18,10 +15,8 @@ void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double 
     double *L_ij, *U_ij;
     double sum_ij, l_ii, l_ik, u_kj, matrix_ij;
     (void)l_ii;
-    Fill_initial_values_LU_matrix(matrix,
-                                  *L,
-                                  *U,
-                                  dimension_matrix);
+    Fill_initial_values_U_matrix(*U,
+                                 dimension_matrix);
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
         for (int j = i; j < dimension_matrix[1]; j++)

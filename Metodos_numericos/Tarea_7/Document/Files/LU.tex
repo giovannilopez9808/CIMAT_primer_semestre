@@ -1,1 +1,85 @@
-\subsection{Factorización LU}
+\subsection{Factorización LU - Crout}
+
+Si A es una matriz de tamaño n$\times$n, entonces su factorización en matrices L y U deben seguir la forma de las ecuaciones \ref{eq:matrix_L_Crout} y \ref{eq:matrix_U_Crout}.
+
+\begin{equation}
+    L = \begin{pmatrix}
+        l_{11} & 0      & \cdots & 0      \\
+        l_{21} & l_{22} & \cdots & 0      \\
+        \vdots & \vdots & \ddots & 0      \\
+        l_{n1} & l_{n2} & \cdots & l_{nn}
+    \end{pmatrix}
+    \label{eq:matrix_L_Crout}
+\end{equation}
+
+\begin{equation}
+    U = \begin{pmatrix}
+        1      & u_{12} & \cdots & u_{1n} \\
+        0      & 1      & \cdots & u_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & 1
+    \end{pmatrix}
+    \label{eq:matrix_U_Crout}
+\end{equation}
+
+Para calcular los elementos de cada matriz se tiene el conjunto de ecuaciones \ref{eq:equations_crout}.
+
+\begin{equation}
+    \begin{cases}
+        l_{ij} = a_{ij} - \sum_{k=1}^{j-1} l_{ik}u_{kj} & \\
+        u_{ij} = \frac{a_{ij}-\sum\limits_{k=1}^{i-1}l_{ik}u_{kj}}{l_{ii}}
+    \end{cases}
+    \label{eq:equations_crout}
+\end{equation}
+
+El algoritmo planteado para la solución de este problema se encuentran en las carpetas \folder{Problema\_1} y \folder{Problema\_2}, en el archivo \file{LU\_decomposition.h} en la función \script{obtain\_LU\_crout}.
+
+Al tener los elementos determiandos de las matrices L y U, es más sencillo realizar la solución a un sistema de ecuacuiones, ya que, Al tratarse de matrices triangulares sus algoritmos son más faciles de implementar. Suponiendo que se tiene el sistema $Ax=B$, entonces:
+
+\begin{align*}
+    Ax  & =B \\
+    LUx & =B \\
+\end{align*}
+
+nombrando
+\begin{equation}
+    Ux=y \label{eq:uxy}
+\end{equation}
+, entonces:
+
+\begin{equation}
+    Ly=B
+    \label{eq:lyb}
+\end{equation}
+
+donde las ecuaciones \ref{eq:uxy} y \ref{eq:lyb}  son dos sistemas de ecuaciones lineales del tipo triangular.
+
+El algoritmo planteado para realizar la factorización LU con la version de Crount es la siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // input: matriz
+    // output: L,U
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            sum_ij = 0;
+            for (int k = 0; k <= i - 1; k++)
+            {
+                sum_ij += l_ik * u_kj;
+            }
+            l_ij = matrix_ij - sum_ij;
+        }
+        for (int j = i + 1; j < n; j++)
+        {
+            sum_ij = 0;
+            for (int k = 0; k < j - 1; k++)
+            {
+                sum_ij += l_ik * u_kj;
+            }
+            u_ij = (matrix_ij - sum_ij) / l_ii;
+        }
+    }
+\end{lstlisting}
+
+Al termino de este de implementaron las funciones \script{solve\_triangular\_inferior\_matrix} y \script{solve\_tri\-angular\_superior\_matrix}.
