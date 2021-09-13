@@ -1,0 +1,67 @@
+\subsection{Factorización Doolittle}
+
+El método de factorización se basa en la eliminación Gaussiana. A partir de una matriz de tamaño n$\times$n se obtiene una matriz triangular superior realizando operaciones entre columnas y renglones de la misma matriz. Entonces, la factorización de Doolittle se concentra en encontrar la matriz triangular inferior tal que se cumple la ecuación \ref{eq:definition_doolittle}.
+
+\begin{equation}
+    \begin{pmatrix}
+        1      & 0      & \cdots & 0      \\
+        l_{21} & 1      & \cdots & 0      \\
+        l_{31} & l_{32} & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        l_{n1} & l_{n2} & \cdot  & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        u_{11} & u_{12} & \cdots & u_{1n} \\
+        0      & u_{22} & \cdots & u_{2n} \\
+        0      & 0      & \cdots & u_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdot  & u_{nn}
+    \end{pmatrix}=
+    \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        a_{31} & a_{32} & \cdots & a_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdot  & a_{nn}
+    \end{pmatrix}
+    \label{eq:definition_doolittle}
+\end{equation}
+
+Realizando la multiplicación de matrices se obtiene que:
+
+\begin{equation}
+    \begin{pmatrix}
+        u_{11} & u_{12}                     & \cdots & u_{1n}                                  \\
+        l_{21} & l_{21}u_{12}+u_{22}        & \cdots & l_{21}u_{1n}+u_{2n}                     \\
+        l_{31} & l_{31}u_{12}+l_{32}u_{22}  & \cdots & l_{31}u_{1n}+l_{3n}u_{22}+u_{3n}        \\
+        \vdots & \vdots                     & \ddots & \vdots                                  \\
+        l_{n1} & l_{n1}u_{12}+l_{n2}+u_{22} & \cdots & l_{n1}u_{1n}+l_{n2}u_{2n}+\cdots+u_{nn}
+    \end{pmatrix}=
+    \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        a_{31} & a_{32} & \cdots & a_{3n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdot  & a_{nn}
+    \end{pmatrix}
+    \label{eq:multiplication_matrix}
+\end{equation}
+
+Observando la diagonal de la ecuación \ref{eq:multiplication_matrix}, se puede obtener la ecuación \ref{eq:diagonal}.
+
+\begin{equation}
+    u_{ii} = a_{ii} - \sum_{j=1}^i l_{ij}u_{ji}
+    \label{eq:diagonal}
+\end{equation}
+
+Los elementos en los queda se obtiene un elemento de U sin realizar una multiplicación con un termino de L se obtiene la ecuación \ref{eq:uij}.
+
+\begin{equation}
+    u_{ij} = a_{ij} - \sum_{k=1}^{i-1} l_{ik}u_{ki} \label{eq:uij}
+\end{equation}
+
+De los elementos donde un elemento de L esta multiplicando a un termino de la diagonal de U, se obtiene la ecuación \ref{eq:lij}.
+
+\begin{equation}
+    l_{ij} = \frac{a_{ij}-\sum\limits_{k=1}^{j-1} l_{ik}u_{kj}}{u_{jj}} \label{eq:lij}
+\end{equation}
