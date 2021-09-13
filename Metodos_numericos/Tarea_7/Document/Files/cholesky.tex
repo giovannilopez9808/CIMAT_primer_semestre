@@ -1,1 +1,44 @@
 \subsection{Factorización Cholesky}
+
+Sea A, una matriz simetica y definida positiva puede ser factorizada en la forma LU con $U=L^T$, esto es descrito en la ecuacuión \ref{eq:cholesky_def}.
+
+\begin{equation}
+    A=LL^T \label{eq:cholesky_def}
+\end{equation}
+
+El algoritmo emplea el conjunto de ecuaciones .
+
+\begin{equation}
+    \begin{cases}
+        l_{ii} = \sqrt{a_{ii}- \sum\limits_{k=1}^{i-1} l_{ik}^2}           & \\
+        l_{ij} = \frac{a_{ij}-\sum\limits_{k=1}^{j-1}l_{ik}l_{kj}}{l_{jj}} &
+    \end{cases}
+\end{equation}
+
+El algoritmo de factorización de Cholesky se encuntra en la carpeta \folder{Problema\_3} en el archivo \file{Cholesky\_decomposition.h} en la función \script{obtain\_Cholesky}. La función es la siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix, n
+    // output
+    for (int i = 0; i < n; i++)
+    {
+        sum = 0;
+        for (int j = 0; j < i; j++)
+        {
+            sum += l_ik * l_ik;
+        }
+        sqrt_number = matrix_ii - sum;
+        vadidate_positive_matrix(sqrt_number);
+        validate_l_ii(l_ii);
+        for (int j = i; j < n; j++)
+        {
+            sum = 0;
+            for (int k = 0; k < i; k++)
+            {
+                sum += l_ik * l_jk;
+            }
+            l_ij = (matrix_ij - sum) / l_ii;
+        }
+    }
+    fill_L_transpose(l, lt);
+\end{lstlisting}
