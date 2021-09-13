@@ -1,10 +1,14 @@
 void validate_matrix(double *matrix, int dimension_matrix[])
 {
+    /* 
+    Valida si la matriz introducida al metoto es simetrica, si no lo es el programa se elimina
+     */
     double matrix_ij, matrix_ji;
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
         for (int j = i; j < dimension_matrix[0]; j++)
         {
+            // No checar elementos de la diagonal
             if (i != j)
             {
                 matrix_ij = *(matrix + i * dimension_matrix[0] + j);
