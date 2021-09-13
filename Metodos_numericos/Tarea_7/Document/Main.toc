@@ -5,5 +5,7 @@
 \contentsline {subsection}{\numberline {2.2}Factorización Cholesky}{2}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Factorización Doolittle}{3}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Resultados}{4}{section.3}%
-\contentsline {section}{\numberline {4}Conclusiones}{4}{section.4}%
-\contentsline {section}{\numberline {5}Compilación y ejecución de los programas}{4}{section.5}%
+\contentsline {subsection}{\numberline {3.1}Factorización LU - Crout}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Factorización Cholesky}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%
+\contentsline {section}{\numberline {5}Compilación y ejecución de los programas}{5}{section.5}%

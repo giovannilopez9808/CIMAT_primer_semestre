@@ -1,1 +1,57 @@
 \section{Resultados}
+
+\subsection{Factorización LU - Crout}
+
+Se realizaron diferentes pruebas para el algoritmo de factorización LU usando la versión de Crout. La primera fue realizada con la matriz de la ecuación \ref{eq:matrix_test_LU}.
+
+\begin{equation}
+    A= \begin{pmatrix}
+        3  & -1 & 4  & -1 \\
+        -1 & -1 & 3  & 1  \\
+        2  & 3  & -1 & -1 \\
+        7  & 1  & 1  & 2
+    \end{pmatrix} \qquad
+    B = \begin{pmatrix}
+        10 \\
+        5  \\
+        1  \\
+        -20
+    \end{pmatrix}
+    \label{eq:matrix_test_LU}
+\end{equation}
+
+Se obtuvo la factorización es la siguiente:
+
+\begin{equation}
+    A = \begin{pmatrix}
+        3  & 0     & 0    & 0    \\
+        -1 & -1.34 & 0    & 0    \\
+        2  & 3.67  & 8.25 & 0    \\
+        7  & 3.34  & 2.5  & 5.54
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & -0.34 & 1.34  & -0.34 \\
+        0 & 1     & -3.25 & -0.5  \\
+        0 & 0     & 1     & 0.18  \\
+        0 & 0     & 0     & 1
+    \end{pmatrix}
+\end{equation}
+
+
+Y la solución del sistema de ecuaciones asociado es el siguiente:
+
+\begin{equation}
+    \begin{cases}
+        x_1 & = -2 \\
+        x_2 & = 1  \\
+        x_3 & = 3  \\
+        x_4 & = -5
+    \end{cases}
+    \label{eq:LU_test}
+\end{equation}
+
+El sistema de la ecuación \ref{eq:matrix_test_LU} fue resuelto en anteriores tareas y se obtuvieron los mismo resultados expuestos en las ecuaciones \ref{eq:LU_test}.
+
+Usando los archivos \file{M\_LARGE.txt} y \file{V\_LARGE.txt} se obtuvieron los resultados contenidos en el archivo \file{Solution\_Large.txt}, el cual se encuentra en la carpeta \folder{Problema\_1}.
+\subsection{Factorización Cholesky}
+
