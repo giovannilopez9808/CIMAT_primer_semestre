@@ -14,6 +14,17 @@ void Fill_initial_values_U_matrix(double *U, int dimension_matrix[])
         *U_ii = 1;
     }
 }
+void validate_l_ii(double l_ii)
+{
+    /* 
+    Valida que la diagonal de la matriz L es diferente de cero
+     */
+    if (l_ii == 0)
+    {
+        printf("Matriz no apta para el método. l_ii = 0\n");
+        exit(1);
+    }
+}
 void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)
 {
     /* 
@@ -54,6 +65,7 @@ void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double 
         }
         // Procedimiento para obtener el elemento ij de la matriz U
         l_ii = *(*L + i * dimension_matrix[0] + i);
+        validate_l_ii(l_ii);
         for (int j = i + 1; j < dimension_matrix[0]; j++)
         {
             // Inicializacion de la suma
@@ -71,4 +83,5 @@ void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double 
             *U_ij = (matrix_ij - sum_ij) / l_ii;
         }
     }
+    print_matrix(*U, dimension_matrix);
 }
