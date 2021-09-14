@@ -57,7 +57,8 @@ El sistema de la ecuación \ref{eq:matrix_test_LU} fue resuelto en anteriores ta
 \subsubsection{Archivos LARGE.txt}
 
 Usando los archivos \file{M\_LARGE.txt} y \file{V\_LARGE.txt} se obtuvieron los resultados contenidos en el archivo \file{Solution\_Large.txt}, el cual se encuentra en la carpeta \folder{Problema\_1}.
-\subsubsection{Archivos SMALL.txt}
+
+\subsubsection{Archivos SMALL.txt \label{sec:small_lu}}
 
 El sistema de ecuaciones mostrado en la ecuación \ref{eq:v_small_matrix_LU} esta contenida en los archivos \file{M\_SMALL.txt} y \file{V\_SMALL.txt}.
 
@@ -77,8 +78,50 @@ El sistema de ecuaciones mostrado en la ecuación \ref{eq:v_small_matrix_LU} est
     \label{eq:v_small_matrix_LU}
 \end{equation}
 
-Al introducir la matriz a el proceso de factorización LU con la versión de Crout da error, ya que un termino de la diagonal de la matriz L es igual a cero, por ende provocando una indeterminación. Por lo tanto, no es posible resolver el sistema de ecuaciones \ref{eq:v_small_matrix_LU} por medio de la factorización LU.
+Al introducir la matriz a el proceso de factorización LU con la versión de Crout da error, ya que un termino de la diagonal de la matriz L es igual a cero, por ende provocando una indeterminación. Por lo tanto, no es posible resolver el sistema de ecuaciones \ref{eq:v_small_matrix_LU} por medio de la factorización LU. El programa con la información de la matriz se encuentra en la carpeta \folder{Problema\_2}
 
 
 \subsection{Factorización Cholesky}
 
+\subsubsection{Matriz de prueba}
+
+Se probo el metodo de factorización de Cholesky con la matriz de la ecuación \ref{eq:test_cholesky}.
+
+\begin{equation}
+    A= \begin{pmatrix}
+        1  & -1 & 1  \\
+        -1 & 5  & -5 \\
+        1  & -5 & 6
+    \end{pmatrix}
+    \label{eq:test_cholesky}
+\end{equation}
+
+El programa que ejecuta este proceso es el contenido en la carpeta \folder{Problema\_3\_test}, el resultado que se obtuvo es la ecuación \ref{eq:test_cholesky_output}, el cual se encuentra en los archivos \file{L\_test.txt} y \file{LT\_test.txt}.
+
+\begin{equation}
+    A = \begin{pmatrix}
+        1  & 0  & 0 \\
+        -1 & 2  & 0 \\
+        1  & -2 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & -1 & 1  \\
+        0 & 2  & -2 \\
+        0 & 0  & 1
+    \end{pmatrix}
+    \label{eq:test_cholesky_output}
+\end{equation}
+
+\subsubsection{Matrices dadas \label{sec:cholesky}}
+
+Se factorizo las matrices de tamaño n$\times$n, donde $n\in \{ 4,50,100\}$, donde los elementos de la matriz son los descritos en la ecuación
+
+\begin{equation}
+    a_{ij} = \begin{cases}
+        2,  & \text{si } i=j     \\
+        -1, & \text{si } |i-j|=1 \\
+        0,  & \text{otro}
+    \end{cases}
+\end{equation}
+
+La cual es generada en la función \script{create\_matrix} que se encuentra en el archivo \file{functions.h} en la carpeta \folder{Problema\_3\_1}. Los resultados para los diferentes valores de n se encuentran en los archivos \file{L\_n.txt} y \file{LT\_n.txt} en la carpeta \folder{Problema\_3\_1}.

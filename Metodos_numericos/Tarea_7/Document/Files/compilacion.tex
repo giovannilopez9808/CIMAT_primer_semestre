@@ -1,1 +1,52 @@
 \section{Compilación y ejecución de los programas}
+
+\subsection{Factorización LU - Crout}
+
+Los programas contenidos en las carpetas \folder{Problema\_1} y \folder{Problema\_2} son compilados con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+Para ejecutar los programas se usa el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out matrix vector 
+\end{lstlisting}
+
+donde matrix es el nombre del archivo que contiene a los datos de la matriz y vector es el archivo que contiene los datos del vector columna. En el caso de la carpeta \folder{Problema\_1} estos archivos son (\file{test\_matrix.txt},\file{test\_result.txt}) y (\file{M\_LARGE.txt},\file{V\_LARGE.txt}). Para la carpeta \folder{Problema\_2} los archivos son (\file{M\_SMALL.txt},\file{V\_SMALL.txt})
+
+\subsection{Factorización Chelosky}
+
+Los programas contenidos en las carpetas \folder{Problema\_3\_test} y \folder{Problema\_3\_1} son compilados con el siguiente comando:
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11 -lm
+\end{lstlisting}
+
+\subsection{Matriz de prueba}
+
+Para ejecutar los programas de la carpeta \folder{Problema\_3\_test} se usa el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out matrix l_matrix lt_matrix 
+\end{lstlisting}
+
+donde matrix es el nombre del archivo que contiene a los datos de la matriz , l\_matrix y lt\_matrix son los archivos donde se guardaran las matrices $L$ y $L^T$. En este caso los archivos reciben los siguientes nombres \file{test\_matrix.txt}, \file{L\_test.txt} y \file{LT\_test.txt}.
+
+\subsection{Matrices dadas}
+
+Para ejecutar los programas de la carpeta \folder{Problema\_3\_1} se usa el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out n l_matrix lt_matrix 
+\end{lstlisting}
+
+donde n es un número entero el cual dara el tamaño de la matriz, l\_matrix y lt\_matrix son los archivos donde se guardaran las matrices $L$ y $L^T$.
+
+Si se quiere una matrix de 4$\times$4, la cual sus matrices $L$ y $L^T$ se guarden en los archivos \file{L\_4.txt} y \file{LT\_4.txt} el comando deberia ser el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ./main.out 4 L_4.txt LT_4.txt
+\end{lstlisting}
+
+Se creo un script en bash el cual ejecuta los valores de n comentados en la sección \ref{sec:cholesky}.
