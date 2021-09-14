@@ -2,6 +2,8 @@
 
 \subsection{Factorización LU - Crout}
 
+\subsubsection{Matriz de prueba}
+
 Se realizaron diferentes pruebas para el algoritmo de factorización LU usando la versión de Crout. La primera fue realizada con la matriz de la ecuación \ref{eq:matrix_test_LU}.
 
 \begin{equation}
@@ -52,6 +54,31 @@ Y la solución del sistema de ecuaciones asociado es el siguiente:
 
 El sistema de la ecuación \ref{eq:matrix_test_LU} fue resuelto en anteriores tareas y se obtuvieron los mismo resultados expuestos en las ecuaciones \ref{eq:LU_test}.
 
+\subsubsection{Archivos LARGE.txt}
+
 Usando los archivos \file{M\_LARGE.txt} y \file{V\_LARGE.txt} se obtuvieron los resultados contenidos en el archivo \file{Solution\_Large.txt}, el cual se encuentra en la carpeta \folder{Problema\_1}.
+\subsubsection{Archivos SMALL.txt}
+
+El sistema de ecuaciones mostrado en la ecuación \ref{eq:v_small_matrix_LU} esta contenida en los archivos \file{M\_SMALL.txt} y \file{V\_SMALL.txt}.
+
+\begin{equation}
+    A= \begin{pmatrix}
+        2.402822 & 4.425232 & 1.929374 & 1.370355 \\
+        1.201411 & 2.212616 & 0.964687 & 0.685178 \\
+        1.119958 & 0.964687 & 2.053172 & 0.566574 \\
+        0.742142 & 0.685178 & 0.566574 & 1.696828
+    \end{pmatrix} \qquad
+    B = \begin{pmatrix}
+        0.060000 \\
+        0.542716 \\
+        0.857204 \\
+        0.761270
+    \end{pmatrix}
+    \label{eq:v_small_matrix_LU}
+\end{equation}
+
+Al introducir la matriz a el proceso de factorización LU con la versión de Crout da error, ya que un termino de la diagonal de la matriz L es igual a cero, por ende provocando una indeterminación. Por lo tanto, no es posible resolver el sistema de ecuaciones \ref{eq:v_small_matrix_LU} por medio de la factorización LU.
+
+
 \subsection{Factorización Cholesky}
 

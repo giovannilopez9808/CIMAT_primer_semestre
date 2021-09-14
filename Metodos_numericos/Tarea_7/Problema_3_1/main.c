@@ -2,26 +2,24 @@
 #include <math.h>
 #include <stdlib.h>
 #include "functions.h"
-#include "read_files.h"
 #include "print_results.h"
 #include "Cholesky_decomposition.h"
 #include "solution.h"
 int main(int argc, char *argv[])
 {
     (void)argc;
-    FILE *file_matrix, *file_L, *file_LT;
+    FILE *file_L, *file_LT;
     double *matrix, *L, *LT;
-    int dimension_matrix[2];
-    file_matrix = fopen(argv[1], "r");
-    file_L = fopen("L_test.txt", "w");
-    file_LT = fopen("LT_test.txt", "w");
-    valid_file(file_matrix);
-    // Lectura de los datos de la matriz
-    read_dimension(file_matrix,
-                   dimension_matrix);
-    read_matrix(file_matrix,
-                dimension_matrix,
-                &matrix);
+    (void)file_L;
+    (void)file_LT;
+    (void)L;
+    (void)LT;
+    int size = atoi(argv[1]);
+    int dimension_matrix[2] = {size, size};
+    file_L = fopen(argv[2], "w");
+    file_LT = fopen(argv[3], "w");
+    // Creacion de los datos de la matriz
+    create_matrix(&matrix, dimension_matrix);
     obtain_Cholesky(matrix,
                     dimension_matrix,
                     &L,
@@ -32,6 +30,7 @@ int main(int argc, char *argv[])
     write_matrix_on_file(file_LT,
                          LT,
                          dimension_matrix);
+    free(matrix);
     free(L);
     free(LT);
     return 0;
