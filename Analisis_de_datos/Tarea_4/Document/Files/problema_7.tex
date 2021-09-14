@@ -23,3 +23,25 @@ Calculando de $k$:
     \frac{k}{2}                                                   & =1  \\
     k                                                             & = 2
 \end{align*}
+
+Calculando $P(3Y<X)$, como $0<x<2$ y $0<y<1$, entonces se tiene que obtener el valor maximo para y, tal que $3Y<X$, esto sería
+
+\begin{align*}
+    3Y & <X            \\
+    3Y & <2            \\
+    Y  & < \frac{2}{3}
+\end{align*}
+
+entonces:
+
+\begin{align*}
+    P(3Y<X) & = \int_0^\frac{2}{3} \int_0^{3y} 2xy \; dxdy                            \\
+            & =\int_0^\frac{2}{3}2y \int_0^{3y} x \; dxdy                             \\
+            & = \int_0^\frac{2}{3}2y \left.\left(\frac{x^2}{2}\right)\right|_0^{3y}dy \\
+            & =\int_0^\frac{2}{3}y (3y)^2dy                                           \\
+            & = \int_0^\frac{2}{3} 9y^3 dy                                            \\
+            & = \left.\frac{9}{4} y^4 \right|_0^\frac{2}{3}                           \\
+            & = \left(\frac{9}{4}\right) \left(\frac{2}{3}\right)^4                   \\
+            & = \left(\frac{9}{4}\right) \left(\frac{16}{81}\right)                   \\
+    P(3Y<X) & = \frac{4}{9}
+\end{align*}
