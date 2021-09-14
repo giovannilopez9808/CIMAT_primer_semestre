@@ -1,0 +1,37 @@
+\section*{Problema 3}
+
+\textbf{Completa cada linea con $\leq , \geq, =$ para obtener una verdad para cualquier v.a. discreta (X,Y)}
+\begin{itemize}
+    \item \textbf{Entropia\_Shannon(X+1) ... Entropia\_Shannon(X)}
+    \item \textbf{Var(X+1) ... Var(X)}
+
+          Desarrollando $Var(X+1)$ se tiene lo siguiente:
+
+          \begin{align*}
+              Var(X+1) & = E(X+1)^2-(E(X+1))^2         \\
+                       & = E(X^2+2X+1)- ((EX)^2+2EX+1) \\
+          \end{align*}
+          Aplicando la linealidad de la esperanza de tiene que
+
+          \begin{align*}
+              Var(X+1) & =E(X^2+2X+1)- ((EX)^2+2EX+1)           \\
+                       & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
+          \end{align*}
+
+
+          Aplicando $E(a)=a$ y $E(aX)=aEX$, para $a\in \mathbb{R}$, se obtiene que:
+
+          \begin{align*}
+              Var(X+1) & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
+                       & = EX^2 +2EX +1 -(EX)^2 -2EX -1         \\
+                       & = EX^2 -(EX)^2                         \\
+                       & = Var(X)
+          \end{align*}
+
+          por lo tanto:
+
+          \begin{equation*}
+              Var(X+1) = Var(X)
+          \end{equation*}
+    \item \textbf{EX ... E exp(X)}
+\end{itemize}
