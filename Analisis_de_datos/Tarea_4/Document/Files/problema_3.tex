@@ -34,4 +34,36 @@
               Var(X+1) = Var(X)
           \end{equation*}
     \item \textbf{EX ... E exp(X)}
+
+          Expandiendo hasta el segundo termino de la serie de potencias de EX se obtiene lo siguiente:
+
+          \begin{align*}
+              exp(x) > 1 +x
+          \end{align*}
+
+          entonces
+
+          \begin{align*}
+              E(exp(X))  > E(1+X)
+          \end{align*}
+
+          por linealidad de  la esperanza entonces:
+
+          \begin{align*}
+              E(exp(X)) & > E(1+X)    \\
+                        & >E(1) +E(X) \\
+              E(exp(X)) & > 1 + E(X)
+          \end{align*}
+
+          como
+
+          \begin{equation*}
+              E(X)+1 >EX
+          \end{equation*}
+
+          podemos afirmar que
+
+          \begin{equation*}
+              E(X) < E(exp(X))
+          \end{equation*}
 \end{itemize}
