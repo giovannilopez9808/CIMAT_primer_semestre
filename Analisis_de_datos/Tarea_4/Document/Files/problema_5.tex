@@ -43,14 +43,28 @@ Entonces:
     Var(R) & = \frac{1}{18}
 \end{align*}
 
-El evento que un misil caiga a menos de 100 metros de su destino original quiere decir que $R\leq 0.1$, entonces:
+Sea A un evento en el cual un misil impacte a menos de 100 metros de su destino original.
+
+\begin{equation*}
+    A = \{ \omega \in R: R(\omega)\leq 0.1 \}
+\end{equation*}
+
+entonces
 
 \begin{align*}
-    P(R\leq 0.1) & = \int_0^{0.1} f_R(r) dr                               \\
-             & = \int_0^{0.1} 2(1-r) dr                               \\
-             & = 2 \int_0^{0.1} (1-r) dr                              \\
-             & = 2  \left.\left(r-\frac{r^2}{2}\right)\right|_0^{0.1} \\
-             & = 2 \left(0.1-\frac{(0.1)^2}{2}\right)                 \\
-             & = 2 (0.095)                                            \\
-    P(R\leq 0.1) & = 0.19
+    P(A) & = \int_0^{0.1} f_R(r) dr                               \\
+         & = \int_0^{0.1} 2(1-r) dr                               \\
+         & = 2 \int_0^{0.1} (1-r) dr                              \\
+         & = 2  \left.\left(r-\frac{r^2}{2}\right)\right|_0^{0.1} \\
+         & = 2 \left(0.1-\frac{(0.1)^2}{2}\right)                 \\
+         & = 2 (0.095)                                            \\
+    P(A) & = 0.19
+\end{align*}
+
+Como el vuelo de cada misil es independiente, entoces R puede ser representado con una distribución geometrica ($R\sim Geo(p)$). Entonces, el valor esperado de  la cantidad de misiles que te tienen que lanzar para que el objetivo quede destruido es:
+
+\begin{align*}
+    E(A) & = \frac{1-P(A)}{P(A)} \\
+         & = \frac{1-0.19}{0.19} \\
+    E(A) & = 4.2631
 \end{align*}
