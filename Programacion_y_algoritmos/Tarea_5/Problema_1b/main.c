@@ -13,6 +13,9 @@ void print_test(char simbol, char *filename)
 }
 void test(int option)
 {
+    /* 
+    Test escritos para diferentes archivos y simbolos
+     */
     char simbol;
     char *filename;
     int size = 0;
@@ -37,11 +40,13 @@ void test(int option)
     default:
         break;
     }
+    // Obtiene los tokes
     split(filename,
           simbol,
           &size,
           &tokens);
-    print_tokens(&tokens, size);
+    // Impresion  de los tokens
+    print_tokens(tokens, size);
     free(tokens);
 }
 int main()

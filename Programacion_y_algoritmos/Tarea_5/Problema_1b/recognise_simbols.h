@@ -34,6 +34,9 @@ int equal_capital_and_lower_letters(int letter)
 }
 int char_to_int(char letter)
 {
+    /* 
+    Convierte un caracter a entero, si es una letra la convertira a minuscula
+     */
     int letter_int;
     if (is_a_letter(letter))
     {
