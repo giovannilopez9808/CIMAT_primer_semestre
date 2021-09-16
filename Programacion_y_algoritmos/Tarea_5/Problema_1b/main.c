@@ -26,16 +26,8 @@ int count_simbol(FILE *text, char simbol)
     fclose(text);
     return i + 1;
 }
-
-void split(char *filename, char simbol, int *size, char **tokens)
+void obtain_tokens(FILE *text, char **tokens, char simbol)
 {
-    FILE *text;
-    text = fopen(filename, "r");
-    read_file(filename, text);
-    int elements = count_simbol(text, simbol);
-    *size = elements;
-    *tokens = (char *)malloc(20 * elements);
-    read_file(filename, text);
     int i = 0, j = 0;
     char letter;
     int letter_int, simbol_int;
@@ -58,6 +50,17 @@ void split(char *filename, char simbol, int *size, char **tokens)
         letter = fgetc(text);
     }
 }
+void split(char *filename, char simbol, int *size, char **tokens)
+{
+    FILE *text = fopen(filename, "r");
+    valid_file(text);
+    int elements = count_simbol(text, simbol);
+    *size = elements;
+    *tokens = (char *)malloc(20 * elements);
+    read_file(filename, text);
+    obtain_tokens(text, tokens, simbol);
+    fclose(text);
+}
 void print_tokens(char **tokens, int size)
 {
     for (int i = 0; i < size; i++)
@@ -73,5 +76,6 @@ int main(int argc, char *argv[])
     int size;
     split(argv[1], simbol, &size, &tokens);
     print_tokens(&tokens, size);
+    free(tokens);
     return 0;
 }
