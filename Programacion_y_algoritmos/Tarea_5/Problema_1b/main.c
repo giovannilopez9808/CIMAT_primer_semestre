@@ -27,12 +27,13 @@ int count_simbol(FILE *text, char simbol)
     return i + 1;
 }
 
-void split(char *filename, char simbol, char **tokens)
+void split(char *filename, char simbol, int *size, char **tokens)
 {
     FILE *text;
     text = fopen(filename, "r");
     read_file(filename, text);
     int elements = count_simbol(text, simbol);
+    *size = elements;
     *tokens = (char *)malloc(20 * elements);
     read_file(filename, text);
     int i = 0, j = 0;
@@ -45,27 +46,32 @@ void split(char *filename, char simbol, char **tokens)
         letter_int = char_to_int(letter);
         if (letter_int != simbol_int)
         {
-            *(*tokens + i * 20 + j) = letter;
+            *(*tokens + i * size_per_word + j) = letter;
             j++;
         }
         else
         {
-            *(*tokens + i * 20 + j) = '\0';
+            *(*tokens + i * size_per_word + j) = '\0';
             j = 0;
             i++;
         }
         letter = fgetc(text);
     }
-    for (int i = 0; i < elements; i++)
+}
+void print_tokens(char **tokens, int size)
+{
+    for (int i = 0; i < size; i++)
     {
-        printf("%s\n", *tokens + i * 20);
+        printf("%s\n", *tokens + i * size_per_word);
     }
 }
 int main(int argc, char *argv[])
 {
     (void)argc;
     char *tokens = NULL;
-    char simbol = ' ';
-    split(argv[1], simbol, &tokens);
+    char simbol = '/';
+    int size;
+    split(argv[1], simbol, &size, &tokens);
+    print_tokens(&tokens, size);
     return 0;
 }
