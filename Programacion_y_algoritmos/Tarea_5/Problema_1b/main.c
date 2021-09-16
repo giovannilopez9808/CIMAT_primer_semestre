@@ -33,7 +33,7 @@ void split(char *filename, char simbol, char **tokens)
     text = fopen(filename, "r");
     read_file(filename, text);
     int elements = count_simbol(text, simbol);
-    *tokens = (char *)malloc(20 * elements * sizeof(char));
+    *tokens = (char *)malloc(20 * elements);
     read_file(filename, text);
     int i = 0, j = 0;
     char letter;
@@ -45,11 +45,12 @@ void split(char *filename, char simbol, char **tokens)
         letter_int = char_to_int(letter);
         if (letter_int != simbol_int)
         {
-            *(*tokens + i * size_per_word + j) += letter;
+            *(*tokens + i * 20 + j) = letter;
             j++;
         }
         else
         {
+            *(*tokens + i * 20 + j) = '\0';
             j = 0;
             i++;
         }
@@ -57,7 +58,7 @@ void split(char *filename, char simbol, char **tokens)
     }
     for (int i = 0; i < elements; i++)
     {
-        printf("%s\n", *tokens + i * size_per_word);
+        printf("%s\n", *tokens + i * 20);
     }
 }
 int main(int argc, char *argv[])
