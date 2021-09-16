@@ -1,81 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "read_file.h"
 #include "recognise_simbols.h"
-#define size_per_word 20
-void read_file(char *filename, FILE *text)
+#include "read_file.h"
+#include "split.h"
+#include "print_results.h"
+void print_test(char simbol, char *filename)
 {
-    text = fopen(filename, "r");
-    valid_file(text);
+    print_lines();
+    printf("Separando el archivo %s por medio del ASCII-%d\n\n",
+           filename,
+           simbol);
 }
-int count_simbol(FILE *text, char simbol)
+void test(int option)
 {
-    char letter;
-    int letter_int, simbol_int, i = 0;
-    simbol_int = char_to_int(simbol);
-    letter = fgetc(text);
-    while (letter != EOF)
-    {
-        letter_int = char_to_int(letter);
-        if (letter_int == simbol_int)
-        {
-            i++;
-        }
-        letter = fgetc(text);
-    }
-    fclose(text);
-    return i + 1;
-}
-void obtain_tokens(FILE *text, char **tokens, char simbol)
-{
-    int i = 0, j = 0;
-    char letter;
-    int letter_int, simbol_int;
-    simbol_int = char_to_int(simbol);
-    letter = fgetc(text);
-    while (letter != EOF)
-    {
-        letter_int = char_to_int(letter);
-        if (letter_int != simbol_int)
-        {
-            *(*tokens + i * size_per_word + j) = letter;
-            j++;
-        }
-        else
-        {
-            *(*tokens + i * size_per_word + j) = '\0';
-            j = 0;
-            i++;
-        }
-        letter = fgetc(text);
-    }
-}
-void split(char *filename, char simbol, int *size, char **tokens)
-{
-    FILE *text = fopen(filename, "r");
-    valid_file(text);
-    int elements = count_simbol(text, simbol);
-    *size = elements;
-    *tokens = (char *)malloc(20 * elements);
-    read_file(filename, text);
-    obtain_tokens(text, tokens, simbol);
-    fclose(text);
-}
-void print_tokens(char **tokens, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf("%s\n", *tokens + i * size_per_word);
-    }
-}
-int main(int argc, char *argv[])
-{
-    (void)argc;
+    char simbol;
+    char *filename;
+    int size = 0;
     char *tokens = NULL;
-    char simbol = '/';
-    int size;
-    split(argv[1], simbol, &size, &tokens);
+    switch (option)
+    {
+    case 0:
+        simbol = ',';
+        filename = "test1.csv";
+        print_test(simbol, filename);
+        break;
+    case 1:
+        simbol = '/';
+        filename = "test2.txt";
+        print_test(simbol, filename);
+        break;
+    case 2:
+        simbol = ' ';
+        filename = "test3.txt";
+        print_test(simbol, filename);
+        break;
+    default:
+        break;
+    }
+    split(filename,
+          simbol,
+          &size,
+          &tokens);
     print_tokens(&tokens, size);
     free(tokens);
+}
+int main()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        test(i);
+    }
     return 0;
 }
