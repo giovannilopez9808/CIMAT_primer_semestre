@@ -1,4 +1,36 @@
 \subsection*{Problema 1b}
 
-\subsection*{Problema 1a}
 \textbf{Separe un string en tokens de acuerdo a un carácter especial dado como entrada. Debe regresar un arreglo que apunte a cada uno de los tokens encontrados.}
+
+Se creo una función llamada \script{split} la cual recibe como parámetros el nombre del archivo donde se leera el string, el símbolo de separación, un puntero que la cantidad de tokens y un doble puntero que guardará los tokens. El algoritmo que sigue esta función es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    size = count_simbol(text, simbol)
+    tokens = assign_memory(size)
+    letter = read_character_from_file(text)
+    i = 0
+    while(letter != EOF)
+    {
+        if(letter != simbol)
+        {
+            tokens[i] += letter
+            i += 1
+        }
+        else
+        {
+            tokens[i] += '\0'
+            i = 0
+        }
+        letter = read_character_from_file(text)
+    }
+\end{lstlisting}
+
+El tamaño de cada elemento de los tokens esta definido en 40, esto en la linea 1 del archivo \file{size\_per\_word}. Puede implemntarse una función para obtener el tamaño máximo de los tokens para designar esta variable, pero esto requeriría leer e identificar a los tokens dos veces.
+
+Se probo el programa con tres archivos diferentes (\file{test1.csv}, \file{test2.txt} y \file{test3.txt}). La ejecución de los tres archivos se encuentrá implementada en el código principal. El programa se encuentra en la carpeta \folder{Problema\_1b}. La compilación fue realizada con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+El output esperado del programa se encuentra en el archivo \file{output.txt}.
