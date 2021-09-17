@@ -1,0 +1,112 @@
+
+------------------------------------------------------------------
+Separando el archivo test1.csv por medio del ASCII-44
+
+Posicion	Valor
+0		5
+1		6
+2		42
+3		4245
+4		678
+5		46
+6		6543
+7		8322
+8		621
+9		5214
+10		411
+11		5788
+12		0
+
+------------------------------------------------------------------
+Separando el archivo test2.txt por medio del ASCII-47
+
+Posicion	Valor
+0		
+1		home
+2		giovanni
+3		CIMAT_resources
+4		Programacion_y_algoritmos
+5		Tarea_5
+6		Problema_1a
+
+------------------------------------------------------------------
+Separando el archivo test3.txt por medio del ASCII-32
+
+Posicion	Valor
+0		Lorem
+1		ipsum
+2		dolor
+3		sit
+4		amet,
+5		consectetur
+6		adipiscing
+7		elit.
+8		Vivamus
+9		at
+10		quam
+11		id
+12		odio
+13		vestibulum
+14		consequat
+15		ut
+16		nec
+17		orci.
+18		Donec
+19		nulla
+20		lorem,
+21		posuere
+22		sed
+23		tincidunt
+24		in,
+25		tincidunt
+26		ac
+27		justo.
+28		Praesent
+29		id
+30		magna
+31		metus.
+32		Nulla
+33		vitae
+34		aliquet
+35		sapien.
+36		Nullam
+37		accumsan
+38		pretium
+39		est,
+40		rutrum
+41		suscipit
+42		neque
+43		porttitor
+44		ac.
+45		Sed
+46		lobortis
+47		felis
+48		vel
+49		dolor
+50		ullamcorper
+51		efficitur.
+52		Sed
+53		condimentum
+54		malesuada
+55		eros,
+56		eu
+57		facilisis
+58		dolor
+59		aliquam
+60		eu.
+61		Ut
+62		in
+63		mollis
+64		nisi,
+65		a
+66		volutpat
+67		purus.
+68		In
+69		eget
+70		varius
+71		risus.
+
+------------------------------------------------------------------
+Separando el archivo test3.txt por medio del ASCII-47
+
+No se encontro simbolo
