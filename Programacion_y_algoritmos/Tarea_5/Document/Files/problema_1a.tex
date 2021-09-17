@@ -1,0 +1,86 @@
+\section*{Problema 1}
+
+\subsection*{Problema 1a}
+
+\textbf{Encuentre si la palabra `p' esta presente en un string `str', de otra manera regresa el número de veces que se encontro.}
+
+Se descargaron 20 parrafos de un documento de prueba llamado `\textit{Lorem lipsum}'\cite{lorem_lipsum}. Este documento es guardado en la carpeta \folder{Problema\_1a} con el nombre \file{test\_text.txt}. Se creo una función llamada \script{find\_word}. Esta función recibe como parámetros un puntero del tipo FILE y la palabra a buscar en el texto. El algoritmo que sigue la función \script{find\_word} es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // input text, word
+    // output count
+    count = 0
+    letter_behind = ' '
+    letter_file = read_character_from_file(text)
+    letter_word = word[0]
+    letter_final_word = word[-1]
+    while(letter!=EOF)
+    {
+        if(lettler_file == letter_word)
+        {
+            if(letter_behind_is_not_a_word)
+            {
+                letter_behind = letter_file
+                letter_file = read_character_from_file(text)
+                i = 1
+                while(letter_file == word[i])
+                {
+                    letter_file = read_character_from_file(text)
+                    i += 1
+                }
+                if(i == word_size and letter_is_not_a_character)
+                {
+                    count += 1
+                }
+            }
+        }
+        letter_file = read_character_from_file(text)
+    }
+\end{lstlisting}
+
+En la linea 10 se comprueba si el carácter leido coincide con el primer carácter de la letra. Si coincide entonces se comprobará si los siguientes carácteres coinciden. En la linea 12 se comprueba si el carácter anterior a la primer coincidencia no es una letra, esto para no encontrar coincidencias en palabras distintas a las buscadas. En la linea 17 comienza la verificación de los demás carácteres, si coincidieron todos entonces la variable i debe ser del mismo valor que el tamaño de la palabra. En la linea 22 se comprueba si la variable i es del mismo tamaño que la palabra y si la letra siguiente no es una letra.
+
+El programa se encuentra en la carpeta \folder{Problema\_1a}, el programa se compilo con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+Se usaron las palabras lorem, sapien, maecenas, aliquam, quam, tor y tor para probar el programa. Los resultados son los mostrados en la tabla \ref{table:results_1a}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lc} \hline
+        Palabra  & Resultados \\\hline
+        lorem    & 9          \\
+        sapien   & 10         \\
+        maecenas & 6          \\
+        aliquam  & 18         \\
+        quam     & 8          \\
+        tor      & 0          \\
+        tortor   & 6          \\ \hline
+    \end{tabular}
+    \caption{Resultados del programa 1a.}
+    \label{table:results_1a}
+\end{table}
+
+La manera de ejecutar el programa es la siguiente:
+Para hacer la busqueda de la palabra lorem en el archivo \file{test\_text.txt} se usa el siguiente comando.
+
+\begin{lstlisting}[language=bash]
+    ./main.out test_text.txt lorem
+\end{lstlisting}
+
+Se creo un script en bash el cual ejecuta el programa con las palabras mencionadas en la tabla \ref{table:results_1a}. El script contiene las siguientes ejecucciones:
+
+\begin{lstlisting}[language=bash]
+    make clean
+    make 
+    ./main.out test_text.txt lorem
+    ./main.out test_text.txt sapien
+    ./main.out test_text.txt maecenas
+    ./main.out test_text.txt aliquam
+    ./main.out test_text.txt quam
+    ./main.out test_text.txt tor
+    ./main.out test_text.txt tortor
+\end{lstlisting}
