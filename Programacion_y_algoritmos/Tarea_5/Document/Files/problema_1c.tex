@@ -1,3 +1,32 @@
 \subsection*{Problema 1c}
 
 \textbf{Concadene dos strings creados con memoria dinámica. Regrese el resultado en el primer string.}
+
+Se creo una función llamada \script{join\_strings} la cual recibe como parámetros dos punteros a strings. El algoritmo que implementa es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    len_string1 = obtain_len_string(string1)
+    len_string2 = obtain_len_string(string2)
+    string1 = increase_memory(len_string1 + len_string2)
+    for(i = 0; i< len_string2, i++)
+    {
+        string1[i+len_string1] = string2[i]
+    }
+\end{lstlisting}
+
+En la linea 3 se aumenta la memoria del primer string para poder almacenar los datos del segundo string.
+
+El programa se encuentra en la carpeta \folder{Problema\_1c}. La compilación se realizo con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+Probando con los strings \textit{abcdf} y \textit{xyz1234} se obtiene el siguiente output:
+
+\begin{lstlisting}[language=bash]
+    > ./main.out abdcf xyz1234
+    Texto 1:	abdcf
+    Texto 2:	xyz1234
+    Union:	abdcfxyz1234
+\end{lstlisting}
