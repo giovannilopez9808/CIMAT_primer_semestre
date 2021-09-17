@@ -40,8 +40,13 @@ void split(char *filename, char simbol, int *size, char **tokens)
     // Conteo total de los simbolos dentro del archivo para inicializar el numero de stacks del token
     int elements = count_simbol(text, simbol);
     *size = elements;
-    // Inicializacion de los tokens
+    if (elements == 1)
+    {
+        printf("No se encontro simbolo\n");
+        return;
+    }
     *tokens = (char *)malloc(size_per_word * elements);
+    // Inicializacion de los tokens
     // Reapertura del archivo
     read_file(filename, text);
     // Obtiene los tokens

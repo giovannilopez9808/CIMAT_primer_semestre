@@ -37,6 +37,11 @@ void test(int option)
         filename = "test3.txt";
         print_test(simbol, filename);
         break;
+    case 3:
+        simbol = '/';
+        filename = "test3.txt";
+        print_test(simbol, filename);
+        break;
     default:
         break;
     }
@@ -46,12 +51,15 @@ void test(int option)
           &size,
           &tokens);
     // Impresion  de los tokens
-    print_tokens(tokens, size);
-    free(tokens);
+    if (size != 1)
+    {
+        print_tokens(tokens, size);
+        free(tokens);
+    }
 }
 int main()
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
         test(i);
     }
