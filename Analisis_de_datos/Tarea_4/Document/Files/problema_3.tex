@@ -2,68 +2,93 @@
 
 \textbf{Completa cada linea con $\leq , \geq, =$ para obtener una verdad para cualquier v.a. discreta (X,Y)}
 \begin{itemize}
-    \item \textbf{Entropia\_Shannon(X+1) ... Entropia\_Shannon(X)}
-    \item \textbf{Var(X+1) ... Var(X)}
+	\item \textbf{Entropia\_Shannon(X+1) ... Entropia\_Shannon(X)}
 
-          Desarrollando $Var(X+1)$ se tiene lo siguiente:
+	      Sea $H(X+1)=H(X+1,X)$, entonces:
 
-          \begin{align*}
-              Var(X+1) & = E(X+1)^2-(E(X+1))^2         \\
-                       & = E(X^2+2X+1)- ((EX)^2+2EX+1) \\
-          \end{align*}
-          Aplicando la linealidad de la esperanza de tiene que
+	      \begin{align*}
+		      H(X+1,X) & = E log_2\left(\frac{1}{P(X+1,X)}\right)        \\
+		               & = E log_2\left(\frac{1}{P(X+1|X)P(X)}\right)    \\
+		               & = E\left(-log_2\left(P(X+1|X)P(X)\right)\right) \\
+		               & =E\left(-log_2(P(X+1|X))-log_2(P(X))\right)
+	      \end{align*}
+	      por linealidad de la esperanza se obtiene que:
+	      \begin{align*}
+		      H(X+1,X) & =E\left(-log_2(P(X+1|X))-log_2(P(X))\right) \\
+		               & =E(-log_2(P(X+1|X)))+E(-log_2(PX))          \\
+		               & =H(X+1|X) + H(X)
+	      \end{align*}
+	      como H>0 entonces:
+	      \begin{equation*}
+		      H(X+1,X) > H(X)
+	      \end{equation*}
 
-          \begin{align*}
-              Var(X+1) & =E(X^2+2X+1)- ((EX)^2+2EX+1)           \\
-                       & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
-          \end{align*}
+	      por lo tanto:
+
+	      \begin{equation*}
+		      H(X+1) > H(X)
+	      \end{equation*}
+	\item \textbf{Var(X+1) ... Var(X)}
+
+	      Desarrollando $Var(X+1)$ se tiene lo siguiente:
+
+	      \begin{align*}
+		      Var(X+1) & = E(X+1)^2-(E(X+1))^2         \\
+		               & = E(X^2+2X+1)- ((EX)^2+2EX+1) \\
+	      \end{align*}
+	      Aplicando la linealidad de la esperanza de tiene que
+
+	      \begin{align*}
+		      Var(X+1) & =E(X^2+2X+1)- ((EX)^2+2EX+1)           \\
+		               & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
+	      \end{align*}
 
 
-          Aplicando $E(a)=a$ y $E(aX)=aEX$, para $a\in \mathbb{R}$, se obtiene que:
+	      Aplicando $E(a)=a$ y $E(aX)=aEX$, para $a\in \mathbb{R}$, se obtiene que:
 
-          \begin{align*}
-              Var(X+1) & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
-                       & = EX^2 +2EX +1 -(EX)^2 -2EX -1         \\
-                       & = EX^2 -(EX)^2                         \\
-                       & = Var(X)
-          \end{align*}
+	      \begin{align*}
+		      Var(X+1) & = EX^2 + E(2X) + E(1) - (EX)^2 -2EX -1 \\
+		               & = EX^2 +2EX +1 -(EX)^2 -2EX -1         \\
+		               & = EX^2 -(EX)^2                         \\
+		               & = Var(X)
+	      \end{align*}
 
-          por lo tanto:
+	      por lo tanto:
 
-          \begin{equation*}
-              Var(X+1) = Var(X)
-          \end{equation*}
-    \item \textbf{EX ... E exp(X)}
+	      \begin{equation*}
+		      Var(X+1) = Var(X)
+	      \end{equation*}
+	\item \textbf{EX ... E exp(X)}
 
-          Expandiendo hasta el segundo termino de la serie de potencias de EX se obtiene lo siguiente:
+	      Expandiendo hasta el segundo termino de la serie de potencias de EX se obtiene lo siguiente:
 
-          \begin{align*}
-              exp(x) > 1 +x
-          \end{align*}
+	      \begin{align*}
+		      exp(x) > 1 +x
+	      \end{align*}
 
-          entonces
+	      entonces
 
-          \begin{align*}
-              E(exp(X))  > E(1+X)
-          \end{align*}
+	      \begin{align*}
+		      E(exp(X))  > E(1+X)
+	      \end{align*}
 
-          por linealidad de  la esperanza entonces:
+	      por linealidad de  la esperanza entonces:
 
-          \begin{align*}
-              E(exp(X)) & > E(1+X)    \\
-                        & >E(1) +E(X) \\
-              E(exp(X)) & > 1 + E(X)
-          \end{align*}
+	      \begin{align*}
+		      E(exp(X)) & > E(1+X)    \\
+		                & >E(1) +E(X) \\
+		      E(exp(X)) & > 1 + E(X)
+	      \end{align*}
 
-          como
+	      como
 
-          \begin{equation*}
-              E(X)+1 >EX
-          \end{equation*}
+	      \begin{equation*}
+		      E(X)+1 >EX
+	      \end{equation*}
 
-          podemos afirmar que
+	      podemos afirmar que
 
-          \begin{equation*}
-              E(X) < E(exp(X))
-          \end{equation*}
+	      \begin{equation*}
+		      E(X) < E(exp(X))
+	      \end{equation*}
 \end{itemize}
