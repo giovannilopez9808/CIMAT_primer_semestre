@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
                 dimension_result,
                 &results);
     solve_jabobi(matrix, dimension_matrix, results, dimension_result, solutions);
-    print_matrix(matrix, dimension_matrix);
+    // print_matrix(matrix, dimension_matrix);
     // print_matrix(results, dimension_result);
     // print_solution(solutions,
     //                dimension_matrix);
