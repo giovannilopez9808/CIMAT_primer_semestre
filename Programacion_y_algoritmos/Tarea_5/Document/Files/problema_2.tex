@@ -1,3 +1,97 @@
 \section*{Problema 2}
 
 \textbf{Programa que calcule el moving average y la mediana de una matriz de tamaño L\textsubscript{1}$\mathbf{\times}$L\textsubscript{2}. Reemplazar los valores de la matriz en su valor central.}
+
+Al inicio del programa se preguntan las dimensiones de la matriz de datos. Esta matriz es inicializada con números enteros entre 0 y 20. Las matrices que contendran los datos del moving average y la mediana son inicializadas en este mismo proceso con los mismos valores de la matriz original. El algoritmo para obtener el moving average es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix, dimensions
+    for(i = 1; i < dimensions[0]; i++)
+    {
+        for(j = 1; j < dimensions[1]; j++)
+        {
+            sum = 0
+            for(k = i-1; k < i+2; k++)
+            {1
+                for(l = j-1; l < j+2; l++)
+                {
+                    sum += matrix[k][l]
+                }
+            }
+            moving_average[i][j] = sum / 9
+        }
+    }
+\end{lstlisting}
+
+Los ciclos que recorren con las variables i,j (lineas 2 y 4) es el recorrido que hara la posición central de la ventana de 3x3. En la linea 6 se inicializa el calculo del promedio de los valores en la ventana de los datos. Los ciclos que recorren con las variables k,l (lineas 7 y 9) son usadas para realizar el recorrido en los valores de la matriz que estan en la ventana de datos.
+
+El algoritmo para obtener la mediana de cada ventana de datos es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix, dimensions
+    median[9]
+    for(i = 1; i < dimensions[0]; i++)
+    {
+        for(j = 1; j < dimensions[1]; j++)
+        {
+            n = 0
+            for(k = i-1; k < i+2; k++)
+            {
+                for(l = j-1; l < j+2; l++)
+                {
+                    median[n] = matriz[i][j]
+                    n += 1
+                }
+            }
+            quick_sort(median)
+            median_matrix[i][j] = median[4]
+        }
+    }
+\end{lstlisting}
+
+Los ciclos que recorren con las variables i,j (lineas 3 y 5) es el recorrido que hara la posición central de la ventana de 3x3. Los valores de la ventana seran guuardados en un arreglo de dimension 9. En la linea 16 los datos de la ventana seran ordenados de menor a mayor valor con un algoritmo de ordenamiento implementado en tareas anteriores. Al ser ordenados los datos es facil obtener la mediana, en este caso siempre se encontrará en la posición 4 del arreglo. Los algoritmos de la mediana y moving average son muy semejantes, es por ello que en el programa \file{algorithms.h} se escribieron en una sola función llamada \script{obtain\_moving\_average\_and\_median}. En los dos algoritmos, los valores de la frontera son iguales a los datos iniciales.
+
+El programa se encuentra en la carpeta \folder{Problema\_2}, la compilación del mismo se realizó con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11
+\end{lstlisting}
+
+Uno de los resultados obtenidos al ejecutar el programa es el siguiente:
+
+\begin{lstlisting}[language=bash]
+    > ./main.out 4 7
+
+    -------------------------------------------------
+    Datos iniciales
+
+    4.000000	16.000000	14.000000	9.000000	
+    8.000000	4.000000	16.000000	7.000000	
+    1.000000	7.000000	7.000000	13.000000	
+    16.000000	12.000000	6.000000	1.000000	
+    2.000000	14.000000	6.000000	14.000000	
+    2.000000	11.000000	15.000000	14.000000	
+    6.000000	14.000000	6.000000	5.000000	
+
+    -------------------------------------------------
+    Moving average
+
+    4.000000	16.000000	14.000000	9.000000	
+    8.000000	8.555556	10.333333	7.000000	
+    1.000000	8.555556	8.111111	13.000000	
+    16.000000	7.888889	8.888889	1.000000	
+    2.000000	9.333333	10.333333	14.000000	
+    2.000000	8.444444	11.000000	14.000000	
+    6.000000	14.000000	6.000000	5.000000	
+
+    --------------------------------------------------
+    Median
+
+    4.000000	16.000000	14.000000	9.000000	
+    8.000000	7.000000	9.000000	7.000000	
+    1.000000	7.000000	7.000000	13.000000	
+    16.000000	7.000000	7.000000	1.000000	
+    2.000000	11.000000	12.000000	14.000000	
+    2.000000	6.000000	14.000000	14.000000	
+    6.000000	14.000000	6.000000	5.000000
+\end{lstlisting}
