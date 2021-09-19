@@ -44,5 +44,6 @@ int main(int argc, char *argv[])
     free(matrix);
     free(results);
     free(solutions);
+    free(solutions_pos);
     return 0;
 }

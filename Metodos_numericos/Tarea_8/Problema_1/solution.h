@@ -36,7 +36,6 @@ void change_rows(double *matrix, int dimension_matrix[], double *results, int po
     (void)SP_new;
     (void)SP_old;
     swap(R_old, R_new);
-    printf("%d %d\n", i_old, i_new);
     swap_int(SP_old, SP_new);
     for (int j = 0; j < dimension_matrix[1]; j++)
     {
@@ -51,6 +50,31 @@ void initialize_solutions_pos(int *solution_pos, int dimension_matrix[])
     {
         *(solution_pos + i) = i + 1;
     }
+}
+void check_dominant_diagonal_matrix(double *matrix, int dimension_matrix[])
+{
+    print_lines();
+    double sum_ij, m_ij, m_ii;
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        sum_ij = 0;
+        m_ii = fabs(*(matrix + i * dimension_matrix[0] + i));
+        for (int j = 0; j < dimension_matrix[1]; j++)
+        {
+            if (i != j)
+            {
+                m_ij = *(matrix + j * dimension_matrix[0] + i);
+                sum_ij += fabs(m_ij);
+            }
+        }
+        if (sum_ij > m_ii)
+        {
+            printf("La matrix no es diagonal dominante\n");
+            printf("Es posible que no se encuentre solucion\n");
+            return;
+        }
+    }
+    printf("La matriz si es diagonal dominante\n");
 }
 void convert_to_dominant_diagonal(double *matrix, int dimension_matrix[], double *results, int **solution_pos)
 {
@@ -80,8 +104,6 @@ void convert_to_dominant_diagonal(double *matrix, int dimension_matrix[], double
                 }
             }
         }
-        printf("Cambio (%d %d) ->", max_position[0], max_position[1]);
-        printf("(%d %d)\n", i, i);
         if (i != max_position[1])
         {
             change_columns(matrix,
@@ -99,6 +121,7 @@ void convert_to_dominant_diagonal(double *matrix, int dimension_matrix[], double
                         *solution_pos);
         }
     }
+    check_dominant_diagonal_matrix(matrix, dimension_matrix);
 }
 void obtain_D_and_R_matrix(double *matrix, int dimension_matrix[], double **D_matrix, double **R_matrix)
 {
