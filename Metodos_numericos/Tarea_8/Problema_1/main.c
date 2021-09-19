@@ -4,6 +4,8 @@
 #include "functions.h"
 #include "read_files.h"
 #include "print_results.h"
+#include "matrix_operations.h"
+#include "dominant_diagonal.h"
 #include "solution.h"
 int main(int argc, char *argv[])
 {
