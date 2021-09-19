@@ -1,3 +1,105 @@
+void swap(double *number1, double *number2)
+{
+    double aux = *number1;
+    *number1 = *number2;
+    *number2 = aux;
+}
+void swap_int(int *number1, int *number2)
+{
+    int aux = *number1;
+    *number1 = *number2;
+    *number2 = aux;
+}
+void change_columns(double *matrix, int dimension_matrix[], int position[], int change[])
+{
+    int j_old = position[1];
+    int j_new = change[1];
+    double *M_old, *M_new;
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        M_old = (matrix + j_old * dimension_matrix[0] + i);
+        M_new = (matrix + j_new * dimension_matrix[0] + i);
+        swap(M_old, M_new);
+    }
+}
+void change_rows(double *matrix, int dimension_matrix[], double *results, int position[], int change[], int *solution_pos)
+{
+    (void)results;
+    int i_old = position[0];
+    int i_new = change[0];
+    double *M_old, *M_new, *R_old, *R_new;
+    int *SP_old, *SP_new;
+    R_old = (results + i_old);
+    R_new = (results + i_new);
+    SP_old = (solution_pos + i_old);
+    SP_new = (solution_pos + i_new);
+    (void)SP_new;
+    (void)SP_old;
+    swap(R_old, R_new);
+    printf("%d %d\n", i_old, i_new);
+    swap_int(SP_old, SP_new);
+    for (int j = 0; j < dimension_matrix[1]; j++)
+    {
+        M_old = (matrix + j * dimension_matrix[0] + i_old);
+        M_new = (matrix + j * dimension_matrix[0] + i_new);
+        swap(M_old, M_new);
+    }
+}
+void initialize_solutions_pos(int *solution_pos, int dimension_matrix[])
+{
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        *(solution_pos + i) = i + 1;
+    }
+}
+void convert_to_dominant_diagonal(double *matrix, int dimension_matrix[], double *results, int **solution_pos)
+{
+    (void)results;
+    double m_ij, max;
+    int max_position[2], original_position[2];
+    *solution_pos = (int *)malloc(dimension_matrix[0] * sizeof(int));
+    initialize_solutions_pos(*solution_pos, dimension_matrix);
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        max = *(matrix + i * dimension_matrix[0] + i);
+        max = fabs(max);
+        original_position[0] = i;
+        original_position[1] = i;
+        max_position[0] = i;
+        max_position[1] = i;
+        for (int j = i; j < dimension_matrix[0]; j++)
+        {
+            for (int k = i; k < dimension_matrix[1]; k++)
+            {
+                m_ij = *(matrix + k * dimension_matrix[0] + j);
+                if (fabs(m_ij) > max)
+                {
+                    max = fabs(m_ij);
+                    max_position[0] = j;
+                    max_position[1] = k;
+                }
+            }
+        }
+        printf("Cambio (%d %d) ->", max_position[0], max_position[1]);
+        printf("(%d %d)\n", i, i);
+        if (i != max_position[1])
+        {
+            change_columns(matrix,
+                           dimension_matrix,
+                           original_position,
+                           max_position);
+        }
+        if (i != max_position[0])
+        {
+            change_rows(matrix,
+                        dimension_matrix,
+                        results,
+                        original_position,
+                        max_position,
+                        *solution_pos);
+        }
+    }
+}
 void obtain_D_and_R_matrix(double *matrix, int dimension_matrix[], double **D_matrix, double **R_matrix)
 {
     *D_matrix = (double *)malloc(dimension_matrix[0] * dimension_matrix[1] * sizeof(double));
@@ -63,6 +165,7 @@ int convergence(double *solutions, double *solutions_i, int dimension_solutions[
             si_i = *(solutions_i + i);
             theta += (s_i - si_i) * (s_i - si_i);
         }
+        theta = sqrt(theta);
         if (theta < 1e-7)
         {
             return 0;
@@ -70,7 +173,7 @@ int convergence(double *solutions, double *solutions_i, int dimension_solutions[
     }
     return 1;
 }
-void fill_solutuions(double *solutions, double *solutions_i, int dimension_solutions[])
+void fill_solutions(double *solutions, double *solutions_i, int dimension_solutions[])
 {
     double *S_i, *Si_i;
     for (int i = 0; i < dimension_solutions[0]; i++)
@@ -80,11 +183,11 @@ void fill_solutuions(double *solutions, double *solutions_i, int dimension_solut
         *S_i = *Si_i;
     }
 }
-void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int dimension_results[], double *solutions)
+void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int dimension_results[], double **solutions)
 {
     int attempt = 0;
     double *R_matrix, *D_matrix, *Rx_matrix, *Matrix_res, *Solutions_i;
-    solutions = (double *)malloc(dimension_results[0] * sizeof(double));
+    *solutions = (double *)malloc(dimension_results[0] * sizeof(double));
     Solutions_i = (double *)malloc(dimension_results[0] * sizeof(double));
     Rx_matrix = (double *)malloc(dimension_results[0] * sizeof(double));
     Matrix_res = (double *)malloc(dimension_results[0] * sizeof(double));
@@ -92,16 +195,16 @@ void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int d
                           dimension_matrix,
                           &D_matrix,
                           &R_matrix);
-    while (convergence(solutions,
+    while (convergence(*solutions,
                        Solutions_i,
                        dimension_results,
                        attempt))
     {
-        fill_solutuions(solutions,
-                        Solutions_i,
-                        dimension_results);
+        fill_solutions(*solutions,
+                       Solutions_i,
+                       dimension_results);
         obtain_multiplication_matrix(R_matrix,
-                                     solutions,
+                                     Solutions_i,
                                      Rx_matrix,
                                      dimension_matrix,
                                      dimension_results);
@@ -114,7 +217,11 @@ void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int d
                                      Solutions_i,
                                      dimension_matrix,
                                      dimension_results);
-        print_matrix(solutions, dimension_results);
         attempt += 1;
     }
+    free(Solutions_i);
+    free(Rx_matrix);
+    free(Matrix_res);
+    free(R_matrix);
+    free(D_matrix);
 }

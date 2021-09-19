@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "functions.h"
 #include "read_files.h"
 #include "print_results.h"
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
     (void)argc;
     FILE *file_matrix, *file_results;
     double *matrix, *results, *solutions = NULL;
-    (void)solutions;
+    int *solutions_pos = NULL;
     int dimension_matrix[2],
         dimension_result[2];
     file_matrix = fopen(argv[1], "r");
@@ -28,12 +29,20 @@ int main(int argc, char *argv[])
     read_matrix(file_results,
                 dimension_result,
                 &results);
-    solve_jabobi(matrix, dimension_matrix, results, dimension_result, solutions);
-    // print_matrix(matrix, dimension_matrix);
-    // print_matrix(results, dimension_result);
-    // print_solution(solutions,
-    //                dimension_matrix);
+    convert_to_dominant_diagonal(matrix,
+                                 dimension_matrix,
+                                 results,
+                                 &solutions_pos);
+    solve_jabobi(matrix,
+                 dimension_matrix,
+                 results,
+                 dimension_result,
+                 &solutions);
+    print_solution(solutions,
+                   solutions_pos,
+                   dimension_result);
     free(matrix);
     free(results);
+    free(solutions);
     return 0;
 }
