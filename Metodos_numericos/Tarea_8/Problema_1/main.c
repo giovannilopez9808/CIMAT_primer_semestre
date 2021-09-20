@@ -6,11 +6,22 @@
 #include "print_results.h"
 #include "Cholesky_decomposition.h"
 #include "solution.h"
-int main()
+void run_cases(int cases)
 {
     double *matrix, *L, *LT, *solutions_y, *solutions_x, *results;
     double k = 5, Q = 3, l = 1, q_0 = 10, q_n = 20;
-    int n = 4;
+    int n;
+    switch (cases)
+    {
+    case 1:
+        n = 4;
+        break;
+    case 2:
+        n = 100;
+        break;
+    default:
+        break;
+    }
     int size = n - 1;
     int dimension_matrix[2] = {size, size};
     int dimension_results[2] = {size, 1};
@@ -31,8 +42,21 @@ int main()
                                      dimension_matrix,
                                      solutions_y,
                                      &solutions_x);
+    print_solution(solutions_x,
+                   dimension_results);
     free(matrix);
     free(L);
     free(LT);
+    free(solutions_x);
+    free(solutions_y);
+    free(results);
+}
+int main()
+{
+    for (int i = 1; i < 3; i++)
+    {
+        run_cases(i);
+    }
+
     return 0;
 }
