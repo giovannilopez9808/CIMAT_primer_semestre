@@ -1,51 +1,38 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 #include "functions.h"
-#include "read_files.h"
+#include "solve_heat_equation.h"
 #include "print_results.h"
-#include "matrix_operations.h"
-#include "dominant_diagonal.h"
+#include "Cholesky_decomposition.h"
 #include "solution.h"
-int main(int argc, char *argv[])
+int main()
 {
-    (void)argc;
-    FILE *file_matrix, *file_results;
-    double *matrix, *results, *solutions = NULL;
-    int *solutions_pos = NULL;
-    int dimension_matrix[2],
-        dimension_result[2];
-    file_matrix = fopen(argv[1], "r");
-    file_results = fopen(argv[2], "r");
-    valid_file(file_matrix);
-    valid_file(file_results);
-    // Lectura de los datos de la matriz
-    read_dimension(file_matrix,
-                   dimension_matrix);
-    read_matrix(file_matrix,
-                dimension_matrix,
-                &matrix);
-    // Lectura de los datos del vector resultado
-    read_dimension(file_results,
-                   dimension_result);
-    read_matrix(file_results,
-                dimension_result,
-                &results);
-    convert_to_dominant_diagonal(matrix,
-                                 dimension_matrix,
-                                 results,
-                                 &solutions_pos);
-    solve_jabobi(matrix,
-                 dimension_matrix,
-                 results,
-                 dimension_result,
-                 &solutions);
-    print_solution(solutions,
-                   solutions_pos,
-                   dimension_result);
+    double *matrix, *L, *LT, *solutions_y, *solutions_x, *results;
+    double k = 5, Q = 3, l = 1, q_0 = 10, q_n = 20;
+    int n = 4;
+    int size = n - 1;
+    int dimension_matrix[2] = {size, size};
+    int dimension_results[2] = {size, 1};
+    // Creacion de los datos de la matriz
+    create_matrix(&matrix, dimension_matrix);
+    initialize_results(&results,
+                       dimension_matrix,
+                       k, Q, l, n, q_0, q_n);
+    obtain_Cholesky(matrix,
+                    dimension_matrix,
+                    &L,
+                    &LT);
+    solve_triangular_inferior_matrix(L,
+                                     dimension_matrix,
+                                     results,
+                                     &solutions_y);
+    solve_triangular_superior_matrix(LT,
+                                     dimension_matrix,
+                                     solutions_y,
+                                     &solutions_x);
     free(matrix);
-    free(results);
-    free(solutions);
-    free(solutions_pos);
+    free(L);
+    free(LT);
     return 0;
 }

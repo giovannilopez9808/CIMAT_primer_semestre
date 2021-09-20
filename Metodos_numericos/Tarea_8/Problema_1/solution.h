@@ -1,129 +1,135 @@
-void obtain_D_and_R_matrix(double *matrix, int dimension_matrix[], double **D_matrix, double **R_matrix)
+void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)
 {
     /* 
-    Obtiene la matrix D y R a partir de una matriz
+    Resuleve un sistema de ecuaciones supongiendo que se trata de una matriz triangular superior
+    inputs:
+    + matrix: puntero de un arreglo de datos bidimensional
+    + dimension_matrix: arreglo de enteros de dimension 2
+    + results: puntero de un arreglo que contiene los datos de la matriz extendida del sistema
+    + solutions: doble puntero de tipo double que alojara las soluciones del sistema
      */
-    *D_matrix = (double *)malloc(dimension_matrix[0] * dimension_matrix[1] * sizeof(double));
-    *R_matrix = (double *)malloc(dimension_matrix[0] * dimension_matrix[1] * sizeof(double));
-    double *R_ij, *D_ij;
-    double matrix_ij, matrix_ii;
+    double result_i, matrix_ii, matrix_ij, sum_ij;
+    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
+    for (int i = dimension_matrix[0] - 1; i >= 0; i--)
+    {
+        // Inicializacion del contador
+        sum_ij = 0;
+        // Obtiene el termino b_i
+        result_i = *(results + i);
+        // Obtiene el termino a_i
+        matrix_ii = *(matrix + i * dimension_matrix[0] + i);
+        // Valida la solucion del sistema
+        valid_solution(matrix_ii);
+        for (int j = dimension_matrix[0] - 1; j > i; j--)
+        {
+            // Obtiene el termino a_ij
+            matrix_ij = *(matrix + j * dimension_matrix[0] + i);
+            // Realiza la suma del producto de x_j*a_ij
+            sum_ij += *(*solutions + j) * matrix_ij;
+        }
+        // Obtiene el termino x_i
+        *(*solutions + i) = (result_i - sum_ij) / matrix_ii;
+    }
+}
+void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)
+{
+    /* 
+    Resuleve un sistema de ecuaciones supongiendo que se trata de una matriz triangular inferior
+    inputs:
+    + matrix: puntero de un arreglo de datos bidimensional
+    + dimension_matrix: arreglo de enteros de dimension 2
+    + results: puntero de un arreglo que contiene los datos de la matriz extendida del sistema
+    + solutions: doble puntero de tipo double que alojara las soluciones del sistema
+     */
+    double result_i, matrix_ii, matrix_ij, sum_ij;
+    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
-        // Elemento ij de D
-        D_ij = (*D_matrix + i * dimension_matrix[0] + i);
-        // Elemento ii de la matriz
+        // Inicializacion del contador
+        sum_ij = 0;
+        // Obtiene el termino b_i
+        result_i = *(results + i);
+        // Obtiene el termino a_ii
         matrix_ii = *(matrix + i * dimension_matrix[0] + i);
-        // Inverso de la diagonal
-        *D_ij = 1 / matrix_ii;
-        for (int j = 0; j < dimension_matrix[0]; j++)
+        // Validacion de la existencia de la solucion
+        valid_solution(matrix_ii);
+        for (int j = 0; j < i; j++)
         {
-            if (i != j)
+            // Obtiene el termino a_ij
+            matrix_ij = *(matrix + j * dimension_matrix[0] + i);
+            // Realiza la suma de los productos x_j*a_ij
+            sum_ij += *(*solutions + j) * matrix_ij;
+        }
+        // Obtiene el termino x_i
+        *(*solutions + i) = (result_i - sum_ij) / matrix_ii;
+    }
+}
+void solve_diagonal_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)
+{
+    /* 
+    Resuleve un sistema de ecuaciones supongiendo que se trata de una matriz diagonal
+    inputs:
+    + matrix: puntero de un arreglo de datos bidimensional
+    + dimension_matrix: arreglo de enteros de dimension 2
+    + results: puntero de un arreglo que contiene los datos de la matriz extendida del sistema
+    + solutions: doble puntero de tipo double que alojara las soluciones del sistema
+     */
+    double result_i, matrix_ii;
+    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        // Obtiene el termino b_i
+        result_i = *(results + i);
+        // Obtiene el termino a_i
+        matrix_ii = *(matrix + i * dimension_matrix[0] + i);
+        valid_solution(matrix_ii);
+        // Obtiene el termino x_i
+        *(*solutions + i) = result_i / matrix_ii;
+    }
+}
+void solve_gaussian_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)
+{
+    /* 
+    Resuleve un sistema de ecuaciones supongiendo que se trata de una matriz triangular superior
+    inputs:
+    + matrix: puntero de un arreglo de datos bidimensional
+    + dimension_matrix: arreglo de enteros de dimension 2
+    + results: puntero de un arreglo que contiene los datos de la matriz extendida del sistema
+    + solutions: doble puntero de tipo double que alojara las soluciones del sistema
+     */
+    double matrix_ii, matrix_ij, matrix_jk, matrix_ik, ratio_ij, result_i;
+    double *Matrix_jk, *Result_j;
+    for (int i = 0; i < dimension_matrix[0] - 1; i++)
+    {
+        // Obtiene el termino a_ii
+        matrix_ii = *(matrix + i * dimension_matrix[0] + i);
+        // Obitene el termino b_i
+        result_i = *(results + i);
+        for (int j = i + 1; j < dimension_matrix[0]; j++)
+        {
+            // Obtiene el termino a_ij
+            matrix_ij = *(matrix + i * dimension_matrix[0] + j);
+            // Valida la solucion del sistema
+            valid_solution(matrix_ij);
+            // Obtiene el factor que se multiplicara en toda la fila
+            ratio_ij = matrix_ii / matrix_ij;
+            // Obtiene el puntero de
+            Result_j = (results + j);
+            // Obtiene x_j por el factor
+            *Result_j = *Result_j * ratio_ij - result_i;
+            // Proceso de diferencias entrre la i-esima fila
+            for (int k = i; k < dimension_matrix[1]; k++)
             {
-                // Elemento ij de R
-                R_ij = (*R_matrix + j * dimension_matrix[0] + i);
-                // Elemento ij de la matriz diferente a la diagonal
-                matrix_ij = *(matrix + j * dimension_matrix[0] + i);
-                *R_ij = matrix_ij;
+                matrix_ik = *(matrix + k * dimension_matrix[0] + i);
+                matrix_jk = *(matrix + k * dimension_matrix[0] + j);
+                Matrix_jk = (matrix + k * dimension_matrix[0] + j);
+                *Matrix_jk = (matrix_jk * ratio_ij - matrix_ik);
             }
         }
     }
-}
-int convergence(double *solutions, double *solutions_i, int dimension_solutions[], int attempt)
-{
-    /* 
-    Calcula si la convergencia del metodo es suficiente para terminarlo
-    */
-    double s_i, si_i;
-    double theta = 0;
-    // No lo calcula para el primer intento
-    if (attempt != 0)
-    {
-        // Calcula la diferencia entre soluciones de la iteracion actual y la anterior
-        for (int i = 0; i < dimension_solutions[0]; i++)
-        {
-            s_i = *(solutions + i);
-            si_i = *(solutions_i + i);
-            // Suma de las difeencias al cuadrado
-            theta += (s_i - si_i) * (s_i - si_i);
-        }
-        // Raiz de la suma de diferencias
-        theta = sqrt(theta);
-        // Si cumple el criterio termina
-        if (theta < 1e-7)
-        {
-            return 0;
-        }
-    }
-    // Si no sigue
-    return 1;
-}
-void fill_solutions(double *solutions, double *solutions_i, int dimension_solutions[])
-{
-    /* 
-    Transcribe las soluciones de la iteracion actual al puntero que guarda las soluciones de la iteracion anterior
-         */
-    double *S_i, *Si_i;
-    for (int i = 0; i < dimension_solutions[0]; i++)
-    {
-        S_i = (solutions + i);
-        Si_i = (solutions_i + i);
-        *S_i = *Si_i;
-    }
-}
-void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int dimension_results[], double **solutions)
-{
-    /* 
-    Aplica el metodo de iterativo de Jacobi para matrices
-    inputs:
-    + matrix: puntero que dirije hacia los datos de la matrix
-    + dimension_matrix: arreglo de dos dimensiones que guarda el tamaño de la matriz
-    + results: puntero que dirige al vector constante del sistema de ecuaciomes
-    + dimension_results: arreglo de dos dimnsiones que guarda el tamaño de la matriz
-    + solutions: doble puntero en donde se guardaran las soluciones al sistema de ecuaciones
-     */
-    int attempt = 0;
-    double *R_matrix, *D_matrix, *Rx_matrix, *Matrix_res, *Solutions_i;
-    *solutions = (double *)malloc(dimension_results[0] * sizeof(double));
-    Solutions_i = (double *)malloc(dimension_results[0] * sizeof(double));
-    Rx_matrix = (double *)malloc(dimension_results[0] * sizeof(double));
-    Matrix_res = (double *)malloc(dimension_results[0] * sizeof(double));
-    // Obtiene las matrices D y R de la matriz dada
-    obtain_D_and_R_matrix(matrix,
-                          dimension_matrix,
-                          &D_matrix,
-                          &R_matrix);
-    while (convergence(*solutions,
-                       Solutions_i,
-                       dimension_results,
-                       attempt))
-    {
-        // Copia los valores de las soluciones de la iteracion actual a la anterior
-        fill_solutions(*solutions,
-                       Solutions_i,
-                       dimension_results);
-        // Multiplica las matrices Rx
-        obtain_multiplication_matrix(R_matrix,
-                                     Solutions_i,
-                                     Rx_matrix,
+    // La matriz fue transformada a una triangular superior
+    solve_triangular_superior_matrix(matrix,
                                      dimension_matrix,
-                                     dimension_results);
-        // Resta las matrices b-Rx
-        obtain_subraction_matrix(results,
-                                 Rx_matrix,
-                                 Matrix_res,
-                                 dimension_results);
-        // Multiplica las matrices D^{-1}(b-Rx)
-        obtain_multiplication_matrix(D_matrix,
-                                     Matrix_res,
-                                     Solutions_i,
-                                     dimension_matrix,
-                                     dimension_results);
-        // Contador de los intentos
-        attempt += 1;
-    }
-    free(Solutions_i);
-    free(Rx_matrix);
-    free(Matrix_res);
-    free(R_matrix);
-    free(D_matrix);
+                                     results,
+                                     solutions);
 }
