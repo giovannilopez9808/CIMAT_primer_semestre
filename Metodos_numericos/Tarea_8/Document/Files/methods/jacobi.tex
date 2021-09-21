@@ -1,1 +1,44 @@
-\subsection{Método de Jacobi}
+\subsection{Método de Jácobi}
+
+Sea el sistema de ecuaciones lineales $Ax=b$, donde $A$ es la matriz de coeficientes, $x$ es el vector de incógnitas y $b$ el vector de términos independientes. Se propone que $A$ puede ser escrito como la suma dos matrices, tales que una contiene ceros en un diagonal y una matriz diagonal. Entonces, la ecuación matricial se convierte en:
+
+\begin{equation*}
+    Dx+Rx = b
+\end{equation*}
+
+despejando $Dx$, se obtiene la ecuación \ref{eq:dx_jacobi}:
+
+\begin{equation}
+    Dx = b-Rx \label{eq:dx_jacobi}
+\end{equation}
+
+Multiplicando la ecuación \ref{eq:dx_jacobi} por $D^{-1}$ de lado izquierdo la ecuación \ref{eq:x_jacobi}:
+
+\begin{equation}
+    x= D^{-1}(b-Rx) \label{eq:x_jacobi}
+\end{equation}
+
+donde
+\begin{equation*}
+    D^{-1} =
+    \begin{pmatrix}
+        \frac{1}{a_{11}} & 0                & 0                & \cdots & 0                \\
+        0                & \frac{1}{a_{22}} & 0                & \cdots & 0                \\
+        0                & 0                & \frac{1}{a_{33}} & \cdots & 0                \\
+        \vdots           & \vdots           & \vdots           & \ddots & \vdots           \\
+        0                & 0                & 0                & 0      & \frac{1}{a_{nn}} \\
+    \end{pmatrix}
+\end{equation*}
+
+La cual, escribiendo de forma recursiva resulta en la ecuación \ref{eq:jacobi_form}.
+
+\begin{equation}
+    x^{(k+1)}=D^{-1} (b-Rx^{(k)}) \qquad k=0,1,2,\dots,n \label{eq:jacobi_form}
+\end{equation}
+
+
+Desarrollando la ecuación \ref{eq:jacobi_form} para obtener una ecuación para obetner la solución $x_i^{(k+1)}$, se obtiene la ecuación \ref{eq:jacobi_recursiva}.
+
+\begin{equation}
+    x_i^{(k+1)} = \frac{b_i - \sum\limits_{j\neq i} a_{ij}x_{j}^{(k)}}{a_{ii}} \label{eq:jacobi_recursiva}
+\end{equation}

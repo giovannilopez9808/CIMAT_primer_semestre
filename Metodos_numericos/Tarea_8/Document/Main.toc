@@ -1,27 +1,28 @@
 \babel@toc {spanish}{}
 \contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Métodos iterativos}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Método de Jácobi y Gauss-Seidel}{2}{subsubsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.2}Ecuaciones diferenciales parciales}{2}{subsection.1.2}%
 \contentsline {subsubsection}{\numberline {1.2.1}Condición de frontera de Dirichlet}{2}{subsubsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.2}Ecuación de transferencia de calor}{2}{subsubsection.1.2.2}%
-\contentsline {section}{\numberline {2}Métodos}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Ecuación de calor}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Método de Jacobi}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Métodos Gauss-Seidel}{3}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Resultados}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Ecuación de calor}{3}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Problema 1a}{3}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Problema 1b}{4}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Método de Jacobi}{5}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Matriz 3x3}{5}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Matriz 125x125}{5}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Métodos Gauss-Seidel}{5}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Matriz 3x3}{5}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Matriz 125x125}{5}{subsubsection.3.3.2}%
-\contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%
-\contentsline {section}{\numberline {5}Compilación y ejecucción de los programas}{5}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Ecuación de calor}{5}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Problema 1a}{5}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Problema 1b}{5}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Método de Jacobi}{5}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Métodos Gauss-Seidel}{5}{subsection.5.3}%
+\contentsline {section}{\numberline {2}Métodos}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ecuación de calor}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Método de Jácobi}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Métodos Gauss-Seidel}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Resultados}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Ecuación de calor}{4}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Problema 1a}{4}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Problema 1b}{5}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Método de Jacobi}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Matriz 3x3}{6}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Matriz 125x125}{6}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Métodos Gauss-Seidel}{6}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Matriz 3x3}{6}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Matriz 125x125}{6}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {4}Conclusiones}{6}{section.4}%
+\contentsline {section}{\numberline {5}Compilación y ejecucción de los programas}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Ecuación de calor}{6}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Problema 1a}{6}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Problema 1b}{6}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Método de Jacobi}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Métodos Gauss-Seidel}{6}{subsection.5.3}%
