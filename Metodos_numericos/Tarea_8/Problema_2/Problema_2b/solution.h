@@ -43,7 +43,7 @@ void fill_solutions(double *solutions, double *solutions_i, int dimension_soluti
 void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results, int dimension_results[], double **solutions)
 {
     /* 
-    Aplica el metodo de iterativo de Jacobi para matrices
+    Aplica el metodo de iterativo de Gauss Seidel para matrices
     inputs:
     + matrix: puntero que dirije hacia los datos de la matrix
     + dimension_matrix: arreglo de dos dimensiones que guarda el tamaño de la matriz
@@ -56,7 +56,6 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
     double r_i, s_j, m_ii, m_ij, sum;
     *solutions = (double *)malloc(dimension_results[0] * sizeof(double));
     Solutions_i = (double *)malloc(dimension_results[0] * sizeof(double));
-    // Obtiene las matrices D y R de la matriz dada
     while (convergence(*solutions,
                        Solutions_i,
                        dimension_results,
@@ -73,6 +72,7 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
             r_i = *(results + i);
             S_i = (Solutions_i + i);
             sum = 0;
+            // Obtiene la suma x_i * a_ij
             for (int j = 0; j < i; j++)
             {
                 s_j = *(Solutions_i + j);
@@ -81,6 +81,7 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
             }
             *S_i = (r_i - sum) / m_ii;
             sum = 0;
+            // Obtiene la suma x_{i+1} * a_ij
             for (int j = i + 1; j < dimension_results[0]; j++)
             {
                 s_j = *(Solutions_i + j);

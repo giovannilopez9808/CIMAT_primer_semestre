@@ -6,7 +6,6 @@
 #include "quick_sort.h"
 #include "dominant_diagonal.h"
 #include "print_results.h"
-#include "matrix_operations.h"
 #include "solution.h"
 int main(int argc, char *argv[])
 {
@@ -32,15 +31,18 @@ int main(int argc, char *argv[])
     read_matrix(file_results,
                 dimension_result,
                 &results);
+    // Convierte a una matriz diagonalmente dominante
     convert_to_dominant_diagonal(matrix,
                                  dimension_matrix,
                                  results,
                                  &solutions_pos);
+    // Resuelve por Gauss Seidel
     solve_Gauss_Seidel(matrix,
                        dimension_matrix,
                        results,
                        dimension_result,
                        &solutions);
+    // Imprime la solucion
     print_solution(solutions,
                    solutions_pos,
                    dimension_result);
