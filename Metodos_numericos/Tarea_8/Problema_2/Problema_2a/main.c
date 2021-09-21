@@ -6,7 +6,6 @@
 #include "quick_sort.h"
 #include "dominant_diagonal.h"
 #include "print_results.h"
-#include "matrix_operations.h"
 #include "solution.h"
 int main(int argc, char *argv[])
 {

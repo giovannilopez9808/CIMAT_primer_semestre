@@ -1,33 +1,3 @@
-void obtain_D_and_R_matrix(double *matrix, int dimension_matrix[], double **D_matrix, double **R_matrix)
-{
-    /* 
-    Obtiene la matrix D y R a partir de una matriz
-     */
-    *D_matrix = (double *)malloc(dimension_matrix[0] * dimension_matrix[1] * sizeof(double));
-    *R_matrix = (double *)malloc(dimension_matrix[0] * dimension_matrix[1] * sizeof(double));
-    double *R_ij, *D_ij;
-    double matrix_ij, matrix_ii;
-    for (int i = 0; i < dimension_matrix[0]; i++)
-    {
-        // Elemento ij de D
-        D_ij = (*D_matrix + i * dimension_matrix[0] + i);
-        // Elemento ii de la matriz
-        matrix_ii = *(matrix + i * dimension_matrix[0] + i);
-        // Inverso de la diagonal
-        *D_ij = 1 / matrix_ii;
-        for (int j = 0; j < dimension_matrix[0]; j++)
-        {
-            if (i != j)
-            {
-                // Elemento ij de R
-                R_ij = (*R_matrix + j * dimension_matrix[0] + i);
-                // Elemento ij de la matriz diferente a la diagonal
-                matrix_ij = *(matrix + j * dimension_matrix[0] + i);
-                *R_ij = matrix_ij;
-            }
-        }
-    }
-}
 int convergence(double *solutions, double *solutions_i, int dimension_solutions[], int attempt)
 {
     /* 
@@ -82,48 +52,43 @@ void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int d
     + solutions: doble puntero en donde se guardaran las soluciones al sistema de ecuaciones
      */
     int attempt = 0;
-    double *R_matrix, *D_matrix, *Rx_matrix, *Matrix_res, *Solutions_i;
+    double *Solutions_i, *S_i;
+    double m_ii, m_ij, r_i, s_j, sum;
     *solutions = (double *)malloc(dimension_results[0] * sizeof(double));
     Solutions_i = (double *)malloc(dimension_results[0] * sizeof(double));
-    Rx_matrix = (double *)malloc(dimension_results[0] * sizeof(double));
-    Matrix_res = (double *)malloc(dimension_results[0] * sizeof(double));
-    // Obtiene las matrices D y R de la matriz dada
-    obtain_D_and_R_matrix(matrix,
-                          dimension_matrix,
-                          &D_matrix,
-                          &R_matrix);
     while (convergence(*solutions,
                        Solutions_i,
                        dimension_results,
                        attempt))
     {
         // Copia los valores de las soluciones de la iteracion actual a la anterior
-        fill_solutions(*solutions,
-                       Solutions_i,
+        fill_solutions(Solutions_i,
+                       *solutions,
                        dimension_results);
-        // Multiplica las matrices Rx
-        obtain_multiplication_matrix(R_matrix,
-                                     Solutions_i,
-                                     Rx_matrix,
-                                     dimension_matrix,
-                                     dimension_results);
-        // Resta las matrices b-Rx
-        obtain_subraction_matrix(results,
-                                 Rx_matrix,
-                                 Matrix_res,
-                                 dimension_results);
-        // Multiplica las matrices D^{-1}(b-Rx)
-        obtain_multiplication_matrix(D_matrix,
-                                     Matrix_res,
-                                     Solutions_i,
-                                     dimension_matrix,
-                                     dimension_results);
+        // Obtiene el resultado x_i^k
+        for (int i = 0; i < dimension_results[0]; i++)
+        {
+            // Elemento ii de la matrix
+            m_ii = *(matrix + i * dimension_matrix[0] + i);
+            // Elemento i de x_i
+            r_i = *(results + i);
+            // Elemento i se las soluciones
+            S_i = (*solutions + i);
+            sum = 0;
+            // Obtiene la suma x_i * a_ij
+            for (int j = 0; j < dimension_matrix[0]; j++)
+            {
+                if (j != i)
+                {
+                    s_j = *(Solutions_i + j);
+                    m_ij = *(matrix + j * dimension_matrix[0] + i);
+                    sum += m_ij * s_j;
+                }
+            }
+            *S_i = (r_i - sum) / m_ii;
+        }
         // Contador de los intentos
         attempt += 1;
     }
     free(Solutions_i);
-    free(Rx_matrix);
-    free(Matrix_res);
-    free(R_matrix);
-    free(D_matrix);
 }
