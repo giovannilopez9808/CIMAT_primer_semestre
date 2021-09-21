@@ -1,1 +1,30 @@
 \section{Introducción}
+
+\subsection{Métodos iterativos}
+
+\subsection{Ecuaciones diferenciales parciales}
+
+Se denomina a las ecuaciones diferenciales parciales (EDP) a aquellas ecuaciones que involucran derivadas parciales de una función desconocida con dos o más variables independientes. La mayoría de problemas físicos están descritos por EDP de segundo orden. El método análitico para resolver este tipo de ecuaciones es el método de variables separables.
+
+En el caso de el método numérico, uno de los métodos para la solución de EDP es elementos finitos, este considera que el continuo se divide en un número finito de partes que se denominan como elementos. Un parámetro del método es el número de puntos característicos llamados nodos. Estos nodos son los puntos de unión de cada elemento adyacente\cite{Acosto_2016}.
+
+\subsubsection{Condición de frontera de Dirichlet}
+
+Las condiciones de frontera de Dirichlet son cantidades definidas en los extremos de una ecuación diferencial para obtener la solución particular.
+
+\subsubsection{Ecuación de transferencia de calor}
+
+La EDP empleada para modelar la transferencia de calor es la siguiente:
+
+\begin{equation*}
+    k \nabla^2 u - \frac{\partial^2 u}{\partial t^2} = 0
+\end{equation*}
+
+para el caso estacionario en una dimensión se tiene:
+
+\begin{equation}
+    k\frac{\partial^2 u}{\partial x^2} +Q = 0 \label{eq:heat_equation}
+\end{equation}
+
+La ecuación \ref{eq:heat_equation} es una ecuación diferencial ordinaria con coeficientes constantes.
+

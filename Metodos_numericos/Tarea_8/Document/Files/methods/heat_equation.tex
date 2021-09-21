@@ -1,1 +1,58 @@
 \subsection{Ecuación de calor}
+
+Aplicando el método de diferencias finitas a la ecuación \ref{eq:heat_equation} obtenemos la ecuación \ref{eq:heat_diferencias_finitas}.
+
+\begin{equation}
+    \frac{k(u_{i+1}-2u_i+u_{i-1})}{\Delta x^2} + Q = 0 \label{eq:heat_diferencias_finitas}
+\end{equation}
+
+Para el caso de cinco nodos se obtiene el sistema de ecuaciones señalado en la ecuación \ref{eq:heat_system}.
+
+\begin{equation}
+    \begin{cases}
+        u_0 + -2u_1 +u_2 = \frac{-Q\Delta x^2}{K} \\
+        u_1 + -2u_2 +u_3 = \frac{-Q\Delta x^2}{K} \\
+        u_2 + -2u_3 +u_4 = \frac{-Q\Delta x^2}{K} \\
+    \end{cases} \label{eq:heat_system}
+\end{equation}
+
+El sistema de ecuaciones \ref{eq:heat_system} puede ser descrito la ecuación matricial \ref{eq:heat_matrix}.
+
+\begin{equation}
+    \begin{pmatrix}
+        2  & -1 & 0  \\
+        -1 & 2  & -1 \\
+        0  & -1 & 2
+    \end{pmatrix}
+    \begin{pmatrix}
+        u_1 \\
+        u_2 \\
+        u_3
+    \end{pmatrix}
+    =\begin{pmatrix}
+        \frac{Q\Delta x^2}{k}+u_0 \\
+        \frac{Q\Delta x^2}{k}     \\
+        \frac{Q\Delta x^2}{k} + u_4
+    \end{pmatrix}
+    \label{eq:heat_matrix}
+\end{equation}
+
+Donde $u_0$ y $u_4$ son las condiciones de frontera del problema. Si expandemos el problmea a $n$ nodos, obtendremos que para describir el sistema como una ecuación matricial debemos seguir los siguientes parámetros. Para obtener la matriz del sistema se tiene que:
+
+\begin{equation}
+    A =
+    \begin{cases}
+        2  & \text{para }          i=j     \\
+        -1 & \text{para }          |i-j|=1 \\
+        0  & \text{en otro lado}
+    \end{cases}
+    \qquad
+    B = \begin{cases}
+        \frac{Q\Delta x^2}{k}+u_0 & \text{para } i=1    \\
+        \frac{Q\Delta x^2}{k}+u_n & \text{para } i=n-1  \\
+        \frac{Q\Delta x^2}{k}     & \text{en otro lado}
+    \end{cases}
+    \label{eq:heat_system_finish}
+\end{equation}
+
+donde $i,j \in\{1,2,3,\dots,n-1\}$. El sistema de la ecuación \ref{eq:heat_system_finish} describe una matriz tridiagonal, por lo que se obtara por resolver el sistema usando la factorización por Cholesky.

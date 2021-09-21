@@ -12,7 +12,8 @@ void run_cases(FILE *file_results, int n)
     double k = 5, Q = 3, l = 1, q_0 = 10, q_n = 20;
     int size = n - 1;
     int dimension_matrix[2] = {size,
-                               size};
+                               size
+                              };
     // Creacion de los datos de la matriz
     create_matrix(&matrix,
                   dimension_matrix);
@@ -46,11 +47,10 @@ int main()
     FILE *file_results = fopen("results.csv", "w");
     fprintf(file_results,
             "N,Value\n");
-    int n_list[] = {10, 30, 50, 70, 100};
-    for (int i = 0; i < 5; i++)
+    for (int i = 10; i < 220; i+=10)
     {
         run_cases(file_results,
-                  n_list[i]);
+                  i);
     }
     return 0;
     fclose(file_results);
