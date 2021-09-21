@@ -56,3 +56,16 @@ Donde $u_0$ y $u_4$ son las condiciones de frontera del problema. Si expandemos 
 \end{equation}
 
 donde $i,j \in\{1,2,3,\dots,n-1\}$. El sistema de la ecuación \ref{eq:heat_system_finish} describe una matriz tridiagonal, por lo que se obtara por resolver el sistema usando la factorización por Cholesky.
+
+El algoritmo que resuelve esta EDP es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: k, Q, L, u_0, u_n, n
+    // output: solutions
+    matrix,results = create_matrix_system(Q,k,l,n)
+    L = Cholesky(matrix)
+    solutions_y = solve_triangular_inferior(L,results)
+    solutions_x = solve_triangular_superior(LT,solutions_y)
+\end{lstlisting}
+
+La funciones \script{Cholesky}, \script{solve\_triangular\_inferior} y \script{solve\_triangular\_superior} fueron creadas en tareas anteriores. La función \script{create\_matrix\_system} aplica la ecuación \ref{eq:heat_system_finish} para obtener la ecuación matricial.
