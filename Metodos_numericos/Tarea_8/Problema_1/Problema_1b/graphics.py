@@ -18,5 +18,6 @@ plt.grid(ls="--",
          color="#000000",
          alpha=0.5)
 plt.tight_layout()
-plt.savefig(parameters["file graphics"])
+plt.savefig(parameters["file graphics"],
+            dpi=400)
 plt.show()
