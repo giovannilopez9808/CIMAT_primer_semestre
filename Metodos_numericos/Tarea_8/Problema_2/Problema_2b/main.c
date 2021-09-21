@@ -36,11 +36,11 @@ int main(int argc, char *argv[])
                                  dimension_matrix,
                                  results,
                                  &solutions_pos);
-    solve_jabobi(matrix,
-                 dimension_matrix,
-                 results,
-                 dimension_result,
-                 &solutions);
+    solve_Gauss_Seidel(matrix,
+                       dimension_matrix,
+                       results,
+                       dimension_result,
+                       &solutions);
     print_solution(solutions,
                    solutions_pos,
                    dimension_result);
