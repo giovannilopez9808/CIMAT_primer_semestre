@@ -48,5 +48,7 @@ int main(int argc, char *argv[])
     free(results);
     free(solutions);
     free(solutions_pos);
+    fclose(file_matrix);
+    fclose(file_results);
     return 0;
 }
