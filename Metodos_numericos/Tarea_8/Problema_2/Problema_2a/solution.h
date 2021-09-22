@@ -90,5 +90,7 @@ void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int d
         // Contador de los intentos
         attempt += 1;
     }
+    print_lines();
+    printf("\nNúmero de iteraciones totales:\t%d\n", attempt);
     free(Solutions_i);
 }
