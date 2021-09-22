@@ -13,16 +13,16 @@
 \contentsline {subsection}{\numberline {3.1}Ecuación de calor}{6}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Problema 1a}{7}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Problema 1b}{7}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Método de Jacobi}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Método de Jácobi}{8}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Matriz 3x3}{8}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Matriz 125x125}{8}{subsubsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.3}Métodos Gauss-Seidel}{8}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Matriz 3x3}{8}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Matriz 125x125}{8}{subsubsection.3.3.2}%
-\contentsline {section}{\numberline {4}Conclusiones}{8}{section.4}%
-\contentsline {section}{\numberline {5}Compilación y ejecucción de los programas}{8}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Ecuación de calor}{8}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Problema 1a}{8}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Problema 1b}{8}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Método de Jacobi}{8}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Métodos Gauss-Seidel}{8}{subsection.5.3}%
+\contentsline {section}{\numberline {4}Conclusiones}{9}{section.4}%
+\contentsline {section}{\numberline {5}Compilación y ejecucción de los programas}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Ecuación de calor}{9}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Problema 1a}{9}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Problema 1b}{9}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Método de Jacobi}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Métodos Gauss-Seidel}{9}{subsection.5.3}%
