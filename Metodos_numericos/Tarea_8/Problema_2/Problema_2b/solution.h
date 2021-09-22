@@ -92,5 +92,7 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
         }
         attempt += 1;
     }
+    print_lines();
+    printf("\nNúmero de iteraciones totales:\t%d\n", attempt);
     free(Solutions_i);
 }
