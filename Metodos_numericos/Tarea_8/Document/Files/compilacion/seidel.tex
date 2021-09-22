@@ -1,1 +1,19 @@
 \subsection{Métodos Gauss-Seidel}
+
+La Compilación de los programas se realizo con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    gcc -Wall -Wextra -Werror -pedantic -ansi -o main.out main.c -std=c11 -lm
+\end{lstlisting}
+
+La ejecución del programa se realiza con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+    ./main.out matrix vector
+\end{lstlisting}
+
+donde matrix es el nombre del archivo de la matriz y vector es el nombre del archivo del vector de términos independientes. Por ejemplo, para ejecutar el programa con los archivos \file{M\_sys\_3x3.txt} y \file{V\_sys\_\-3x1.txt} el comando tendria que ser el siguiente:
+
+\begin{lstlisting}[language=bash]
+    ./main.out M_sys_3x3.txt V_sys_3x1.txt
+\end{lstlisting}
