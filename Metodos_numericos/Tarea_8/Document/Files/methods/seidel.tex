@@ -1,3 +1,29 @@
 \subsection{Método de Gauss-Seidel}
 
-El método
+El método de Gauss-Seidel es semejante al método de Jácobi. El método de Jácobi usa el valor de las incógnitas para determinar una nueva aproximación en cada iteración, en cambio, el método de Gauss-Seidel calcula las nuevas aproximaciones con los valores calculados en la misma iteración. Entonces, tomando esto en cuenta, la ecuación recursiva para el método de Gauss-Seidel es la siguiente:
+
+\begin{equation}
+    x_i^{(k+1)} = \frac{b_i - \sum\limits_{j=1}^{i-1} a_{ij}x_{j}^{(k+1)}\sum\limits_{j= i+1} a_{ij}x_{j}^{(k)}}{a_{ii}} \label{eq:seidel_recursiva}
+\end{equation}
+
+La convergencia de la ecuación \ref{eq:seidel_recursiva} es definida con la ecuación usada para el método de Jacobi (ecuación \ref{eq:norm_jacobi}). El algoritmo implementado para este método se encuentra en el archivo \file{solution.h} en la función \script{solve\_seidel}, el cual es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix
+    // output: x
+    for (int i = 0; i < n; i++)
+        {
+            sum = 0;
+            for (int j = 0; j < i; j++)
+            {
+                sum += m_ij * x_j;
+            }
+            x_i = (b_i - sum) / m_ii;
+            sum = 0;
+            for (int j = i + 1; j < n; j++)
+            {
+                sum += m_ij * x_j;
+            }
+            x_i = x_i - sum / m_ii;
+        }
+\end{lstlisting}

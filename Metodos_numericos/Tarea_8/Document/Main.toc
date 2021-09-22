@@ -11,7 +11,7 @@
 \contentsline {subsection}{\numberline {2.3}Método de Gauss-Seidel}{6}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Resultados}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Ecuación de calor}{6}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Problema 1a}{6}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Problema 1a}{7}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Problema 1b}{7}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Método de Jacobi}{8}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Matriz 3x3}{8}{subsubsection.3.2.1}%
