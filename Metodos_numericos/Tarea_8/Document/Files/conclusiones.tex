@@ -5,3 +5,7 @@
 Observando la gráfica \ref{fig:heat_results_1} se concluye que el número de nodos influye en el valor de la solución de la ecuación diferencial. Esto es debido a que al ser un nodo que varia su distancia este obtiene una diferente solución y al añadir más nodos, la distancia entre elementos es menor. En el caso de la gráfica \ref{fig:heat_results_2} se concluye que al tomar un nodo que tenga la misma distancia independientemente del número de nodos su solución será la misma.
 
 \subsection{Método Jácobi y Gauss-Seidel}
+
+El método de Jácobi y Gauss-Seidel obtienen la solución a un sistema de ecuaciones. Su método para obtener la solución es muy semejante en los dos métodos, la ventaja que tiene Gauss-Seidel es que este converge a una solución con un menor número de iteraciones. Esto puede reflejarse con las matrices que se probo. Jácobi necesita siete iteraciones para llegar a una solución de la matriz de 3x3 dada, en cambio, Gauss-Seidel realizo cinco. En este caso la diferencia no es muy grande, pero esto puede deberse a que es un sistema de ecuaciones pequeño.
+
+Con la matriz de 125x125, el método de Jácobi realizo 1874 iteraciones y Gauss-Seidel le yomo 991 iteraciones para llegar a la misma solución. Aqui se puede probar que el método de Gauss-Seidel es más optimo debido a que en la misma iteración toma en cuenta las aproximaciones que calcula.
