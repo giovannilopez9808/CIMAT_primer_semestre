@@ -70,6 +70,7 @@ void solve_jabobi(double *matrix, int dimension_matrix[], double *results, int d
         {
             // Elemento ii de la matrix
             m_ii = *(matrix + i * dimension_matrix[0] + i);
+            valid_solution(m_ii);
             // Elemento i de x_i
             r_i = *(results + i);
             // Elemento i se las soluciones

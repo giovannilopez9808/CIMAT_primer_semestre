@@ -69,6 +69,7 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
         for (int i = 0; i < dimension_results[0]; i++)
         {
             m_ii = *(matrix + i * dimension_matrix[0] + i);
+            valid_solution(m_ii);
             r_i = *(results + i);
             S_i = (Solutions_i + i);
             sum = 0;
@@ -79,8 +80,6 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
                 m_ij = *(matrix + j * dimension_matrix[0] + i);
                 sum += m_ij * s_j;
             }
-            *S_i = (r_i - sum) / m_ii;
-            sum = 0;
             // Obtiene la suma x_{i+1} * a_ij
             for (int j = i + 1; j < dimension_results[0]; j++)
             {
@@ -88,7 +87,7 @@ void solve_Gauss_Seidel(double *matrix, int dimension_matrix[], double *results,
                 m_ij = *(matrix + j * dimension_matrix[0] + i);
                 sum += m_ij * s_j;
             }
-            *S_i = *S_i - sum / m_ii;
+            *S_i = (r_i - sum) / m_ii;
         }
         attempt += 1;
     }
