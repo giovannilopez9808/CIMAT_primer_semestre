@@ -88,11 +88,24 @@ Los programas y resultados del problema 1a y 1b se encuentran en la carpeta \fol
 
 \textbf{Graficar la variación de temperatura u del nodo central contra el número de elementos n $\in$ \{10, 30, 50, 70, 100\} que equivale a n + 1 nodos.}
 
-Para este problema se creo un ciclo que repetirá el proceso del problema 1a. En este ciclo, el valor de $n$ cambiará para obtener la solución del problema. El archivo que contiene a el nodo central de cada iteración es \file{results.csv}. Se creo un programa en python, el cual lee el archivo de resultados y realiza la gráfica \ref{fig:heat_results}.
+Para este problema se creo un ciclo que repetirá el proceso del problema 1a. En este ciclo, el valor de $n$ cambiará para obtener la solución del problema. Los archivos que contienen el resultado del nodo central y  anterior al central de cada iteración son \file{results\_1.csv} y \file{results\_2.csv} respectivamente. Se creo un programa en python, el cual lee el archivo de resultados y realiza las gráficas \ref{fig:heat_results_1} y \ref{fig:heat_results_2}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=10cm]{Graphics/heat_results.png}
-    \caption{Resultado del nodo central para cada valor de n.}
-    \label{fig:heat_results}
-\end{figure}
+\begin{center}
+    \begin{minipage}{0.45\linewidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=7.5cm]{Graphics/heat_results_1.png}
+            \caption{Resultado del nodo central ($\frac{n}{2}$) para cada valor de n.}
+            \label{fig:heat_results_1}
+        \end{figure}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}{0.45\linewidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=7.5cm]{Graphics/heat_results_2.png}
+            \caption{Resultado del nodo anterior al central ($\frac{n}{2}-1$) para cada valor de n.}
+            \label{fig:heat_results_2}
+        \end{figure}
+    \end{minipage}
+\end{center}

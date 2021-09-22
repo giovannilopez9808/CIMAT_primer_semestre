@@ -43,10 +43,125 @@ Desarrollando la ecuación \ref{eq:jacobi_form} para obtener una ecuación para 
     x_i^{(k+1)} = \frac{b_i - \sum\limits_{j\neq i} a_{ij}x_{j}^{(k)}}{a_{ii}} \label{eq:jacobi_recursiva}
 \end{equation}
 
+La ecuación \ref{eq:jacobi_recursiva} se implemento en el programa \file{solution.h}, en la función \script{solve\_jabobi}. El algoritmo es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix
+    // output: x
+    for (int i = 0; i < n; i++)
+        {
+            sum = 0;
+            for (int j = 0; j < n; j++)
+            {
+                if (j != i)
+                {
+                    sum += m_ij * x_j;
+                }
+            }
+            x_i = (b_i - sum) / m_ii;
+        }
+\end{lstlisting}
+
 La tolerancia de este metodo se definió usando una norma ($\theta$), la cual esta descrita en la ecuación \ref{eq:norm_jacobi}.
 
 \begin{equation}
     \theta =\sqrt{\sum_{i=1}^{n-1} (x_i^{(k+1)}-x_i^{(k)})^2} \label{eq:norm_jacobi}
 \end{equation}
 
-El método seguira hasta que $\theta < 10^{-6}$.
+El método seguira hasta que $\theta < 10^{-6}$. El método de Jácobi se asegura que converge cuando la matriz $A$ es diagonal dominante. En el caso que A no sea diagonal dominante no se asegura obtener una solución al sistema. Se dice que una matriz diagonal dominante es aquella que los elementos de su diagonal cumplen la condición de la ecuación
+
+\begin{equation}
+    |a_{ii}| \geq \sum_{i\neq j} |a_{ij}|
+\end{equation}
+
+
+Al inicio del programa se comprueba si la matriz introducida es diagonal convergente. Si no lo es intentará ordenar los elementos de tal manera que el elemento con valor absoluto mayor se encuentre en la diagonal de la matriz. Por ejemplo, si se tiene la matriz aumentada:
+
+\begin{equation*}
+    A = \left(\left.
+    \begin{matrix}
+        -1 & 3  & 1 \\
+        7  & 1  & 4 \\
+        2  & -5 & 5 \\
+    \end{matrix}
+    \right|
+    \begin{matrix}
+        2 \\
+        5 \\
+        -1
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Se buscará el valor mas grande en la matriz para organizarlo en la posición $a_{11}$, esto realizando un intercambio de filas y columnas.
+
+\begin{equation*}
+    A = \left(\left.
+    \begin{matrix}
+        7  & 1 & 4 \\
+        -1 & 3 & 1 \\
+        2  & 2 & 5 \\
+    \end{matrix}
+    \right|
+    \begin{matrix}
+        5 \\
+        2 \\
+        -1
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Para elemento $a_{22}$, se buscara el elemento con valor absoluto mayor que tal que su número de fila y columna es mayor a 2. En este ejemplo, la siguiente organización sería la siguiente:
+
+\begin{equation*}
+    A = \left(\left.
+    \begin{matrix}
+        7  & 4 & 1 \\
+        2  & 5 & 2 \\
+        -1 & 1 & 3
+    \end{matrix}
+    \right|
+    \begin{matrix}
+        5  \\
+        -1 \\
+        2
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Al llegar al ultimo del elemento de la diagonal de la matriz no se realizará ningún cambio. Este procedimiento puede no obtener una matriz diagonal dominante. Sin embargo, se comprobo que algunos sistemas que no convergian, al realizar este proceso se llega a su solución. Este proceso de ordenamiento se encuentra contenido en el archivo \file{dominant\_diagonal.h}.
+
+El algoritmo que sigue es el siguiente:
+
+\begin{lstlisting}[style=CStyle]
+    // inputs: matrix
+    // output: matrix_ordenada
+    for (int i = 0; i < n; i++)
+    {
+        // Se supone que el maximo ya se encuentra en la diagonal
+        max = fabs(m_ii);
+        i_max = i;
+        j_max = i;
+        for (int j = i; j < n; j++)
+        {
+            for (int k = i; k < n; k++)
+            {
+                if (fabs(m_ij) > max)
+                {
+                    max = fabs(m_ij);
+                    i_max = j;
+                    j_max = k;
+                }
+            }
+        }
+        if (i != i_max)
+        {
+            change_columns(matrix,max_position);
+        }
+        if (i != j_max)
+        {
+            change_rows(matrix,results);
+        }
+    }
+    is_diagonal_dominant_matrix(matrix);
+\end{lstlisting}
