@@ -22,10 +22,4 @@
 \contentsline {section}{\numberline {4}Conclusiones}{9}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Ecuación de transferencia de calor}{9}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Método Jácobi y Gauss-Seidel}{9}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Compilación y ejecucción de los programas}{9}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Ecuación de calor}{9}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Problema 1a}{9}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Problema 1b}{9}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Método de Jacobi}{10}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Métodos Gauss-Seidel}{10}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Referencias}{10}{section.6}%
+\contentsline {section}{\numberline {5}Referencias}{9}{section.5}%
