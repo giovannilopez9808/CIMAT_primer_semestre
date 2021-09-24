@@ -51,6 +51,8 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
         *lambda = *(*vector) / (*vector_i);
         attempt += 1;
     }
+    print_lines();
+    printf("\nNúmero de iteraciones:\t%d\n\n",attempt);
     normalize_vector(*vector,
                      dimension_vector);
 }
