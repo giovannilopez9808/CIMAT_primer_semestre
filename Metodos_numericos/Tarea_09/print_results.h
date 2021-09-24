@@ -29,18 +29,17 @@ void print_matrix(double *matrix, int dimension_matrix[])
     }
     printf("\n");
 }
-void print_solution(double *solution, int *solution_pos, int dimension_matrix[])
+void print_solution(double *solution, int dimension_matrix[])
 {
     /* 
     Realiza la impresion de la solucion del sistema de ecuaciones
      */
-    sorted(solution_pos, solution, 0, dimension_matrix[0] - 1);
     print_lines();
     printf("Soluciones del sistema\n\n");
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
         printf("x_%d\t= %lf\n",
-               *(solution_pos + i),
+               i,
                *(solution + i));
     }
 }
