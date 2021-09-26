@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "structures.h"
 #include "read_file.h"
 #include "sort.h"
 #include "count.h"
+#include "update.h"
 #include "print_results.h"
 int main(int argv, char *argc[])
 {
@@ -20,6 +22,10 @@ int main(int argv, char *argc[])
     obtain_information(students,
                        data,
                        persons);
+    delete_user(students,
+                &persons,
+                0);
+    print_students(students, persons);
     //    Nombre
     // sort(students, persons, 1);
     // // Edades
