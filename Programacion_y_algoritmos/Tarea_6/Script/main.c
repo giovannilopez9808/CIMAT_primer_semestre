@@ -22,9 +22,8 @@ int main(int argv, char *argc[])
     obtain_information(students,
                        data,
                        persons);
-    delete_student(students,
-                   &persons,
-                   0);
+    // delete_student(students, &persons, 0);
+    add_student(&students, &persons);
     print_students(students, persons);
     //    Nombre
     // sort(students, persons, 1);

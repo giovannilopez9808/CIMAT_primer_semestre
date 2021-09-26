@@ -25,3 +25,14 @@ void delete_student(struct student *students, int *size, int index)
     students[index] = students[*size - 1];
     *size = *size - 1;
 }
+void add_student(struct student **students, int *size)
+{
+    *students = (struct student *)realloc(*students, (*size + 1) * sizeof(struct student));
+    (*students)[*size].name = "Test";
+    (*students)[*size].grade = "A-";
+    (*students)[*size].age = 10;
+    (*students)[*size].s.group = 'E';
+    (*students)[*size].s.turn = 'M';
+    *size = *size + 1;
+    // print_students(students, *size);
+}
