@@ -1,8 +1,27 @@
 void delete_student(struct student *students, int *size, int index)
 {
-    for (int i = index; i < *size - 1; i++)
+    char select = 'n';
+    while (select == 'n')
     {
-        students[i] = students[i + 1];
+        printf("Se elimimara el estudiante\n");
+        printf("%s\n", students[index].name);
+        printf("Confirma la eliminación (Y/n): ");
+        // Con un espacio para que no realice la lectura de \n
+        scanf(" %c", &select);
+        if (select == 'n')
+        {
+            index = *size + 1;
+            while (index >= *size)
+            {
+                printf("Escribe el ID del estudiante que deseas eliminar\n");
+                scanf(" %d", &index);
+                if (index >= *size)
+                {
+                    printf("ID invalido\n");
+                }
+            }
+        }
     }
+    students[index] = students[*size - 1];
     *size = *size - 1;
 }
