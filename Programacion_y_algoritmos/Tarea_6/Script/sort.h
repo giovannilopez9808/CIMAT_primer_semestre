@@ -53,26 +53,7 @@ int comparison_grades(struct student student1, struct student student2)
     }
     return 0;
 }
-int select_comparison(struct student student1, struct student student2, int option)
-{
-    int compare;
-    switch (option)
-    {
-    case 1:
-        compare = comparison_names(student1, student2);
-        break;
-    case 2:
-        compare = comparison_ages(student1, student2);
-        break;
-    case 3:
-        compare = comparison_grades(student1, student2);
-        break;
-    default:
-        break;
-    }
-    return compare;
-}
-int reduce_sort(struct student *students, int low, int high, int option)
+int reduce_sort(int (*compare)(struct student, struct student), struct student *students, int low, int high)
 {
 
     struct student aux;
@@ -81,13 +62,13 @@ int reduce_sort(struct student *students, int low, int high, int option)
     struct student student_j = students[high];
     // posicion inicial de la lista de numeros
     int i = low;
-    int compare;
+    int diff;
     for (int j = low; j <= high - 1; j++)
     {
         // Si el elemento j es menor o igual al pivote entonces se realizara u intercambio
         student_j = students[j];
-        compare = select_comparison(student_j, pivot, option);
-        if (compare < 0)
+        diff = compare(student_j, pivot);
+        if (diff < 0)
         {
             // Realiza el cambio de valores
             aux = students[j];
@@ -104,7 +85,7 @@ int reduce_sort(struct student *students, int low, int high, int option)
     return i;
 }
 
-void sorted(struct student *students, int start, int last, int option)
+void sort_function(int (*compare)(struct student, struct student), struct student *students, int start, int last)
 {
     /* 
     Realiza el ordenamiento de los numeros de forma decreciente siguiendo el algoritmo de quick sort guardando llos cambios en las posiciones que se hagan realizado en un arreglo
@@ -112,19 +93,45 @@ void sorted(struct student *students, int start, int last, int option)
     if (start < last)
     {
         int numbers_partition;
-        numbers_partition = reduce_sort(students,
+        numbers_partition = reduce_sort(compare,
+                                        students,
                                         start,
-                                        last,
-                                        option);
+                                        last);
         // Ordena la parte inferior
-        sorted(students,
-               start,
-               numbers_partition - 1,
-               option);
+        sort_function(compare,
+                      students,
+                      start,
+                      numbers_partition - 1);
         // Ordena la parte superior
-        sorted(students,
-               numbers_partition + 1,
-               last,
-               option);
+        sort_function(compare,
+                      students,
+                      numbers_partition + 1,
+                      last);
+    }
+}
+void sort(struct student *students, int size, int option)
+{
+    switch (option)
+    {
+    case 1:
+        sort_function(comparison_names,
+                      students,
+                      0,
+                      size - 1);
+        break;
+    case 2:
+        sort_function(comparison_ages,
+                      students,
+                      0,
+                      size - 1);
+        break;
+    case 3:
+        sort_function(comparison_grades,
+                      students,
+                      0,
+                      size - 1);
+        break;
+    default:
+        break;
     }
 }

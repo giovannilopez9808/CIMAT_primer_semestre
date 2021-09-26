@@ -13,7 +13,8 @@ int main(int argv, char *argc[])
     students = (struct student *)calloc(persons, sizeof(struct student));
     obtain_information(students, data, persons);
     print_students(students, persons);
-    sorted(students, 0, persons - 1, 3);
+    sort(students, persons, 3);
+    printf("\n\n");
     print_students(students, persons);
     free(students);
     fclose(data);
