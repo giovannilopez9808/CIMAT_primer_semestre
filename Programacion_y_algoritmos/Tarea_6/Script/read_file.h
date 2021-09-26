@@ -37,6 +37,7 @@ void read_header(FILE *data)
 }
 void print_students(struct student *students, int size)
 {
+    printf("\n");
     for (int i = 0; i < size; i++)
     {
         printf("%s %s %d %c %c\n",

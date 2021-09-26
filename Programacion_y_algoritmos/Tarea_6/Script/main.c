@@ -23,7 +23,7 @@ int main(int argv, char *argc[])
                        data,
                        persons);
     // delete_student(students, &persons, 0);
-    add_student(&students, &persons);
+    // add_student(&students, &persons);
     print_students(students, persons);
     //    Nombre
     // sort(students, persons, 1);

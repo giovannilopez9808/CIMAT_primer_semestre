@@ -28,11 +28,17 @@ void delete_student(struct student *students, int *size, int index)
 void add_student(struct student **students, int *size)
 {
     *students = (struct student *)realloc(*students, (*size + 1) * sizeof(struct student));
-    (*students)[*size].name = "Test";
-    (*students)[*size].grade = "A-";
-    (*students)[*size].age = 10;
-    (*students)[*size].s.group = 'E';
-    (*students)[*size].s.turn = 'M';
+    (*students)[*size].name = malloc(sizeof(char *));
+    (*students)[*size].grade = malloc(sizeof(char *));
+    printf("Escribe el nombre del nuevo estudiante: ");
+    scanf(" %s", (*students)[*size].name);
+    printf("Escribe su calificacion: ");
+    scanf(" %s", (*students)[*size].grade);
+    printf("Escribe su edad: ");
+    scanf(" %d", &(*students)[*size].age);
+    printf("Escribe su grupo: ");
+    scanf(" %c", &(*students)[*size].s.group);
+    printf("Escribe su turno: ");
+    scanf(" %c", &(*students)[*size].s.turn);
     *size = *size + 1;
-    // print_students(students, *size);
 }
