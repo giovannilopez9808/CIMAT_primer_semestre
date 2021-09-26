@@ -4,6 +4,7 @@
     "structures.h": "c",
     "*.tcc": "cpp",
     "string": "cpp",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "print_results.h": "c"
   }
 }
