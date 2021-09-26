@@ -6,6 +6,7 @@
 #include "sort.h"
 #include "count.h"
 #include "update.h"
+#include "inverse.h"
 #include "print_results.h"
 int main(int argv, char *argc[])
 {
@@ -24,6 +25,8 @@ int main(int argv, char *argc[])
                        persons);
     // delete_student(students, &persons, 0);
     // add_student(&students, &persons);
+    print_students(students, persons);
+    inverse_file(students, persons);
     print_students(students, persons);
     //    Nombre
     // sort(students, persons, 1);
