@@ -47,6 +47,7 @@ void print_students(struct student *students, int size)
                students[i].s.group,
                students[i].s.turn);
     }
+    printf("\n");
 }
 void obtain_information(struct student *students, FILE *data, int size)
 {

@@ -30,4 +30,6 @@ void print_file(FILE *data, char *filename, struct student *students, int size)
             fprintf(data, "\n");
         }
     }
+    fclose(data);
+    open_file(data, filename);
 }

@@ -7,6 +7,7 @@
     "string_view": "cpp",
     "print_results.h": "c",
     "count.h": "c",
-    "update.h": "c"
+    "update.h": "c",
+    "menu.h": "c"
   }
 }
