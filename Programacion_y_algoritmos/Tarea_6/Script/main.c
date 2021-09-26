@@ -18,10 +18,10 @@ int main(int argv, char *argc[])
     obtain_information(students,
                        data,
                        persons);
-    count_per_group(students, persons, persons_per_group);
-    count_per_turn(students, persons, persons_per_turn);
-    print_person_per_group(persons_per_group);
-    print_person_per_turn(persons_per_turn);
+    // count_per_group(students, persons, persons_per_group);
+    // count_per_turn(students, persons, persons_per_turn);
+    // print_person_per_group(persons_per_group);
+    // print_person_per_turn(persons_per_turn);
     free(students);
     fclose(data);
     return 0;
