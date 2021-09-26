@@ -1,0 +1,3 @@
+Calificacion Edad Grupo Turno Nombre
+B 10 D M Luis Aldama
+A+ 9 C V Valeria Quirarte
