@@ -7,10 +7,8 @@ int main(int argc, char *argv[])
 {
     (void)argc;
     FILE *file_matrix;
-    double *matrix, *vector = NULL;
-    double lambda = 0;
-    int dimension_matrix[2],
-        dimension_vector[2] = {1, 1};
+    double *matrix, *lambda = NULL, *vector = NULL;
+    int dimension_matrix[2];
     file_matrix = fopen(argv[1], "r");
     valid_file(file_matrix);
     // Lectura de los datos de la matriz
@@ -19,17 +17,20 @@ int main(int argc, char *argv[])
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
-    dimension_vector[0] = dimension_matrix[0];
-    obtain_min_eigenvalue(matrix,
-                          dimension_matrix,
-                          &lambda,
-                          &vector);
-    print_lines();
-    printf("\nlambda = %lf\n\n", lambda);
-    print_lines();
-    printf("\nVector asociado\n\n");
-    print_matrix(vector,
-                 dimension_vector);
+    int n = dimension_matrix[0] - 2;
+    if (n < 2)
+        n = 2;
+    obtain_n_max_eigenvalue(matrix,
+                            dimension_matrix,
+                            &lambda,
+                            &vector,
+                            n);
+    // print_lines();
+    // printf("\nlambda_max = %lf\n\n", lambda_max);
+    // print_lines();
+    // printf("\nVector asociado\n\n");
+    // print_matrix(vector,
+    //              dimension_vector);
     free(matrix);
     free(vector);
     return 0;

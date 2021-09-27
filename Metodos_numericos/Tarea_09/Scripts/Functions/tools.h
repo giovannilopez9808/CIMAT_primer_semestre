@@ -87,22 +87,49 @@ double obtain_max_value(double *vector, int dimension[])
     double max = *vector;
     for (int i = 1; i < dimension[0]; i++)
     {
-        v_i = fabs(*(vector + i));
-        if (max < v_i)
+        v_i = *(vector + i);
+        if (fabs(max) < fabs(v_i))
         {
             max = v_i;
         }
     }
     return max;
 }
+double obtain_norm(double *vector, int dimension[])
+{
+    double v_i, norm = 0;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        v_i = *(vector + i);
+        norm += v_i * v_i;
+    }
+    norm = sqrt(norm);
+    return norm;
+}
 void normalize_vector(double *vector, int dimension[])
 {
-    double max = obtain_max_value(vector, dimension);
+    double max = fabs(obtain_max_value(vector, dimension));
     double *V_i;
     for (int i = 0; i < dimension[0]; i++)
     {
         V_i = (vector + i);
         *V_i = *V_i / max;
+    }
+}
+void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
+{
+    double *M_ij;
+    double v_i, v_j;
+    *matrix = (double *)malloc(dimension[0] * dimension[0] * sizeof(double));
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        v_i = *(vector + i);
+        for (int j = 0; j < dimension[0]; j++)
+        {
+            v_j = *(vector + j);
+            M_ij = (*matrix + j * dimension[0] + i);
+            *M_ij = v_i * v_j;
+        }
     }
 }
 void write_matrix_on_file(FILE *file, double *matrix, int dimension_matrix[])
