@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "functions.h"
-#include "read_files.h"
-#include "matrix_operations.h"
-#include "print_results.h"
-#include "eigenvalue.h"
+#include "../Functions/tools.h"
+#include "../Functions/solvers.h"
 int main(int argc, char *argv[])
 {
     (void)argc;
@@ -23,7 +20,7 @@ int main(int argc, char *argv[])
                 dimension_matrix,
                 &matrix);
     dimension_vector[0] = dimension_matrix[0];
-    obtain_max_eigenvalue(matrix,
+    obtain_min_eigenvalue(matrix,
                           dimension_matrix,
                           &lambda,
                           &vector);
