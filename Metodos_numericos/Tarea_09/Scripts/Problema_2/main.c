@@ -31,5 +31,6 @@ int main(int argc, char *argv[])
     print_matrix(vector,
                  dimension_vector);
     free(matrix);
+    free(vector);
     return 0;
 }

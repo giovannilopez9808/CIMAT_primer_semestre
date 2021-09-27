@@ -55,6 +55,7 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
     printf("\nNúmero de iteraciones:\t%d\n\n", attempt);
     normalize_vector(*vector,
                      dimension_vector);
+    free(vector_i);
 }
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
 {
@@ -99,4 +100,8 @@ void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
     printf("\nNúmero de iteraciones:\t%d\n\n", attempt);
     normalize_vector(*vector,
                      dimension_vector);
+    free(L);
+    free(U);
+    free(vector_aux);
+    free(vector_i);
 }

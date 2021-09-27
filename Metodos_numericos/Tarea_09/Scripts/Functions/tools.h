@@ -247,7 +247,6 @@ void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], do
     + solutions: doble puntero de tipo double que alojara las soluciones del sistema
      */
     double result_i, matrix_ii, matrix_ij, sum_ij;
-    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
     for (int i = dimension_matrix[0] - 1; i >= 0; i--)
     {
         // Inicializacion del contador
@@ -280,7 +279,6 @@ void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], do
     + solutions: doble puntero de tipo double que alojara las soluciones del sistema
      */
     double result_i, matrix_ii, matrix_ij, sum_ij;
-    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
         // Inicializacion del contador
@@ -313,7 +311,6 @@ void solve_diagonal_matrix(double *matrix, int dimension_matrix[], double *resul
     + solutions: doble puntero de tipo double que alojara las soluciones del sistema
      */
     double result_i, matrix_ii;
-    *solutions = (double *)malloc((dimension_matrix[0]) * sizeof(double));
     for (int i = 0; i < dimension_matrix[0]; i++)
     {
         // Obtiene el termino b_i

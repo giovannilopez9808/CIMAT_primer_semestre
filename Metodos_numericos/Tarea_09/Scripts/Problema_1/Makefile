@@ -10,3 +10,6 @@ $(OBJECTS): $(SOURCES)
 
 clean:
 	rm -f $(OBJECTS) 
+
+valgrind:
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out ../Data/matrix.txt
