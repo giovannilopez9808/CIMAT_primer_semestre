@@ -31,5 +31,5 @@ void print_file(FILE *data, char *filename, struct student *students, int size)
         }
     }
     fclose(data);
-    open_file(data, filename);
+    open_file(&data, filename);
 }

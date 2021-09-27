@@ -18,7 +18,7 @@ int main(int argv, char *argc[])
     int per_group[6], per_turn[2];
     students = (struct student *)calloc(persons, sizeof(struct student));
     obtain_information(students, data, persons);
-    menu(students, persons, data, per_group, per_turn);
+    menu(students, persons, data, argc[1], per_group, per_turn);
     free(students);
     fclose(data);
     return 0;
