@@ -7,10 +7,9 @@ void fill_vector(double *vector, double *vector_i, int dimension[])
 }
 void initialize_vector(double *vector, int dimension[])
 {
-    *(vector) = 1;
-    for (int i = 1; i < dimension[0]; i++)
+    for (int i = 0; i < dimension[0]; i++)
     {
-        *(vector + i) = 0;
+        *(vector + i) = 1 / sqrt(dimension[0]);
     }
 }
 int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
@@ -19,7 +18,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     if (attempt != 0)
     {
         theta = fabs(lambda - lambda_i);
-        if (theta < 1e-5)
+        if (theta < 1e-7)
         {
             return 0;
         }
@@ -50,9 +49,9 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
                                      dimension_vector);
         up = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
         down = obtain_norm(vector_i, dimension_vector);
+        normalize_vector(*vector, dimension_vector);
         *lambda = up / down;
         attempt += 1;
-        normalize_vector(*vector, dimension_vector);
     }
     print_lines();
     printf("\nNúmero de iteraciones:\t%d\n\n", attempt);
