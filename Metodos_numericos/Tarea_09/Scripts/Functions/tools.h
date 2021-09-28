@@ -108,12 +108,12 @@ double obtain_norm(double *vector, int dimension[])
 }
 void normalize_vector(double *vector, int dimension[])
 {
-    double max = obtain_max_value(vector, dimension);
+    double norm = obtain_norm(vector, dimension);
     double *V_i;
     for (int i = 0; i < dimension[0]; i++)
     {
         V_i = (vector + i);
-        *V_i = *V_i / max;
+        *V_i = *V_i / norm;
     }
 }
 void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
@@ -131,6 +131,17 @@ void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
             *M_ij = v_i * v_j;
         }
     }
+}
+double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[])
+{
+    double v_i, v_j, cdot = 0;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        v_i = *(vector1 + i);
+        v_j = *(vector2 + i);
+        cdot += v_i * v_j;
+    }
+    return cdot;
 }
 void write_matrix_on_file(FILE *file, double *matrix, int dimension_matrix[])
 {

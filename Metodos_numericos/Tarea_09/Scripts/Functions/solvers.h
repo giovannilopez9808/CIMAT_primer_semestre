@@ -19,7 +19,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     if (attempt != 0)
     {
         theta = fabs(lambda - lambda_i);
-        if (theta < 1e-8)
+        if (theta < 1e-5)
         {
             return 0;
         }
@@ -30,7 +30,7 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
 {
     double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
     int attempt = 0;
-    double lambda_i, max_vi, max_v;
+    double lambda_i, up, down;
     int dimension_vector[2] = {dimension_matrix[0], 1};
     *vector = (double *)malloc(dimension_matrix[0] * sizeof(double));
     initialize_vector(*vector,
@@ -48,17 +48,15 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
                                      *vector,
                                      dimension_matrix,
                                      dimension_vector);
-        max_vi = obtain_max_value(vector_i, dimension_vector);
-        max_v = obtain_max_value(*vector, dimension_vector);
-        *lambda = max_v / max_vi;
+        up = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
+        down = obtain_norm(vector_i, dimension_vector);
+        *lambda = up / down;
         attempt += 1;
-        printf("lambda = %lf\n", *lambda);
         normalize_vector(*vector, dimension_vector);
     }
     print_lines();
     printf("\nNúmero de iteraciones:\t%d\n\n", attempt);
-    // normalize_vector(*vector,
-    //                  dimension_vector);
+    printf("lambda = %lf\n", *lambda);
     free(vector_i);
 }
 void fill_matrix_aux(double *matrix, double *matrix_aux, int dimension_matrix[], int n)
@@ -153,7 +151,7 @@ void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **la
                               &lambda_max,
                               &vector);
         print_matrix(vector, dimension_vector);
-        // printf("lambda = %lf\n", lambda_max);
+        printf("lambda = %lf\n", lambda_max);
     }
 }
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
