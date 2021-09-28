@@ -108,7 +108,7 @@ double obtain_norm(double *vector, int dimension[])
 }
 void normalize_vector(double *vector, int dimension[])
 {
-    double max = fabs(obtain_max_value(vector, dimension));
+    double max = obtain_max_value(vector, dimension);
     double *V_i;
     for (int i = 0; i < dimension[0]; i++)
     {

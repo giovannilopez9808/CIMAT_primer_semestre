@@ -52,11 +52,13 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
         max_v = obtain_max_value(*vector, dimension_vector);
         *lambda = max_v / max_vi;
         attempt += 1;
+        printf("lambda = %lf\n", *lambda);
+        normalize_vector(*vector, dimension_vector);
     }
     print_lines();
     printf("\nNúmero de iteraciones:\t%d\n\n", attempt);
-    normalize_vector(*vector,
-                     dimension_vector);
+    // normalize_vector(*vector,
+    //                  dimension_vector);
     free(vector_i);
 }
 void fill_matrix_aux(double *matrix, double *matrix_aux, int dimension_matrix[], int n)
@@ -147,10 +149,11 @@ void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **la
                         matrix_aux,
                         dimension_matrix, i);
         obtain_max_eigenvalue(matrix_aux,
-                              dimension_aux,
+                              dimension_vector,
                               &lambda_max,
                               &vector);
-        printf("lambda = %lf\n", lambda_max);
+        print_matrix(vector, dimension_vector);
+        // printf("lambda = %lf\n", lambda_max);
     }
 }
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
