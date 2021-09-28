@@ -1,5 +1,5 @@
 \babel@toc {spanish}{}
-\contentsline {section}{\numberline {1}Archivo de entrada}{2}{section.1}%
+\contentsline {section}{\numberline {1}Archivo de entrada }{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Lectura de datos}{2}{subsection.1.1}%
 \contentsline {section}{\numberline {2}Menú}{2}{section.2}%
 \contentsline {section}{\numberline {3}Imprimir en un archivo}{3}{section.3}%

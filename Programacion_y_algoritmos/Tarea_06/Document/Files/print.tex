@@ -1,1 +1,5 @@
 \section{Imprimir en un archivo}
+
+Esta opción es habilitada una vez se hayan leido los datos base. Al seleccionar esta opción por medio del menú ejecuta la función \script{print\_file}. La cual realizará la impresión en el archivo dado siguiendo el formato descrito en la sección \ref{sec:read_file}.
+
+Al inicio de la función el archivo es cerrado, para ser abierto en modo de escritura. Al termino de la función, el archivo será cerrado y abierto nuevamente en modo de lectura. Esto para asegurar los cambios dentro del archivo si es que el programa llega a cerrarse inesperadamente.
