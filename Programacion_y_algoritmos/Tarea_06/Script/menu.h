@@ -1,6 +1,5 @@
 void select_menu(int option, struct student **students, int *size, FILE *data, char *filename, int per_group[6], int per_turn[2])
 {
-    (void)data;
     switch (option)
     {
     case 1:

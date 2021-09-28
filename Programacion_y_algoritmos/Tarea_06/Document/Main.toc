@@ -1,0 +1,16 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Archivo de entrada}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Lectura de datos}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Menú}{2}{section.2}%
+\contentsline {section}{\numberline {3}Imprimir en un archivo}{3}{section.3}%
+\contentsline {section}{\numberline {4}Ordenar información}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Ordenar por nombre}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Ordenar por edad}{3}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Ordenar por promedio}{3}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Contabilización}{3}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Contabilización por grupo}{3}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Contabilización por turno}{3}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Actualización de estudiantes}{3}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Baja de estudiantes}{3}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Alta de estudiantes}{3}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Inversión de los datos}{3}{section.7}%

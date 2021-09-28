@@ -1,0 +1,24 @@
+\section{Archivo de entrada}
+
+Los datos que lee el programa es el archivo \file{data.txt}, el cual contiene como cabecera los siguientes titulos: \textit{Calificacion, Edad, Grupo, Turno} y \textit{Nombre}.
+
+Los datos que contiene el archivo inicialmente se muestran en la tabla \ref{table:initial_data}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccccl} \hline
+        Calificacion & Edad & Grupo & Turno & Nombre             \\ \hline
+        A+           & 9    & C     & V     & Valeria Quirarte   \\
+        A-           & 12   & A     & V     & Valentina Quirarte \\
+        B            & 10   & D     & M     & Luis Aldama        \\
+        B-           & 14   & A     & V     & Marco Lopez        \\
+        A            & 15   & A     & V     & Mayra Medellin     \\
+        C            & 13   & E     & M     & Pedro Arturo       \\ \hline
+    \end{tabular}
+    \caption{Datos iniciales del archivo \file{data.txt}.}
+    \label{table:initial_data}
+\end{table}
+
+\subsection{Lectura de datos}
+
+Al inicio del programa se obtiene el número de personas (filas) que contiene el archivo. Esta cantidad es obtenida en la función \script{obtain\_size}. Con esta cantidad es iniciado el arreglo de estructuras \script{students}. Al tener ya resevada la memoria para los datos de la tabla \ref{table:initial_data}, se realiza la lectura de datos. Este mecanismo es realizado en la función \script{obtain\_information}.
