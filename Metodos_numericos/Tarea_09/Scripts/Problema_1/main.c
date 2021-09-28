@@ -28,9 +28,9 @@ int main(int argc, char *argv[])
     print_lines();
     printf("\nlambda = %lf\n\n", lambda);
     print_lines();
-    // printf("\nVector asociado\n\n");
-    // print_matrix(vector,
-    //              dimension_vector);
+    printf("\nVector asociado\n\n");
+    print_matrix(vector,
+                 dimension_vector);
     free(matrix);
     free(vector);
     return 0;

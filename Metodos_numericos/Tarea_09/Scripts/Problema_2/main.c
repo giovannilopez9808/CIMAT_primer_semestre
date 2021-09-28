@@ -33,5 +33,6 @@ int main(int argc, char *argv[])
     //              dimension_vector);
     free(matrix);
     free(vector);
+    free(lambda);
     return 0;
 }

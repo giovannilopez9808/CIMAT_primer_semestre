@@ -58,100 +58,96 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
     printf("lambda = %lf\n", *lambda);
     free(vector_i);
 }
-void fill_matrix_aux(double *matrix, double *matrix_aux, int dimension_matrix[], int n)
+void fill_vector_i(double *vectors, double *vector, int dimension[], int n)
 {
-    double m_ij;
-    double *M_aux_ij;
-    for (int i = n; i < dimension_matrix[0]; i++)
-    {
-        for (int j = n; j < dimension_matrix[1]; j++)
-        {
-            m_ij = *(matrix + j * dimension_matrix[0] + i);
-            M_aux_ij = (matrix_aux + (j - n) * (dimension_matrix[0] - n) + i - n);
-            *M_aux_ij = m_ij;
-        }
-    }
-}
-void apply_Housholder(double **matrix, int dimension_matrix[], double *vector, int dimension_vector[])
-{
-    (void)matrix;
-    double *H_ij;
-    double norm = obtain_norm(vector, dimension_vector), I;
-    double *matrix_H, *matrix_aux;
-    matrix_aux = (double *)malloc(dimension_vector[0] * dimension_vector[0] * sizeof(double));
-    *vector = *vector + norm;
-    norm = obtain_norm(vector, dimension_vector);
-    obtain_multiplication_vvT(vector, dimension_vector, &matrix_H);
-    for (int i = 0; i < dimension_matrix[0]; i++)
-    {
-        for (int j = 0; j < dimension_matrix[0]; j++)
-        {
-            H_ij = matrix_H + j * dimension_matrix[0] + i;
-            if (i == j)
-            {
-                I = 1;
-            }
-            else
-            {
-                I = 0;
-            }
-            *H_ij = I - 2 * *H_ij / (norm * norm);
-        }
-    }
-    obtain_multiplication_matrix(matrix_H, *matrix, matrix_aux, dimension_matrix, dimension_matrix);
-    obtain_multiplication_matrix(matrix_aux, matrix_H, *matrix, dimension_matrix, dimension_matrix);
-    free(matrix_aux);
-    free(matrix_H);
-}
-void initialize_matrix_i(double *matrix, double **matrix_i, int dimension[])
-{
-    double m_ij, *Mi_ij;
-    *matrix_i = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *Vi_i, v_i;
     for (int i = 0; i < dimension[0]; i++)
     {
-        for (int j = 0; j < dimension[1]; j++)
+        v_i = *(vectors + n * dimension[0] + i);
+        Vi_i = vector + i;
+        *Vi_i = v_i;
+    }
+}
+void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
+{
+    double cdot;
+    double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
+    double *vector_aux = (double *)malloc(dimension[0] * sizeof(double));
+    fill_vector(*vector, vector_aux, dimension);
+    for (int i = 0; i < n; i++)
+    {
+        fill_vector_i(vectors, vector_i, dimension, i);
+        cdot = obtain_cdot_multiplication(vector_i, *vector, dimension);
+        for (int j = 0; j < dimension[0]; j++)
         {
-            m_ij = *(matrix + j * dimension[0] + i);
-            Mi_ij = (*matrix_i + j * dimension[0] + i);
-            *Mi_ij = m_ij;
+            *(vector_aux + j) -= cdot * *(vector_i + j);
         }
+    }
+    fill_vector(vector_aux, *vector, dimension);
+    free(vector_aux);
+    free(vector_i);
+}
+void fill_vectors(double **vectors, double *vector, int dimension[], int n)
+{
+    double *V_i, v_i;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        V_i = (*vectors + n * dimension[0] + i);
+        v_i = *(vector + i);
+        *V_i = v_i;
     }
 }
 void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)
 {
-    (void)lambda;
-    (void)vectors;
-    double *matrix_aux, *matrix_i, *vector = NULL;
-    double lambda_max = 0;
-    int dimension_aux[2],
-        dimension_vector[2] = {1, 1},
-        dimension_vector_max[2] = {1, 1};
-    (void)dimension_vector;
-    initialize_matrix_i(matrix, &matrix_i, dimension_matrix);
+    // Inicializacion del espacio de valores
+    *lambda = (double *)malloc(n_lambdas * sizeof(double));
+    *vectors = (double *)malloc(dimension_matrix[0] * n_lambdas * sizeof(double));
+    double *vector_aux = (double *)malloc(dimension_matrix[0] * sizeof(double));
+    double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
+    int dimension_vector[2] = {dimension_matrix[0], 1};
+    double lambda_i, lambda_aux, up, down;
     for (int i = 0; i < n_lambdas; i++)
     {
-        dimension_aux[0] = dimension_matrix[0] - i;
-        dimension_aux[1] = dimension_matrix[1] - i;
-        dimension_vector[0] = dimension_matrix[0] - i;
-        dimension_vector_max[0] = dimension_matrix[0];
-        matrix_aux = (double *)malloc(dimension_aux[0] * dimension_aux[1] * sizeof(double));
-        if (lambda_max != 0)
+        initialize_vector(vector_i,
+                          dimension_matrix);
+        obatin_new_vector(&vector_i,
+                          *vectors,
+                          dimension_vector,
+                          i);
+        int attempt = 0;
+        while (convergence_eigenvalues(lambda_i,
+                                       lambda_aux,
+                                       attempt))
         {
-            apply_Housholder(&matrix_i,
-                             dimension_matrix,
-                             vector,
-                             dimension_vector_max);
-        }
-        fill_matrix_aux(matrix_i,
-                        matrix_aux,
-                        dimension_matrix, i);
-        obtain_max_eigenvalue(matrix_aux,
+            lambda_aux = lambda_i;
+            fill_vector(vector_i,
+                        vector_aux,
+                        dimension_vector);
+            obtain_multiplication_matrix(matrix,
+                                         vector_aux,
+                                         vector_i,
+                                         dimension_matrix,
+                                         dimension_vector);
+            up = obtain_cdot_multiplication(vector_i,
+                                            vector_aux,
+                                            dimension_vector);
+            down = obtain_norm(vector_aux,
+                               dimension_vector);
+            lambda_i = up / down;
+            normalize_vector(vector_i,
+                             dimension_vector);
+            obatin_new_vector(&vector_i,
+                              *vectors,
                               dimension_vector,
-                              &lambda_max,
-                              &vector);
-        print_matrix(vector, dimension_vector);
-        printf("lambda = %lf\n", lambda_max);
+                              i);
+            attempt += 1;
+        }
+        fill_vectors(vectors, vector_i, dimension_vector, i);
+        printf("lambda = %lf\n", lambda_i);
+        print_lines();
     }
+    free(vector_aux);
+    free(vector_i);
 }
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
 {
