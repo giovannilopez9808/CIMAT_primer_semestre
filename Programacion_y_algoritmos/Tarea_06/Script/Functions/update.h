@@ -15,7 +15,7 @@ void delete_student(struct student *students, int *size)
         // Transformacio al espacio de los elementos
         index -= 2;
         // Verificacion del ID
-        if (index >= *size && index < 0)
+        if (index >= *size || index < 0)
         {
             printf("ID invalido\n");
         }
@@ -59,9 +59,9 @@ void add_student(struct student **students, int *size)
     printf("Escribe su edad: ");
     scanf(" %d", &(*students)[*size].age);
     printf("Escribe su grupo: ");
-    scanf(" %c", &(*students)[*size].s.group);
+    scanf(" %c", &(*students)[*size].s->group);
     printf("Escribe su turno: ");
-    scanf(" %c", &(*students)[*size].s.turn);
+    scanf(" %c", &(*students)[*size].s->turn);
     // Aumento en el total de estudiantes
     *size = *size + 1;
 }

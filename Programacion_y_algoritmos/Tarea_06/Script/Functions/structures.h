@@ -13,5 +13,5 @@ struct student
     // A+, A, A-, B+, B, B-, C
     char *grade;
     int age;
-    struct school s;
+    struct school *s;
 };

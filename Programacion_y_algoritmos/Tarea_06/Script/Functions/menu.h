@@ -3,11 +3,13 @@ void select_menu(int option, struct student **students, int *size, FILE *data, c
     /* 
     Selecciona cada opcion dependiendo de que numero ingreso el usuario
      */
+    (void)data;
     switch (option)
     {
     case 1:
         // Caso para imprimir en un archivo los datos actuales
-        print_file(data, filename, *students, *size);
+        // print_file(data, filename, *students, *size);
+        print_students(*students, *size);
         printf("\nSe creo exitosamente el archivo %s\n", filename);
         break;
     case 2:

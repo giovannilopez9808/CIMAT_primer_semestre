@@ -53,8 +53,8 @@ void print_students(struct student *students, int size)
                students[i].name,
                students[i].grade,
                students[i].age,
-               students[i].s.group,
-               students[i].s.turn);
+               (students[i].s)->group,
+               (students[i].s)->turn);
     }
     printf("\n");
 }
@@ -70,11 +70,12 @@ void obtain_information(struct student *students, FILE *data, int size)
         // Inicializacion de los strigns
         students[i].name = malloc(sizeof(char *));
         students[i].grade = malloc(sizeof(char *));
+        students[i].s = (struct school *)malloc(sizeof(struct school));
         fscanf(data, "%s %d %c %c %[^\n]",
                students[i].grade,
                &students[i].age,
-               &students[i].s.group,
-               &students[i].s.turn,
+               &(*students[i].s).group,
+               &(*students[i].s).turn,
                students[i].name);
     }
     // Devolucion al inicio del archivo

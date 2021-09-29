@@ -31,8 +31,8 @@ void print_file(FILE *data, char *filename, struct student *students, int size)
         fprintf(data, "%s %d %c %c %s",
                 students[i].grade,
                 students[i].age,
-                students[i].s.group,
-                students[i].s.turn,
+                students[i].s->group,
+                students[i].s->turn,
                 students[i].name);
         // Si no es el ultimo estudiante entonces da enter
         if (i != size - 1)
