@@ -14,3 +14,4 @@
 \contentsline {subsection}{\numberline {6.1}Baja de estudiantes}{5}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Alta de estudiantes}{5}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Inversión de los datos}{5}{section.7}%
+\contentsline {section}{\numberline {8}Compilación}{5}{section.8}%
