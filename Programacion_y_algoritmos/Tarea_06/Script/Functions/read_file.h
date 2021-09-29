@@ -5,8 +5,8 @@ void valid_file(FILE *data)
      */
     if (data == NULL)
     {
-        printf("File error\n");
-        exit(1);
+        perror("");
+        exit(EXIT_FAILURE);
     }
 }
 void open_file(FILE **data, char *filename)

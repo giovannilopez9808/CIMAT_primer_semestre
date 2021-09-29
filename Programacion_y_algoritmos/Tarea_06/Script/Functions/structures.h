@@ -1,3 +1,5 @@
+#include <errno.h>
+extern int errno;
 struct school
 {
     // A,B,C,D,E,F
