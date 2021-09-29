@@ -1,3 +1,16 @@
 \section{Actualización de estudiantes}
+
+La actualización de estudiantes abarca dos sistemas, la baja y alta de un estudiante. Estas funciones hacen uso de la variable que guarda la cantidad total de estudiantes que hay en la base de datos, ya que las dos funciones modificaran indirectamente esta variable. Estos sistemas desconocen si los datos se encuentran ordenados, entonces estos realizarán movimientos en las posiciones de los estudiantes. Las funciones se encuentran en el archivo \file{update.h}. Los datos de los estudiantes eliminados o añadidos se almacenan dentro del programa. Para ver reflejados estos datos en el archivo dado se tiene que ejecutar la función descrita en la sección \ref{sec:print}.
+
 \subsection{Baja de estudiantes}
+
+La baja de un estudiante se inicia preguntando el ID del mismo. El ID es la posición en el arreglo de los estudiantes. Una manera de obtener el ID del estudiante al que se dara de baja es ubicar al estudiante en el archivo de datos y su número de fila es el ID del estudiante.
+
+Como pueden suceder errores y esta acción no es revertible, entonces se pregunta si se
+selecciono bien al estudiante, si introduce la variable n, entonces se volverá a preguntar el ID, si se marca cualquier otro carácter, entonces se dara de baja al estudiante.
+
+El mecanismo para dar de baja un estudiante es el siguiente: El estudiante que se encuentre en la última posición del arreglo sobre escribira los datos del estudiante que se quiere dar de baja y el número de estudiantes se reduce en uno. Si el estudiante que se quiere dar se baja es el último en el arreglo se omite la sobreescritura. El tamaño de memoria se queda intacto, esto es porque pueden suceder errores al modificar el arreglo a un espacio menor al asignado anteriormente. La función que contiene a este mecanismo es \script{delete\_student}.
+
 \subsection{Alta de estudiantes}
+
+La alta de estudiantes se inicia aumentando la memoria para poder almancenar a un estudiante más, esto es usando la función \script{realloc}. En seguida se inicializa su estructura y se leen los datos del estudiante por medio de la terminal. Al termino de la lectura se aumenta en uno la variable del número de los estudiantes. El mecanismo para dar de alta a un estudiante se encuentra en la función \script{add\_studen}.

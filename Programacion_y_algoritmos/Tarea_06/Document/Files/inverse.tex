@@ -1,1 +1,14 @@
 \section{Inversión de los datos}
+
+Para la inversión de los datos se conto con el siguiente algoritmo:
+
+\begin{lstlisting}[style=CStyle]
+    for (int i = 0; i < size / 2; i++)
+    {
+        aux = students[i];
+        students[i] = students[size - i - 1];
+        students[size - i - 1] = aux;
+    }
+\end{lstlisting}
+
+En la linea 1, se ejecuta un ciclo que corre hasta la mitad de los elementos, esto es porque los elementos de los extremos intercambiaran su posición. Esta acción es realizada por la ayuda de una estructura auxiliar que guardará los valores de un estudiante y no sean perdidos en el proceso. Si el número de estudiantes es impar, entonces el estudiante que se encuentre en la posición central no cambiara de posición. Este mecanismo se encuentra en el archivo \file{inverse.h} en la función \script{inverse\_file}. Los cambios realizados no se veran reflejados en un archivo, para obtener este resultado es necesario ejecutar la función expuesta en la sección \ref{sec:print}.

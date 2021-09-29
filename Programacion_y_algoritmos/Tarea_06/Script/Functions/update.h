@@ -6,6 +6,7 @@ void delete_student(struct student *students, int *size)
     {
         printf("Escribe el ID del estudiante que deseas eliminar\n");
         scanf(" %d", &index);
+        index -= 2;
         if (index >= *size && index < 0)
         {
             printf("ID invalido\n");
@@ -19,7 +20,10 @@ void delete_student(struct student *students, int *size)
             scanf(" %c", &select);
             if (select != 'n')
             {
-                students[index] = students[*size - 1];
+                if (index != *size - 1)
+                {
+                    students[index] = students[*size - 1];
+                }
                 *size = *size - 1;
             }
         }

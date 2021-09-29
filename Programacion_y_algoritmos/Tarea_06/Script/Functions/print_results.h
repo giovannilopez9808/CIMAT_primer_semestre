@@ -16,6 +16,7 @@ void print_file(FILE *data, char *filename, struct student *students, int size)
 {
     fclose(data);
     data = fopen(filename, "w");
+    valid_file(data);
     fprintf(data, "Calificacion Edad Grupo Turno Nombre\n");
     for (int i = 0; i < size; i++)
     {
