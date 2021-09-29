@@ -50,7 +50,7 @@ void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
         up = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
         down = obtain_norm(vector_i, dimension_vector);
         normalize_vector(*vector, dimension_vector);
-        *lambda = up / down;
+        *lambda = up / (down * down);
         attempt += 1;
     }
     print_lines();
@@ -133,7 +133,7 @@ void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **la
                                             dimension_vector);
             down = obtain_norm(vector_aux,
                                dimension_vector);
-            lambda_i = up / down;
+            lambda_i = up / (down * down);
             normalize_vector(vector_i,
                              dimension_vector);
             obatin_new_vector(&vector_i,
@@ -151,7 +151,7 @@ void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **la
 }
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
 {
-    double lambda_i, max_vi, max_v;
+    double lambda_i, down, up;
     int attempt = 0;
     double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
     double *vector_aux = (double *)malloc(dimension_matrix[0] * sizeof(double));
@@ -183,9 +183,10 @@ void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambd
                                          dimension_matrix,
                                          vector_aux,
                                          vector);
-        max_vi = obtain_max_value(vector_i, dimension_vector);
-        max_v = obtain_max_value(*vector, dimension_vector);
-        *lambda = max_vi / max_v;
+        down = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
+        up = obtain_norm(vector_i, dimension_vector);
+        *lambda = (up * up) / down;
+        normalize_vector(*vector, dimension_vector);
         attempt += 1;
     }
     print_lines();
