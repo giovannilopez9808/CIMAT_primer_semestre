@@ -2,6 +2,7 @@ Calificacion Edad Grupo Turno Nombre
 A+ 9 C V Valeria Quirarte
 A- 12 A V Valentina Quirarte
 B 10 D M Luis Aldama
+C 11 E M Luisa Montes
 B- 14 A V Marco Lopez
 A 15 A V Mayra Medellin
 C 13 E M Pedro Arturo

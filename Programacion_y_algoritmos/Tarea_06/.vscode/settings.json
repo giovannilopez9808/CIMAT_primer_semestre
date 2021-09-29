@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "read_file.h": "c",
+        "update.h": "c",
+        "sort.h": "c"
+    }
+}

@@ -8,7 +8,34 @@ EL menú contiene descritos diferentes modos de ordenar la información de los e
     \item Ordenar por promedio
 \end{itemize}
 
-Los criterios antes mencionados siguien el mismo algortimo de ordenamiento. EL algoritmo de ordenamiento planteado es el \script{quick\_sort}, el cual habia sido desarrollado en tareas anteriores. Esta función fue reimplementada para recibir como argumento una función el cual le indica que objeto (conjunto de carácteres o números) es mayor con respecto a otro.
+Los criterios antes mencionados siguien el mismo algortimo de ordenamiento. EL algoritmo de ordenamiento planteado es el \script{quick\_sort}, el cual habia sido desarrollado en tareas anteriores. Esta función fue reimplementada para recibir como argumento una función el cual le indica que objeto (conjunto de carácteres o números) es mayor con respecto a otro. Los algoritmos de cada modo de ordenamiento estan contenidos en el archivo \file{sort.h}.
+
 \subsection{Ordenar por nombre}
+
+La comparación de los nombres es realizada por orden alfabetico. Si un nombre es prefijo del otro, este se pondrá ocupara un lugar menor. Por ejemplo Luisa $>$ Luis. Esta función esta contenida en \script{comparison\_names}. El programa supone que los nombres estan bien escritos, esto es que el inicio de los nombres son mayusculas.
+
 \subsection{Ordenar por edad}
+
+La comparación de las edades es realizada en orden ascendente. Al ser datos de tipo entero su comparación es más sencilla. Esta función esta contenida en \script{comparison\_ages}.
+
 \subsection{Ordenar por promedio}
+
+La comparación de las calificaciones es realizada de modo descendente. Esto siguiendo el orden de USA, esto es, A+ $>$ A $>$ A- $>$ B+ $>$ B $>$ B- $>$ C. Esta función es implementada en \script{comparison\_grades}. El algoritmo es semejante al ordenamiento de nombres, la diferencia radica en que máximo tendremos dos carácteres en cada elemento. Entonces se realizará el siguiente algoritmo:
+
+\begin{lstlisting}[style=CStyle]
+    int compare = grade1[0] - grade2[0];
+    if (compare == 0)
+    {
+        compare = compare_sign(grade1[1], grade2[1]);
+        if (compare != 0)
+            return compare;
+        compare = compare_sign(grade2[1], grade1[1]);
+        if (compare != 0)
+            return compare;
+        compare = grade1[1] - grade2[1];
+        return compare;
+    }
+    return compare;
+\end{lstlisting}
+
+En la linea 2, se comprueba que no sea la misma letra inicial, si no lo es, entonces devolvera la diferencia al algoritmo de \script{quick\_sort}. Si es igual, entonces recibará si se trata de un signo +, - o en blanco. Esta función de auxilia de \script{compare\_sign} para realizar llevar el orden de preferencia en los signos. Si el programa llega a la linea 11, esto quiere decir que las calificaciónes que esta comparando tienen signo.

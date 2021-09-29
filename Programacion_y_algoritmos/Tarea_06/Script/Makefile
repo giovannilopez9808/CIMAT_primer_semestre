@@ -12,5 +12,4 @@ clean:
 	rm -f $(OBJECTS) 
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out data.txt
-
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out Data/data.txt

@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "structures.h"
-#include "read_file.h"
-#include "sort.h"
-#include "count.h"
-#include "update.h"
-#include "inverse.h"
-#include "print_results.h"
-#include "menu.h"
+#include "Functions/structures.h"
+#include "Functions/read_file.h"
+#include "Functions/sort.h"
+#include "Functions/count.h"
+#include "Functions/update.h"
+#include "Functions/inverse.h"
+#include "Functions/print_results.h"
+#include "Functions/menu.h"
 int main(int argv, char *argc[])
 {
     (void)argv;

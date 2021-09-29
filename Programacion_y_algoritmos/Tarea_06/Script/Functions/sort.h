@@ -28,30 +28,35 @@ int comparison_ages(struct student student1, struct student student2)
     int compare = student1.age - student2.age;
     return compare;
 }
+int compare_sign(char sign1, char sign2)
+{
+    if (sign1 == '\0' && sign2 != '\0')
+    {
+        if (sign2 == '+')
+        {
+            return -1;
+        }
+        return 1;
+    }
+    return 0;
+}
 int comparison_grades(struct student student1, struct student student2)
 {
     char *grade1 = student1.grade;
     char *grade2 = student2.grade;
-    int i = 0;
-    int compare;
-    while (grade1[i] != '\0' && grade2[i] != '\0')
+    int compare = grade1[0] - grade2[0];
+    if (compare == 0)
     {
-        compare = grade1[i] - grade2[i];
+        compare = compare_sign(grade1[1], grade2[1]);
         if (compare != 0)
-        {
             return compare;
-        }
-        i = i + 1;
+        compare = compare_sign(grade2[1], grade1[1]);
+        if (compare != 0)
+            return compare;
+        compare = grade1[1] - grade2[1];
+        return compare;
     }
-    if (grade1[i] == '\0' && grade2[i] != '\0')
-    {
-        return grade1[i];
-    }
-    if (grade2[i] == '\0' && grade1[i] != '\0')
-    {
-        return -grade2[i];
-    }
-    return 0;
+    return compare;
 }
 int reduce_sort(int (*compare)(struct student, struct student), struct student *students, int low, int high)
 {
