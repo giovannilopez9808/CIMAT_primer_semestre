@@ -12,5 +12,14 @@
 {0pt}
 {2cm}
 \input{Files/titulo.tex}
-\input{Files/texto.tex}
+\tableofcontents
+\input{Files/introduction.tex}
+\input{Files/methods.tex}
+\input{Files/results.tex}
+\input{Files/conclusion.tex}
+\let\Section\section
+\def\section*#1{\Section{#1}}
+\bibliographystyle{unsrt}
+\bibliography{references}
+\nocite{*}
 \end{document}

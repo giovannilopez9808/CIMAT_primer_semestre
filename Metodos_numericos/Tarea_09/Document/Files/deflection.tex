@@ -1,0 +1,38 @@
+\subsection{Método de deflación}
+
+Usando el método de potencias descrito en la sección \ref{sec:power} podemos tener una aproximación del eigenvalor dominante y su eigenvector asociado. El método de deflación calcula los m eigenvalor de una matriz, este se define de la siguiente manera:
+
+Sean $\lambda_1,\lambda_2,\dots,\lambda_n$ los valores propios de la matriz A. Supongamos que $\lambda_1$ es el eigenvalor dominante, $v_1$ su eigenvector asociado Y $v$ un vector tal que $\langle v_1, v \rangle = 1$. Sea B la matriz definida como
+
+\begin{equation*}
+    B =A -\lambda_1 v_1 v^T
+\end{equation*}
+
+entonces los valores propios de la matriz B son $0,\lambda_2,\lambda_3,\dots,\lambda_n$.
+
+Entonces al haber `eliminado' al eigenvalor dominante de la matriz, al aplicar el método de potencias encontraremos un eigenvalor distinto. Tomaremos a $v=v_1$, esto porque al ser $v_1$ normalizado, entonces su producto punto consigo mismo debe ser 1. El algoritmo de este proceso es descrito de la siguiente manera:
+
+
+\begin{algorithm}[H]
+    \caption{Método de deflación}
+    \label{alg:deflation_method}
+    \KwInput{$v_0, A$}
+    \KwOutput{$v$ y $\lambda$}
+    \For{i=1,m}{
+        $v_0 \gets initialize\_vector(v_0)$ \\
+        \For{j=1,i}{
+            $v_0\gets v_0 - \langle v_{i}, v_{i}\rangle v_{i}$\\
+        }
+        j $\gets $1 \\
+        \While{$\theta > 10^{-6}$}
+        {
+            $v_j \gets Av_{j-1}$\\
+            $\lambda_j \gets \frac{\langle v_j , v_{j-1}\rangle}{\langle v_{j-1}, v_{j-1}\rangle}$\\
+            $v_j \gets normalize(v_j)$\\
+            \For{k=1,i}{
+                $v_j\gets v_j - \langle v_{k}, v_{k}\rangle v_{k}$\\
+            }
+            $j \gets j +1 $
+        }
+    }
+\end{algorithm}

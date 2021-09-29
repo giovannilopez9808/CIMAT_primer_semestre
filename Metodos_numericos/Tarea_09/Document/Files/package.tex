@@ -1,5 +1,7 @@
 \usepackage[labelfont={color=RoyalBlue,bf}]{caption}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[superscript,biblabel]{cite}
 \usepackage{fancyhdr,graphicx,lastpage}
 \usepackage[spanish, es-tabla]{babel}
 \usepackage[svgnames]{xcolor}
@@ -18,7 +20,6 @@
 \usepackage{lipsum}
 \usepackage{float}
 \usepackage{bm}
-\usepackage{cite}
 \parindent=0mm
 \addtolength{\textwidth}{2cm}
 \renewcommand{\baselinestretch}{0.9}
@@ -45,3 +46,10 @@
 \usepackage{titling}
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
 \renewcommand\maketitlehookd{\vfill\null}
+
+%%% Coloring the comment as blue
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output

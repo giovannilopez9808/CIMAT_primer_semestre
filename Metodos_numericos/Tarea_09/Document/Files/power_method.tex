@@ -1,0 +1,33 @@
+\subsection{Método de las potencias \label{sec:power}}
+
+Se define un vector inicial $v_0$, el cual será la inicialización del método. Este vector debe estar normalizado. El método aplica la ecuación \ref{eq:power_iterative}, conforme más se itera el método ira convergiendo hacia el eigenvector de $\lambda_1$.
+
+\begin{equation}
+    v_i = Av_{i-1} \label{eq:power_iterative}
+\end{equation}
+
+Despues de aplicar la ecuación \ref{eq:power_iterative}, el vector $v_i$ deberá ser normalizado antes de volverse a aplicar al método. Para obtener el eigenvalor $\lambda_1$, se usa la siguiente ecuación \ref{eq:power_lambda_i}.
+
+\begin{equation}
+    \lambda_i = \frac{\langle v_i , v_{i-1}\rangle}{\langle v_{i-1}, v_{i-1}\rangle} \label{eq:power_lambda_i}
+\end{equation}
+
+La convegencia del algoritmo que se implemento fue usando la ecuación \ref{eq:power_tol}.
+
+\begin{equation}
+    \theta = |\lambda_i - \lambda_{i-1}| \label{eq:power_tol}
+\end{equation}
+El algoritmo puede escribirse de la siguiente manera:
+
+\begin{algorithm}[H]
+    \caption{Método de las potencias}
+    \label{alg:power_method}
+    \KwInput{$v_0$}
+    \KwOutput{$v_i$ y $\lambda_i$}
+    \While{$\theta > 10^{-6}$}
+    {
+        $v_i \gets Av_{i-1}$\\
+        $\lambda_i \gets \frac{\langle v_i , v_{i-1}\rangle}{\langle v_{i-1}, v_{i-1}\rangle}$\\
+        $v_i \gets normalize(v_i)$\\
+    }
+\end{algorithm}
