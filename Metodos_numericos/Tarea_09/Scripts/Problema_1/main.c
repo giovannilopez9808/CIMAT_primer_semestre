@@ -1,17 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "../Functions/tools.h"
 #include "../Functions/solvers.h"
 int main(int argc, char *argv[])
 {
     (void)argc;
+    char path_data[50] = "../Data/";
+    char path_out[50] = "Output/";
+    strcat(path_data, argv[1]);
+    strcat(path_out, argv[1]);
     FILE *file_matrix;
     double *matrix, *vector = NULL;
     double lambda = 0;
     int dimension_matrix[2],
         dimension_vector[2] = {1, 1};
-    file_matrix = fopen(argv[1], "r");
+    file_matrix = fopen(path_data, "r");
     valid_file(file_matrix);
     // Lectura de los datos de la matriz
     read_dimension(file_matrix,
