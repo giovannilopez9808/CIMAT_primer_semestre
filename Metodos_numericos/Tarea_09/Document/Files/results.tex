@@ -1,1 +1,73 @@
 \section{Resultados}
+
+Para los tres métodos se calcularon los eigenvectores y sus eigenvalores correspondinetes de las matrices contenidas en los archivos \file{Eigen\_3x3.txt}, \file{Eigen\_50x50.txt} y \file{Eigen\_125x125.txt}. Estos archivos se encuentran en la carpeta \folder{Data}. Los resultados de cada método se muestran en los siguientes puntos.
+
+\subsection{Método de las potencias \label{sec:power_results}}
+
+Los resultados de este método de encuentrancontenidos en la carpeta \folder{Power\_method/Output}. Para el caso de la matriz contenida en el archivo \file{Eigen\_3x3.txt}, se tiene que la matriz es la siguiente:
+
+\begin{equation*}
+    A= \begin{pmatrix}
+        3    & -0.1 & -0.2 \\
+        -0.1 & 7    & -0.3 \\
+        -0.2 & -0.3 & 10   \\
+    \end{pmatrix}
+\end{equation*}
+
+El eigenvalor dominante y su eigenvector correspondinete que se obtuvo es el siguiente:
+
+\begin{equation*}
+    \lambda_1 = 10.034796 \qquad v_1 =
+    \begin{bmatrix}
+        -0.026902 \\	-0.097366\\	0.994885
+    \end{bmatrix}
+\end{equation*}
+
+\subsection{Método de las potencias inversas}
+
+Los resultados de este método de encuentrancontenidos en la carpeta \folder{Inverse\_method/Output}. Para el caso de la matriz contenida en el archivo \file{Eigen\_3x3.txt}, se tiene que la matriz es la siguiente:
+
+\begin{equation*}
+    A= \begin{pmatrix}
+        3    & -0.1 & -0.2 \\
+        -0.1 & 7    & -0.3 \\
+        -0.2 & -0.3 & 10   \\
+    \end{pmatrix}
+\end{equation*}
+
+El eigenvalor con menor valor absoluto y su eigenvector correspondinete que se obtuvo es el siguiente:
+
+\begin{equation*}
+    \lambda_3 = 2.991343 \qquad v_3 =
+    \begin{bmatrix}
+        0.999190 \\0.027185\\	0.029679
+    \end{bmatrix}
+\end{equation*}
+
+\subsection{Método de deflación}
+
+Los resultados de este método de encuentrancontenidos en la carpeta \folder{Deflection\_method/Output}. Para el caso de la matriz contenida en el archivo \file{Eigen\_3x3.txt}, se tiene que la matriz es la siguiente:
+
+\begin{equation*}
+    A= \begin{pmatrix}
+        3    & -0.1 & -0.2 \\
+        -0.1 & 7    & -0.3 \\
+        -0.2 & -0.3 & 10   \\
+    \end{pmatrix}
+\end{equation*}
+
+Este método se implemento para obtener los $max{2,n-2}$ eigenvalores máximos de una matriz de n$ \times$n, para la matriz A, se tiene que $n=3$, por lo que, se obtuvieron los primeros dos eigenvalores máximos. El método arrojo como resultado el eigenvalor dominante obtenido en la sección \ref{sec:power_results} y el próximo eigenvalor los cuales son los siguientes:
+
+\begin{equation*}
+    \lambda_1 = 10.034796 \qquad v_1 =
+    \begin{bmatrix}
+        -0.026902 \\	-0.097366\\	0.994885
+    \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \lambda_2 = 10.034796 \qquad v_2 =
+    \begin{bmatrix}
+        -0.029881 \\0.994879\\	0.096558
+    \end{bmatrix}
+\end{equation*}

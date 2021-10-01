@@ -12,19 +12,19 @@ Por lo tanto, la ecuación \ref{eq:equation_eigenvalores} puede ser escrita de l
     A^{-1} v_i = \mu_i  v_i
 \end{equation}
 
-En este método para obtener el eigenvector $v_i$, se tiene que resolver la ecuación matricial señalada en la ecuación
+En este método para obtener el eigenvector $v_i$, se tiene que resolver la ecuación matricial señalada en la ecuación \ref{eq:matrix_system}.
 
 \begin{equation}
-    Av_{i} = v_{i_i}
+    Av_{i} = v_{i_i} \label{eq:matrix_system}
 \end{equation}
 
-donde el vector inicial $v_0$ tiene que estar normalizado y al final de obtener el vector $v_{i}$ este debera pasar por una normalización. Como este proceso se asemeja mucho al método de las potencias, este obtiene el valor absoluto mayor de la matriz $A^{-1}$. Por la relación descrita en la ecuación \ref{eq:eigenvalue_inverse}, entonces al obtener el $\mu_i$, estaremos obteniendo a su vez $\lambda_n$, el cual es el eigenvalor con menor valor absoluto de A. Por lo tanto, para calcular este valor se realiza la ecuación \ref{eq:lambda_inverse}.
+donde el vector inicial $v_0$ tiene que estar normalizado y al obtener el vector $v_{i}$ este debera pasar por el proceso de normalización. El méotod de las potencias inversas se asemeja mucho al método de las potencias, este obtiene el valor absoluto mayor de la matriz $A^{-1}$. Por la relación descrita en la ecuación \ref{eq:eigenvalue_inverse}, entonces al obtener el $\mu_i$, estaremos obteniendo a su vez $\lambda_n$, el cual es el eigenvalor con menor valor absoluto de A. Por lo tanto, para calcular este valor se realiza la ecuación \ref{eq:lambda_inverse}.
 
 \begin{equation}
     \lambda_i = \frac{\langle v_{i-1}, v_{i-1}\rangle}{\langle v_i , v_{i-1}\rangle} \label{eq:lambda_inverse}
 \end{equation}
 
-La convergencia del método es el descrito en la ecuación \ref{eq:power_tol}. El algoritmo puede escribirse de la siguiente manera:
+La convergencia del método es el descrito en la ecuación \ref{eq:power_tol}. Entonces, el método de las potencias inversas es descrito en el pseudo código \ref{alg:power_inverse_method}.
 
 \begin{algorithm}[H]
     \caption{Método de las potencias inversas}

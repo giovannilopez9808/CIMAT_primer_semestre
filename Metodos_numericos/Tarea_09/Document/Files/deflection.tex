@@ -10,7 +10,9 @@ Sean $\lambda_1,\lambda_2,\dots,\lambda_n$ los valores propios de la matriz A. S
 
 entonces los valores propios de la matriz B son $0,\lambda_2,\lambda_3,\dots,\lambda_n$.
 
-Entonces al haber `eliminado' al eigenvalor dominante de la matriz, al aplicar el método de potencias encontraremos un eigenvalor distinto. Tomaremos a $v=v_1$, esto porque al ser $v_1$ normalizado, entonces su producto punto consigo mismo debe ser 1. El algoritmo de este proceso es descrito de la siguiente manera:
+Entonces al haber `eliminado' al eigenvalor dominante de la matriz, al aplicar el método de potencias encontraremos un eigenvalor distinto. Tomaremos a $v=v_1$, esto porque al ser $v_1$ normalizado, entonces su producto punto consigo mismo debe ser 1.
+
+El método de deflación es descrito en el pseudo código \ref{alg:deflation_method}.
 
 
 \begin{algorithm}[H]
@@ -22,17 +24,17 @@ Entonces al haber `eliminado' al eigenvalor dominante de la matriz, al aplicar e
         $v_0 \gets initialize\_vector(v_0)$ \\
         \For{j=1,i}{
             $v_0\gets v_0 - \langle v_{i}, v_{i}\rangle v_{i}$\\
-        }
-        j $\gets $1 \\
-        \While{$\theta > 10^{-6}$}
-        {
-            $v_j \gets Av_{j-1}$\\
-            $\lambda_j \gets \frac{\langle v_j , v_{j-1}\rangle}{\langle v_{j-1}, v_{j-1}\rangle}$\\
-            $v_j \gets normalize(v_j)$\\
-            \For{k=1,i}{
-                $v_j\gets v_j - \langle v_{k}, v_{k}\rangle v_{k}$\\
+            j $\gets $1 \\
+            \While{$\theta > 10^{-6}$}
+            {
+                $v_j \gets Av_{j-1}$\\
+                $\lambda_j \gets \frac{\langle v_j , v_{j-1}\rangle}{\langle v_{j-1}, v_{j-1}\rangle}$\\
+                $v_j \gets normalize(v_j)$\\
+                \For{k=1,i}{
+                    $v_j\gets v_j - \langle v_{k}, v_{k}\rangle v_{k}$\\
+                }
+                $j \gets j +1 $
             }
-            $j \gets j +1 $
         }
     }
 \end{algorithm}
