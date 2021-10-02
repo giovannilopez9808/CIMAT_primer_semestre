@@ -22,18 +22,16 @@ El método de deflación es descrito en el pseudo código \ref{alg:deflation_met
     \KwOutput{$v$ y $\lambda$}
     \For{i=1,m}{
         $v_0 \gets initialize\_vector(v_0)$ \\
-        \For{j=1,i}{
-            $v_0\gets v_0 - \langle v_{i}, v_{i}\rangle v_{i}$\\
-            j $\gets $1 \\
+        \For{j=1,i-1}{
+            $v_0\gets v_0 - \langle v_{j}, v_{j}\rangle v_{j}$\\
             \While{$\theta > 10^{-6}$}
             {
-                $v_j \gets Av_{j-1}$\\
-                $\lambda_j \gets \frac{\langle v_j , v_{j-1}\rangle}{\langle v_{j-1}, v_{j-1}\rangle}$\\
+                $v_i \gets Av_{i-1}$\\
+                $\lambda_i \gets \frac{\langle v_i , v_{i-1}\rangle}{\langle v_{i-1}, v_{i-1}\rangle}$\\
                 $v_j \gets normalize(v_j)$\\
-                \For{k=1,i}{
-                    $v_j\gets v_j - \langle v_{k}, v_{k}\rangle v_{k}$\\
+                \For{j=1,i-1}{
+                    $v_i\gets v_i - \langle v_{j}, v_{j}\rangle v_{j}$\\
                 }
-                $j \gets j +1 $
             }
         }
     }

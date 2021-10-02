@@ -1,0 +1,27 @@
+\subsection{Método de defleción inversa}
+
+Al igual que el método de defleción, este método eliminará las contribuciones de los vectores que ya no son necesarios calcular. En este caso se iniciará calculando el eigenvalor con menor valor absoluto ($\lambda_n$), en seguida el método tratara de obtener el siguiente eigenvalor mayor ($\lambda_{n-1}$).
+
+Por lo tanto, el método de defleción inversa puede ser condensado en el algoritmo \ref{alg:deflation_inverse_method}.
+
+\begin{algorithm}[H]
+    \caption{Método de deflación inversa}
+    \label{alg:deflation_inverse_method}
+    \KwInput{$v_0, A$}
+    \KwOutput{$v$ y $\lambda$}
+    \For{i=1,m}{
+    $v_0 \gets initialize\_vector(v_0)$ \\
+    \For{j=1,i}{
+        $v_0\gets v_0 - \langle v_{j}, v_{j}\rangle v_{j}$\\
+    }
+    \While{$\theta > 10^{-6}$}
+    {
+    $v_i \gets solve(Av_{i}=v_{i-1})$\\
+    $\lambda_i \gets \frac{\langle v_{i-1}, v_{i-1}\rangle}{\langle v_i , v_{i-1}\rangle}$\\
+    $v_i \gets normalize(v_i)$\\
+    \For{j=1,i}{
+        $v_i\gets v_i - \langle v_{j}, v_{j}\rangle v_{j}$\\
+    }
+    }
+    }
+\end{algorithm}
