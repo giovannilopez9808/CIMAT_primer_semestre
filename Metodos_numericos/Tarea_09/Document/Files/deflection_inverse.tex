@@ -7,11 +7,11 @@ Por lo tanto, el método de defleción inversa puede ser condensado en el algori
 \begin{algorithm}[H]
     \caption{Método de deflación inversa}
     \label{alg:deflation_inverse_method}
-    \KwInput{$v_0, A$}
+    \KwInput{$A,m$}
     \KwOutput{$v$ y $\lambda$}
     \For{i=1,m}{
     $v_0 \gets initialize\_vector(v_0)$ \\
-    \For{j=1,i}{
+    \For{j=1,i-1}{
         $v_0\gets v_0 - \langle v_{j}, v_{j}\rangle v_{j}$\\
     }
     \While{$\theta > 10^{-6}$}
@@ -19,7 +19,7 @@ Por lo tanto, el método de defleción inversa puede ser condensado en el algori
     $v_i \gets solve(Av_{i}=v_{i-1})$\\
     $\lambda_i \gets \frac{\langle v_{i-1}, v_{i-1}\rangle}{\langle v_i , v_{i-1}\rangle}$\\
     $v_i \gets normalize(v_i)$\\
-    \For{j=1,i}{
+    \For{j=1,i-1}{
         $v_i\gets v_i - \langle v_{j}, v_{j}\rangle v_{j}$\\
     }
     }

@@ -29,8 +29,9 @@ La convergencia del método es el descrito en la ecuación \ref{eq:power_tol}. E
 \begin{algorithm}[H]
     \caption{Método de las potencias inversas}
     \label{alg:power_inverse_method}
-    \KwInput{$v_0$}
+    \KwInput{$A$}
     \KwOutput{$v_i$ y $\lambda_i$}
+    $v_0 \gets initialize\_vector(v_0)$ \\
     \While{$\theta > 10^{-6}$}
     {
     $v_i \gets solve(Av_{i}=v_{i-1})$\\
