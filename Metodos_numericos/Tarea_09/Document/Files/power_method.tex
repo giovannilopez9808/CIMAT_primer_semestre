@@ -1,6 +1,13 @@
 \subsection{Método de las potencias \label{sec:power}}
 
-Se define un vector inicial $v_0$, el cual será la inicialización del método. Este vector debe estar normalizado. El método aplica la ecuación \ref{eq:power_iterative}, conforme más se itera el método ira convergiendo hacia el eigenvector de $\lambda_1$.
+Se define un vector inicial $v_0$, el cual será la inicialización del método.
+Los elementos del vector $v_0$ son iguales a
+
+\begin{equation*}
+    v_{0,i} = \frac{1}{\sqrt{n}}
+\end{equation*}
+
+Con esta definición considerá que el vector $v_0$ debe ser siempre normalizado. El método aplica la ecuación \ref{eq:power_iterative}, conforme más se itera el método ira convergiendo hacia el eigenvector de $\lambda_1$.
 
 \begin{equation}
     v_i = Av_{i-1} \label{eq:power_iterative}
