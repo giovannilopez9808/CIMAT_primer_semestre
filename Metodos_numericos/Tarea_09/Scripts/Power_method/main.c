@@ -1,7 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <stdio.h>
 #include "../Functions/tools.h"
 #include "../Functions/solvers.h"
 int main(int argc, char *argv[])

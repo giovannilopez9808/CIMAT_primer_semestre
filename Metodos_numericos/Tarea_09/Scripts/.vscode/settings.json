@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "solvers.h": "c"
+    "solvers.h": "c",
+    "tools.h": "c"
   }
 }
