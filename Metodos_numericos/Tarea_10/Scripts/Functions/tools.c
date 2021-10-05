@@ -1,7 +1,7 @@
 #include "tools.h"
 void print_lines()
 {
-    /* 
+    /*
     Realiza la impresion de las lineas en la terminal
      */
     printf("----------------------");
@@ -9,7 +9,7 @@ void print_lines()
 }
 void print_lines_on_file(FILE *text)
 {
-    /* 
+    /*
     Realiza la impresion de las lineas en el documento
      */
     fprintf(text, "----------------------");
@@ -33,7 +33,7 @@ void print_matrix(double *matrix, int dimension_matrix[])
     {
         for (int j = 0; j < dimension_matrix[0]; j++)
         {
-            printf("%lf\t", *(matrix + i * dimension_matrix[0] + j));
+            printf("%lf\t", *(matrix + j * dimension_matrix[0] + i));
         }
         printf("\n");
     }
@@ -108,7 +108,7 @@ void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimensio
 }
 double obtain_norm(double *vector, int dimension[])
 {
-    /* 
+    /*
     Calcula la norma de un vector dado
      */
     double v_i, norm = 0;
@@ -122,7 +122,7 @@ double obtain_norm(double *vector, int dimension[])
 }
 void normalize_vector(double *vector, int dimension[])
 {
-    /* 
+    /*
     Realiza la normalizacion del vector dado
      */
     double norm = obtain_norm(vector, dimension);
@@ -135,7 +135,7 @@ void normalize_vector(double *vector, int dimension[])
 }
 void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
 {
-    /* 
+    /*
     Realiza la multiplicacion de un vector por su transpuesta, dando como
     restultado una matriz de nxn
      */
@@ -155,7 +155,7 @@ void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
 }
 double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[])
 {
-    /* 
+    /*
     Realiza el producto punto de dos vectores dados
      */
     double v_i, v_j, cdot = 0;
@@ -169,7 +169,7 @@ double obtain_cdot_multiplication(double *vector1, double *vector2, int dimensio
 }
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
 {
-    /* 
+    /*
     Realiza la impresion en un archivo de un vector en una sola fila
      */
     print_lines_on_file(text);
@@ -182,7 +182,7 @@ void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
 }
 void print_lambda_on_a_file(FILE *text, double lambda)
 {
-    /* 
+    /*
     Realiza la impresion de el eigenvalor dado en un archivo
      */
     print_lines_on_file(text);
@@ -190,7 +190,7 @@ void print_lambda_on_a_file(FILE *text, double lambda)
 }
 void print_results(FILE *text, double lambda, double *vectors, int *dimension)
 {
-    /* 
+    /*
     Realiza la impresion de los resultados de un eigenvalor y un eigen vector
      */
     print_lambda_on_a_file(text, lambda);
@@ -198,7 +198,7 @@ void print_results(FILE *text, double lambda, double *vectors, int *dimension)
 }
 void print_several_results(FILE *text, double *lambda, double *vectors, int *dimension, int n)
 {
-    /* 
+    /*
     Realiza la impresion de un conjunto de eigenvalores y eigenvectores
      */
     for (int i = 0; i < n; i++)

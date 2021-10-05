@@ -1,7 +1,7 @@
 #include "solvers.h"
 void copy_vector(double *vector, double *vector_i, int dimension[])
 {
-    /* 
+    /*
     Copia los valores del vector en el vector i
      */
     for (int i = 0; i < dimension[0]; i++)
@@ -11,7 +11,7 @@ void copy_vector(double *vector, double *vector_i, int dimension[])
 }
 void initialize_vector(double *vector, int dimension[])
 {
-    /* 
+    /*
     Inicializa el vector dado con el valor 1/sqrt(n) en todos sus elementos
      */
     for (int i = 0; i < dimension[0]; i++)
@@ -21,7 +21,7 @@ void initialize_vector(double *vector, int dimension[])
 }
 int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
 {
-    /* 
+    /*
     Compara los valores de lambda para ver si se llega a una convergencia del metodo
      */
     double theta;
@@ -40,7 +40,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
 }
 void copy_vector_i(double *vectors, double *vector, int dimension[], int n)
 {
-    /* 
+    /*
     Copia del vector i en la matriz de eigenvectores
      */
     double *Vi_i, v_i;
@@ -53,7 +53,7 @@ void copy_vector_i(double *vectors, double *vector, int dimension[], int n)
 }
 void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
 {
-    /* 
+    /*
     Eliminacion de las contribuciones de los eigenvalores anteriores a el nuevo vector
      */
     double cdot;
@@ -81,7 +81,7 @@ void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
 }
 void copy_vectors(double **vectors, double *vector, int dimension[], int n)
 {
-    /* 
+    /*
     Copia del vector en la matriz de vectores unitarios
      */
     double *V_i, v_i;
@@ -95,7 +95,7 @@ void copy_vectors(double **vectors, double *vector, int dimension[], int n)
 void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)
 {
 
-    /* 
+    /*
     Metodo de deflaccion, dada una matriz y su dimension se calcularan los n lambdas dadas maximas
      */
     // Inicializacion del espacio de valores
@@ -172,7 +172,7 @@ void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *
     m_jj = *(matrix + pos[1] * dimension[0] + pos[1]);
     if (m_ij != 0)
     {
-        tau = (m_jj - m_ii) / (2 * m_ij);
+        tau = (m_ii - m_jj) / (2 * m_ij);
         if (tau >= 0)
         {
             tau = 1 / (tau + sqrt(1 + tau * tau));
@@ -230,7 +230,7 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
     double m_ij, sum = 0;
     for (int i = 0; i < dimension[0]; i++)
     {
-        for (int j = 1; j < dimension[0]; j++)
+        for (int j = i+1; j < dimension[0]; j++)
         {
             m_ij = *(matrix + j * dimension[0] + i);
             sum += m_ij * m_ij;
@@ -241,14 +241,14 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
     sum = sqrt(sum);
     if (sum > 1e-7)
     {
-        return 0;
+        return 1;
     }
-    return 1;
+    return 0;
 }
 void find_max_jacobi(double *matrix, int dimension[], int pos[])
 {
-    double m_ij, max = fabs(*(matrix + 1));
-    pos[0] = 0;
+    double m_ij, max = fabs(*(matrix+1));
+    pos[0] =0;
     pos[1] = 1;
     for (int i = 0; i < dimension[0]; i++)
     {
@@ -270,13 +270,11 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     int pos[2];
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
-    while (!convergence_eigenvaues_jacobi(matrix, dimension))
+    while (convergence_eigenvaues_jacobi(matrix, dimension))
     {
         find_max_jacobi(matrix, dimension, pos);
-        printf("%d %d %lf\n", pos[0], pos[1], *(matrix + pos[1] * dimension[0] + pos[0]));
         initialize_jacobi_matrix(jacobi_matrix, dimension);
         obtain_jaboci_elements(matrix, dimension, pos, jacobi_matrix);
-        print_matrix(jacobi_matrix, dimension);
         obtain_jacobi_matrix_T(jacobi_matrix, jacobi_matrix_T, dimension);
         obtain_multiplication_matrix(matrix,
                                      jacobi_matrix,
@@ -288,6 +286,6 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
                                      matrix,
                                      dimension,
                                      dimension);
-        print_matrix(matrix, dimension);
     }
+    print_matrix(matrix, dimension);
 }
