@@ -239,7 +239,6 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
         }
     }
     sum = sqrt(sum);
-    printf("Convergencia: %lf\n", sum);
     if (sum > 1e-6)
     {
         return 1;
