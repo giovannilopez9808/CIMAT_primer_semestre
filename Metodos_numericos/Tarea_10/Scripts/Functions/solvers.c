@@ -38,47 +38,6 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     // Si no la cumple devuelve un 1
     return 1;
 }
-void obtain_max_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
-{
-    /* 
-    Metodo de las potencias, recibe una matriz y su dimension y devuelve su eigenvalor dominante con su respectito eigenvector
-     */
-    // Inicializacion del vector auxiliar
-    double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    int attempt = 0;
-    double lambda_i, up, down;
-    int dimension_vector[2] = {dimension_matrix[0], 1};
-    // Inicializacion del eigenvector de resultados
-    *vector = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    initialize_vector(*vector,
-                      dimension_matrix);
-    while (convergence_eigenvalues(*lambda,
-                                   lambda_i,
-                                   attempt))
-    {
-        lambda_i = *lambda;
-        // Copia del vector
-        copy_vector(*vector,
-                    vector_i,
-                    dimension_vector);
-        // Realiza la multiplicacion de v_i =  A*v_{i-1}
-        obtain_multiplication_matrix(matrix,
-                                     vector_i,
-                                     *vector,
-                                     dimension_matrix,
-                                     dimension_vector);
-        // Producto punto de v_{i-1} y v_i
-        up = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
-        // Norma de v_{i-1}
-        down = obtain_norm(vector_i, dimension_vector);
-        // Normalizacion de v_i
-        normalize_vector(*vector, dimension_vector);
-        // Calculo de lambda
-        *lambda = up / (down * down);
-        attempt += 1;
-    }
-    free(vector_i);
-}
 void copy_vector_i(double *vectors, double *vector, int dimension[], int n)
 {
     /* 
@@ -133,116 +92,6 @@ void copy_vectors(double **vectors, double *vector, int dimension[], int n)
         *V_i = v_i;
     }
 }
-void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)
-{
-
-    /* 
-    Metodo de deflaccion, dada una matriz y su dimension se calcularan los n lambdas dadas maximas
-     */
-    // Inicializacion del espacio de valores
-    *lambda = (double *)malloc(n_lambdas * sizeof(double));
-    // Inicializacion de la matriz de eigenvectores
-    *vectors = (double *)malloc(n_lambdas * dimension_matrix[0] * sizeof(double));
-    double *vector_aux = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    int dimension_vector[2] = {dimension_matrix[0], 1};
-    double lambda_i, lambda_aux, up, down;
-    for (int i = 0; i < n_lambdas; i++)
-    {
-        // Inicializacion del vector i
-        initialize_vector(vector_i,
-                          dimension_matrix);
-        //   Eliminacion de las contribuciones anteriores
-        obatin_new_vector(&vector_i,
-                          *vectors,
-                          dimension_vector,
-                          i);
-        int attempt = 0;
-        // Inicio del metodod de potencias
-        while (convergence_eigenvalues(lambda_i,
-                                       lambda_aux,
-                                       attempt))
-        {
-            lambda_aux = lambda_i;
-            copy_vector(vector_i,
-                        vector_aux,
-                        dimension_vector);
-            obtain_multiplication_matrix(matrix,
-                                         vector_aux,
-                                         vector_i,
-                                         dimension_matrix,
-                                         dimension_vector);
-            up = obtain_cdot_multiplication(vector_i,
-                                            vector_aux,
-                                            dimension_vector);
-            down = obtain_norm(vector_aux,
-                               dimension_vector);
-            lambda_i = up / (down * down);
-            normalize_vector(vector_i,
-                             dimension_vector);
-            //   Eliminacion de las contribuciones anteriores
-            obatin_new_vector(&vector_i,
-                              *vectors,
-                              dimension_vector,
-                              i);
-            attempt += 1;
-        }
-        *(*lambda + i) = lambda_i;
-        copy_vectors(vectors, vector_i, dimension_vector, i);
-    }
-    free(vector_aux);
-    free(vector_i);
-}
-void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector)
-{
-    /* 
-    ada una matrix y su tamaño obtiene el eigenvalor menor absoluto y su respectivo eigenvector
-     */
-    double lambda_i, down, up;
-    int attempt = 0;
-    double *vector_i = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    double *vector_aux = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    *vector = (double *)malloc(dimension_matrix[0] * sizeof(double));
-    int dimension_vector[2] = {dimension_matrix[0], 1};
-    // Procespo de factorizacion LU
-    double *L, *U;
-    obtain_LU_crout(matrix,
-                    dimension_matrix,
-                    &L,
-                    &U);
-    // Inicializacion del vector
-    initialize_vector(*vector,
-                      dimension_matrix);
-    while (convergence_eigenvalues(*lambda,
-                                   lambda_i,
-                                   attempt))
-    {
-        lambda_i = *lambda;
-        copy_vector(*vector,
-                    vector_i,
-                    dimension_vector);
-        // Resuelve el sistema de ecuaciones
-        solve_triangular_inferior_matrix(L,
-                                         dimension_matrix,
-                                         *vector,
-                                         &vector_aux);
-        solve_triangular_superior_matrix(U,
-                                         dimension_matrix,
-                                         vector_aux,
-                                         vector);
-        down = obtain_cdot_multiplication(*vector, vector_i, dimension_vector);
-        up = obtain_norm(vector_i, dimension_vector);
-        *lambda = (up * up) / down;
-        normalize_vector(*vector, dimension_vector);
-        attempt += 1;
-    }
-    normalize_vector(*vector,
-                     dimension_vector);
-    free(L);
-    free(U);
-    free(vector_aux);
-    free(vector_i);
-}
 void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)
 {
 
@@ -275,6 +124,7 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
                           dimension_vector,
                           i);
         int attempt = 0;
+        printf("Calculando eigenvalor numero: %d\n", i + 1);
         // Inicio del metodod de potencias
         while (convergence_eigenvalues(lambda_i,
                                        lambda_aux,
@@ -296,12 +146,12 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
             down = obtain_cdot_multiplication(vector_j, vector_i, dimension_vector);
             up = obtain_norm(vector_j, dimension_vector);
             lambda_i = (up * up) / down;
+            normalize_vector(vector_i, dimension_vector);
             // Eliminacion de las contribuciones anteriores
             obatin_new_vector(&vector_i,
                               *vectors,
                               dimension_vector,
                               i);
-            normalize_vector(vector_i, dimension_vector);
             attempt += 1;
         }
         *(*lambda + i) = lambda_i;
@@ -312,4 +162,132 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
     free(vector_j);
     free(L);
     free(U);
+}
+
+void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *jacobi_matrix)
+{
+    double m_ij, m_ii, m_jj, tau, c = 1, s = 0;
+    m_ij = *(matrix + pos[1] * dimension[0] + pos[0]);
+    m_ii = *(matrix + pos[0] * dimension[0] + pos[0]);
+    m_jj = *(matrix + pos[1] * dimension[0] + pos[1]);
+    if (m_ij != 0)
+    {
+        tau = (m_jj - m_ii) / (2 * m_ij);
+        if (tau >= 0)
+        {
+            tau = 1 / (tau + sqrt(1 + tau * tau));
+        }
+        else
+        {
+            tau = -1 / (-tau + sqrt(1 + tau * tau));
+        }
+        c = 1 / sqrt(1 + tau * tau);
+        s = c * tau;
+    }
+    *(jacobi_matrix + pos[0] * dimension[0] + pos[0]) = c;
+    *(jacobi_matrix + pos[0] * dimension[0] + pos[1]) = s;
+    *(jacobi_matrix + pos[1] * dimension[0] + pos[0]) = -s;
+    *(jacobi_matrix + pos[1] * dimension[0] + pos[1]) = c;
+}
+void initialize_jacobi_matrix(double *matrix, int dimension[])
+{
+    double *M_ii, *M_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        M_ii = (matrix + i * dimension[0] + i);
+        *M_ii = 1;
+        for (int j = i + 1; j < dimension[1]; j++)
+        {
+            M_ij = (matrix + i * dimension[0] + j);
+            *M_ij = 0;
+            M_ij = (matrix + j * dimension[0] + i);
+            *M_ij = 0;
+        }
+    }
+}
+void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])
+{
+    double m_ii, m_ij;
+    double *M_ii, *M_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        M_ii = (matrix_T + i * dimension[0] + i);
+        m_ii = *(matrix + i * dimension[0] + i);
+        *M_ii = m_ii;
+        for (int j = i + 1; j < dimension[1]; j++)
+        {
+            M_ij = (matrix_T + i * dimension[0] + j);
+            m_ij = *(matrix + j * dimension[0] + i);
+            *M_ij = m_ij;
+            M_ij = (matrix_T + j * dimension[0] + i);
+            m_ij = *(matrix + i * dimension[0] + j);
+            *M_ij = m_ij;
+        }
+    }
+}
+int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
+{
+    double m_ij, sum = 0;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 1; j < dimension[0]; j++)
+        {
+            m_ij = *(matrix + j * dimension[0] + i);
+            sum += m_ij * m_ij;
+            m_ij = *(matrix + i * dimension[0] + j);
+            sum += m_ij * m_ij;
+        }
+    }
+    sum = sqrt(sum);
+    if (sum > 1e-7)
+    {
+        return 0;
+    }
+    return 1;
+}
+void find_max_jacobi(double *matrix, int dimension[], int pos[])
+{
+    double m_ij, max = fabs(*(matrix + 1));
+    pos[0] = 0;
+    pos[1] = 1;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = i + 1; j < dimension[0]; j++)
+        {
+            m_ij = fabs(*(matrix + i * dimension[0] + j));
+            if (m_ij > max)
+            {
+                pos[0] = i;
+                pos[1] = j;
+            }
+        }
+    }
+}
+void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
+{
+    double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    int pos[2];
+    *lambda = (double *)malloc(dimension[0] * sizeof(double));
+    while (!convergence_eigenvaues_jacobi(matrix, dimension))
+    {
+        find_max_jacobi(matrix, dimension, pos);
+        printf("%d %d %lf\n", pos[0], pos[1], *(matrix + pos[1] * dimension[0] + pos[0]));
+        initialize_jacobi_matrix(jacobi_matrix, dimension);
+        obtain_jaboci_elements(matrix, dimension, pos, jacobi_matrix);
+        print_matrix(jacobi_matrix, dimension);
+        obtain_jacobi_matrix_T(jacobi_matrix, jacobi_matrix_T, dimension);
+        obtain_multiplication_matrix(matrix,
+                                     jacobi_matrix,
+                                     matrix_aux,
+                                     dimension,
+                                     dimension);
+        obtain_multiplication_matrix(jacobi_matrix_T,
+                                     matrix_aux,
+                                     matrix,
+                                     dimension,
+                                     dimension);
+        print_matrix(matrix, dimension);
+    }
 }

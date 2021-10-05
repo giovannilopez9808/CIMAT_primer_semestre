@@ -41,4 +41,5 @@ dada una matrix y su tamaño obtiene el eigenvalor menor absoluto y su respectiv
 */
 void obtain_min_eigenvalue(double *matrix, int dimension_matrix[], double *lambda, double **vector);
 void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas);
+void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda);
 #endif

@@ -7,6 +7,7 @@
     Realiza la impresion de las lineas en la terminal
      */
 void print_lines();
+void print_matrix(double *matrix, int dimension_matrix[]);
 /* 
     Realiza la impresion de las lineas en el documento
      */

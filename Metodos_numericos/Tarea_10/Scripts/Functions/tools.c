@@ -27,6 +27,19 @@ void valid_solution(double number)
         exit(1);
     }
 }
+void print_matrix(double *matrix, int dimension_matrix[])
+{
+    for (int i = 0; i < dimension_matrix[0]; i++)
+    {
+        for (int j = 0; j < dimension_matrix[0]; j++)
+        {
+            printf("%lf\t", *(matrix + i * dimension_matrix[0] + j));
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
 void valid_file(FILE *text_file)
 {
     /*
