@@ -19,4 +19,4 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out ../Data/matrix.txt
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out matrix.txt

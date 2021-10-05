@@ -12,11 +12,11 @@ int main(int argc, char *argv[])
     strcat(path_data, argv[1]);
     strcat(path_output, argv[1]);
     FILE *file_matrix, *file_output;
-    double *matrix, *lambda = NULL, *vectors = NULL;
+    double *matrix, *lambda = NULL;
     int dimension_matrix[2];
     file_matrix = fopen(path_data, "r");
-    file_output = fopen(path_output, "w");
     valid_file(file_matrix);
+    file_output = fopen(path_output, "w");
     valid_file(file_output);
     // Lectura de los datos de la matriz
     read_dimension(file_matrix,
@@ -24,17 +24,16 @@ int main(int argc, char *argv[])
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
-    obtain_eigenvalues_jacobi(matrix, dimension_matrix, &lambda);
-    // print_several_results(file_output,
-    //                       lambda,
-    //                       vectors,
-    //                       dimension_matrix,
-    //                       n);
+    obtain_eigenvalues_jacobi(matrix,
+                              dimension_matrix,
+                              &lambda);
+    print_lambdas_on_a_file(file_output,
+                            lambda,
+                            dimension_matrix[0]);
     printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
            path_output);
     fclose(file_output);
     free(matrix);
-    free(vectors);
     free(lambda);
     return 0;
 }
