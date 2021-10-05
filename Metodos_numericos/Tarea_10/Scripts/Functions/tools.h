@@ -60,6 +60,7 @@ double obtain_cdot_multiplication(double *vector1, double *vector2, int dimensio
     Realiza la impresion en un archivo de un vector en una sola fila
      */
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension);
+void print_lambdas_on_a_file(FILE *text, double *lambda, int n);
 /* 
     Realiza la impresion de el eigenvalor dado en un archivo
      */

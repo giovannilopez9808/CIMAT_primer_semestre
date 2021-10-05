@@ -180,6 +180,13 @@ void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
     }
     fprintf(text, "\n");
 }
+void print_lambdas_on_a_file(FILE *text, double *lambda, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        fprintf(text, "Lambda %d:\t%lf\n", i + 1, *(lambda + i));
+    }
+}
 void print_lambda_on_a_file(FILE *text, double lambda)
 {
     /*

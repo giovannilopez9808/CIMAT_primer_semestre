@@ -230,7 +230,7 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
     double m_ij, sum = 0;
     for (int i = 0; i < dimension[0]; i++)
     {
-        for (int j = i+1; j < dimension[0]; j++)
+        for (int j = i + 1; j < dimension[0]; j++)
         {
             m_ij = *(matrix + j * dimension[0] + i);
             sum += m_ij * m_ij;
@@ -239,7 +239,8 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
         }
     }
     sum = sqrt(sum);
-    if (sum > 1e-7)
+    printf("Convergencia: %lf\n", sum);
+    if (sum > 1e-6)
     {
         return 1;
     }
@@ -247,20 +248,31 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
 }
 void find_max_jacobi(double *matrix, int dimension[], int pos[])
 {
-    double m_ij, max = fabs(*(matrix+1));
-    pos[0] =0;
+    pos[0] = 0;
     pos[1] = 1;
+    double m_ij, max = fabs(*(matrix + pos[1] * dimension[0] + pos[0]));
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = i + 1; j < dimension[0]; j++)
         {
-            m_ij = fabs(*(matrix + i * dimension[0] + j));
+            m_ij = fabs(*(matrix + j * dimension[0] + i));
             if (m_ij > max)
             {
+                max = m_ij;
                 pos[0] = i;
                 pos[1] = j;
             }
         }
+    }
+}
+void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)
+{
+    double *Lambda_i, m_ii;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        m_ii = *(matrix + i * dimension[0] + i);
+        Lambda_i = (lambda + i);
+        *Lambda_i = m_ii;
     }
 }
 void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
@@ -268,14 +280,22 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    int pos[2];
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
+    int pos[2];
     while (convergence_eigenvaues_jacobi(matrix, dimension))
     {
-        find_max_jacobi(matrix, dimension, pos);
-        initialize_jacobi_matrix(jacobi_matrix, dimension);
-        obtain_jaboci_elements(matrix, dimension, pos, jacobi_matrix);
-        obtain_jacobi_matrix_T(jacobi_matrix, jacobi_matrix_T, dimension);
+        find_max_jacobi(matrix,
+                        dimension,
+                        pos);
+        initialize_jacobi_matrix(jacobi_matrix,
+                                 dimension);
+        obtain_jaboci_elements(matrix,
+                               dimension,
+                               pos,
+                               jacobi_matrix);
+        obtain_jacobi_matrix_T(jacobi_matrix,
+                               jacobi_matrix_T,
+                               dimension);
         obtain_multiplication_matrix(matrix,
                                      jacobi_matrix,
                                      matrix_aux,
@@ -287,5 +307,10 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
                                      dimension,
                                      dimension);
     }
-    print_matrix(matrix, dimension);
+    obtain_lambdas_from_matrix(matrix,
+                               dimension,
+                               *lambda);
+    free(jacobi_matrix);
+    free(jacobi_matrix_T);
+    free(matrix_aux);
 }
