@@ -167,6 +167,19 @@ double obtain_cdot_multiplication(double *vector1, double *vector2, int dimensio
     }
     return cdot;
 }
+double obtain_Frobenius_norm(double *matrix, int dimension[])
+{
+    double norm = 0, m_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[0]; j++)
+        {
+            m_ij = *(matrix + j * dimension[0] + i);
+            norm += m_ij * m_ij;
+        }
+    }
+    return norm;
+}
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
 {
     /*

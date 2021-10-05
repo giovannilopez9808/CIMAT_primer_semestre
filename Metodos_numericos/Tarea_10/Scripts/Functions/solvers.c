@@ -225,7 +225,7 @@ void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])
         }
     }
 }
-int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
+int convergence_eigenvaues_jacobi(double *matrix, int dimension[], double norm)
 {
     double m_ij, sum = 0;
     for (int i = 0; i < dimension[0]; i++)
@@ -239,7 +239,7 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[])
         }
     }
     sum = sqrt(sum);
-    if (sum > 1e-6)
+    if (sum > 1e-6 * norm)
     {
         return 1;
     }
@@ -280,8 +280,10 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
     double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
+    double matrix_norm = obtain_Frobenius_norm(matrix,
+                                               dimension);
     int pos[2];
-    while (convergence_eigenvaues_jacobi(matrix, dimension))
+    while (convergence_eigenvaues_jacobi(matrix, dimension, matrix_norm))
     {
         find_max_jacobi(matrix,
                         dimension,
