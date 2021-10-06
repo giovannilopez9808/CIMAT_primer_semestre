@@ -1,0 +1,90 @@
+\subsection{Método de Jacobi}
+
+El método de Jacobi recibe una matriz simetrica A, la cual reducirá a una matriz diagonal por medio de transformaciones dadas por matrices ortogonales. Consideremos la matriz de rotación $J(i,j,\theta)$ (ecuación \ref{eq:matrix_jacobi}).
+
+\begin{equation}
+    J(i,j,\theta)=\begin{pmatrix}
+        1      & \cdots & 0            & \cdots & 0           & \cdots & 0      \\
+        \vdots & \ddots & \vdots       &        & \vdots      &        & \vdots \\
+        0      & \cdots & cos(\theta)  & \cdots & sin(\theta) & \cdots & 0      \\
+        \vdots &        & \vdots       & \ddots & \vdots      &        & \vdots \\
+        0      & \cdots & -sin(\theta) & \cdots & cos(\theta) & \cdots & 0      \\
+        \vdots &        & \vdots       &        & \vdots      & \ddots & \vdots \\
+        0      & \cdots & 0            & \cdots & 0           & \cdots & 1      \\
+    \end{pmatrix}
+    \label{eq:matrix_jacobi}
+\end{equation}
+
+donde $i,j$ denotan la posición de los elementos diferentes en la matriz identidad. Los valores de la matriz $J$, deben satisfacer la siguiente relación:
+
+\begin{equation*}
+    \begin{pmatrix}
+        c  & s \\
+        -s & c
+    \end{pmatrix}^T
+    \begin{pmatrix}
+        a_{ii} & a_{ij} \\
+        a_{ij} & a_{jj}
+    \end{pmatrix}
+    \begin{pmatrix}
+        c  & s \\
+        -s & c
+    \end{pmatrix} =
+    \begin{pmatrix}
+        a'_{ii} & 0       \\
+        0       & a'_{jj}
+    \end{pmatrix}^T
+\end{equation*}
+
+donde $c=cos(\theta)$ y $s=sin(\theta)$. Entonces, se puede deducir que:
+
+\begin{equation*}
+    a_{ij}(c^2-s^2) + (a_{ii}-a_{jj})cs = 0
+\end{equation*}
+
+definimos como:
+
+\begin{equation*}
+    \tau = \frac{a_{jj}-a_{ii}}{2a_{ij}} ; \qquad t = \frac{s}{c}
+\end{equation*}
+
+donde t debe satisfacer a la ecuación cuadratica
+
+\begin{equation*}
+    t^2 - 2\tau t -1 =0
+\end{equation*}
+
+por lo tanto
+
+\begin{equation*}
+    c = \frac{1}{\sqrt{1+t^2}} \qquad s =ct
+\end{equation*}
+
+La manera en que se elijen las posiciones $i,j$ es encontrando la posición del elemento con valor absoluto mayor de la matriz $A$ fuera de la diagonal.
+
+La convergencia de este método es dado con la siguiente ecuación:
+
+\begin{equation*}
+    max\{a_{ij}\} < tol \qquad i\neq j
+\end{equation*}
+
+Los eigenvalores se encontrarán en la diagonal de la matriz A al final del método. Los eigenvectores asociados a cada eigenvalor pueden ser calculados con la siguiente operación
+
+\begin{equation*}
+    v = J_1J_2J_3\dots J_n
+\end{equation*}
+
+Por lo tanto, el algoritmo de Jacobi puede ser escrito de la siguiente manera:
+
+\begin{algorithm}[H]
+    \caption{Método de Jacobi}
+    \label{alg:jacobi_method}
+    \KwInput{$A$}
+    \KwOutput{$v$ y $\lambda$}
+    $v \gets I_{n\times n}$\\
+    \While{$|max\{ a_{ij}\}|>tol$}{
+        $J \gets obtain\_jacobi\_elements(A)$ \\
+        $A \gets J^TAJ$\\
+        $v \gets vJ$
+    }
+\end{algorithm}

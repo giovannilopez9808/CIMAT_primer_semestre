@@ -1,0 +1,75 @@
+\subsection{Método de las potencias inversas}
+
+El método de las potencias inversas se basa en el hecho que los eigenvalores $\mu$ de la matriz inversa de A $(A^{-1})$ pueden ser calculados con la ecuación \ref{eq:eigenvalue_inverse}.
+
+\begin{equation}
+    \mu_i = \frac{1}{\lambda_i} \label{eq:eigenvalue_inverse}
+\end{equation}
+
+Por lo tanto, la ecuación \ref{eq:equation_eigenvalores} puede ser escrita de la siguiente manera:
+
+\begin{equation}
+    A^{-1} v_i = \mu_i  v_i
+\end{equation}
+
+En este método para obtener el eigenvector $v_i$, se tiene que resolver la ecuación matricial señalada en la ecuación \ref{eq:matrix_system}.
+
+\begin{equation}
+    Av_{i} = v_{i_i} \label{eq:matrix_system}
+\end{equation}
+
+donde el vector inicial $v_0$ tiene que estar normalizado y al obtener el vector $v_{i}$ este debera pasar por el proceso de normalización. El méotod de las potencias inversas se asemeja mucho al método de las potencias, este obtiene el valor absoluto mayor de la matriz $A^{-1}$. Por la relación descrita en la ecuación \ref{eq:eigenvalue_inverse}, entonces al obtener el $\mu_i$, estaremos obteniendo a su vez $\lambda_n$, el cual es el eigenvalor con menor valor absoluto de A. Por lo tanto, para calcular este valor se realiza la ecuación \ref{eq:lambda_inverse}.
+
+\begin{equation}
+    \lambda_i = \frac{\langle v_{i-1}, v_{i-1}\rangle}{\langle v_i , v_{i-1}\rangle} \label{eq:lambda_inverse}
+\end{equation}
+
+La convegencia del algoritmo que se implemento fue usando la ecuación \ref{eq:power_tol}.
+
+\begin{equation}
+    \theta = |\lambda_i - \lambda_{i-1}| \label{eq:power_tol}
+\end{equation}
+
+El método de las potencias inversas es descrito en el pseudo código \ref{alg:power_inverse_method}.
+
+\begin{algorithm}[H]
+    \caption{Método de las potencias inversas}
+    \label{alg:power_inverse_method}
+    \KwInput{$A$}
+    \KwOutput{$v_i$ y $\lambda_i$}
+    $v_0 \gets initialize\_vector(v_0)$ \\
+    \While{$\theta > 10^{-6}$}
+    {
+    $v_i \gets solve(Av_{i}=v_{i-1})$\\
+    $\lambda_i \gets \frac{\langle v_{i-1} , v_{i-1}\rangle}{\langle v_{i}, v_{i-1}\rangle}$\\
+    $v_i \gets normalize(v_i)$\\
+    }
+\end{algorithm}
+
+\subsection{Método de la potencia inversa con deflación}
+
+Al igual que el método de defleción, este método eliminará las contribuciones de los vectores que ya no son necesarios calcular. En este caso se iniciará calculando el eigenvalor con menor valor absoluto ($\lambda_n$), en seguida el método tratara de obtener el siguiente eigenvalor mayor ($\lambda_{n-1}$).
+
+Por lo tanto, el método de defleción inversa puede ser condensado en el algoritmo \ref{alg:deflation_inverse_method}.
+
+\begin{algorithm}[H]
+    \caption{Método de la potencia inversa con deflación}
+    \label{alg:deflation_inverse_method}
+    \KwInput{$A,m$}
+    \KwOutput{$v$ y $\lambda$}
+    \For{i=1,m}{
+    $v_0 \gets initialize\_vector(v_0)$ \\
+    \For{j=1,i-1}{
+        $v_0\gets v_0 - \langle v_{i}, v_{j}\rangle v_{j}$\\
+    }
+    \While{$\theta > 10^{-6}$}
+    {
+    $v_i \gets solve(Av_{i}=v_{i-1})$\\
+    $\lambda_i \gets \frac{\langle v_{i-1}, v_{i-1}\rangle}{\langle v_i , v_{i-1}\rangle}$\\
+    $v_i \gets normalize(v_i)$\\
+    \For{j=1,i-1}{
+        $v_i\gets v_i - \langle v_{i}, v_{j}\rangle v_{j}$\\
+    }
+    }
+    }
+\end{algorithm}

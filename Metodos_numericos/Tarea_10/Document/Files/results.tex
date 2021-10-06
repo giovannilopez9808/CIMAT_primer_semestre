@@ -1,0 +1,83 @@
+\section{Resultados}
+
+Para la demostración de algunos resultados se usaron las siguientes matrices:
+
+\begin{equation}
+    A = \begin{pmatrix}
+        3    & -0.1 & -0.2 \\
+        -0.1 & 7    & -0.3 \\
+        -0.2 & -0.3 & 10
+    \end{pmatrix}
+    \qquad
+    B = \begin{pmatrix}
+        1 & 0 & 2 \\
+        0 & 2 & 1 \\
+        2 & 1 & 1
+    \end{pmatrix}
+\end{equation}
+\subsection{Método de la potencia inversa con deflación}
+
+Para el método de la potencia inversa con deflación se obtuvieron los siguientes eigenvalores para las matrices A y B.
+
+\begin{equation*}
+    \lambda_A = \begin{pmatrix}
+        2.991343 \\
+        6.973860
+    \end{pmatrix}
+    \qquad
+    \lambda_B = \begin{pmatrix}
+        -1.164248 \\
+        1.772866
+    \end{pmatrix}
+\end{equation*}
+
+con sus respectivos eigenvectores:
+
+\begin{equation*}
+    v_A = \begin{pmatrix}
+        0.999190 & -0.029942 \\
+        0.027185 & 0.994855  \\
+        0.029679 & 0.096782
+    \end{pmatrix}
+    \qquad
+    v_B = \begin{pmatrix}
+        0.661072  & -0.497285 \\
+        0.226165  & 0.846066  \\
+        -0.715425 & -0.192040
+    \end{pmatrix}
+\end{equation*}
+
+
+\subsection{Método de Jacobi}
+
+Para el método de Jacobi se obtuvieron los siguientes eigenvalores para las matrices A y B.
+
+\begin{equation*}
+    \lambda_A = \begin{pmatrix}
+        2.991343 \\
+        6.973860 \\
+        10.034796
+    \end{pmatrix}
+    \qquad
+    \lambda_B = \begin{pmatrix}
+        3.391382 \\
+        1.772866 \\
+        -1.164248
+    \end{pmatrix}
+\end{equation*}
+
+Los eigenvectores correspondientes a cada eigenvalor son los siguientes:
+
+\begin{equation*}
+    v_A = \begin{pmatrix}
+        0.999191 & -0.029900 & -0.026899 \\
+        0.027147 & 0.994869  & -0.097461 \\
+        0.029675 & 0.096651  & 0.994876
+    \end{pmatrix}
+    \qquad
+    v_B = \begin{pmatrix}
+        0.561818 & -0.497279 & -0.661115 \\
+        0.482801 & 0.846041  & -0.226091 \\
+        0.671761 & -0.192165 & 0.715409
+    \end{pmatrix}
+\end{equation*}
