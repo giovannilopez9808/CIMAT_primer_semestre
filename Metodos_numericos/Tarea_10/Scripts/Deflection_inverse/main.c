@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
     double *matrix, *lambda = NULL, *vectors = NULL;
     int dimension_matrix[2];
     file_matrix = fopen(path_data, "r");
-    file_output = fopen(path_output, "w");
     valid_file(file_matrix);
+    file_output = fopen(path_output, "w");
     valid_file(file_output);
     // Lectura de los datos de la matriz
     read_dimension(file_matrix,

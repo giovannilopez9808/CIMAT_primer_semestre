@@ -28,10 +28,11 @@ TOOLS_H	../Functions/tools.h	2;"	d
 _FUNC	../Deflection_inverse/Makefile	/^_FUNC=	tools.c solvers.c$/;"	m
 _FUNC	../Jacobi_method/Makefile	/^_FUNC=	tools.c solvers.c$/;"	m
 convergence_eigenvalues	../Functions/solvers.c	/^int convergence_eigenvalues(double lambda, double lambda_i, int attempt)$/;"	f
-convergence_eigenvaues_jacobi	../Functions/solvers.c	/^int convergence_eigenvaues_jacobi(double *matrix, int dimension[], double norm)$/;"	f
+convergence_eigenvaues_jacobi	../Functions/solvers.c	/^int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])$/;"	f
 copy_vector	../Functions/solvers.c	/^void copy_vector(double *vector, double *vector_i, int dimension[])$/;"	f
 copy_vector_i	../Functions/solvers.c	/^void copy_vector_i(double *vectors, double *vector, int dimension[], int n)$/;"	f
 copy_vectors	../Functions/solvers.c	/^void copy_vectors(double **vectors, double *vector, int dimension[], int n)$/;"	f
+duplicate_vectors	../Functions/solvers.c	/^void duplicate_vectors(double *vectors, double vectors_aux,int dimension)$/;"	f
 find_max_jacobi	../Functions/solvers.c	/^void find_max_jacobi(double *matrix, int dimension[], int pos[])$/;"	f
 initialize_jacobi_matrix	../Functions/solvers.c	/^void initialize_jacobi_matrix(double *matrix, int dimension[])$/;"	f
 initialize_vector	../Functions/solvers.c	/^void initialize_vector(double *vector, int dimension[])$/;"	f
@@ -42,7 +43,7 @@ obatin_new_vector	../Functions/solvers.c	/^void obatin_new_vector(double **vecto
 obtain_Frobenius_norm	../Functions/tools.c	/^double obtain_Frobenius_norm(double *matrix, int dimension[])$/;"	f
 obtain_LU_crout	../Functions/tools.c	/^void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)$/;"	f
 obtain_cdot_multiplication	../Functions/tools.c	/^double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[])$/;"	f
-obtain_eigenvalues_jacobi	../Functions/solvers.c	/^void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)$/;"	f
+obtain_eigenvalues_jacobi	../Functions/solvers.c	/^void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)$/;"	f
 obtain_jaboci_elements	../Functions/solvers.c	/^void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *jacobi_matrix)$/;"	f
 obtain_jacobi_matrix_T	../Functions/solvers.c	/^void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])$/;"	f
 obtain_lambdas_from_matrix	../Functions/solvers.c	/^void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)$/;"	f

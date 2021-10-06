@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     strcat(path_data, argv[1]);
     strcat(path_output, argv[1]);
     FILE *file_matrix, *file_output;
-    double *matrix, *lambda = NULL;
+    double *matrix, *lambda = NULL, *vectors=NULL;
     int dimension_matrix[2];
     file_matrix = fopen(path_data, "r");
     valid_file(file_matrix);
@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
                 &matrix);
     obtain_eigenvalues_jacobi(matrix,
                               dimension_matrix,
-                              &lambda);
+                              &lambda,
+                              &vectors);
     print_lambdas_on_a_file(file_output,
                             lambda,
                             dimension_matrix[0]);
@@ -35,5 +36,6 @@ int main(int argc, char *argv[])
     fclose(file_output);
     free(matrix);
     free(lambda);
+    free(vectors);
     return 0;
 }

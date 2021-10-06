@@ -249,7 +249,6 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
             }
         }
     }
-    printf("Convengencia %lf -> %lf\n",max,1e-6);
     if (max > 1e-6)
     {
         return 1;
@@ -285,18 +284,31 @@ void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)
         *Lambda_i = m_ii;
     }
 }
-void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
+void duplicate_vectors(double *vectors, double *vectors_aux,int dimension[])
+{
+    double *V_ij,v_ij;
+    for(int i=0; i<dimension[0]; i++)
+    {
+        for(int j=0; j<dimension[1]; j++)
+        {
+            V_ij = (vectors+j*dimension[0]+i);
+            v_ij = *(vectors_aux+j*dimension[0]+i);
+            *V_ij =v_ij;
+        }
+    }
+}
+void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)
 {
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *vectors_aux = (double*)malloc(dimension[0]*dimension[1]*sizeof(double));
+    *vectors = (double*)malloc(dimension[0]*dimension[1]*sizeof(double));
+    initialize_jacobi_matrix(*vectors,dimension);
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
     int pos[2];
     while (convergence_eigenvaues_jacobi(matrix, dimension,pos))
     {
-        find_max_jacobi(matrix,
-                        dimension,
-                        pos);
         initialize_jacobi_matrix(jacobi_matrix,
                                  dimension);
         obtain_jaboci_elements(matrix,
@@ -316,6 +328,14 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
                                      matrix,
                                      dimension,
                                      dimension);
+        obtain_multiplication_matrix(*vectors,
+                                     jacobi_matrix,
+                                     vectors_aux,
+                                     dimension,
+                                     dimension);
+        duplicate_vectors(*vectors,
+                          vectors_aux,
+                          dimension);
     }
     obtain_lambdas_from_matrix(matrix,
                                dimension,
@@ -323,4 +343,5 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
     free(jacobi_matrix);
     free(jacobi_matrix_T);
     free(matrix_aux);
+    free(vectors_aux);
 }
