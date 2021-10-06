@@ -178,7 +178,7 @@ double obtain_Frobenius_norm(double *matrix, int dimension[])
             norm += m_ij * m_ij;
         }
     }
-    return norm;
+    return sqrt(norm);
 }
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
 {

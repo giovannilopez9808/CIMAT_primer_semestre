@@ -225,21 +225,32 @@ void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])
         }
     }
 }
-int convergence_eigenvaues_jacobi(double *matrix, int dimension[], double norm)
+int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
 {
-    double m_ij, sum = 0;
+    double m_ij;
+    pos[0]=0;
+    pos[1]=1;
+    double max = fabs(*(matrix + pos[1]*dimension[0]+pos[0]));
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = i + 1; j < dimension[0]; j++)
         {
-            m_ij = *(matrix + j * dimension[0] + i);
-            sum += m_ij * m_ij;
-            m_ij = *(matrix + i * dimension[0] + j);
-            sum += m_ij * m_ij;
+            m_ij = fabs(*(matrix + j * dimension[0] + i));
+            if(m_ij>max) {
+                max=m_ij;
+                pos[0]=i;
+                pos[1]=j;
+            }
+            m_ij = fabs(*(matrix + i * dimension[0] + j));
+            if(m_ij>max) {
+                max=m_ij;
+                pos[0]=i;
+                pos[1]=j;
+            }
         }
     }
-    sum = sqrt(sum);
-    if (sum > 1e-6 * norm)
+    printf("Convengencia %lf -> %lf\n",max,1e-6);
+    if (max > 1e-6)
     {
         return 1;
     }
@@ -280,10 +291,8 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda)
     double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
-    double matrix_norm = obtain_Frobenius_norm(matrix,
-                                               dimension);
     int pos[2];
-    while (convergence_eigenvaues_jacobi(matrix, dimension, matrix_norm))
+    while (convergence_eigenvaues_jacobi(matrix, dimension,pos))
     {
         find_max_jacobi(matrix,
                         dimension,

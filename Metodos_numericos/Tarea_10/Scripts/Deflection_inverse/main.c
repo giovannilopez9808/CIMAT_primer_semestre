@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
-    int n = dimension_matrix[0] - 2;
+    int n = dimension_matrix[0] - 4;
     if (n < 2)
         n = 2;
     obtain_n_min_eigenvalue(matrix,
