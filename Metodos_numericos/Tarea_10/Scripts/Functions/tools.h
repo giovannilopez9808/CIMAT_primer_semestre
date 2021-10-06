@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-/* 
+/*
     Realiza la impresion de las lineas en la terminal
      */
 void print_lines();
 void print_matrix(double *matrix, int dimension_matrix[]);
-/* 
+/*
     Realiza la impresion de las lineas en el documento
      */
 void print_lines_on_file(FILE *text);
@@ -39,38 +39,38 @@ void read_matrix(FILE *file, int dimension[], double **matrix);
     Realiza la multiplicacion de matrices
      */
 void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimension_matrix_A[], int dimension_matrix_B[]);
-/* 
+/*
     Calcula la norma de un vector dado
      */
 double obtain_norm(double *vector, int dimension[]);
-/* 
+/*
     Realiza la normalizacion del vector dado
      */
 void normalize_vector(double *vector, int dimension[]);
-/* 
+/*
     Realiza la multiplicacion de un vector por su transpuesta, dando como
     restultado una matriz de nxn
      */
 void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix);
-/* 
+/*
     Realiza el producto punto de dos vectores dados
      */
 double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[]);
 double obtain_Frobenius_norm(double *matrix, int dimension[]);
-/* 
+/*
     Realiza la impresion en un archivo de un vector en una sola fila
      */
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension);
 void print_lambdas_on_a_file(FILE *text, double *lambda, int n);
-/* 
+/*
     Realiza la impresion de el eigenvalor dado en un archivo
      */
 void print_lambda_on_a_file(FILE *text, double lambda);
-/* 
+/*
     Realiza la impresion de los resultados de un eigenvalor y un eigen vector
      */
 void print_results(FILE *text, double lambda, double *vectors, int *dimension);
-/* 
+/*
     Realiza la impresion de un conjunto de eigenvalores y eigenvectores
      */
 void print_several_results(FILE *text, double *lambda, double *vectors, int *dimension, int n);
