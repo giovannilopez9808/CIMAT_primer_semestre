@@ -38,7 +38,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     // Si no la cumple devuelve un 1
     return 1;
 }
-void copy_vector_i(double *vectors, double *vector, int dimension[], int n)
+void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
 {
     /*
     Copia del vector i en la matriz de eigenvectores
@@ -61,11 +61,11 @@ void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
     double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
     // Inicializacion del vector auxiliar
     double *vector_aux = (double *)malloc(dimension[0] * sizeof(double));
-    // Copia de los vectores
+    // Copia del vector para ser recalculado
     copy_vector(*vector, vector_aux, dimension);
     for (int i = 0; i < n; i++)
     {
-        copy_vector_i(vectors, vector_i, dimension, i);
+        obtain_vector_i(vectors, vector_i, dimension, i);
         // Producto punto de v_{i} y v
         cdot = obtain_cdot_multiplication(vector_i, *vector, dimension);
         for (int j = 0; j < dimension[0]; j++)
@@ -143,10 +143,14 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
                                              dimension_matrix,
                                              vector_aux,
                                              &vector_i);
-            down = obtain_cdot_multiplication(vector_j, vector_i, dimension_vector);
-            up = obtain_norm(vector_j, dimension_vector);
+            down = obtain_cdot_multiplication(vector_j,
+                                              vector_i,
+                                              dimension_vector);
+            up = obtain_norm(vector_j,
+                             dimension_vector);
             lambda_i = (up * up) / down;
-            normalize_vector(vector_i, dimension_vector);
+            normalize_vector(vector_i,
+                             dimension_vector);
             // Eliminacion de las contribuciones anteriores
             obatin_new_vector(&vector_i,
                               *vectors,
