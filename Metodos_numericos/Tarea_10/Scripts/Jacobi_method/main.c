@@ -31,7 +31,6 @@ int main(int argc, char *argv[])
     print_lambdas_on_a_file(file_output,
                             lambda,
                             dimension_matrix[0]);
-    print_matrix(vectors,dimension_matrix);
     printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
            path_output);
     fclose(file_output);
