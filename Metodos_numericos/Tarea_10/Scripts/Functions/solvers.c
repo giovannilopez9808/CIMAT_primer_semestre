@@ -174,7 +174,7 @@ void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *
     m_ij = *(matrix + pos[1] * dimension[0] + pos[0]);
     m_ii = *(matrix + pos[0] * dimension[0] + pos[0]);
     m_jj = *(matrix + pos[1] * dimension[0] + pos[1]);
-    double theta = atan2(2*m_ij,m_ii-m_jj)/2.0;
+    double theta = atan2(2 * m_ij, m_ii - m_jj) / 2.0;
     double cos_theta = cos(theta);
     double sin_theta = sin(theta);
     *(jacobi_matrix + pos[0] * dimension[0] + pos[0]) = cos_theta;
@@ -221,24 +221,26 @@ void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])
 int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
 {
     double m_ij;
-    pos[0]=0;
-    pos[1]=1;
-    double max = fabs(*(matrix + pos[1]*dimension[0]+pos[0]));
+    pos[0] = 0;
+    pos[1] = 1;
+    double max = fabs(*(matrix + pos[1] * dimension[0] + pos[0]));
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = i + 1; j < dimension[0]; j++)
         {
             m_ij = fabs(*(matrix + j * dimension[0] + i));
-            if(m_ij>max) {
-                max=m_ij;
-                pos[0]=i;
-                pos[1]=j;
+            if (m_ij > max)
+            {
+                max = m_ij;
+                pos[0] = i;
+                pos[1] = j;
             }
             m_ij = fabs(*(matrix + i * dimension[0] + j));
-            if(m_ij>max) {
-                max=m_ij;
-                pos[0]=i;
-                pos[1]=j;
+            if (m_ij > max)
+            {
+                max = m_ij;
+                pos[0] = i;
+                pos[1] = j;
             }
         }
     }
@@ -277,52 +279,51 @@ void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)
         *Lambda_i = m_ii;
     }
 }
-void duplicate_vectors(double *vectors, double *vectors_aux,int dimension[])
+void duplicate_vectors(double *vectors, double *vectors_aux, int dimension[])
 {
-    double *V_ij,v_ij;
-    for(int i=0; i<dimension[0]; i++)
+    double *V_ij, v_ij;
+    for (int i = 0; i < dimension[0]; i++)
     {
-        for(int j=0; j<dimension[1]; j++)
+        for (int j = 0; j < dimension[1]; j++)
         {
-            V_ij = (vectors+j*dimension[0]+i);
-            v_ij = *(vectors_aux+j*dimension[0]+i);
-            *V_ij =v_ij;
+            V_ij = (vectors + j * dimension[0] + i);
+            v_ij = *(vectors_aux + j * dimension[0] + i);
+            *V_ij = v_ij;
         }
     }
 }
-void rotate_matrix(double *matrix, int dimension[],int pos[],double cos_theta, double sin_theta)
+void rotate_matrix(double *matrix, int dimension[], int pos[], double cos_theta, double sin_theta)
 {
-    double *M_ij,*M_ji;
+    double *M_ij, *M_ji;
     double m_ij;
-    for(int i=0; i<dimension[0]; i++)
+    for (int i = 0; i < dimension[0]; i++)
     {
-        m_ij = *(matrix+pos[0]*dimension[0]+i);
-        M_ij = (matrix+pos[0]*dimension[0]+i);
-        M_ji = (matrix+pos[1]*dimension[0]+i);
-        *M_ij = m_ij*cos_theta+*M_ji*sin_theta;
-        *M_ji = -m_ij*sin_theta+*M_ji*cos_theta;
+        m_ij = *(matrix + pos[0] * dimension[0] + i);
+        M_ij = (matrix + pos[0] * dimension[0] + i);
+        M_ji = (matrix + pos[1] * dimension[0] + i);
+        *M_ij = m_ij * cos_theta + *M_ji * sin_theta;
+        *M_ji = -m_ij * sin_theta + *M_ji * cos_theta;
     }
-    for(int i=0; i<dimension[0]; i++)
+    for (int i = 0; i < dimension[0]; i++)
     {
-        m_ij = *(matrix+i*dimension[0]+pos[0]);
-        M_ij = (matrix+i*dimension[0]+pos[0]);
-        M_ji = (matrix+i*dimension[0]+pos[1]);
-        *M_ij = m_ij*cos_theta+*M_ji*sin_theta;
-        *M_ji = -m_ij*sin_theta+*M_ji*cos_theta;
+        m_ij = *(matrix + i * dimension[0] + pos[0]);
+        M_ij = (matrix + i * dimension[0] + pos[0]);
+        M_ji = (matrix + i * dimension[0] + pos[1]);
+        *M_ij = m_ij * cos_theta + *M_ji * sin_theta;
+        *M_ji = -m_ij * sin_theta + *M_ji * cos_theta;
     }
 }
 void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)
 {
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *vectors_aux = (double*)malloc(dimension[0]*dimension[1]*sizeof(double));
-    *vectors = (double*)malloc(dimension[0]*dimension[1]*sizeof(double));
-    initialize_jacobi_matrix(*vectors,dimension);
+    double *vectors_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    *vectors = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    initialize_jacobi_matrix(*vectors, dimension);
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
-    double cos_theta,sin_theta;
+    double cos_theta, sin_theta;
     int pos[2];
-    while (convergence_eigenvaues_jacobi(matrix, dimension,pos))
+    while (convergence_eigenvaues_jacobi(matrix, dimension, pos))
     {
         initialize_jacobi_matrix(jacobi_matrix,
                                  dimension);
@@ -333,8 +334,8 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
         obtain_jacobi_matrix_T(jacobi_matrix,
                                jacobi_matrix_T,
                                dimension);
-        cos_theta=*(jacobi_matrix+pos[0]*dimension[0]+pos[0]);
-        sin_theta=*(jacobi_matrix+pos[0]*dimension[0]+pos[1]);
+        cos_theta = *(jacobi_matrix + pos[0] * dimension[0] + pos[0]);
+        sin_theta = *(jacobi_matrix + pos[0] * dimension[0] + pos[1]);
         rotate_matrix(matrix,
                       dimension,
                       pos,
@@ -354,6 +355,5 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
                                *lambda);
     free(jacobi_matrix);
     free(jacobi_matrix_T);
-    free(matrix_aux);
     free(vectors_aux);
 }
