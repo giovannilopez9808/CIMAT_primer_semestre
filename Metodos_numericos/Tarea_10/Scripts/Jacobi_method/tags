@@ -30,9 +30,8 @@ _FUNC	../Jacobi_method/Makefile	/^_FUNC=	tools.c solvers.c$/;"	m
 convergence_eigenvalues	../Functions/solvers.c	/^int convergence_eigenvalues(double lambda, double lambda_i, int attempt)$/;"	f
 convergence_eigenvaues_jacobi	../Functions/solvers.c	/^int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])$/;"	f
 copy_vector	../Functions/solvers.c	/^void copy_vector(double *vector, double *vector_i, int dimension[])$/;"	f
-copy_vector_i	../Functions/solvers.c	/^void copy_vector_i(double *vectors, double *vector, int dimension[], int n)$/;"	f
 copy_vectors	../Functions/solvers.c	/^void copy_vectors(double **vectors, double *vector, int dimension[], int n)$/;"	f
-duplicate_vectors	../Functions/solvers.c	/^void duplicate_vectors(double *vectors, double vectors_aux,int dimension)$/;"	f
+duplicate_vectors	../Functions/solvers.c	/^void duplicate_vectors(double *vectors, double *vectors_aux,int dimension[])$/;"	f
 find_max_jacobi	../Functions/solvers.c	/^void find_max_jacobi(double *matrix, int dimension[], int pos[])$/;"	f
 initialize_jacobi_matrix	../Functions/solvers.c	/^void initialize_jacobi_matrix(double *matrix, int dimension[])$/;"	f
 initialize_vector	../Functions/solvers.c	/^void initialize_vector(double *vector, int dimension[])$/;"	f
@@ -51,6 +50,7 @@ obtain_multiplication_matrix	../Functions/tools.c	/^void obtain_multiplication_m
 obtain_multiplication_vvT	../Functions/tools.c	/^void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)$/;"	f
 obtain_n_min_eigenvalue	../Functions/solvers.c	/^void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)$/;"	f
 obtain_norm	../Functions/tools.c	/^double obtain_norm(double *vector, int dimension[])$/;"	f
+obtain_vector_i	../Functions/solvers.c	/^void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)$/;"	f
 print_eigenvector_on_a_file	../Functions/tools.c	/^void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)$/;"	f
 print_lambda_on_a_file	../Functions/tools.c	/^void print_lambda_on_a_file(FILE *text, double lambda)$/;"	f
 print_lambdas_on_a_file	../Functions/tools.c	/^void print_lambdas_on_a_file(FILE *text, double *lambda, int n)$/;"	f

@@ -170,28 +170,17 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
 
 void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *jacobi_matrix)
 {
-    double m_ij, m_ii, m_jj, tau, c = 1, s = 0;
+    double m_ij, m_ii, m_jj;
     m_ij = *(matrix + pos[1] * dimension[0] + pos[0]);
     m_ii = *(matrix + pos[0] * dimension[0] + pos[0]);
     m_jj = *(matrix + pos[1] * dimension[0] + pos[1]);
-    if (m_ij != 0)
-    {
-        tau = (m_ii - m_jj) / (2 * m_ij);
-        if (tau >= 0)
-        {
-            tau = 1 / (tau + sqrt(1 + tau * tau));
-        }
-        else
-        {
-            tau = -1 / (-tau + sqrt(1 + tau * tau));
-        }
-        c = 1 / sqrt(1 + tau * tau);
-        s = c * tau;
-    }
-    *(jacobi_matrix + pos[0] * dimension[0] + pos[0]) = c;
-    *(jacobi_matrix + pos[0] * dimension[0] + pos[1]) = s;
-    *(jacobi_matrix + pos[1] * dimension[0] + pos[0]) = -s;
-    *(jacobi_matrix + pos[1] * dimension[0] + pos[1]) = c;
+    double theta = atan2(2*m_ij,m_ii-m_jj)/2.0;
+    double cos_theta = cos(theta);
+    double sin_theta = sin(theta);
+    *(jacobi_matrix + pos[0] * dimension[0] + pos[0]) = cos_theta;
+    *(jacobi_matrix + pos[0] * dimension[0] + pos[1]) = sin_theta;
+    *(jacobi_matrix + pos[1] * dimension[0] + pos[0]) = -sin_theta;
+    *(jacobi_matrix + pos[1] * dimension[0] + pos[1]) = cos_theta;
 }
 void initialize_jacobi_matrix(double *matrix, int dimension[])
 {
@@ -301,6 +290,27 @@ void duplicate_vectors(double *vectors, double *vectors_aux,int dimension[])
         }
     }
 }
+void rotate_matrix(double *matrix, int dimension[],int pos[],double cos_theta, double sin_theta)
+{
+    double *M_ij,*M_ji;
+    double m_ij;
+    for(int i=0; i<dimension[0]; i++)
+    {
+        m_ij = *(matrix+pos[0]*dimension[0]+i);
+        M_ij = (matrix+pos[0]*dimension[0]+i);
+        M_ji = (matrix+pos[1]*dimension[0]+i);
+        *M_ij = m_ij*cos_theta+*M_ji*sin_theta;
+        *M_ji = -m_ij*sin_theta+*M_ji*cos_theta;
+    }
+    for(int i=0; i<dimension[0]; i++)
+    {
+        m_ij = *(matrix+i*dimension[0]+pos[0]);
+        M_ij = (matrix+i*dimension[0]+pos[0]);
+        M_ji = (matrix+i*dimension[0]+pos[1]);
+        *M_ij = m_ij*cos_theta+*M_ji*sin_theta;
+        *M_ji = -m_ij*sin_theta+*M_ji*cos_theta;
+    }
+}
 void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)
 {
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
@@ -310,6 +320,7 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
     *vectors = (double*)malloc(dimension[0]*dimension[1]*sizeof(double));
     initialize_jacobi_matrix(*vectors,dimension);
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
+    double cos_theta,sin_theta;
     int pos[2];
     while (convergence_eigenvaues_jacobi(matrix, dimension,pos))
     {
@@ -322,16 +333,13 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
         obtain_jacobi_matrix_T(jacobi_matrix,
                                jacobi_matrix_T,
                                dimension);
-        obtain_multiplication_matrix(matrix,
-                                     jacobi_matrix,
-                                     matrix_aux,
-                                     dimension,
-                                     dimension);
-        obtain_multiplication_matrix(jacobi_matrix_T,
-                                     matrix_aux,
-                                     matrix,
-                                     dimension,
-                                     dimension);
+        cos_theta=*(jacobi_matrix+pos[0]*dimension[0]+pos[0]);
+        sin_theta=*(jacobi_matrix+pos[0]*dimension[0]+pos[1]);
+        rotate_matrix(matrix,
+                      dimension,
+                      pos,
+                      cos_theta,
+                      sin_theta);
         obtain_multiplication_matrix(*vectors,
                                      jacobi_matrix,
                                      vectors_aux,
