@@ -39,26 +39,16 @@ donde $i,j$ denotan la posición de los elementos diferentes en la matriz identi
 donde $c=cos(\theta)$ y $s=sin(\theta)$. Entonces, se puede deducir que:
 
 \begin{equation*}
-    a_{ij}(c^2-s^2) + (a_{ii}-a_{jj})cs = 0
+    cos(2\theta)a_{ij}+\frac{1}{2}sin(\theta)(a_{ii}-a_{jj})=0
 \end{equation*}
 
-definimos como:
+entonces:
 
 \begin{equation*}
-    \tau = \frac{a_{jj}-a_{ii}}{2a_{ij}} ; \qquad t = \frac{s}{c}
+    \theta = \frac{1}{2}arctan\left(\frac{2a_{ij}}{a_{ii}-a_{jj}}\right)
 \end{equation*}
 
-donde t debe satisfacer a la ecuación cuadratica
-
-\begin{equation*}
-    t^2 - 2\tau t -1 =0
-\end{equation*}
-
-por lo tanto
-
-\begin{equation*}
-    c = \frac{1}{\sqrt{1+t^2}} \qquad s =ct
-\end{equation*}
+en el caso en que $a_{ii}=a_{jj}$, entonces $\theta=\frac{\pi}{4}$.
 
 La manera en que se elijen las posiciones $i,j$ es encontrando la posición del elemento con valor absoluto mayor de la matriz $A$ fuera de la diagonal.
 
@@ -83,8 +73,11 @@ Por lo tanto, el algoritmo de Jacobi puede ser escrito de la siguiente manera:
     \KwOutput{$v$ y $\lambda$}
     $v \gets I_{n\times n}$\\
     \While{$|max\{ a_{ij}\}|>tol$}{
-        $J \gets obtain\_jacobi\_elements(A)$ \\
+        $i,j \gets pos(|max\{a_{ij}\}|)$\\
+        $\theta = \frac{1}{2}arctan\left(\frac{2a_{ij}}{a_{ii}-a_{jj}}\right)$\\
         $A \gets J^TAJ$\\
         $v \gets vJ$
     }
 \end{algorithm}
+
+En este trabajo, el proceso de la linea 5 se optimizo para realizar unicamente la multiplicación en los elementos afectados por la rotación.
