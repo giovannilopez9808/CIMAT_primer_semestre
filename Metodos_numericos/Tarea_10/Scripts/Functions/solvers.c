@@ -1,29 +1,29 @@
 #include "solvers.h"
-void copy_vector(double *vector, double *vector_i, int dimension[])
-{
-    /*
+/*
     Copia los valores del vector en el vector i
      */
+void copy_vector(double *vector, double *vector_i, int dimension[])
+{
     for (int i = 0; i < dimension[0]; i++)
     {
         *(vector_i + i) = *(vector + i);
     }
 }
-void initialize_vector(double *vector, int dimension[])
-{
-    /*
+/*
     Inicializa el vector dado con el valor 1/sqrt(n) en todos sus elementos
      */
+void initialize_vector(double *vector, int dimension[])
+{
     for (int i = 0; i < dimension[0]; i++)
     {
         *(vector + i) = 1 / sqrt(dimension[0]);
     }
 }
-int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
-{
-    /*
+/*
     Compara los valores de lambda para ver si se llega a una convergencia del metodo
      */
+int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
+{
     double theta;
     // En el primer inteno no se comprara ya que se supone que son iguales
     if (attempt != 0)
@@ -38,11 +38,11 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     // Si no la cumple devuelve un 1
     return 1;
 }
-void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
-{
-    /*
+/*
     Copia del vector i en la matriz de eigenvectores
      */
+void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
+{
     double *Vi_i, v_i;
     for (int i = 0; i < dimension[0]; i++)
     {
@@ -51,11 +51,11 @@ void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
         *Vi_i = v_i;
     }
 }
-void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
-{
-    /*
+/*
     Eliminacion de las contribuciones de los eigenvalores anteriores a el nuevo vector
      */
+void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
+{
     double cdot;
     // Inicializacion del vector i
     double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
@@ -79,11 +79,11 @@ void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)
     free(vector_aux);
     free(vector_i);
 }
-void copy_vectors(double **vectors, double *vector, int dimension[], int n)
-{
-    /*
+/*
     Copia del vector en la matriz de vectores unitarios
      */
+void copy_vectors(double **vectors, double *vector, int dimension[], int n)
+{
     double *V_i, v_i;
     for (int i = 0; i < dimension[0]; i++)
     {
@@ -92,12 +92,11 @@ void copy_vectors(double **vectors, double *vector, int dimension[], int n)
         *V_i = v_i;
     }
 }
+/*
+    Metodo potencia inversa con deflaccion, dada una matriz y su dimension se calcularan los n lambdas minimas
+     */
 void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)
 {
-
-    /*
-    Metodo de deflaccion, dada una matriz y su dimension se calcularan los n lambdas dadas maximas
-     */
     // Inicializacion del espacio de valores
     *lambda = (double *)malloc(n_lambdas * sizeof(double));
     // Inicializacion de la matriz de eigenvectores
@@ -167,21 +166,34 @@ void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **la
     free(L);
     free(U);
 }
-
+/* 
+Obtiene los elementos que conformaran la matriz de rotacion
+ */
 void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *jacobi_matrix)
 {
     double m_ij, m_ii, m_jj;
+    // Elementos de la matriz
     m_ij = *(matrix + pos[1] * dimension[0] + pos[0]);
     m_ii = *(matrix + pos[0] * dimension[0] + pos[0]);
     m_jj = *(matrix + pos[1] * dimension[0] + pos[1]);
+    // Calculo del angulo
     double theta = atan2(2 * m_ij, m_ii - m_jj) / 2.0;
+    // Cos(theta)
     double cos_theta = cos(theta);
+    // SIn(theta)
     double sin_theta = sin(theta);
+    // Elemento ii
     *(jacobi_matrix + pos[0] * dimension[0] + pos[0]) = cos_theta;
+    // Elemento ij
     *(jacobi_matrix + pos[0] * dimension[0] + pos[1]) = sin_theta;
+    // Elemento ji
     *(jacobi_matrix + pos[1] * dimension[0] + pos[0]) = -sin_theta;
+    // Elemento jj
     *(jacobi_matrix + pos[1] * dimension[0] + pos[1]) = cos_theta;
 }
+/* 
+    Inicializacion de la matrices de rotacion
+     */
 void initialize_jacobi_matrix(double *matrix, int dimension[])
 {
     double *M_ii, *M_ij;
@@ -198,29 +210,13 @@ void initialize_jacobi_matrix(double *matrix, int dimension[])
         }
     }
 }
-void obtain_jacobi_matrix_T(double *matrix, double *matrix_T, int dimension[])
-{
-    double m_ii, m_ij;
-    double *M_ii, *M_ij;
-    for (int i = 0; i < dimension[0]; i++)
-    {
-        M_ii = (matrix_T + i * dimension[0] + i);
-        m_ii = *(matrix + i * dimension[0] + i);
-        *M_ii = m_ii;
-        for (int j = i + 1; j < dimension[1]; j++)
-        {
-            M_ij = (matrix_T + i * dimension[0] + j);
-            m_ij = *(matrix + j * dimension[0] + i);
-            *M_ij = m_ij;
-            M_ij = (matrix_T + j * dimension[0] + i);
-            m_ij = *(matrix + i * dimension[0] + j);
-            *M_ij = m_ij;
-        }
-    }
-}
+/* 
+Obtiene la posicion del elemento con mayor valor absoluto y checa si este es mayor o menor a la tolerancia definida.
+ */
 int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
 {
     double m_ij;
+    // Se supone que el elemento mayor se encuentra en la posicon i=1 j=2
     pos[0] = 0;
     pos[1] = 1;
     double max = fabs(*(matrix + pos[1] * dimension[0] + pos[0]));
@@ -228,14 +224,18 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
     {
         for (int j = i + 1; j < dimension[0]; j++)
         {
+            // Elemento ij
             m_ij = fabs(*(matrix + j * dimension[0] + i));
+            // Si es mayor se actualiza la informacion
             if (m_ij > max)
             {
                 max = m_ij;
                 pos[0] = i;
                 pos[1] = j;
             }
+            // Elemento ji
             m_ij = fabs(*(matrix + i * dimension[0] + j));
+            // Si es mayor se actualiza la informacion
             if (m_ij > max)
             {
                 max = m_ij;
@@ -244,32 +244,18 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
             }
         }
     }
+    // Si es mayor a la tolerancia el metodo sigue
     if (max > 1e-6)
     {
         return 1;
     }
+    // Si no, el metodo de detiene
     return 0;
 }
-void find_max_jacobi(double *matrix, int dimension[], int pos[])
-{
-    pos[0] = 0;
-    pos[1] = 1;
-    double m_ij, max = fabs(*(matrix + pos[1] * dimension[0] + pos[0]));
-    for (int i = 0; i < dimension[0]; i++)
-    {
-        for (int j = i + 1; j < dimension[0]; j++)
-        {
-            m_ij = fabs(*(matrix + j * dimension[0] + i));
-            if (m_ij > max)
-            {
-                max = m_ij;
-                pos[0] = i;
-                pos[1] = j;
-            }
-        }
-    }
-}
-void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)
+/* 
+    Guarda la lambda calculada en su variable de resultados
+     */
+void save_lambda(double *matrix, int dimension[], double *lambda)
 {
     double *Lambda_i, m_ii;
     for (int i = 0; i < dimension[0]; i++)
@@ -279,7 +265,10 @@ void obtain_lambdas_from_matrix(double *matrix, int dimension[], double *lambda)
         *Lambda_i = m_ii;
     }
 }
-void duplicate_vectors(double *vectors, double *vectors_aux, int dimension[])
+/* 
+Guarda el eigenvector obtenido en su variable de resultados
+ */
+void save_vector(double *vectors, double *vectors_aux, int dimension[])
 {
     double *V_ij, v_ij;
     for (int i = 0; i < dimension[0]; i++)
@@ -292,6 +281,9 @@ void duplicate_vectors(double *vectors, double *vectors_aux, int dimension[])
         }
     }
 }
+/* 
+Realiza la rotacion de las matrices calculando unicamente los elementos que se veran afectados
+ */
 void rotate_matrix(double *matrix, int dimension[], int pos[], double cos_theta, double sin_theta)
 {
     double *M_ij, *M_ji;
@@ -313,47 +305,55 @@ void rotate_matrix(double *matrix, int dimension[], int pos[], double cos_theta,
         *M_ji = -m_ij * sin_theta + *M_ji * cos_theta;
     }
 }
+/* 
+Obtiene todos los eigenvalores con sus respectivos eigenvectores usando el metodo de Jacobi
+ */
 void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)
 {
+    // Inicializacion de la matrices auxiliares
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *jacobi_matrix_T = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *vectors_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    // Inicializacion del espacio de los eigenvectores
     *vectors = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     initialize_jacobi_matrix(*vectors, dimension);
+    // Inicializacion del espacio de los eigenvalores
     *lambda = (double *)malloc(dimension[0] * sizeof(double));
     double cos_theta, sin_theta;
     int pos[2];
     while (convergence_eigenvaues_jacobi(matrix, dimension, pos))
     {
+        // Inicializacion de la matriz de rotacion
         initialize_jacobi_matrix(jacobi_matrix,
                                  dimension);
+        // Obtiene los elementos de la rotacion
         obtain_jaboci_elements(matrix,
                                dimension,
                                pos,
                                jacobi_matrix);
-        obtain_jacobi_matrix_T(jacobi_matrix,
-                               jacobi_matrix_T,
-                               dimension);
+        //    Cos y sin del angulo de rotacion
         cos_theta = *(jacobi_matrix + pos[0] * dimension[0] + pos[0]);
         sin_theta = *(jacobi_matrix + pos[0] * dimension[0] + pos[1]);
+        // Rotacion de la matriz
         rotate_matrix(matrix,
                       dimension,
                       pos,
                       cos_theta,
                       sin_theta);
+        // Multiplicacion para obtener los eigenvectores
         obtain_multiplication_matrix(*vectors,
                                      jacobi_matrix,
                                      vectors_aux,
                                      dimension,
                                      dimension);
-        duplicate_vectors(*vectors,
-                          vectors_aux,
-                          dimension);
+        //  Guardado de los eigenvectores
+        save_vector(*vectors,
+                    vectors_aux,
+                    dimension);
     }
-    obtain_lambdas_from_matrix(matrix,
-                               dimension,
-                               *lambda);
+    // Guardado de los eigenvalores
+    save_lambda(matrix,
+                dimension,
+                *lambda);
     free(jacobi_matrix);
-    free(jacobi_matrix_T);
     free(vectors_aux);
 }
