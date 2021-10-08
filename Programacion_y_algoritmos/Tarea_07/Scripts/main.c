@@ -10,14 +10,13 @@ int main(int argc, char *argv[])
         printf("No se introdujo nombre del archivo\n");
         exit(1);
     }
-    strcat(path_file,
-           argv[1]);
-    strcat(path_output,
-           argv[1]);
-    read_wav(path_file,
-             &wav);
+    strcat(path_file, argv[1]);
+    strcat(path_output, argv[1]);
+    FILE *file_input = open_wav(path_file, "rb");
+    FILE *file_output = open_wav(path_output, "wb");
+    read_wav(file_input, &wav);
     print_data(wav);
-    FILE *output = fopen(path_output, "wb");
-    write_header(output,
-                 wav);
+    write_header(file_output, wav);
+    fclose(file_input);
+    fclose(file_output);
 }

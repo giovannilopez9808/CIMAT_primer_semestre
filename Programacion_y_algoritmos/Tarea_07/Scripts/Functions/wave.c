@@ -1,14 +1,21 @@
 #include "wave.h"
-void read_wav(char *filename, Wav *wav)
+FILE *open_wav(char *filename, char *mode)
 {
-    FILE *file = fopen(filename, "rb");
+    FILE *file = fopen(filename, mode);
     if (!file)
     {
         printf("can't open audio file\n");
         exit(1);
     }
+    return file;
+}
+void read_wav(FILE *file, Wav *wav)
+{
+    short int data;
     fread(wav, 1, sizeof(*wav), file);
-    fclose(file);
+    fread(&data, 1, sizeof(data), file);
+    fread(&data, 1, sizeof(data), file);
+    printf("%d\n", data);
 }
 void print_data(Wav wav)
 {
@@ -80,7 +87,7 @@ void write_header(FILE *output, Wav wav)
     {
         t = 1.0 / 9000.0 * i;
         s = (short int)(sin(2.0 * 3.141592 * 400.0 * t) * 32767.0);
+        printf("%d\n", s);
         fwrite(&s, 2, 1, output);
     }
-    fclose(output);
 }
