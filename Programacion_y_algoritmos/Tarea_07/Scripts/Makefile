@@ -1,9 +1,9 @@
 CC=gcc
-IDIR=./
+IDIR=Functions/
 CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	functions.c
+_FUNC=	wave.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
