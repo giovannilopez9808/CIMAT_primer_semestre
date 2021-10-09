@@ -1,0 +1,69 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	../Deflection_inverse/Makefile	/^CC=gcc$/;"	m
+CC	../Jacobi_method/Makefile	/^CC=gcc$/;"	m
+CFLAGS	../Deflection_inverse/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+CFLAGS	../Jacobi_method/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	../Deflection_inverse/Makefile	/^EXEC= main.out$/;"	m
+EXEC	../Jacobi_method/Makefile	/^EXEC= main.out$/;"	m
+FOBJS	../Deflection_inverse/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FOBJS	../Jacobi_method/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	../Deflection_inverse/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+FUNC	../Jacobi_method/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+Fill_initial_values_U_matrix	../Functions/tools.c	/^void Fill_initial_values_U_matrix(double *U, int dimension_matrix[])$/;"	f
+IDIR	../Deflection_inverse/Makefile	/^IDIR=..\/Functions\/$/;"	m
+IDIR	../Jacobi_method/Makefile	/^IDIR=..\/Functions\/$/;"	m
+LDFLAGS	../Deflection_inverse/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+LDFLAGS	../Jacobi_method/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	../Deflection_inverse/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+OBJS	../Jacobi_method/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOLVERS_H	../Functions/solvers.h	2;"	d
+SOURCES	../Deflection_inverse/Makefile	/^SOURCES=main.c$/;"	m
+SOURCES	../Jacobi_method/Makefile	/^SOURCES=main.c$/;"	m
+TOOLS_H	../Functions/tools.h	2;"	d
+_FUNC	../Deflection_inverse/Makefile	/^_FUNC=	tools.c solvers.c$/;"	m
+_FUNC	../Jacobi_method/Makefile	/^_FUNC=	tools.c solvers.c$/;"	m
+convergence_eigenvalues	../Functions/solvers.c	/^int convergence_eigenvalues(double lambda, double lambda_i, int attempt)$/;"	f
+convergence_eigenvaues_jacobi	../Functions/solvers.c	/^int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])$/;"	f
+copy_vector	../Functions/solvers.c	/^void copy_vector(double *vector, double *vector_i, int dimension[])$/;"	f
+copy_vectors	../Functions/solvers.c	/^void copy_vectors(double **vectors, double *vector, int dimension[], int n)$/;"	f
+initialize_jacobi_matrix	../Functions/solvers.c	/^void initialize_jacobi_matrix(double *matrix, int dimension[])$/;"	f
+initialize_vector	../Functions/solvers.c	/^void initialize_vector(double *vector, int dimension[])$/;"	f
+main	../Deflection_inverse/main.c	/^int main(int argc, char *argv[])$/;"	f
+main	../Jacobi_method/main.c	/^int main(int argc, char *argv[])$/;"	f
+normalize_vector	../Functions/tools.c	/^void normalize_vector(double *vector, int dimension[])$/;"	f
+obatin_new_vector	../Functions/solvers.c	/^void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)$/;"	f
+obtain_Frobenius_norm	../Functions/tools.c	/^double obtain_Frobenius_norm(double *matrix, int dimension[])$/;"	f
+obtain_LU_crout	../Functions/tools.c	/^void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)$/;"	f
+obtain_cdot_multiplication	../Functions/tools.c	/^double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[])$/;"	f
+obtain_eigenvalues_jacobi	../Functions/solvers.c	/^void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda, double **vectors)$/;"	f
+obtain_jaboci_elements	../Functions/solvers.c	/^void obtain_jaboci_elements(double *matrix, int dimension[], int pos[], double *jacobi_matrix)$/;"	f
+obtain_multiplication_matrix	../Functions/tools.c	/^void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimension_matrix_A[], int dimension_matrix_B[])$/;"	f
+obtain_multiplication_vvT	../Functions/tools.c	/^void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)$/;"	f
+obtain_n_min_eigenvalue	../Functions/solvers.c	/^void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)$/;"	f
+obtain_norm	../Functions/tools.c	/^double obtain_norm(double *vector, int dimension[])$/;"	f
+obtain_vector_i	../Functions/solvers.c	/^void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)$/;"	f
+print_eigenvector_on_a_file	../Functions/tools.c	/^void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)$/;"	f
+print_lambda_on_a_file	../Functions/tools.c	/^void print_lambda_on_a_file(FILE *text, double lambda)$/;"	f
+print_lambdas_on_a_file	../Functions/tools.c	/^void print_lambdas_on_a_file(FILE *text, double *lambda, int n)$/;"	f
+print_lines	../Functions/tools.c	/^void print_lines()$/;"	f
+print_lines_on_file	../Functions/tools.c	/^void print_lines_on_file(FILE *text)$/;"	f
+print_matrix	../Functions/tools.c	/^void print_matrix(double *matrix, int dimension_matrix[])$/;"	f
+print_results	../Functions/tools.c	/^void print_results(FILE *text, double lambda, double *vectors, int *dimension)$/;"	f
+print_several_results	../Functions/tools.c	/^void print_several_results(FILE *text, double *lambda, double *vectors, int *dimension, int n)$/;"	f
+read_dimension	../Functions/tools.c	/^void read_dimension(FILE *file, int dimension[])$/;"	f
+read_matrix	../Functions/tools.c	/^void read_matrix(FILE *file, int dimension[], double **matrix)$/;"	f
+rotate_matrix	../Functions/solvers.c	/^void rotate_matrix(double *matrix, int dimension[], int pos[], double cos_theta, double sin_theta)$/;"	f
+save_lambda	../Functions/solvers.c	/^void save_lambda(double *matrix, int dimension[], double *lambda)$/;"	f
+save_vector	../Functions/solvers.c	/^void save_vector(double *vectors, double *vectors_aux, int dimension[])$/;"	f
+solve_diagonal_matrix	../Functions/tools.c	/^void solve_diagonal_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_gaussian_matrix	../Functions/tools.c	/^void solve_gaussian_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_triangular_inferior_matrix	../Functions/tools.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_triangular_superior_matrix	../Functions/tools.c	/^void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+valid_file	../Functions/tools.c	/^void valid_file(FILE *text_file)$/;"	f
+valid_solution	../Functions/tools.c	/^void valid_solution(double number)$/;"	f
+validate_l_ii	../Functions/tools.c	/^void validate_l_ii(double l_ii)$/;"	f
