@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
     FILE *file_output = open_wav(path_output, "wb");
     read_wav(file_input, &wav);
     print_data(wav);
-    //read_data(file_input);
+    // write_header(file_output, wav);
+    short *data = read_data(file_input, wav);
+    (void)data;
     fclose(file_input);
     fclose(file_output);
 }
