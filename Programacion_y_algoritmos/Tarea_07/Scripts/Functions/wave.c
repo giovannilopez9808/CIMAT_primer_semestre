@@ -1,5 +1,5 @@
 #include "wave.h"
-void print_bits(unsigned long int value)
+void print_bits(short int value)
 {
        char c;
        for (int i = (sizeof(value) * 8 - 1); i >= 0; i--)
@@ -96,16 +96,20 @@ void write_header(FILE *output, Wav wav)
               fwrite(&s, 2, 1, output);
        }
 }
-short *read_data(FILE *file, Wav wav)
+int obtain_num_samples_per_channel(Wav wav)
 {
-       FMT_t fmt = wav.fmt;
-       Data_t data_wav = wav.data;
-       int num_channels = fmt.NumChannels;
-       int bytes_per_sample = (int)fmt.BitsPerSample / 8;
-       int data_size = data_wav.Subchunk2Size;
+       int num_channels = wav.fmt.NumChannels;
+       int bytes_per_sample = (int)wav.fmt.BitsPerSample / 8;
+       int data_size = wav.data.Subchunk2Size;
        int num_samples_per_channel = data_size / bytes_per_sample /
                                      num_channels;
-       printf("%d\n", num_samples_per_channel);
+       return num_samples_per_channel;
+}
+short *read_data(FILE *file, Wav wav)
+{
+       int num_samples_per_channel = obtain_num_samples_per_channel(wav);
+       int bytes_per_sample = (int)wav.fmt.BitsPerSample / 8;
+       int num_channels = wav.fmt.NumChannels;
        short *data = (short *)malloc(num_samples_per_channel * num_channels * sizeof(short));
        short *dp = data;
        for (int i = 0; i < num_samples_per_channel; i++)
@@ -120,5 +124,6 @@ short *read_data(FILE *file, Wav wav)
                      dp++;
               }
        }
+       fseek(file, 44, SEEK_SET);
        return data;
 }
