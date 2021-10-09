@@ -68,8 +68,10 @@ void write_header(FILE *output, Wav wav)
     RIFF_t riff = wav.riff;
     FMT_t fmt = wav.fmt;
     Data_t data = wav.data;
+    unsigned long int value;
     short int s;
     double t;
+    char c;
     fwrite(riff.ChunkID, 4, 1, output);
     fwrite(&riff.ChunkSize, 4, 1, output);
     fwrite(riff.Format, 4, 1, output);
@@ -87,7 +89,26 @@ void write_header(FILE *output, Wav wav)
     {
         t = 1.0 / 9000.0 * i;
         s = (short int)(sin(2.0 * 3.141592 * 400.0 * t) * 32767.0);
-        printf("%d\n", s);
+        value =s;
+        unsigned char *info=(unsigned char*)&value;
+        (void)info;
+        for(int i=(sizeof(unsigned long int)*8-1); i>=0; i--)
+        {
+            c=(value&(1LL<<i))? '1': '0';
+            putchar(c);
+        }
+        printf("\n");
+        for(int i=7; i>=0; i--)
+        {
+            printf("\t");
+            for(int j=(sizeof(unsigned char)*8-1); j>=0; j--)
+            {
+                c=(info[i]&(1LL<<j))? '1': '0';
+                putchar(c);
+            }
+            printf("\n");
+        }
+        printf("\n");
         fwrite(&s, 2, 1, output);
     }
 }
