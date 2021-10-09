@@ -257,7 +257,8 @@ void save_lambda(double *matrix, int dimension[], double *lambda)
         *Lambda_i = m_ii;
     }
 }
-/*Realiza la rotacion de las matrices calculando unicamente los elementos que se veran afectados
+/*
+ Realiza la rotacion de las matrices calculando unicamente los elementos que se veran afectados
  */
 void rotate_matrix(double *matrix,double *vectors,int dimension[], int pos[], double cos_theta, double sin_theta)
 {
@@ -292,7 +293,6 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
 {
     // Inicializacion de la matrices auxiliares
     double *jacobi_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *vectors_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     // Inicializacion del espacio de los eigenvectores
     *vectors = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     initialize_jacobi_matrix(*vectors, dimension);
@@ -326,5 +326,4 @@ void obtain_eigenvalues_jacobi(double *matrix, int dimension[], double **lambda,
                 dimension,
                 *lambda);
     free(jacobi_matrix);
-    free(vectors_aux);
 }
