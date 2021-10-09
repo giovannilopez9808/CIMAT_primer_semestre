@@ -39,7 +39,9 @@ data	../Scripts/Functions/wave.h	/^    Data_t data;$/;"	m	struct:WAV_fotmat
 fmt	../Scripts/Functions/wave.h	/^    FMT_t fmt;$/;"	m	struct:WAV_fotmat
 main	../Scripts/main.c	/^int main(int argc, char *argv[])$/;"	f
 open_wav	../Scripts/Functions/wave.c	/^FILE *open_wav(char *filename, char *mode)$/;"	f
+print_bits	../Scripts/Functions/wave.c	/^void print_bits(unsigned long int value)$/;"	f
 print_data	../Scripts/Functions/wave.c	/^void print_data(Wav wav)$/;"	f
+read_data	../Scripts/Functions/wave.c	/^void read_data(FILE *file)$/;"	f
 read_wav	../Scripts/Functions/wave.c	/^void read_wav(FILE *file, Wav *wav)$/;"	f
 riff	../Scripts/Functions/wave.h	/^    RIFF_t riff;$/;"	m	struct:WAV_fotmat
 write_header	../Scripts/Functions/wave.c	/^void write_header(FILE *output, Wav wav)$/;"	f

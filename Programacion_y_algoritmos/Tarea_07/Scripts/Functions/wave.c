@@ -1,4 +1,14 @@
 #include "wave.h"
+void print_bits(unsigned long int value)
+{
+    char c;
+    for(int i=(sizeof(value)*8-1); i>=0; i--)
+    {
+        c=(value&(1LL<<i))? '1': '0';
+        putchar(c);
+    }
+    printf("\n");
+}
 FILE *open_wav(char *filename, char *mode)
 {
     FILE *file = fopen(filename, mode);
@@ -11,11 +21,7 @@ FILE *open_wav(char *filename, char *mode)
 }
 void read_wav(FILE *file, Wav *wav)
 {
-    short int data;
     fread(wav, 1, sizeof(*wav), file);
-    fread(&data, 1, sizeof(data), file);
-    fread(&data, 1, sizeof(data), file);
-    printf("%d\n", data);
 }
 void print_data(Wav wav)
 {
@@ -68,10 +74,8 @@ void write_header(FILE *output, Wav wav)
     RIFF_t riff = wav.riff;
     FMT_t fmt = wav.fmt;
     Data_t data = wav.data;
-    unsigned long int value;
     short int s;
     double t;
-    char c;
     fwrite(riff.ChunkID, 4, 1, output);
     fwrite(&riff.ChunkSize, 4, 1, output);
     fwrite(riff.Format, 4, 1, output);
@@ -89,26 +93,17 @@ void write_header(FILE *output, Wav wav)
     {
         t = 1.0 / 9000.0 * i;
         s = (short int)(sin(2.0 * 3.141592 * 400.0 * t) * 32767.0);
-        value =s;
-        unsigned char *info=(unsigned char*)&value;
-        (void)info;
-        for(int i=(sizeof(unsigned long int)*8-1); i>=0; i--)
-        {
-            c=(value&(1LL<<i))? '1': '0';
-            putchar(c);
-        }
-        printf("\n");
-        for(int i=7; i>=0; i--)
-        {
-            printf("\t");
-            for(int j=(sizeof(unsigned char)*8-1); j>=0; j--)
-            {
-                c=(info[i]&(1LL<<j))? '1': '0';
-                putchar(c);
-            }
-            printf("\n");
-        }
-        printf("\n");
         fwrite(&s, 2, 1, output);
     }
+}
+void read_data(FILE *file, Wav wav)
+{
+    (void)wav;
+    unsigned long int value;
+    for(int i=0; i<1000; i++)
+    {
+        fread(&value, 1, sizeof(value), file);
+    }
+//    unsigned char *info = (unsigned char*)&value;
+    //  (void)info;
 }

@@ -52,13 +52,9 @@ typedef struct WAV_fotmat
     Data_t data;
 } Wav;
 
-union u_type
-{
-    unsigned long int value;
-    unsigned char bytes[8];
-} temp;
-
 FILE *open_wav(char *filename, char *mode);
 void read_wav(FILE *file, Wav *wav);
 void print_data(Wav wav);
 void write_header(FILE *output, Wav wav);
+void print_bits(unsigned long int value);
+void read_data(FILE *file, Wav wav);
