@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+/* 
+Estructura de datos RIFF del wav
+ */
 typedef struct WAV_RIFF
 {
     /* chunk "riff" */
@@ -14,6 +17,9 @@ typedef struct WAV_RIFF
     // "WAVE"
     char Format[4];
 } RIFF_t;
+/* 
+Estructura de datos fmt del wav
+ */
 typedef struct WAV_FMT
 {
     /* sub-chunk "fmt" */
@@ -35,6 +41,9 @@ typedef struct WAV_FMT
     // 8bits, 16bits, etc.
     uint16_t BitsPerSample;
 } FMT_t;
+/* 
+Estructura de datos del wav
+ */
 typedef struct WAV_data
 {
     /* sub-chunk "data" */
@@ -44,18 +53,18 @@ typedef struct WAV_data
     /* sub-chunk-data */
     //    Data_block_t block;
 } Data_t;
-
+/* 
+Convergencia de los datos
+ */
 typedef struct WAV_fotmat
 {
     RIFF_t riff;
     FMT_t fmt;
     Data_t data;
 } Wav;
-
 FILE *open_wav(char *filename, char *mode);
 void read_wav(FILE *file, Wav *wav);
 void print_data(Wav wav);
-void write_header(FILE *output, Wav wav);
-void print_bits(short int value);
+void write_file(FILE *output, Wav wav, short *data);
 short *read_data(FILE *file, Wav wav);
 int obtain_num_samples_per_channel(Wav wav);

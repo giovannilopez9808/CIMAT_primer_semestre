@@ -1,0 +1,65 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AudioFormat	../Functions/wave.h	/^    uint16_t AudioFormat;$/;"	m	struct:WAV_FMT
+BitsPerSample	../Functions/wave.h	/^    uint16_t BitsPerSample;$/;"	m	struct:WAV_FMT
+BlockAlign	../Functions/wave.h	/^    uint16_t BlockAlign;$/;"	m	struct:WAV_FMT
+ByteRate	../Functions/wave.h	/^    uint32_t ByteRate;$/;"	m	struct:WAV_FMT
+CC	../Decrypt/Makefile	/^CC=gcc$/;"	m
+CC	../Encrypt/Makefile	/^CC=gcc$/;"	m
+CFLAGS	../Decrypt/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+CFLAGS	../Encrypt/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+CHAOTIC_MAP_H	../Functions/chaotic_map.c	2;"	d	file:
+ChunkID	../Functions/wave.h	/^    char ChunkID[4];$/;"	m	struct:WAV_RIFF
+ChunkSize	../Functions/wave.h	/^    uint32_t ChunkSize;$/;"	m	struct:WAV_RIFF
+Data_t	../Functions/wave.h	/^} Data_t;$/;"	t	typeref:struct:WAV_data
+EXEC	../Decrypt/Makefile	/^EXEC= main.out$/;"	m
+EXEC	../Encrypt/Makefile	/^EXEC= main.out$/;"	m
+FMT_t	../Functions/wave.h	/^} FMT_t;$/;"	t	typeref:struct:WAV_FMT
+FOBJS	../Decrypt/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FOBJS	../Encrypt/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	../Decrypt/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+FUNC	../Encrypt/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+Format	../Functions/wave.h	/^    char Format[4];$/;"	m	struct:WAV_RIFF
+IDIR	../Decrypt/Makefile	/^IDIR=..\/Functions\/$/;"	m
+IDIR	../Encrypt/Makefile	/^IDIR=..\/Functions\/$/;"	m
+LDFLAGS	../Decrypt/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+LDFLAGS	../Encrypt/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+NumChannels	../Functions/wave.h	/^    uint16_t NumChannels;$/;"	m	struct:WAV_FMT
+OBJS	../Decrypt/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+OBJS	../Encrypt/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+RIFF_t	../Functions/wave.h	/^} RIFF_t;$/;"	t	typeref:struct:WAV_RIFF
+SOURCES	../Decrypt/Makefile	/^SOURCES=main.c$/;"	m
+SOURCES	../Encrypt/Makefile	/^SOURCES=main.c$/;"	m
+SampleRate	../Functions/wave.h	/^    uint32_t SampleRate;$/;"	m	struct:WAV_FMT
+Subchunk1ID	../Functions/wave.h	/^    char Subchunk1ID[4]; \/* "fmt " *\/$/;"	m	struct:WAV_FMT
+Subchunk1Size	../Functions/wave.h	/^    uint32_t Subchunk1Size;$/;"	m	struct:WAV_FMT
+Subchunk2ID	../Functions/wave.h	/^    char Subchunk2ID[4]; \/* "data" *\/$/;"	m	struct:WAV_data
+Subchunk2Size	../Functions/wave.h	/^    uint32_t Subchunk2Size; \/* data size *\/$/;"	m	struct:WAV_data
+WAV_FMT	../Functions/wave.h	/^typedef struct WAV_FMT$/;"	s
+WAV_RIFF	../Functions/wave.h	/^typedef struct WAV_RIFF$/;"	s
+WAV_data	../Functions/wave.h	/^typedef struct WAV_data$/;"	s
+WAV_fotmat	../Functions/wave.h	/^typedef struct WAV_fotmat$/;"	s
+Wav	../Functions/wave.h	/^} Wav;$/;"	t	typeref:struct:WAV_fotmat
+_FUNC	../Decrypt/Makefile	/^_FUNC=	wave.c chaotic_map.c$/;"	m
+_FUNC	../Encrypt/Makefile	/^_FUNC=	wave.c chaotic_map.c$/;"	m
+apply_map	../Functions/chaotic_map.c	/^void apply_map(short int **data, Wav wav)$/;"	f
+data	../Functions/wave.h	/^    Data_t data;$/;"	m	struct:WAV_fotmat
+epsilon	../Functions/chaotic_map.c	3;"	d	file:
+fmt	../Functions/wave.h	/^    FMT_t fmt;$/;"	m	struct:WAV_fotmat
+keys	../Functions/chaotic_map.c	/^short int keys[2] = {5221, 3622};$/;"	v
+m	../Functions/chaotic_map.c	4;"	d	file:
+main	../Decrypt/main.c	/^int main(int argc, char *argv[])$/;"	f
+main	../Encrypt/main.c	/^int main(int argc, char *argv[])$/;"	f
+obtain_num_samples_per_channel	../Functions/wave.c	/^int obtain_num_samples_per_channel(Wav wav)$/;"	f
+open_wav	../Functions/wave.c	/^FILE *open_wav(char *filename, char *mode)$/;"	f
+print_bits	../Functions/wave.c	/^void print_bits(short int value)$/;"	f
+print_data	../Functions/wave.c	/^void print_data(Wav wav)$/;"	f
+read_data	../Functions/wave.c	/^short *read_data(FILE *file, Wav wav)$/;"	f
+read_wav	../Functions/wave.c	/^void read_wav(FILE *file, Wav *wav)$/;"	f
+riff	../Functions/wave.h	/^    RIFF_t riff;$/;"	m	struct:WAV_fotmat
+write_data	../Functions/wave.c	/^void write_data(short *data, Wav wav, FILE *file)$/;"	f
+write_file	../Functions/wave.c	/^void write_file(FILE *output, Wav wav, short *data)$/;"	f

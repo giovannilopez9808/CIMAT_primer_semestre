@@ -34,12 +34,17 @@ WAV_RIFF	Functions/wave.h	/^typedef struct WAV_RIFF$/;"	s
 WAV_data	Functions/wave.h	/^typedef struct WAV_data$/;"	s
 WAV_fotmat	Functions/wave.h	/^typedef struct WAV_fotmat$/;"	s
 Wav	Functions/wave.h	/^} Wav;$/;"	t	typeref:struct:WAV_fotmat
-_FUNC	Makefile	/^_FUNC=	wave.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	wave.c chaotic_map.c$/;"	m
+apply_map	Functions/chaotic_map.c	/^void apply_map(short int *data)$/;"	f
 data	Functions/wave.h	/^    Data_t data;$/;"	m	struct:WAV_fotmat
+epsilon	Functions/keys.h	2;"	d
 fmt	Functions/wave.h	/^    FMT_t fmt;$/;"	m	struct:WAV_fotmat
+init	Functions/keys.h	3;"	d
+m	Functions/keys.h	1;"	d
 main	main.c	/^int main(int argc, char *argv[])$/;"	f
+obtain_num_samples_per_channel	Functions/wave.c	/^int obtain_num_samples_per_channel(Wav wav)$/;"	f
 open_wav	Functions/wave.c	/^FILE *open_wav(char *filename, char *mode)$/;"	f
-print_bits	Functions/wave.c	/^void print_bits(unsigned long int value)$/;"	f
+print_bits	Functions/wave.c	/^void print_bits(short int value)$/;"	f
 print_data	Functions/wave.c	/^void print_data(Wav wav)$/;"	f
 read_data	Functions/wave.c	/^short *read_data(FILE *file, Wav wav)$/;"	f
 read_wav	Functions/wave.c	/^void read_wav(FILE *file, Wav *wav)$/;"	f

@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "functions.h": "c",
-    "wave.h": "c"
+    "wave.h": "c",
+    "chaotic_map.h": "c"
   }
 }
