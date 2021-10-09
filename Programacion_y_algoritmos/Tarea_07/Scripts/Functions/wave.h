@@ -56,5 +56,6 @@ FILE *open_wav(char *filename, char *mode);
 void read_wav(FILE *file, Wav *wav);
 void print_data(Wav wav);
 void write_header(FILE *output, Wav wav);
-void print_bits(unsigned long int value);
-void read_data(FILE *file, Wav wav);
+void print_bits(short int value);
+short *read_data(FILE *file, Wav wav);
+int obtain_num_samples_per_channel(Wav wav);

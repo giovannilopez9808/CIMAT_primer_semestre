@@ -3,7 +3,7 @@ IDIR=Functions/
 CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	wave.c
+_FUNC=	wave.c chaotic_map.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
