@@ -57,9 +57,8 @@ print_results	../Functions/tools.c	/^void print_results(FILE *text, double lambd
 print_several_results	../Functions/tools.c	/^void print_several_results(FILE *text, double *lambda, double *vectors, int *dimension, int n)$/;"	f
 read_dimension	../Functions/tools.c	/^void read_dimension(FILE *file, int dimension[])$/;"	f
 read_matrix	../Functions/tools.c	/^void read_matrix(FILE *file, int dimension[], double **matrix)$/;"	f
-rotate_matrix	../Functions/solvers.c	/^void rotate_matrix(double *matrix, int dimension[], int pos[], double cos_theta, double sin_theta)$/;"	f
+rotate_matrix	../Functions/solvers.c	/^void rotate_matrix(double *matrix, double *vectors, int dimension[], int pos[], double cos_theta, double sin_theta)$/;"	f
 save_lambda	../Functions/solvers.c	/^void save_lambda(double *matrix, int dimension[], double *lambda)$/;"	f
-save_vector	../Functions/solvers.c	/^void save_vector(double *vectors, double *vectors_aux, int dimension[])$/;"	f
 solve_diagonal_matrix	../Functions/tools.c	/^void solve_diagonal_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
 solve_gaussian_matrix	../Functions/tools.c	/^void solve_gaussian_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
 solve_triangular_inferior_matrix	../Functions/tools.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
