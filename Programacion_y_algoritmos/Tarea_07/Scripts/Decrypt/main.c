@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     short *data = read_data(file_input, wav);
     apply_map(&data, wav);
     write_file(file_output, wav, data);
+    printf("Archivo guardado exitosamente en %s\n",path_output);
     free(data);
     fclose(file_input);
     fclose(file_output);
