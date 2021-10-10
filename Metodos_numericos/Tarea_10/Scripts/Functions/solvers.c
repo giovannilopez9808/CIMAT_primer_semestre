@@ -29,7 +29,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     if (attempt != 0)
     {
         theta = fabs(lambda - lambda_i);
-        if (theta < 1e-7)
+        if (theta < 1e-6)
         {
             // Si se cumple la convergencia regresa un 0
             return 0;
@@ -235,7 +235,6 @@ int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
             }
         }
     }
-    printf("%lf\t%lf\n",max,1e-6);
     // Si es mayor a la tolerancia el metodo sigue
     if (max > 1e-6)
     {
@@ -260,21 +259,21 @@ void save_lambda(double *matrix, int dimension[], double *lambda)
 /*
  Realiza la rotacion de las matrices calculando unicamente los elementos que se veran afectados
  */
-void rotate_matrix(double *matrix,double *vectors,int dimension[], int pos[], double cos_theta, double sin_theta)
+void rotate_matrix(double *matrix, double *vectors, int dimension[], int pos[], double cos_theta, double sin_theta)
 {
-    double *M_ij, *M_ji,*V_ij,*V_ji;
-    double m_ij,v_ij;
+    double *M_ij, *M_ji, *V_ij, *V_ji;
+    double m_ij, v_ij;
     for (int i = 0; i < dimension[0]; i++)
     {
         m_ij = *(matrix + pos[0] * dimension[0] + i);
         M_ij = (matrix + pos[0] * dimension[0] + i);
         M_ji = (matrix + pos[1] * dimension[0] + i);
-        v_ij = *(vectors+pos[0]*dimension[0]+i);
-        V_ij = (vectors+pos[0]*dimension[0]+i);
-        V_ji = (vectors+pos[1]*dimension[0]+i);
+        v_ij = *(vectors + pos[0] * dimension[0] + i);
+        V_ij = (vectors + pos[0] * dimension[0] + i);
+        V_ji = (vectors + pos[1] * dimension[0] + i);
         *M_ij = m_ij * cos_theta + *M_ji * sin_theta;
         *M_ji = -m_ij * sin_theta + *M_ji * cos_theta;
-        *V_ij =v_ij * cos_theta + *V_ji * sin_theta;
+        *V_ij = v_ij * cos_theta + *V_ji * sin_theta;
         *V_ji = -v_ij * sin_theta + *V_ji * cos_theta;
     }
     for (int i = 0; i < dimension[0]; i++)
