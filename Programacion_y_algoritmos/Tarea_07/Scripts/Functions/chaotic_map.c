@@ -1,7 +1,7 @@
 #include "chaotic_map.h"
 #define CHAOTIC_MAP_H
 #define epsilon 414523
-#define m 3
+#define m 5
 #define b 3134
 short int keys[2] = {5221, 3622};
 /* 
