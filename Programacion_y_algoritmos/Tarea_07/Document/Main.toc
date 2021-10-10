@@ -1,0 +1,9 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Análisis de la complejidad de Quicksort}{2}{section.1}%
+\contentsline {section}{\numberline {2}Encriptado y desencriptado de un archivo wav}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Organización de la cabecera}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Lectura y organización de los datos}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Encriptación y desencriptación}{3}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Mapa caótico}{3}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Algoritmo}{4}{subsubsection.2.3.2}%
+\contentsline {section}{\numberline {3}Referencias}{4}{section.3}%

@@ -12,4 +12,12 @@
 {0pt}
 {2cm}
 \input{Files/titulo.tex}
+\tableofcontents
+\pagebreak
+\input{Files/problema1.tex}
+\input{Files/problema2.tex}
+\let\Section\section
+\def\section*#1{\Section{#1}}
+\bibliographystyle{unsrt}
+\bibliography{references}
 \end{document}
