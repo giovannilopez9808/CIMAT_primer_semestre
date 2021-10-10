@@ -15,13 +15,11 @@ int main(int argc, char *argv[])
     FILE *file_input = open_wav(path_file, "rb");
     FILE *file_output = open_wav(path_output, "wb");
     read_wav(file_input, &wav);
-    print_data(wav);
-    short *data_original = read_data(file_input, wav);
+    //print_data(wav);
     short *data = read_data(file_input, wav);
     apply_map(&data, wav);
     write_file(file_output, wav, data);
     free(data);
-    free(data_original);
     fclose(file_input);
     fclose(file_output);
 }
