@@ -5,6 +5,6 @@
 \contentsline {subsection}{\numberline {2.2}Método de la potencia inversa con deflación}{2}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Método de Jacobi}{3}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Resultados}{4}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Método de la potencia inversa con deflación}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}Método de la potencia inversa con deflación}{5}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Método de Jacobi}{5}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%

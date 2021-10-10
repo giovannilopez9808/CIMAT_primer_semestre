@@ -58,6 +58,9 @@ La convergencia de este método es dado con la siguiente ecuación:
     max\{a_{ij}\} < tol \qquad i\neq j
 \end{equation*}
 
+
+Se busca esta convergencia en los valores de  $i=1,2,\dots,n-1$ $j=i+1,i+2,\dots,n$. Esto es porque la matriz A se supone que es simetrica.
+
 Los eigenvalores se encontrarán en la diagonal de la matriz A al final del método. Los eigenvectores asociados a cada eigenvalor pueden ser calculados con la siguiente operación
 
 \begin{equation*}
@@ -80,4 +83,14 @@ Por lo tanto, el algoritmo de Jacobi puede ser escrito de la siguiente manera:
     }
 \end{algorithm}
 
-En este trabajo, el proceso de la linea 5 se optimizo para realizar unicamente la multiplicación en los elementos afectados por la rotación.
+En este trabajo, el proceso de la linea 5 y 6 se optimizo para realizar unicamente la multiplicación en los elementos afectados por la rotación. Usando las siguentes relaciones:
+
+\begin{align}
+    a^{(k)}_{ip} & = a^{(k-1)}_{ip} cos(\theta) + a^{(k)}_{iq} sin(\theta) \label{eq:equation1} \\
+    a^{(k)}_{iq} & = a^{(k)}_{iq} cos(\theta) - a^{(k-1)}_{ip} sin(\theta) \label{eq:equation2} \\
+    a^{(k)}_{pj} & = a^{(k-1)}_{pj} cos(\theta) + a^{(k)}_{qj} sin(\theta)                      \\
+    a^{(k)}_{qj} & = a^{(k)}_{qj} cos(\theta) - a^{(k-1)}_{pj} sin(\theta)
+\end{align}
+
+donde $a^{(0)}_{ij}$ son los elementos de la matriz A. Para el calculo de los eigenvectores se usan las ecuaciones \ref{eq:equation1} y \ref{eq:equation2} tomando en cuenta que $a^{0} = I$.
+
