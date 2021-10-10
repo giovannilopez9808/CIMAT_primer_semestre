@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
            path_output);
     fclose(file_output);
+    fclose(file_matrix);
     free(matrix);
     free(vectors);
     free(lambda);
