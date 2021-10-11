@@ -1,0 +1,34 @@
+\pagebreak
+\subsection*{Problema 5}
+\textbf{En un examen de opción múltiple, se sabe que la probabilidad que alguien sepa la respuesta correcta es 0.4. Si no sabe la respuesta, la persona elige al azar una respuesta. Cada pregunta tiene 4 posibles respuestas. Para una pregunta particular: si alguien da la respuesta correcta, ¿ cuál es la probabilidad que adivinó?}
+
+Sea A el evento que un alumno sepa la respuesta correcta y B que conteste correctamente. Entonces la información que se tiene es:
+\begin{equation}
+    P(A)     = 0.4 \qquad P(B|A^c) = 0.25 \qquad  P(B|A)   =1
+    \label{eq:problem5_data}
+\end{equation}
+
+A partir de la definción del evento A y B, se quiere conocer $P(A^c|B)$. Realizando el calculo se obtiene lo siguiente:
+\begin{align}
+    P(A^c|B) & = 1- P(A|B) \nonumber                         \\
+    P(A^c|B) & = 1- \frac{P(B|A)P(A)}{P(B)} \label{eq:pac_b}
+\end{align}
+
+Al no conocer exactamente, se calculara se la siguiente manera:
+\begin{align}
+    P(B) & = \sum_i P(B|A_i)P(A_i) \nonumber     \\
+         & = P(B|A)P(A)+P(B|A^c)P(A^c) \nonumber \\
+         & = 1(0.4)+ 0.25(0.4) \nonumber         \\
+    P(B) & = 0.55
+    \label{eq:problem5_b}
+\end{align}
+
+Usando la información obtenida en las ecuaciones \ref{eq:problem5_data} y \ref{eq:problem5_b} en \ref{eq:pac_b} se obtiene lo siguiente:
+\begin{align*}
+    P(A^c|B) & = 1- \frac{P(B|A)P(A)}{P(B)} \\
+             & =1-\frac{1(0.4)}{0.55}       \\
+             & =1-\frac{8}{11}              \\
+             & =\frac{3}{11}
+\end{align*}
+
+Por lo tanto, la probabilidad de que adivinara es de $\frac{3}{11}$.

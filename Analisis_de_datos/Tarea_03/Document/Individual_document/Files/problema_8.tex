@@ -1,0 +1,71 @@
+\section*{Problema 8}
+\subsection*{Problema 8a}
+\textbf{Elige al azar sin remplazo n números de \{1, ..., n\}. Da un argumento porque la probabilidad que el último obtenido sea el k-ésimo mayor es igual a $\frac{1}{n}$(1 $\leq$ k $\leq$ n).}
+
+Sea
+\begin{equation*}
+    \Omega = \{ \Omega_i : 1,2,\dots,n \}
+\end{equation*}
+
+Y sea $A\subset \Omega$ tal que $\omega_k \notin A$ donde $\omega_k > \omega_i$. Entonces en el primer intento se tiene que la probabilidad de obtener un número contenido en A es:
+\begin{equation*}
+    P(A_1) = \frac{n-1}{n}
+\end{equation*}
+para el segundo intento es
+\begin{equation*}
+    P(A_2) = \frac{n-2}{n-1}
+\end{equation*}
+
+si realizamos esta sucesion para obtener todos los números contenidos en A se tiene que:
+
+\begin{align*}
+    P(A_1,A_2,\dots,A_{n-1}) & = P(A_1)P(A_2)\dots P(A_{n-1})                                                          \\
+                             & = \left(\frac{n-1}{n}\right)\left(\frac{n-2}{n-1}\right) \dots \left(\frac{1}{2}\right) \\
+                             & = \frac{1}{n}
+\end{align*}
+
+
+Como el único número que no ha sido obtenido es $\Omega_k$, entonces, la probabilidad de obtenerlo es $\frac{1}{n}$.
+\subsection*{Problema 8b}
+\textbf{Considera el siguiente código para encontrar el máximo en un arreglo
+    de n números enteros positivos (todos diferentes).}
+\begin{lstlisting}[language=python]
+    max=-1
+    for (i in 1:n)
+        {
+        if (A[i] > max)
+            max = A[i]
+        }
+\end{lstlisting}
+\textbf{Supongamos que el orden de los elementos es totalmente al azar. Define X el número de veces que se actualiza la variable max. Calcula EX (usa el inciso anterior).}
+
+Sea A el conjunto de números tal que
+
+\begin{equation*}
+    A=\{ A_i \in \mathbb{N} : A_i \neq A_j \forall i,j\}
+\end{equation*}
+
+donde
+
+\begin{equation*}
+    A_{max} = max(A)
+\end{equation*}
+
+La variable max se actualizará hasta que esta obtenga el valor de $A_{max}$, ya que es el número máximo del conjunto A. La probabilidad de obtener a $A_{max}$ en el intento i es:
+
+\begin{equation*}
+    P(A_i) = \prod_{j=1}^i \frac{n-j}{n-j+1} = \frac{n-i}{n}
+\end{equation*}
+
+Entonces, el valor esperado de las veces en que A$_{max}$ es obtenido es:
+
+\begin{align*}
+    E(A) & = \sum_i^n i P(A_i)                                                  \\
+         & = \sum_i^n i \left[\frac{n-i}{n}\right]                              \\
+         & = \sum_i^n i - \frac{1}{n} \sum_i^n i^2                              \\
+         & = \frac{n(n+1)}{2} - \frac{1}{n} \left[\frac{n(n+1)(2n+1)}{6}\right] \\
+         & = \left(\frac{n+1}{2}\right) \left(n - \frac{2n+1}{3} \right)        \\
+         & = \left( \frac{n+1}{2} \right) \left(\frac{3n-2n-1}{3} \right)       \\
+         & = \frac{(n+1)(n-1)}{6}                                               \\
+    E(A) & = \frac{n^2-1}{6}
+\end{align*}

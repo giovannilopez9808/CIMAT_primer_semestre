@@ -1,0 +1,50 @@
+\subsection*{Problema 4}
+\begin{itemize}
+    \item \textbf{Si A y B son independientes, A y B\textsuperscript{c} son independientes. Demuéstralo.}
+
+          Se tiene que:
+          \begin{equation}
+              P(B^c|A)  =1-P(B|A)
+              \label{eq:pbc_a}
+          \end{equation}
+          como A y B son independientes se cumple que:
+          \begin{equation*}
+              P(B|A)= P(B)
+          \end{equation*}
+          entonces, la ecuación \ref{eq:pbc_a} puede reescribirse como:
+          \begin{align*}
+              P(B^c|A) & =1-P(B|A) \\
+                       & = 1- P(B) \\
+                       & = P(B^c)
+          \end{align*}
+          por lo tanto
+          \begin{equation}
+              P(B^c|A) = P(B^c)
+              \label{eq:result4a}
+          \end{equation}
+          La ecuación \ref{eq:result4a} es valida unicamente si los eventos $B^c$ y A son independientes.
+    \item \textbf{Cierto o falso: si A y B son independientes, A\textsuperscript{c} y B\textsuperscript{c} son independientes. Demuéstralo}
+
+          Calculando $P(A^c|B^c)$
+          \begin{equation}
+              P(A^c|B^c) = 1-P(A|B^c)
+              \label{pac_bc}
+          \end{equation}
+          como en el ejercicio anterior se demostro que si A y B son independientes entonces A y $B^c$ son independientes, se tiene que
+          \begin{equation}
+              P(A|B^c) = P(A)
+              \label{eq:pa_bc}
+          \end{equation}
+          Usando la ecuación \ref{eq:pa_bc} en la ecuación \ref{pac_bc} se obtiene que:
+          \begin{align*}
+              P(A^c|B^c) & = 1-P(A|B^c) \\
+                         & = 1-P(A)     \\
+                         & =P(A^c)
+          \end{align*}
+          por lo tanto
+          \begin{equation}
+              P(A^c|B^c)=P(A^c)
+              \label{eq:result4b}
+          \end{equation}
+          La ecuación \ref{eq:result4b} es valido unicamente si $A^c$ y $B^c$ son independientes.
+\end{itemize}

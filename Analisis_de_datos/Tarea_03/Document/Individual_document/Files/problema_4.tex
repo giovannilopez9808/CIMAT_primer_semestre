@@ -1,0 +1,44 @@
+\section*{Problema 4}
+\textbf{Verifica que si X y Y son independientes:}
+\begin{equation*}
+    H(X,Y) = H(X) + H(Y)
+\end{equation*}
+
+Partiendo de la definición de entropia se tiene que:
+\begin{equation}
+    H(X,Y) = - \sum_i \sum_j P(x_i, y_j) \log_2 \left(P(x_i,y_j)\right)
+    \label{eq:hxy}
+\end{equation}
+
+Calculando $P(x_i,y_j)$, se tiene que:
+\begin{equation*}
+    P(x_i,y_j)  = P(y_j) P(x_i)
+\end{equation*}
+
+Entonces, la ecuación \ref{eq:hxy} se puede escribir como:
+\begin{align*}
+    H(X,Y) & = - \sum_i \sum_j P(x_i,y_j) \log_2 \left(P(x_i,y_j)\right)                             \\
+           & = - \sum_i \sum_j P(x_i)P(y_j) \log_2 \left(P(y_j) P(x_i)\right)                        \\
+           & = - \sum_i \sum_j P(x_i)P(y_j) \left[\log_2 P(x_i) + \log_2 P(y_j) \right]              \\
+           & = - \sum_i \sum_j P(x_i)P(y_j) \log_2 P(x_i) - \sum_i \sum_j P(x_i)P(y_j) \log_2 P(y_j)
+\end{align*}
+
+Como X y Y son independientes, entonces los contadores i,j puedes intercambiarse, entonces:
+\begin{align*}
+    H(X,Y) & =  - \sum_i \sum_j P(x_i)P(y_j) \log_2 P(x_i) - \sum_i \sum_j P(x_i)P(y_j) \log_2 P(y_j) \\
+           & =  - \sum_i \sum_j P(x_i)P(y_j) \log_2 P(x_i) - \sum_j \sum_i P(x_i)P(y_j) \log_2 P(y_j) \\
+           & =  - \sum_i P(x_i)\log_2 P(x_i) \sum_j P(y_j) - \sum_j P(y_j)\log_2 P(y_j)\sum_i P(x_i)  \\
+\end{align*}
+
+donde
+\begin{equation*}
+    \sum_i P(x_i) = 1 \qquad \sum_j P(y_j) = 1
+\end{equation*}
+
+por lo tanto
+\begin{align*}
+    H(X,Y) & = - \sum_i P(x_i)\log_2 P(x_i) \sum_j P(y_j) - \sum_j P(y_j)\log_2 P(y_j)\sum_i P(x_i) \\
+           & = - \sum_i P(x_i)\log_2 P(x_i) - \sum_j P(y_j)\log_2 P(y_j)                            \\
+           & = H(X) + H(Y)
+\end{align*}
+

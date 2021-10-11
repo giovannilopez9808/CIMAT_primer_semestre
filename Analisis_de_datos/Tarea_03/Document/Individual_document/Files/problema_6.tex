@@ -1,0 +1,25 @@
+\section*{Problema 6}
+\textbf{Verifica que para cualquier v.a. X y Y con una misma distribución:}
+\begin{equation*}
+	E(X-Y|X+Y) = 0
+\end{equation*}
+
+Como es una esperanza condicional, entonces se tiene lo siguiente:
+
+\begin{align*}
+	E(X-Y|X+Y) = E(X|X+Y) - E(Y|X+Y)
+\end{align*}
+
+donde el segundo termino puede intercambiarse X por Y y viceversa, esto porque X y Y tienen una misma distribución. Entonces:
+
+\begin{align*}
+	E(X-Y|X+Y) & = E(X|X+Y) - E(Y|X+Y) \\
+	           & =E(X|X+Y)-E(X|Y+X)    \\
+	           & =E(X|X+Y)-E(X|X+Y)
+\end{align*}
+
+Por lo tanto:
+
+\begin{equation*}
+	E(X-Y|X+Y)=0
+\end{equation*}
