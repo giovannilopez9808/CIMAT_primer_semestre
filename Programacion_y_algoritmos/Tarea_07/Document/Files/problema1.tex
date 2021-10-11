@@ -1,1 +1,61 @@
 \section{Análisis de la complejidad de Quicksort}
+
+El algoritmo de Quicksort puede resumirse en lo siguiente:
+
+\begin{algorithm}[H]
+    \caption{Quicksort}
+    \label{alg:quicksort}
+    \KwInput{data}
+    \KwOutput{data}
+    \If{start$<$last}
+    {
+        number\_data $\gets$ reduce\_data(data,start,last)\\
+        sort(data,start,number\_data)\\
+        sort(data,number\_data+1,last)\\
+
+    }
+    \SetKwFunction{FMain}{reduce\_data}
+    \SetKwProg{Fn}{Function}{:}{}
+    \Fn{\FMain{$F$}}{
+    pivot $\gets$ data[last]\\
+    i $\gets$ start\\
+    \For{j=start,last-1}
+    {\If{data[j]$>$pivot}
+    {swap(data[j],data[i])\\
+    i $\gets$ i+1}
+    }
+    return i\\
+    }
+\end{algorithm}
+
+Con este algoritmo podemos realizar dos análsis, esto es para el peor caso y mejor caso. En el algoritmo \ref{alg:quicksort} se ve que es recursivo. En la linea 3 y 4 se puede ser que se da como argumento la posición inicial y final de los datos a ordenar. El algortimo acaba cuando las dos funciones tienen el mismo en valor en la posición inicial y final.
+
+\subsection{Peor caso}
+
+El peor caso posible es que el pivote escogido siempre sea el número más grande o pequeño del arreglo. Esto es porque provocaria que uno de los bloques sea de tamaño n y otro de 1. Esto sería:
+
+\begin{align*}
+    T(n) & = T(n-1) + n              \\
+         & = T(n-2)+ (n-1) + n       \\
+         & = T(n-3)+(n-2)+ (n-1) + n \\
+         & \qquad \vdots             \\
+         & =1 +2 +3 + \cdots +n      \\
+         & =\frac{n(n+1)}{2}
+\end{align*}
+
+Entonces, la complejidad para el peor caso es $O(n^2)$
+
+\subsection{Mejor caso}
+
+El mejor caso posible es que el pivote escogido sea el número sea la mediana del arreglo. Esto provocaria que los dos bloques tengan un tamaño de $\frac{n}{2}$. Entonces:
+
+\begin{align*}
+    T(n) & = 2T\left(\frac{n}{2}\right) + n                           \\
+         & = 2\left(2T\left(\frac{n}{2}\right)+\frac{n}{2}\right) + n \\
+         & = 4T\left(\frac{n}{4}\right)+2n                            \\
+         & = 2^k T\left(\frac{n}{2^k}\right) + kn                     \\
+         & =nT(1)+ log(n)(n) \qquad \text{si } n=2^k                  \\
+         & = n+ nlog(n)
+\end{align*}
+
+Entonces, la complejidad para el mejor caso es $O(nlog(n))$.
