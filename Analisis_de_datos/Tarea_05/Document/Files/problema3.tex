@@ -1,0 +1,29 @@
+\section*{Problema 3}
+\textbf{La vida útil de un cierto tablet sigue una distribución normal con promedio 3 años y $\sigma^2$=0.9}
+
+\begin{enumerate}
+    \item \textbf{Calcula la probabilidad que funcionará más de cuatro años.}
+
+          Se tiene que $\mu=3$ y $\sigma^2=0.9$. Entonces, al tratarse de una distribución normal, la probabilidad que la tablet funcione más de cuatro años es:
+
+          \begin{align*}
+              P(X>4) & = 1 - P(x\leq 4)                                    \\
+                     & = 1 - \int\limits_{-\infty}^4 \mathcal{N} (3,0.9)dx \\
+                     & = 1 - 0.8540797                                     \\
+              P(X>4) & = 0.1459203
+          \end{align*}
+
+          lo anterior fue calculado con la función pnorm de R.
+
+    \item \textbf{Se quiere determinar la duración de la garantía. ¿Para cuántos meses máximos se debe dar la garantía para que la probabilidad que el tablet se descomponga antes del fin de la garantía sea no mayor que 0.25? La respuesta debe ser en términos de meses enteros.}
+
+          Se tiene que $\mu=3$ y $\sigma^2=0.9$. Entonces, al tratarse de una distribución normal, lo que se quiere encontrar es el valor de x tal que:
+
+          \begin{align*}
+              P(X)                                          & <0.25      \\
+              \int\limits_{-\infty}^x \mathcal{N} (3,0.9)dx & = 0.25     \\
+              x                                             & = 2.360123
+          \end{align*}
+
+          Esto fue calculado con la función qnorm de R. Entonces se tiene que en 2.360123 años sería el límite para la gararantía. LLevando esta cantidad a números enteros, el máximo de meses es 28 meses.
+\end{enumerate}
