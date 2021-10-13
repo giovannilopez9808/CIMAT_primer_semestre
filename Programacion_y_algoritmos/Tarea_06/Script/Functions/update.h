@@ -51,6 +51,7 @@ void add_student(struct student **students, int *size)
     // Inicializacion de sus variables
     (*students)[*size].name = malloc(sizeof(char *));
     (*students)[*size].grade = malloc(sizeof(char *));
+    (*students)[*size].s = (struct school *)malloc(sizeof(struct school));
     // Lectura de los datos del estudiante
     printf("Escribe el nombre del nuevo estudiante: ");
     scanf(" %[^\n]", (*students)[*size].name);
