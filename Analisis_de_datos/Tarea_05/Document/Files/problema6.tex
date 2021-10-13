@@ -2,7 +2,7 @@
 
 \textbf{Alguine tiene una reserva de 100 focos. Se sabe que el tiempo de vida de un foco sigue una distribución exponencial con promedio 5 horas. Se prende un foco a la vez; si se descompone, se cambia el foco inmediatamente hasta agotar la reserva. Si los tiempos de vida son v.a. independientes entre sí calcula una aproximación para la probabilidad que aun hay un foco prendido despues de 525 horas.}
 
-Sea $X_1,X_2,\dots, X_n$ variables aleatorias independientes y $X_i \sim Exp(\beta=5)$, entonces se tiene que $\mu = 5$ y $\sigma^2 = 25$. Por ser $\mu$ y $\sigma$ finitos, por que se puede usar el teorema del límite central (ecuación \ref{eq:limit_p}). Entonces
+Sea $X_1,X_2,\dots, X_n$ variables aleatorias independientes y $X_i \sim Exp(\beta=5)$, entonces se tiene que $\mu = 5$ y $\sigma^2 = 25$. Por ser $\mu$ y $\sigma$ finitos, se puede usar el teorema del límite central (ecuación \ref{eq:limit_p}). Entonces
 
 \begin{equation*}
     S_n \sim \mathcal{N}(n\mu,n\sigma^2)
@@ -15,3 +15,5 @@ Por lo tanto:
     P(S_n > 525) & \approx 1 - 0.6914625 \\
     P(S_n > 525) & \approx 0.3085375
 \end{align*}
+
+El valor de $P(S_n \leq 525)$ fue calculado usando la función \script{pnorm} de R.

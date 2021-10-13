@@ -1,5 +1,54 @@
 \section*{Problema 7}
 
 \textbf{
-    Se construyen dos vectores de dimensión 100, X y Y con $X_i,Y_i \sim U\left(-\frac{1}{10},\frac{1}{10}\right )$ y todos independientes entre sí. Calcula una aproximación para la probabilidad de que $\langle X,Y \rangle$ es mayor que 0.005.
+    Se construyen dos vectores de dimensión 100, X y Y con $X_i,Y_i \sim \mathcal{U}\left(-\frac{1}{10},\frac{1}{10}\right )$ y todos independientes entre sí. Calcula una aproximación para la probabilidad de que $\langle X,Y \rangle$ es mayor que 0.005.
 }
+
+Sea Z una variable aleatoria tal que: Z=XY, entonces calculando $EZ$ y $Var(Z)$, se obtiene lo siguiente:
+
+Para $EZ$:
+
+\begin{align*}
+    EZ = EXY
+\end{align*}
+
+como $X$ y $Y$ son variables aleatorias independientes, entonces:
+
+\begin{equation*}
+    EZ = EX EY
+\end{equation*}
+
+donde  $EX=EY=0$, esto es porque $X,Y\sim \mathcal{U}\left(-\frac{1}{10},\frac{1}{10}\right )$, por lo tanto $EZ = 0$.
+
+Para $Var(Z)$, se tiene que:
+
+\begin{align*}
+    Var(Z) & = Var(XY)            \\
+           & = E(XY)^2 -(EXY)^2   \\
+           & = EX^2Y^2 - (EXEY)^2 \\
+           & = EX^2 EY^2
+\end{align*}
+
+calculando $EX^2$, se obtiene lo siguiente:
+
+\begin{align*}
+    EX^2 & = \int\limits_{-\frac{1}{10}}^{\frac{1}{10}} x^2 \left(\frac{1}{\frac{1}{10}+\frac{1}{10}} \right )dx \\
+         & = \int\limits_{-\frac{1}{10}}^{\frac{1}{10}} 5x^2 dx                                                  \\
+    EX^2 & = \frac{1}{300}                                                                                       \\
+\end{align*}
+
+Entonces, como $X,Y$ tienen la misma distribución $EX^2=EY^2=\frac{1}{300}$, por ende:
+
+\begin{equation*}
+    Var(Z) = \frac{1}{9000}
+\end{equation*}
+
+Por lo tanto, para la variable aleatoria Z, se tiene que $\mu=0$ y $\sigma^2 = \frac{1}{90000}$, al ser finitas se puede usar el teorema del límite central (ecuación \ref{eq:limit_p}). Entonces:
+
+\begin{align*}
+    P(S_n>0.005) & = 1- P(S_n \leq 0.005) \\
+    P(S_n>0.005) & \approx 1 - 0.5189164  \\
+    P(S_n>0.005) & \approx 0.4810836
+\end{align*}
+
+El valor de $P(S_n \leq 0.005)$ fue calculado usando la función \script{pnorm} de R.
