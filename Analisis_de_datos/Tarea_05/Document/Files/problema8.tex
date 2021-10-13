@@ -1,0 +1,71 @@
+\section*{Problema 8}
+
+\textbf{Usando el hecho que para cualquier a, b, c: máx(a, b) $\leq$ c es equivalente a $a \leq c$ y $b \leq c$, calcula (a) la función de distribución de máx(X, Y) si X y Y son v.a. independientes uniformes sobre [-1, 1] y (b) E(máx(X, Y)).}
+
+\begin{enumerate}
+    \item Calculando F(max(X,Y))
+
+          Sea $C$ una variable aleatoria tal que:
+
+          \begin{equation*}
+              C =  \{C \in c : max(X,Y)\leq c\}
+          \end{equation*}
+
+          donde X,Y son variables aleatorias independientes. Entonces, se tiene que la distribución de C es:
+
+          \begin{align*}
+              F(C<c) & = P(max(X,Y)<c) \\
+                     & = P(x<c,y<c)
+          \end{align*}
+
+          como x,y son independientes entonces:
+
+          \begin{align*}
+              F(C<c) & = P(x<c,y<c)   \\
+                     & = P(x<c)P(y<c)
+          \end{align*}
+
+          Calculando $P(x<c)$
+
+          \begin{align*}
+              P(x<c) & = \int\limits_{-1}^c \frac{1}{2} dx \\
+              P(x<c) & = \frac{1}{2}(c+1)
+          \end{align*}
+
+          Como $P(x<c)=P(y<c)$, ya que X y Y tienen la misma distribución, entonces:
+
+          \begin{align*}
+              F(C<c) & = P(x<c)P(y<c)                       \\
+                     & = (P(x<c))^2                         \\
+                     & = \left (\frac{1}{2}(c+1) \right )^2 \\
+              F(C<c) & = \frac{1}{4} (c+1)^2
+          \end{align*}
+
+    \item Calculando E(max(X,Y))
+
+          Se tiene que
+          \begin{equation*}
+              F(C<c)  = \frac{1}{4} (c+1)^2
+          \end{equation*}
+
+          entonces, calculando su densidas de distribución de tiene que:
+
+          \begin{equation*}
+              f(c) = \frac{1}{2}(c+1)
+          \end{equation*}
+
+          Por lo que calculando la esperanza, se obtiene que:
+
+          \begin{align}
+              EC & = \int_{-1}^1 \frac{1}{2}c(c+1) dc                        \\
+                 & = \int_{-1}^1 \frac{1}{2}(c^2+c) dc                       \\
+                 & = \left . \frac{1}{6}c^3 +\frac{1}{4}c^2 \right|_{-1}^{1} \\
+              EC & = \frac{1}{3}
+          \end{align}
+
+          por lo tanto:
+
+          \begin{equation*}
+              E(max(X,Y)) = \frac{1}{3}
+          \end{equation*}
+\end{enumerate}
