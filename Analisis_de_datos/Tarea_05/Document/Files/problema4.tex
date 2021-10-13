@@ -1,0 +1,25 @@
+\section*{Problema 4}
+
+\textbf{Se redondean 50 números reales al número entero más cercano. Suponiendo que los errores de redondeo tienen una distribución uniforme sobre (-0.5, 0.5), calcula una aproximación para la probabilidad que la suma con los valores redondeados tiene un error mayor que 3 a la suma con los valores exactos.}
+
+Sea $X_1,X_2,\dots, X_n$ variables aleatorias independientes y $X_i \sim \mathcal{U}(-0.5,0.5)$, entonces se tiene que $\mu = 0$ y $\sigma^2 = \frac{1}{12}$. Por ser $\mu$ y $\sigma$ finitos, se obtiene que:
+
+\begin{equation}
+    \underset{n\rightarrow 0}{lim}\;P\left(\frac{\frac{S_n}{n}-\mu}{\frac{\sigma}{\sqrt{n}}} \leq y\right) = \int\limits_{-\infty}^{y}  \frac{1}{\sqrt{2\pi}} exp\left(-\frac{x^2}{2} \right ) dx \label{eq:limit_p}
+\end{equation}
+
+donde $S_n = X_1+X_2+\dots+X_n$. De la ecuación \ref{eq:limit_p}, se obtiene que para n suficientemente grande:
+
+\begin{equation*}
+    S_n \sim \mathcal{N}(n\mu,n\sigma^2)
+\end{equation*}
+
+Por lo que, se puede obtener una aproximación para cualquier n. Entonces, tomando los datos se obtiene que:
+
+\begin{align*}
+    P(S_n > 3) & = 1- P(S_n \leq 3)    \\
+    P(S_n > 3) & \approx 1 - 0.9830526 \\
+    P(S_n > 3) & \approx 0.01694743
+\end{align*}
+
+El valor de $P(S_n \leq 3)$ fue calculado usando la función \script{pnorm} de R.
