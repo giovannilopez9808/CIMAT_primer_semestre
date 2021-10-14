@@ -34,7 +34,6 @@ double Rayleigh_quotient(double *matrix, double *vector, int *dimension_matrix, 
                                                   vector,
                                                   dimension_vector);
     quotient = cdot_up / cdot_down;
-    // printf("%lf\n", cdot_down);
     free(vector_aux);
     return quotient;
 }
