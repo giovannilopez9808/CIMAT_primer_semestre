@@ -11,13 +11,13 @@ int main(int argc, char *argv[])
     char path_output[50] = "Output/";
     strcat(path_data, argv[1]);
     strcat(path_output, argv[1]);
-    FILE *file_matrix; // *file_output;
+    FILE *file_matrix, *file_output;
     double *matrix, *vectors = NULL, lambda;
     int dimension_matrix[2];
     file_matrix = fopen(path_data, "r");
     valid_file(file_matrix);
-    // file_output = fopen(path_output, "w");
-    // valid_file(file_output);
+    file_output = fopen(path_output, "w");
+    valid_file(file_output);
     // Lectura de los datos de la matriz
     read_dimension(file_matrix,
                    dimension_matrix);
@@ -28,14 +28,14 @@ int main(int argc, char *argv[])
                     dimension_matrix,
                     &lambda,
                     &vectors);
-    // print_several_results(file_output,
-    //                       lambda,
-    //                       vectors,
-    //                       dimension_matrix,
-    //                       n);
-    // printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
-    //        path_output);
-    // fclose(file_output);
+    print_several_results(file_output,
+                          &lambda,
+                          vectors,
+                          dimension_matrix,
+                          1);
+    printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
+           path_output);
+    fclose(file_output);
     fclose(file_matrix);
     free(matrix);
     free(vectors);
