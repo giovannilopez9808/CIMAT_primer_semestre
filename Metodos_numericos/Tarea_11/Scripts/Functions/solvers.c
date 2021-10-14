@@ -75,5 +75,8 @@ void Rayleigh_method(double *matrix, int dimension_matrix[], double *lambda, dou
                          dimension_vector);
         attempt++;
     }
+    print_lines();
+    printf("El numero de iteraciones fue %d\n", attempt);
+    print_lines();
     free(vector_aux);
 }
