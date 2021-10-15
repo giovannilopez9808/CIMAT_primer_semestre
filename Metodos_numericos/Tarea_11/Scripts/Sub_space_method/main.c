@@ -11,29 +11,30 @@ int main(int argc, char *argv[])
     char path_output[50] = "Output/";
     strcat(path_data, argv[1]);
     strcat(path_output, argv[1]);
-    FILE *file_matrix, *file_output;
-    double *matrix, *lambda = NULL, *vectors=NULL;
+    FILE *file_matrix; //, *file_output;
+    double *matrix, *lambda = NULL, *vectors = NULL;
     int dimension_matrix[2];
     file_matrix = fopen(path_data, "r");
     valid_file(file_matrix);
-    file_output = fopen(path_output, "w");
-    valid_file(file_output);
+    // file_output = fopen(path_output, "w");
+    // valid_file(file_output);
     // Lectura de los datos de la matriz
     read_dimension(file_matrix,
                    dimension_matrix);
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
-    obtain_eigenvalues_jacobi(matrix,
-                              dimension_matrix,
-                              &lambda,
-                              &vectors);
-    print_lambdas_on_a_file(file_output,
-                            lambda,
-                            dimension_matrix[0]);
-    printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
-           path_output);
-    fclose(file_output);
+    Sub_space_method(matrix,
+                     dimension_matrix,
+                     lambda,
+                     &vectors,
+                     2);
+    // print_lambdas_on_a_file(file_output,
+    //                         lambda,
+    //                         dimension_matrix[0]);
+    // printf("Archivo de resultados creado con exito.\nPath: \t%s\n",
+    //        path_output);
+    // fclose(file_output);
     fclose(file_matrix);
     free(matrix);
     free(lambda);

@@ -180,6 +180,36 @@ double obtain_Frobenius_norm(double *matrix, int dimension[])
     }
     return sqrt(norm);
 }
+void obtain_identity_matrix(double *matrix, int *dimension)
+{
+    double *a_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            a_ij = (matrix + j * dimension[0] + i);
+            // *a_ij = 0.0;
+            *a_ij = 5 - j - i;
+            if (i == j)
+            {
+                *a_ij = 1.0;
+            }
+        }
+    }
+}
+void copy_matrix(double *matrix, double *matrix_copy, int *dimension)
+{
+    double m_ij, *M_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            M_ij = (matrix_copy + j * dimension[0] + i);
+            m_ij = *(matrix + j * dimension[0] + i);
+            *M_ij = m_ij;
+        }
+    }
+}
 void print_eigenvector_on_a_file(FILE *text, double *vectors, int *dimension)
 {
     /*

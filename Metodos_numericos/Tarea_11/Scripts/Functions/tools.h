@@ -56,6 +56,8 @@ void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)
     Realiza el producto punto de dos vectores dados
      */
 double obtain_cdot_multiplication(double *vector1, double *vector2, int dimension[]);
+void obtain_identity_matrix(double *matrix, int *dimension);
+void copy_matrix(double *matrix, double *matrix_copy, int *dimension);
 double obtain_Frobenius_norm(double *matrix, int dimension[]);
 /*
     Realiza la impresion en un archivo de un vector en una sola fila
