@@ -188,8 +188,8 @@ void obtain_identity_matrix(double *matrix, int *dimension)
         for (int j = 0; j < dimension[1]; j++)
         {
             a_ij = (matrix + j * dimension[0] + i);
-            // *a_ij = 0.0;
-            *a_ij = 5 - j - i;
+            *a_ij = 0.0;
+            *a_ij = 5;
             if (i == j)
             {
                 *a_ij = 1.0;
