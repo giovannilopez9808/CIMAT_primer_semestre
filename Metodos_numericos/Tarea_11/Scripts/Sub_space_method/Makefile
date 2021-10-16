@@ -19,4 +19,4 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out Eigen_3x3.txt
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out Eigen_3x3.txt 2

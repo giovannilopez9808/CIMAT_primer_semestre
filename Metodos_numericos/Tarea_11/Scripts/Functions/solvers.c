@@ -1,4 +1,7 @@
 #include "solvers.h"
+/* 
+Inicializa el eigenvector de con tosos sus elementos con valor a 1/sqrt(n)
+ */
 void initialize_eigenvector(double *vector, int dimension)
 {
     double *V_i;
@@ -8,6 +11,9 @@ void initialize_eigenvector(double *vector, int dimension)
         *V_i = 1 / sqrt(dimension);
     }
 }
+/* 
+Realiza la copia de los valores del vector_copy en vector
+ */
 void copy_vector(double *vector, double *vector_copy, int dimension)
 {
     double v_ci, *V_i;
@@ -18,31 +24,44 @@ void copy_vector(double *vector, double *vector_copy, int dimension)
         *V_i = v_ci;
     }
 }
+/* 
+Realiza el calculo del cociente de Rayleight
+ */
 double Rayleigh_quotient(double *matrix, double *vector, int *dimension_matrix, int *dimension_vector)
 {
     double quotient;
+    // Inicializacion de un vector auxiliar
     double *vector_aux = (double *)malloc(dimension_vector[0] * sizeof(double));
+    // Realiza la multiplicacion de  Ax y la guarda en el vector auxiliar
     obtain_multiplication_matrix(matrix,
                                  vector,
                                  vector_aux,
                                  dimension_matrix,
                                  dimension_vector);
+    //  Producto punto de x y Ax
     double cdot_up = obtain_cdot_multiplication(vector,
                                                 vector_aux,
                                                 dimension_vector);
+    // Producto de x por si mismo
     double cdot_down = obtain_cdot_multiplication(vector,
                                                   vector,
                                                   dimension_vector);
+    //   Cociente
     quotient = cdot_up / cdot_down;
     free(vector_aux);
     return quotient;
 }
+/* 
+Comprueba si el método de Rayleigh convergio, en la primer llamada de la funcion en el metodo no realiza la verifciacion
+ */
 int convergence_rayleigh(double lambda, double lambda_aux, int attempt)
 {
     double convergence;
     if (attempt != 0)
     {
+        // Diferencia de lambdas
         convergence = fabs(lambda - lambda_aux);
+        // Si la diferencia es menor a 10e-6 entonces convergio
         if (convergence < 1e-7)
         {
             return 0;
@@ -50,27 +69,41 @@ int convergence_rayleigh(double lambda, double lambda_aux, int attempt)
     }
     return 1;
 }
+/* 
+Metodo de Rayleigh para obtener un eigenpar usando el metodo de potencias
+ */
 void Rayleigh_method(double *matrix, int dimension_matrix[], double *lambda, double **vector)
 {
+    // Dimension del eigenvector
     int dimension_vector[2] = {dimension_matrix[0], 1};
+    // Vector auxiliar
     double *vector_aux = (double *)malloc(dimension_matrix[0] * sizeof(double));
+    // Inicializacion del eigenvector
     *vector = (double *)malloc(dimension_matrix[0] * sizeof(double));
+    // Inicializacion de lambda auxiliar
     double lambda_aux = 0;
+    // Inicializacion de las iteraciones
     int attempt = 0;
+    // Inicializacion del eigenvector con sus elementos
     initialize_eigenvector(*vector, dimension_matrix[0]);
     while (convergence_rayleigh(*lambda, lambda_aux, attempt))
     {
+        // Guardado del eigenvalor
         *lambda = lambda_aux;
+        // Guardado del eigenvector
         copy_matrix(*vector, vector_aux, dimension_vector);
+        // Multiplicacion del metodo de potencias
         obtain_multiplication_matrix(matrix,
                                      vector_aux,
                                      *vector,
                                      dimension_matrix,
                                      dimension_vector);
+        //  Calculo de lambda
         lambda_aux = Rayleigh_quotient(matrix,
                                        *vector,
                                        dimension_matrix,
                                        dimension_vector);
+        //    Normalizacion del vector
         normalize_vector(*vector,
                          dimension_vector);
         attempt++;
@@ -80,58 +113,43 @@ void Rayleigh_method(double *matrix, int dimension_matrix[], double *lambda, dou
     print_lines();
     free(vector_aux);
 }
+/* 
+Realiza la multiplicacion de vT A v para obtener la matriz del subespacio
+ */
 void obtain_sub_matrix(double *matrix, double *vectors, int *dimension_matrix, int *dimension_vector, double *sub_matrix)
 {
     double sum;
     double a_ik, b_kj, *AB_ij;
+    // Dimension de la matriz resultante
     int dimension[2] = {dimension_matrix[1], dimension_vector[1]};
+    // Inicializacion de la matriz auxiliar
     double *matrix_aux = (double *)malloc(dimension_matrix[1] * dimension_vector[1] * sizeof(double));
+    // Multiplicacion Av
     obtain_multiplication_matrix(matrix,
                                  vectors,
                                  matrix_aux,
                                  dimension_matrix,
                                  dimension_vector);
+    // Multiplicacion de vT por Av
     for (int i = 0; i < dimension_vector[1]; i++)
     {
         for (int j = 0; j < dimension[1]; j++)
         {
             sum = 0;
             AB_ij = (sub_matrix + j * dimension[1] + i);
-            // printf("%d,%d -> ", i, j);
             for (int k = 0; k < dimension[0]; k++)
             {
                 a_ik = *(vectors + i * dimension_vector[0] + k);
                 b_kj = *(matrix_aux + j * dimension[0] + k);
                 sum += a_ik * b_kj;
-                // printf("(%lf)(%lf)+", a_ik, b_kj);
             }
             *AB_ij = sum;
-            // printf(" = %lf\n", sum);
         }
     }
     free(matrix_aux);
 }
-/*
-    Inicializacion de la matrices de rotacion
-     */
-void initialize_jacobi_matrix(double *matrix, int dimension[])
-{
-    double *M_ii, *M_ij;
-    for (int i = 0; i < dimension[0]; i++)
-    {
-        M_ii = (matrix + i * dimension[0] + i);
-        *M_ii = 1;
-        for (int j = i + 1; j < dimension[1]; j++)
-        {
-            M_ij = (matrix + i * dimension[0] + j);
-            *M_ij = 0;
-            M_ij = (matrix + j * dimension[0] + i);
-            *M_ij = 0;
-        }
-    }
-}
 /* 
-     Copia del vector i en la matriz de eigenvectores
+     Copia del vector i de la matriz de eigenvectores
       */
 void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
 {
@@ -143,6 +161,9 @@ void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
         *Vi_i = v_i;
     }
 }
+/* 
+Escribe el vector n en la matriz de eigenvectores
+ */
 void fill_vectors_solution(double *vectors, double *vector, int *dimension, int n)
 {
     double *Vi_i, v_i;
@@ -153,44 +174,55 @@ void fill_vectors_solution(double *vectors, double *vector, int *dimension, int 
         *Vi_i = v_i;
     }
 }
-void Gram_Schmidt_normalize(double *vectors, int *dimension, int n)
+/* 
+Ortonomalizacion de los eigenvectores
+ */
+void Gram_Schmidt_orthonormalization(double *vectors, int *dimension, int n)
 {
+    double cdot, vaux_jk, *V_ik;
+    // Inicializacion de los vectores auxiliares
     double *vector_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
     double *vector_j = (double *)malloc(dimension[0] * sizeof(double));
-    // int dimension_vector[2] = {dimension[0], 1};
+    // Copia de los eigenvectores
     copy_matrix(vectors, vector_aux, dimension);
-    double cdot, vaux_jk, *V_ik;
-    // Desplazamiento de los vectores
+    // Desplazamiento de los vectores, omite el primero
     for (int i = 1; i < n; i++)
     {
-        // Desplazamiento con los demas vectores
+        // Copia del vector i
         obtain_vector_i(vectors,
                         vector_i,
                         dimension,
                         i);
+        // Desplazamiento con los demas vectores
         for (int j = 0; j < i; j++)
         {
+            // Copia del vector j
             obtain_vector_i(vectors,
                             vector_j,
                             dimension,
                             j);
+            // Producto punto del vector i y el vector j
             cdot = obtain_cdot_multiplication(vector_i,
                                               vector_j,
                                               dimension);
+            //   Eliminacion de su contribucion en los elementos
             for (int k = 0; k < dimension[0]; k++)
             {
-
+                // Elemento k del vector i
                 V_ik = (vector_aux + i * dimension[0] + k);
+                // Elemento k del vector j
                 vaux_jk = *(vector_j + k);
+                // Eliminacion de sus contribuciones
                 *V_ik = *V_ik - cdot * vaux_jk;
             }
         }
     }
+    // Guardado de los eigenvectores ortonormalizados
     copy_matrix(vector_aux, vectors, dimension);
+    // Normalizacion de los vectores
     for (int i = 0; i < n; i++)
     {
-        // Desplazamiento con los demas vectores
         obtain_vector_i(vectors,
                         vector_i,
                         dimension,
@@ -206,36 +238,6 @@ void Gram_Schmidt_normalize(double *vectors, int *dimension, int n)
     free(vector_i);
     free(vector_j);
     free(vector_aux);
-}
-void solve_system(double *L, double *U, double *vectors, int *dimension_matrix, int *dimension_vector)
-{
-    double *vector_aux = (double *)malloc(dimension_vector[0] * dimension_vector[1] * sizeof(double));
-    double *vector_i = (double *)malloc(dimension_vector[0] * sizeof(double));
-    double *vector_sol = (double *)malloc(dimension_vector[0] * sizeof(double));
-    for (int i = 0; i < dimension_vector[1]; i++)
-    {
-        obtain_vector_i(vectors,
-                        vector_i,
-                        dimension_vector,
-                        i);
-        // Resuelve el sistema de ecuaciones
-        solve_triangular_inferior_matrix(L,
-                                         dimension_matrix,
-                                         vector_i,
-                                         &vector_sol);
-        solve_triangular_superior_matrix(U,
-                                         dimension_matrix,
-                                         vector_sol,
-                                         &vector_i);
-        fill_vectors_solution(vector_aux,
-                              vector_i,
-                              dimension_matrix,
-                              i);
-    }
-    copy_matrix(vector_aux, vectors, dimension_vector);
-    free(vector_i);
-    free(vector_aux);
-    free(vector_sol);
 }
 /*
 Obtiene la posicion del elemento con mayor valor absoluto y checa si este es mayor o menor a la tolerancia definida.
@@ -315,44 +317,59 @@ double obtain_jacobi_angle(double *matrix, int *dimension, int *pos)
     double theta = atan2(2 * m_ij, m_ii - m_jj) / 2.0;
     return theta;
 }
+/* 
+Aplicacion del metodo de potencias y ortonormalizacion de Grim-Schmidt a todos los eigenvectores
+ */
 void power_method_per_vector(double *matrix, double *vectors, int *dimension_matrix, int *dimension_vectors)
 {
+    // Vectores auxiliares
     double *vector_i = (double *)malloc(dimension_vectors[0] * sizeof(double));
     double *vector_sol = (double *)malloc(dimension_vectors[0] * sizeof(double));
+    // Dimension de los vectores
     int dimension_vector[2] = {dimension_vectors[0], 1};
     for (int i = 0; i < dimension_vectors[1]; i++)
     {
+        // Copia del vector i
         obtain_vector_i(vectors,
                         vector_i,
                         dimension_vector, i);
+        // Multiplicacion del vector i y la matriz
         obtain_multiplication_matrix(matrix,
                                      vector_i,
                                      vector_sol,
                                      dimension_matrix,
                                      dimension_vector);
+        //  Guardado en la matriz de eigenvectores
         fill_vectors_solution(vectors,
                               vector_sol,
                               dimension_vectors,
                               i);
-        Gram_Schmidt_normalize(vectors,
-                               dimension_vectors,
-                               i);
+        //   Ortonormalizacion de Gram-Schmidt
+        Gram_Schmidt_orthonormalization(vectors,
+                                        dimension_vectors,
+                                        i);
     }
     free(vector_i);
     free(vector_sol);
 }
+/* 
+Validacion de la convergencia del metodo de subespacio, si la diferencia de las sumas al duadrado de los valores en la diagonal son menores a 10e-6 entonces el metodo de detiene. En la primer iteracion no realiza la validacion
+ */
 int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, int attempt)
 {
     double a_ii, b_ii, sum = 0;
     if (attempt != 0)
     {
+        // Recorrido por la diagonal
         for (int i = 0; i < dimension[0]; i++)
         {
             a_ii = *(matrix + i * dimension[0] + i);
             b_ii = *(matrix_aux + i * dimension[0] + i);
+            // Cuadrados de las diferencias
             sum += (a_ii - b_ii) * (a_ii - b_ii);
         }
         sum = sqrt(sum);
+        // Si es menor a 10e-6 se detiene
         if (sum < 1e-6)
         {
             return 0;
@@ -360,17 +377,31 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
     }
     return 1;
 }
+/*
+    Guarda la lambda calculada en su variable de resultados
+     */
+void save_lambda(double *matrix, int *dimension, double *lambda)
+{
+    double *Lambda_i, m_ii;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        m_ii = *(matrix + i * dimension[0] + i);
+        Lambda_i = (lambda + i);
+        *Lambda_i = m_ii;
+    }
+}
 void Sub_space_method(double *matrix, int *dimension_matrix, double **lambda, double **vector, int n)
 {
     (void)lambda;
-    // Inicializacion de la matrices auxiliares
     int dimension_vector[2] = {dimension_matrix[1], n};
     int attempt = 0, pos[2], dimension_sub_matrix[2] = {n, n};
     *vector = (double *)malloc(dimension_vector[0] * dimension_vector[1] * sizeof(double));
     *lambda = (double *)malloc(n * sizeof(double));
+    // Inicializacion de la matrices auxiliares
     double *sub_matrix = (double *)malloc(n * n * sizeof(double));
     double *matrix_aux = (double *)malloc(n * n * sizeof(double));
     double theta;
+    // Inicializacion de los eigenvectores en la base canonica
     obtain_identity_matrix(*vector,
                            dimension_vector);
     while (convergence_sub_space(sub_matrix,
@@ -378,39 +409,46 @@ void Sub_space_method(double *matrix, int *dimension_matrix, double **lambda, do
                                  dimension_sub_matrix,
                                  attempt))
     {
-        Gram_Schmidt_normalize(*vector,
-                               dimension_vector,
-                               dimension_vector[1]);
+        // Ortonormalizacion de Gram-Schmidt
+        Gram_Schmidt_orthonormalization(*vector,
+                                        dimension_vector,
+                                        dimension_vector[1]);
+        // Obtiene la matriz del subespacio
         obtain_sub_matrix(matrix,
                           *vector,
                           dimension_matrix,
                           dimension_vector,
                           sub_matrix);
+        //   Copia de la matriz del subespacio para la convergencia
         copy_matrix(sub_matrix,
                     matrix_aux,
                     dimension_sub_matrix);
+        // Metodo de Jacobi
         while (convergence_eigenvaues_jacobi(sub_matrix,
                                              dimension_sub_matrix,
                                              pos))
         {
+            // Calculo del angulo de rotacion
             theta = obtain_jacobi_angle(sub_matrix,
                                         dimension_sub_matrix,
                                         pos);
+            // Rotacion de la matriz del subespacio y los eigenvectores
             rotate_matrix(sub_matrix,
                           *vector,
                           dimension_sub_matrix,
                           pos, theta);
         }
+        // Metodo de la potencia a los eigenvectores en conjunto a la ortonormalizacion
         power_method_per_vector(matrix,
                                 *vector,
                                 dimension_matrix,
                                 dimension_vector);
         attempt++;
     }
-    // Gram_Schmidt_normalize(*vector,
-    //                        dimension_vector,
-    //                        dimension_vector[1]);
-    print_matrix(sub_matrix, dimension_sub_matrix);
+    // Guardado de los resultados de los eigenvalores
+    save_lambda(sub_matrix,
+                dimension_sub_matrix,
+                *lambda);
     free(sub_matrix);
     free(matrix_aux);
 }
