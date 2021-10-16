@@ -36,7 +36,7 @@ Al termino de este proceso se realizará la ortonormalización de Gram-Scmidt (e
 Con este proceso terminado los eigenvectores $v_i$ repetiran el proceso de la ecuación \ref{eq:subspace_matrix} hasta que el resultado de la ecuación \ref{eq:subspace_tolerance} sea menor a la tolerancia:
 
 \begin{equation}
-    \alpha_i = \sqrt{\sum_{j=0}^{n} (D_{i,j}-D_{i-1,j})^2} \label{eq:subspace_tolerance}
+    \alpha_i = \sqrt{\sum_{j=0}^{n} |D_{i,j}-D_{i-1,j}|} \label{eq:subspace_tolerance}
 \end{equation}
 
 donde $j$ recorre la diagonal de las matrices $D$ ya que ahi se encuentran los eigenvalores de la matriz $A'$.

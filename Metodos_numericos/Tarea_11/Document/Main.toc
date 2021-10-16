@@ -1,9 +1,11 @@
 \babel@toc {spanish}{}
 \contentsline {section}{\numberline {1}Introducción}{1}{section.1}%
-\contentsline {section}{\numberline {2}Métodos}{1}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Método de la potencia y cociente de Rayleigh}{1}{subsection.2.1}%
+\contentsline {section}{\numberline {2}Métodos}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Método de la potencia y cociente de Rayleigh}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Método de iteraciones simultaneas}{2}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Resultados}{4}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Método de la potencia y cociente de Rayleigh}{4}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Método de subespacio}{4}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusiones}{4}{section.4}%
+\contentsline {subsection}{\numberline {3.2}Método de iteraciones simultaneas}{4}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Método de la potencia y cociente de Rayleigh}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Método de iteraciones simultaneas}{5}{subsection.4.2}%

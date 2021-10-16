@@ -1,1 +1,15 @@
-\subsection{Método de subespacio}
+\subsection{Método de iteraciones simultaneas}
+
+El método de iteraciones simultaneas se uso para calcular 6 y 25 eigenpares de las matrices contenidas en los archivos \file{Eigen\_125x125.txt} y \file{Eigen\_500x500.txt} respectivamente. Los resultados de este método de encuentran en la carpeta \folder{Sub\_space\_method}. En la tabla \ref{table:subspace_results} se encuentra un resumen de los parámetros y resultados obtenidos con este método.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \hline
+        Archivo            & Tolerancia                 & \begin{tabular}[c]{@{}c@{}}Dimensión\\ de la matriz\end{tabular} & \begin{tabular}[c]{@{}c@{}}Dimensión\\ del subespacio\end{tabular} & \begin{tabular}[c]{@{}c@{}}Número de\\ iteraciones\end{tabular} \\ \hline
+        Eigen\_125x125.txt & \multirow{2}{*}{$10^{-6}$} & 125                       & 6                         & 7                         \\
+        Eigen\_500x500.txt &                            & 500                       & 25                        &                           \\ \hline
+    \end{tabular}
+    \caption{Parámetros y resultados usando el método de iteraciones simultaneas}
+    \label{table:subspace_results}
+\end{table}

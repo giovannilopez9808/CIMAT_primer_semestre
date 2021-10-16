@@ -365,10 +365,9 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
         {
             a_ii = *(matrix + i * dimension[0] + i);
             b_ii = *(matrix_aux + i * dimension[0] + i);
-            // Cuadrados de las diferencias
-            sum += (a_ii - b_ii) * (a_ii - b_ii);
+            // Suma del valor absoluto de las diferencias
+            sum += fabs(a_ii - b_ii);
         }
-        sum = sqrt(sum);
         // Si es menor a 10e-6 se detiene
         if (sum < 1e-6)
         {
@@ -445,6 +444,9 @@ void Sub_space_method(double *matrix, int *dimension_matrix, double **lambda, do
                                 dimension_vector);
         attempt++;
     }
+    print_lines();
+    printf("Numero de iteraciones %d\n",attempt);
+    print_lines();
     // Guardado de los resultados de los eigenvalores
     save_lambda(sub_matrix,
                 dimension_sub_matrix,
