@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
                 &matrix);
     Sub_space_method(matrix,
                      dimension_matrix,
-                     lambda,
+                     &lambda,
                      &vectors,
                      2);
     // print_lambdas_on_a_file(file_output,
