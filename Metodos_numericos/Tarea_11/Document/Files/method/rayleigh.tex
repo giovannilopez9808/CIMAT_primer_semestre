@@ -1,0 +1,38 @@
+\subsection{Método de la potencia y cociente de Rayleigh}
+
+El método de Rayleigh es un método iterativo para encontrar los eigenvalores de  una matriz cuadrada A. Este método realiza un cambio en la manera de calcular el eigenvalor, es por ellos va acompañado del método de la potencia o el método de la potencia inversa, esto dependiendo de que eigenpar se quiera obtener. En esta version se opto por usar el método de la potencia en conjunto al cociente de Rayleigh.
+
+Se define un vector inicial $v_0$, el cual será la inicialización del método de potencias. Los elementos de  $v_0$ estan definidos de la siguiente manera:
+
+\begin{equation}
+    v_{0,i}= \frac{1}{\sqrt{n}}
+\end{equation}
+
+donde n es el número de filas o columnas de la matriz. El método de la potencia aplica la ecuación \ref{eq:power_equation}, la cual conforme el número de iteraciones crece, el vector $v$ se aproxima a el eigenvector correspondiente al eigenvalor dominante.
+
+\begin{equation}
+    v_{i} = Av_{i-1} \label{eq:power_equation}
+\end{equation}
+
+El cociente de Rayleigh se define en la ecuación .
+
+\begin{equation}
+    \mathcal{R}(x) = \frac{\langle v, Av\rangle}{\langle v,v\rangle}
+\end{equation}
+
+Si $v$ es un eigenvector, entonces $\mathcal{R}(x)$ obtiene el valor del eigenvalor correspondiente a ese vector. En este caso, el eigenvalor dominante.
+
+Por lo que el algoritmo de la potencia en conjutno al cociente de Rayleigh puede escribirse de la siguiente manera:
+
+\begin{algorithm}[H]
+    \caption{Método de la potencia en conjunto del método de la potencia}
+    \label{alg:Rayleigh_method}
+    \KwInput{$A$}
+    \KwOutput{$v$ y $\lambda$}
+    $v_0 \gets \{\frac{1}{\sqrt{n}}\}$\\
+    \While{$|\lambda_{i}-\lambda_{i-1}|>tol$}{
+    $v_{i} = Av_{i-1}$\\
+    $\lambda_i = \frac{\langle v_{i}, Av_{i}\rangle}{\langle v_{i},v_i\rangle}$\\
+    $v_{i} = \frac{v_{i}}{|v_{i}|}$\\
+    }
+\end{algorithm}

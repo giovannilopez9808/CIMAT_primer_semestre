@@ -1,0 +1,17 @@
+\section{Introducción}
+
+Sea A una matriz de n$\times$n con componentes reales. El número $\lambda$ se denomina \textit{valor característico (eigenvalor)} de A si existe un vector diferente de cero ($v$) tal que
+
+\begin{equation}
+    Av = \lambda v \label{eq:equation_eigenvalores}
+\end{equation}
+
+El vector $v$ se denomina \textit{vector característico (eigenvector)} de A correspondiente al eigenvalor $\lambda$. Se dice que $\lambda$ es un eigenvalor de A si y sólo si
+
+\begin{equation}
+    p(\lambda) = det(A - \lambda I) = 0 \label{eq:polinomio}
+\end{equation}
+
+donde $I$ es la matrix identidad y $p$ se denomina como el polinomio característico de A. El grado del polinomio $p$ es de grado n, entonces se obtiene que existen n eigenvalores para la matriz A.
+
+Para un número grande de n, el resolver la ecuación característica es difícil de resolver. Es por ello que se plantearon métodos iterativos para aproximar a las raices de la ecuación característica, es decir, los eigenvalores.

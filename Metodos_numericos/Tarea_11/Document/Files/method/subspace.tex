@@ -1,0 +1,63 @@
+\subsection{Método de iteraciones simultaneas}
+
+El método de iteraciones simultaneas es una generalización del método de la potencia, esto es debido a que se usa la base del mismo para obtener $m$ eigenvalores de una matriz simetrica A. Existen variaciones de este método, algunas realizan el método de factrozacion QR para realizar la normalización de los vectores. En este caso usaremos partes del método de la potencia, el método de Jacobi y la ortonormalización de Gram-Schmidt para obtener los $m$ eigenvalores dominantes.
+
+El método inicia definiendo una matriz de $n\times m$ donde se guarda la información de los eigenvectores. La matriz $v_0$ de los eigenvectores esta compuesta de los $m$ primeros vectores ortonormales de la base canonica de un espacio de $n$ dimensiones. Entonces la matriz $v_0$ puede escribirse como la ecuación \ref{eq:v0_subspace}.
+
+\begin{equation}
+    v_0 = \begin{pmatrix}
+        1      & 0      & 0      & \cdots & 0                        \\
+        0      & 1      & 0      & \cdots & 0                        \\
+        0      & 0      & 1      & \cdots & 0                        \\
+        \vdots & \vdots & \vdots & \ddots & \vdots                   \\
+        0      & 0      & 0      & \cdots & 1 \label{eq:v0_subspace}
+    \end{pmatrix}
+\end{equation}
+
+Para obtener la matriz que contendra a los $m$ eigenvectores del subespacio se realiza la operacion de la ecuación \ref{eq:subspace_matrix}.
+
+\begin{equation}
+    A'_{m\times m} = v^T_{m\times n} A_{n\times n} v_{n\times m} \label{eq:subspace_matrix}
+\end{equation}
+
+en donde $A'$ es la matriz del subespacio. Se aplicará el método de Jacobi a la matriz $A'$ para obtener una matriz diagonal. Entonces se aplicarán $i$ rotaciones sobre los eigenvectores y la matriz $A'$, de tal forma que
+
+\begin{align*}
+    D  & = J_i^TJ_{i-1}^T\cdots J_1^TA' J_1J_2\cdots J_i \\
+    v' & = vJ_1J_2\cdots J_i
+\end{align*}
+
+Al termino de este proceso se realizará la ortonormalización de Gram-Scmidt (ecuación \ref{eq:Gram_schmidt}) a los eigenvectores $v'$.
+
+\begin{equation}
+    v_i = \frac{v'_i - \sum\limits_{j=1}^{i-1} \langle v'_i ,v'_j \rangle v'_j}{\left |\left |v'_i - \sum\limits_{j=1}^{i-1} \langle v'_i ,v'_j \rangle v'_j \right |\right |} \label{eq:Gram_schmidt}
+\end{equation}
+
+Con este proceso terminado los eigenvectores $v_i$ repetiran el proceso de la ecuación \ref{eq:subspace_matrix} hasta que el resultado de la ecuación \ref{eq:subspace_tolerance} sea menor a la tolerancia:
+
+\begin{equation}
+    \alpha_i = \sqrt{\sum_{j=0}^{n} (D_{i,j}-D_{i-1,j})^2} \label{eq:subspace_tolerance}
+\end{equation}
+
+donde $j$ recorre la diagonal de las matrices $D$ ya que ahi se encuentran los eigenvalores de la matriz $A'$.
+
+El algoritmo puede escribirse de la siguiente manera:
+
+\begin{algorithm}[H]
+    \caption{Método de iteraciones simultaneas}
+    \label{alg:simultaneous_iterations}
+    \KwInput{$A$,m}
+    \KwOutput{$v$ y $\lambda$}
+    $v_0 \gets $canonical\_base(m)\\
+    \While{$\alpha>tol$}{
+    $A' = v^T A v$\\
+    \While{$|max\{a'_{ij}\}|>tol$}{
+    $\theta=$obtain\_angle(A',max)\\
+    rotate\_matrix(A,theta)\\
+    }
+    \For{i=1,m}{
+        $v = Av$\\
+        Gram\_Schmidt(v)\\
+    }
+    }
+\end{algorithm}
