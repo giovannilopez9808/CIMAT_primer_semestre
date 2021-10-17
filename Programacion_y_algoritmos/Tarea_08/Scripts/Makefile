@@ -3,7 +3,8 @@ IDIR=Functions/
 CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	binary_tree.c
+_FUNC=	binary_tree.c \
+		sets.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)

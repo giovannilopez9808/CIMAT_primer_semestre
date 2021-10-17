@@ -4,8 +4,70 @@ node *Create_node(int value)
     node *aux;
     aux = (node *)malloc(sizeof(node));
     aux->info = value;
-    aux->left = aux->right = NULL;
-    return (aux);
+    aux->left = NULL;
+    aux->right = NULL;
+    return aux;
+}
+node *Insert_node(node *root, int value)
+{
+    // Si el nodo es la raiz, entonces se creara
+    if (root == NULL)
+        return Create_node(value);
+
+    // Si no es la raiz entonces se revisara en donde deberia quedar la hoja
+    if (value < root->info)
+        // Si es un valor menor a el nodo entonces debera ir en la izquierda
+        root->left = Insert_node(root->left, value);
+    else
+        // Si es un valor mayor a el nodo entonces debera ir en la derecha
+        root->right = Insert_node(root->right, value);
+    return root;
+}
+node *min_value_node(node *node_aux)
+{
+    node *current = node_aux;
+    // Ciclo para desplazarse por la izquierda
+    while (current && current->left != NULL)
+        // Para cuando se llegue a el nodo en donde el lado izquierdo es vacio, entonces habremos llegado a el valor minimo
+        current = current->left;
+    return current;
+}
+node *delete_node(node *root, int info)
+{
+    // Si se trata del nodo principal se regresa el mismo valor
+    if (root == NULL)
+        return root;
+    // Si el nodo a eliminar es menor al nodo raiz entonces se encuentra en la izquierda
+    if (info < root->info)
+        root->left = delete_node(root->left, info);
+    // Si el nodo a eliminar es mayor al nodo raiz entonces se encuentra en la derecha
+    else if (info > root->info)
+        root->right = delete_node(root->right, info);
+    // Si el valor a eliminar es igual al nodo raiz entonces nos entramos en el nodo a elimianr
+    else
+    {
+        node *temp;
+        // Si el nodo solo contiene uno o ninguna hoja
+        if (root->left == NULL)
+        {
+            temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            temp = root->left;
+            free(root);
+            return temp;
+        }
+        // El nodo contiene dos hojas, se debera encontrar el valor minimo en el subarbol
+        temp = min_value_node(root->right);
+        // Copia del valor
+        root->info = temp->info;
+        // Eliminacion del nodo donde se encontraba el valor minimo
+        root->right = delete_node(root->right, temp->info);
+    }
+    return root;
 }
 void Preorder(node *root)
 {
@@ -18,7 +80,7 @@ void Preorder(node *root)
 }
 void print_preorder(node *root)
 {
-    printf("\n{");
+    printf("Preorder:\t{");
     Preorder(root);
     printf("}\n");
 }
@@ -33,7 +95,7 @@ void Inorder(node *root)
 }
 void print_inorder(node *root)
 {
-    printf("\n{");
+    printf("Inorder:\t{");
     Inorder(root);
     printf("}\n");
 }
@@ -48,7 +110,25 @@ void Postorder(node *root)
 }
 void print_postorder(node *root)
 {
-    printf("\n{");
+    printf("Postorder:\t{");
     Postorder(root);
     printf("}\n");
+}
+int obtain_max_depth(node *root)
+{
+    if (root == NULL)
+        return 0;
+    else
+    {
+        // Obtiene el tamaño del arbol de lado izquierdo
+        int left_depth = obtain_max_depth(root->right);
+        // Obtiene el tamaño del arbol de lado derecho
+        int right_depth = obtain_max_depth(root->left);
+
+        /* use the larger one */
+        if (left_depth > right_depth)
+            return (left_depth + 1);
+        else
+            return (right_depth + 1);
+    }
 }
