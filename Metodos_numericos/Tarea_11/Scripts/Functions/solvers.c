@@ -366,16 +366,12 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
         {
             a_ii = *(matrix + i * dimension[0] + i);
             b_ii = *(matrix_aux + i * dimension[0] + i);
-            if(i==0)
-            {
-                printf("Eigenvalor 1: %lf\t%lf\n",a_ii,b_ii);
-            }
             // Suma del valor absoluto de las diferencias
             sum += fabs(a_ii - b_ii);
         }
         // Si es menor a 10e-6 se detiene
-        printf("Tolerancia: %lf\t%lf\n",sum,1e-6);
-        if (sum < 1e-6)
+        printf("Tolerancia: %lf\t%lf\n", sum, 1e-6);
+        if (sum / dimension[0] < 1e-6)
         {
             return 0;
         }
@@ -418,16 +414,16 @@ void Sub_space_method(double *matrix, int *dimension_matrix, double **lambda, do
         Gram_Schmidt_orthonormalization(*vector,
                                         dimension_vector,
                                         dimension_vector[1]);
+        //   Copia de la matriz del subespacio para la convergencia
+        copy_matrix(sub_matrix,
+                    matrix_aux,
+                    dimension_sub_matrix);
         // Obtiene la matriz del subespacio
         obtain_sub_matrix(matrix,
                           *vector,
                           dimension_matrix,
                           dimension_vector,
                           sub_matrix);
-        //   Copia de la matriz del subespacio para la convergencia
-        copy_matrix(sub_matrix,
-                    matrix_aux,
-                    dimension_sub_matrix);
         // Metodo de Jacobi
         while (convergence_eigenvaues_jacobi(sub_matrix,
                                              dimension_sub_matrix,
@@ -451,7 +447,7 @@ void Sub_space_method(double *matrix, int *dimension_matrix, double **lambda, do
         attempt++;
     }
     print_lines();
-    printf("Numero de iteraciones %d\n",attempt);
+    printf("Numero de iteraciones %d\n", attempt);
     print_lines();
     // Guardado de los resultados de los eigenvalores
     save_lambda(sub_matrix,
