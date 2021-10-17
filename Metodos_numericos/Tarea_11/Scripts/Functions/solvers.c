@@ -62,7 +62,7 @@ int convergence_rayleigh(double lambda, double lambda_aux, int attempt)
         // Diferencia de lambdas
         convergence = fabs(lambda - lambda_aux);
         // Si la diferencia es menor a 10e-6 entonces convergio
-        if (convergence < 1e-7)
+        if (convergence < 1e-4)
         {
             return 0;
         }
@@ -360,7 +360,6 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
     double a_ii, b_ii, sum = 0;
     if (attempt != 0)
     {
-        print_lines();
         // Recorrido por la diagonal
         for (int i = 0; i < dimension[0]; i++)
         {
@@ -369,9 +368,8 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
             // Suma del valor absoluto de las diferencias
             sum += fabs(a_ii - b_ii);
         }
-        // Si es menor a 10e-6 se detiene
-        printf("Tolerancia: %lf\t%lf\n", sum, 1e-6);
-        if (sum / dimension[0] < 1e-6)
+        // Si es menor a 10e-4 se detiene
+        if (sum / dimension[0] < 1e-4)
         {
             return 0;
         }
