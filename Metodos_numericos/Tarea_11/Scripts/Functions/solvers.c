@@ -360,7 +360,6 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
     double a_ii, b_ii, sum = 0;
     if (attempt != 0)
     {
-        print_lines();
         // Recorrido por la diagonal
         for (int i = 0; i < dimension[0]; i++)
         {
