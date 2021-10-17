@@ -369,6 +369,7 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
             sum += fabs(a_ii - b_ii);
         }
         // Si es menor a 10e-6 se detiene
+        printf("Tolerancia: %lf\t%lf\n",sum,1e-6);
         if (sum < 1e-6)
         {
             return 0;
