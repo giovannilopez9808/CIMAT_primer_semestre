@@ -360,11 +360,16 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
     double a_ii, b_ii, sum = 0;
     if (attempt != 0)
     {
+        print_lines();
         // Recorrido por la diagonal
         for (int i = 0; i < dimension[0]; i++)
         {
             a_ii = *(matrix + i * dimension[0] + i);
             b_ii = *(matrix_aux + i * dimension[0] + i);
+            if(i==0)
+            {
+                printf("Eigenvalor 1: %lf\t%lf\n",a_ii,b_ii);
+            }
             // Suma del valor absoluto de las diferencias
             sum += fabs(a_ii - b_ii);
         }
