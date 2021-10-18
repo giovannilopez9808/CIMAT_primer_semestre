@@ -11,5 +11,6 @@ hash_data *initialize_hash_table();
 void add_tree(hash_data *data, node *root);
 void create_hash_element(hash_data *data);
 void print_all_the_trees(hash_data *data);
+void free_all_the_trees(hash_data *data);
 int obtain_hash_index(int key);
 #endif

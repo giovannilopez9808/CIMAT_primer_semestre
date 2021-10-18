@@ -48,6 +48,6 @@ void delete_node_on_tree(hash_data *hash_table)
     index = obtain_hash_index(index);
     printf("Introduce el valor del nodo: ");
     aux = scanf(" %d", &value);
-    insert_node(hash_table[index].tree, value);
+    delete_node(hash_table[index].tree, value);
     (void)aux;
 }
