@@ -82,16 +82,16 @@ int count_nodes(node *root)
 node *create_tree()
 {
     node *root = NULL;
-    int nodes_number, value;
+    int nodes_number, value, aux;
     printf("Ingresa el numero de nodos del arbol: ");
-    scanf(" %d", &nodes_number);
+    aux = scanf(" %d", &nodes_number);
     for (int i = 0; i < nodes_number; i++)
     {
         printf("Ingresa el valor del nodo: ");
-        scanf(" %d", &value);
+        aux = scanf(" %d", &value);
         root = Insert_node(root, value);
     }
-
+    (void)aux;
     return root;
 }
 void Preorder(node *root)
@@ -105,7 +105,7 @@ void Preorder(node *root)
 }
 void print_preorder(node *root)
 {
-    printf("Preorder:\t{");
+    printf("Preorder: {");
     Preorder(root);
     printf("}\n");
 }
@@ -120,7 +120,7 @@ void Inorder(node *root)
 }
 void print_inorder(node *root)
 {
-    printf("Inorder:\t{");
+    printf("Inorder: {");
     Inorder(root);
     printf("}\n");
 }
@@ -135,20 +135,20 @@ void Postorder(node *root)
 }
 void print_postorder(node *root)
 {
-    printf("Postorder:\t{");
+    printf("Postorder: {");
     Postorder(root);
     printf("}\n");
 }
-int obtain_max_depth(node *root)
+int obtain_depth(node *root)
 {
     if (root == NULL)
         return 0;
     else
     {
         // Obtiene el tamaño del arbol de lado izquierdo
-        int left_depth = obtain_max_depth(root->right);
+        int left_depth = obtain_depth(root->right);
         // Obtiene el tamaño del arbol de lado derecho
-        int right_depth = obtain_max_depth(root->left);
+        int right_depth = obtain_depth(root->left);
 
         /* use the larger one */
         if (left_depth > right_depth)

@@ -1,27 +1,31 @@
 #include "menu.h"
-#include "hash_table.h"
-
-void select_menu(int option)
+/* 
+Selecciona cada opcion dependiendo de que numero ingreso el usuario
+*/
+void select_menu(int option, hash_data *hash_table)
 {
-    /* 
-    Selecciona cada opcion dependiendo de que numero ingreso el usuario
-     */
     switch (option)
     {
+    case 1:
+        print_maximum_depth_tree(hash_table);
+        break;
     case 4:
-        // print_all_the_trees();
+        print_all_the_trees(hash_table);
+        break;
+    case 0:
+        exit(2);
         break;
     default:
         printf("\nOpcion invalida\n");
         break;
     }
 }
-void menu()
+/* 
+Impresion del menu y activador de cada opcion
+*/
+void menu(hash_data *hast_table)
 {
-    /* 
-    Impresion del menu y activador de cada opcion
-     */
-    int option;
+    int option, aux;
     // Ciclo infinito para que el programa sea finalizado al seleccionar la opcion salir
     while (1)
     {
@@ -33,8 +37,9 @@ void menu()
         printf("0) Salir\n");
         printf("\nSeleccione una opcion: ");
         // Lecura de la opcion
-        scanf(" %d", &option);
+        aux = scanf(" %d", &option);
+        (void)aux;
         // Selecciona la opcion
-        select_menu(option);
+        select_menu(option, hast_table);
     }
 }

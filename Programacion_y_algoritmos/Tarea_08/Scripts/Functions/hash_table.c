@@ -29,9 +29,9 @@ void print_all_the_trees(hash_data *data)
 {
     for (int i = 0; i < size; i++)
     {
-        if ((data + i)->tree != NULL)
+        if (data[i].tree != NULL)
         {
-            printf("Tree %d\n", i);
+            printf("Index: %d\n", i);
             print_preorder(data[i].tree);
         }
     }

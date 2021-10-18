@@ -1,5 +1,6 @@
 #ifndef menu_H
 #define menu_H
 #include <stdio.h>
-void menu();
+#include "functions.h"
+void menu(hash_data *hast_table);
 #endif

@@ -3,6 +3,8 @@
     "hash_table.h": "c",
     "binary_tree.h": "c",
     "sets.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "menu.h": "c",
+    "functions.h": "c"
   }
 }

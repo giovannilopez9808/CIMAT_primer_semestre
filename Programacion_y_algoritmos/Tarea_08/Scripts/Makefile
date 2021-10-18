@@ -1,12 +1,13 @@
 CC=gcc
 IDIR=Functions/
-CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
+CFLAGS= -Wall -Wextra -Werror -O3 -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
 _FUNC=	binary_tree.c \
 		hash_table.c \
 		sets.c \
-		menu.c 
+		menu.c \
+		functions.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
