@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "hash_table.h"
 
 void select_menu(int option)
 {
@@ -7,6 +8,9 @@ void select_menu(int option)
      */
     switch (option)
     {
+    case 4:
+        // print_all_the_trees();
+        break;
     default:
         printf("\nOpcion invalida\n");
         break;

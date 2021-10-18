@@ -69,6 +69,31 @@ node *delete_node(node *root, int info)
     }
     return root;
 }
+int count_nodes(node *root)
+{
+    if (root != NULL)
+    {
+        int count_right = count_nodes(root->right);
+        int count_left = count_nodes(root->left);
+        return count_left + count_right + 1;
+    }
+    return 0;
+}
+node *create_tree()
+{
+    node *root = NULL;
+    int nodes_number, value;
+    printf("Ingresa el numero de nodos del arbol: ");
+    scanf(" %d", &nodes_number);
+    for (int i = 0; i < nodes_number; i++)
+    {
+        printf("Ingresa el valor del nodo: ");
+        scanf(" %d", &value);
+        root = Insert_node(root, value);
+    }
+
+    return root;
+}
 void Preorder(node *root)
 {
     if (root != NULL)

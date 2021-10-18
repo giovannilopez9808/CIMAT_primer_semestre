@@ -10,12 +10,14 @@ typedef struct Node
 } node;
 
 node *Create_node(int value);
+node *create_tree();
 
 void print_postorder(node *root);
 void print_preorder(node *root);
 void print_inorder(node *root);
 
-int obtain_max_depth(node *root);
 node *Insert_node(node *root, int value);
 node *delete_node(node *root, int info);
+int obtain_max_depth(node *root);
+int count_nodes(node *root);
 #endif

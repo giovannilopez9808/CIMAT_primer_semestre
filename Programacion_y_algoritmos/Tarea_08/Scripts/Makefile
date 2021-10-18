@@ -4,7 +4,9 @@ CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
 _FUNC=	binary_tree.c \
-		sets.c
+		hash_table.c \
+		sets.c \
+		menu.c 
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
@@ -20,4 +22,4 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out Eigen_3x3.txt 2
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out
