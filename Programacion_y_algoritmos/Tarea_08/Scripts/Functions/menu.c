@@ -9,6 +9,12 @@ void select_menu(int option, hash_data *hash_table)
     case 1:
         print_maximum_depth_tree(hash_table);
         break;
+    case 2:
+        insert_node_on_tree(hash_table);
+        break;
+    case 3:
+        delete_node_on_tree(hash_table);
+        break;
     case 4:
         print_all_the_trees(hash_table);
         break;

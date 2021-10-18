@@ -16,3 +16,38 @@ void print_maximum_depth_tree(hash_data *hash_table)
     printf("Index: %d\n", index);
     print_preorder(max_hash.tree);
 }
+void insert_node_on_tree(hash_data *hash_table)
+{
+    int aux, index, value;
+    printf("Introduce numero de nodos del arbol donde se insertara un nodo: ");
+    aux = scanf(" %d", &index);
+    index = obtain_hash_index(index);
+    while (hash_table[index].tree == NULL)
+    {
+        printf("Arbol no existe\n");
+        printf("Introduce numero de nodos del arbol donde se insertara un nodo: ");
+        aux = scanf(" %d", &index);
+        index = obtain_hash_index(index);
+    }
+    printf("Introduce el valor del nodo: ");
+    aux = scanf(" %d", &value);
+    insert_node(hash_table[index].tree, value);
+    (void)aux;
+}
+void delete_node_on_tree(hash_data *hash_table)
+{
+    int aux, index, value;
+    printf("Introduce numero de nodos del arbol donde se insertara un nodo: ");
+    aux = scanf(" %d", &index);
+    while (hash_table[index].tree == NULL)
+    {
+        printf("Arbol no existe\n");
+        printf("Introduce numero de nodos del arbol donde se insertara un nodo: ");
+        aux = scanf(" %d", &index);
+    }
+    index = obtain_hash_index(index);
+    printf("Introduce el valor del nodo: ");
+    aux = scanf(" %d", &value);
+    insert_node(hash_table[index].tree, value);
+    (void)aux;
+}
