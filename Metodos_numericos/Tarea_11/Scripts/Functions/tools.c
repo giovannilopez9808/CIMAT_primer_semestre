@@ -59,10 +59,11 @@ void read_dimension(FILE *file, int dimension[])
     + file: puntero del archivo
     + dimension: arreglo de dimension 2 de tipo entero
      */
-    fscanf(file,
-           "%d %d",
-           &dimension[0],
-           &dimension[1]);
+    int a = fscanf(file,
+                   "%d %d",
+                   &dimension[0],
+                   &dimension[1]);
+    (void)a;
 }
 void read_matrix(FILE *file, int dimension[], double **matrix)
 {
@@ -74,14 +75,16 @@ void read_matrix(FILE *file, int dimension[], double **matrix)
     + matrix: doble puntero de un tipo de dato double donde se alojaran los datos de la matriz
      */
     *matrix = (double *)malloc((dimension[0]) * (dimension[1]) * sizeof(double));
+    int a;
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = 0; j < dimension[1]; j++)
         {
-            fscanf(file, "%lf",
-                   (*matrix + j * dimension[0] + i));
+            a = fscanf(file, "%lf",
+                       (*matrix + j * dimension[0] + i));
         }
     }
+    (void)a;
 }
 void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimension_matrix_A[], int dimension_matrix_B[])
 {

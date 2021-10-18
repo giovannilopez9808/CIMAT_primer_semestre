@@ -368,6 +368,7 @@ int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, in
             // Suma del valor absoluto de las diferencias
             sum += fabs(a_ii - b_ii);
         }
+        printf("Convergencia %lf -> %lf\n", sum / dimension[0], 1e-4);
         // Si es menor a 10e-4 se detiene
         if (sum / dimension[0] < 1e-4)
         {
