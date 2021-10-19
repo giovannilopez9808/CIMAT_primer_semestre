@@ -1,5 +1,5 @@
 CC=gcc
-IDIR=Functions/
+IDIR=Modules/
 CFLAGS= -Wall -Wextra -Werror -O3 -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c

@@ -53,3 +53,13 @@ void print_all_the_trees(hash_data *data)
         }
     }
 }
+void free_all_the_trees(hash_data *hash_table)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (hash_table[i].tree != NULL)
+        {
+            free_node(hash_table[i].tree);
+        }
+    }
+}

@@ -1,5 +1,5 @@
 #include "binary_tree.h"
-node *Create_node(int value)
+node *create_node(int value)
 {
     node *aux;
     aux = (node *)malloc(sizeof(node));
@@ -8,19 +8,19 @@ node *Create_node(int value)
     aux->right = NULL;
     return aux;
 }
-node *Insert_node(node *root, int value)
+node *insert_node(node *root, int value)
 {
     // Si el nodo es la raiz, entonces se creara
     if (root == NULL)
-        return Create_node(value);
+        return create_node(value);
 
     // Si no es la raiz entonces se revisara en donde deberia quedar la hoja
     if (value < root->info)
         // Si es un valor menor a el nodo entonces debera ir en la izquierda
-        root->left = Insert_node(root->left, value);
+        root->left = insert_node(root->left, value);
     else
         // Si es un valor mayor a el nodo entonces debera ir en la derecha
-        root->right = Insert_node(root->right, value);
+        root->right = insert_node(root->right, value);
     return root;
 }
 node *min_value_node(node *node_aux)
@@ -89,7 +89,7 @@ node *create_tree()
     {
         printf("Ingresa el valor del nodo: ");
         aux = scanf(" %d", &value);
-        root = Insert_node(root, value);
+        root = insert_node(root, value);
     }
     (void)aux;
     return root;
@@ -155,5 +155,14 @@ int obtain_depth(node *root)
             return (left_depth + 1);
         else
             return (right_depth + 1);
+    }
+}
+void free_node(node *root)
+{
+    if (root != NULL)
+    {
+        free_node(root->right);
+        free_node(root->left);
+        free(root);
     }
 }
