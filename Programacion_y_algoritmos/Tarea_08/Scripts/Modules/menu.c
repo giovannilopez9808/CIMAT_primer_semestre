@@ -19,9 +19,8 @@ void select_menu(int option, hash_data *hash_table)
         print_all_the_trees(hash_table);
         break;
     case 0:
-        // free_all_the_trees(hash_table);
         free(hash_table);
-        exit(2);
+        exit(0);
         break;
     default:
         printf("\nOpcion invalida\n");
