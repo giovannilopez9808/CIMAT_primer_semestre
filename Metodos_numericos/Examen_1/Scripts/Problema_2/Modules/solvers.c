@@ -163,3 +163,41 @@ void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], do
         *(*solutions + i) = (result_i - sum_ij) / matrix_ii;
     }
 }
+void solve_with_LU(double *L, double *U, int *dimension, double *results, double **solutions)
+{
+    double *vector_aux;
+    solve_triangular_inferior_matrix(L,
+                                     dimension,
+                                     results,
+                                     &vector_aux);
+    solve_triangular_superior_matrix(U,
+                                     dimension,
+                                     vector_aux,
+                                     solutions);
+    free(vector_aux);
+}
+void obtain_matrix_inverse(double *L, double *U, int *dimension, double **matrix_inverse)
+{
+    *matrix_inverse = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    identity_matrix(*matrix_inverse, dimension);
+    double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
+    double *vector_aux;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        obtain_vector_i(*matrix_inverse,
+                        vector_i,
+                        dimension,
+                        i);
+        solve_with_LU(L,
+                      U,
+                      dimension,
+                      vector_i,
+                      &vector_aux);
+        save_vector(matrix_inverse,
+                    vector_aux,
+                    dimension,
+                    i);
+        free(vector_aux);
+    }
+    free(vector_i);
+}

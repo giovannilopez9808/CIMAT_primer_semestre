@@ -22,3 +22,7 @@ clean:
 run:
 	./main.out
 
+valgrind:
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out test_matrix.txt test_result.txt
+
+

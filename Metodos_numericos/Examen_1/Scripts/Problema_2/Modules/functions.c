@@ -90,7 +90,7 @@ void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimensio
         }
     }
 }
-void obtain_identity_matrix(double *matrix, int *dimension)
+void identity_matrix(double *matrix, int *dimension)
 {
     double *a_ij;
     for (int i = 0; i < dimension[0]; i++)
@@ -99,11 +99,36 @@ void obtain_identity_matrix(double *matrix, int *dimension)
         {
             a_ij = (matrix + j * dimension[0] + i);
             *a_ij = 0.0;
-            *a_ij = 5;
             if (i == j)
             {
                 *a_ij = 1.0;
             }
         }
+    }
+}
+/*
+Copia del vector i en la matriz de eigenvectores
+*/
+void obtain_vector_i(double *vectors, double *vector, int *dimension, int n)
+{
+    double *Vi_i, v_i;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        v_i = *(vectors + n * dimension[0] + i);
+        Vi_i = vector + i;
+        *Vi_i = v_i;
+    }
+}
+/*
+Copia del vector en la matriz de vectores unitarios
+*/
+void save_vector(double **vectors, double *vector, int *dimension, int n)
+{
+    double *V_i, v_i;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        V_i = (*vectors + n * dimension[0] + i);
+        v_i = *(vector + i);
+        *V_i = v_i;
     }
 }

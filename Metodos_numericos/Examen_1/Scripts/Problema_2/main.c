@@ -16,14 +16,11 @@ int main(int argc, char *argv[])
     strcat(path_vector, argv[2]);
     strcat(path_output, argv[1]);
     FILE *file_matrix, *file_vector, *file_output;
-    double *matrix, *vector, *matrix_inverse, *solution, *L, *U, *vector_aux;
+    double *matrix, *vector, *matrix_inverse, *solution, *L, *U;
     int dimension_matrix[2], dimension_vector[2];
     (void)file_output;
     (void)matrix_inverse;
-    (void)vector_aux;
     (void)solution;
-    (void)L;
-    (void)U;
     file_matrix = open_file(path_matrix, "r");
     file_vector = open_file(path_vector, "r");
     read_dimension(file_matrix,
@@ -40,16 +37,27 @@ int main(int argc, char *argv[])
                     dimension_matrix,
                     &L,
                     &U);
-    solve_triangular_inferior_matrix(L,
-                                     dimension_matrix,
-                                     vector,
-                                     &vector_aux);
-    solve_triangular_superior_matrix(U,
-                                     dimension_matrix,
-                                     vector_aux,
-                                     &solution);
+    solve_with_LU(L,
+                  U,
+                  dimension_matrix,
+                  vector,
+                  &solution);
+    obtain_matrix_inverse(L,
+                          U,
+                          dimension_matrix,
+                          &matrix_inverse);
     print_matrix(solution,
                  dimension_vector);
+    print_matrix(matrix_inverse,
+                 dimension_matrix);
     free(matrix);
+    free(vector);
+    free(solution);
+    free(matrix_inverse);
+    free(L);
+    free(U);
+    fclose(file_matrix);
+    // fclose(file_output);
+    fclose(file_vector);
     return 0;
 }
