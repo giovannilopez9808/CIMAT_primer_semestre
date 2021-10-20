@@ -1,4 +1,7 @@
 #include "binary_tree.h"
+/* 
+Creacion de un nodo del arbol
+ */
 node *create_node(int value)
 {
     node *aux;
@@ -8,6 +11,9 @@ node *create_node(int value)
     aux->right = NULL;
     return aux;
 }
+/* 
+Creacion de un nodo del arbol dado su raiz y su valor
+ */
 node *insert_node(node *root, int value)
 {
     // Si el nodo es la raiz, entonces se creara
@@ -23,6 +29,9 @@ node *insert_node(node *root, int value)
         root->right = insert_node(root->right, value);
     return root;
 }
+/* 
+Obtiene el minimo valor del subarbol de la raiz que se da
+ */
 node *min_value_node(node *node_aux)
 {
     node *current = node_aux;
@@ -32,6 +41,9 @@ node *min_value_node(node *node_aux)
         current = current->left;
     return current;
 }
+/* 
+Elimina un nodo y lo remplaza por su valor
+ */
 node *delete_node(node *root, int info)
 {
     // Si se trata del nodo principal se regresa el mismo valor
@@ -46,29 +58,32 @@ node *delete_node(node *root, int info)
     // Si el valor a eliminar es igual al nodo raiz entonces nos entramos en el nodo a elimianr
     else
     {
-        node *temp;
+        node *aux;
         // Si el nodo solo contiene uno o ninguna hoja
         if (root->left == NULL)
         {
-            temp = root->right;
+            aux = root->right;
             free(root);
-            return temp;
+            return aux;
         }
         else if (root->right == NULL)
         {
-            temp = root->left;
+            aux = root->left;
             free(root);
-            return temp;
+            return aux;
         }
         // El nodo contiene dos hojas, se debera encontrar el valor minimo en el subarbol
-        temp = min_value_node(root->right);
+        aux = min_value_node(root->right);
         // Copia del valor
-        root->info = temp->info;
+        root->info = aux->info;
         // Eliminacion del nodo donde se encontraba el valor minimo
-        root->right = delete_node(root->right, temp->info);
+        root->right = delete_node(root->right, aux->info);
     }
     return root;
 }
+/* 
+Realiza la cuenta de los nodos de un arbol
+ */
 int count_nodes(node *root)
 {
     if (root != NULL)
@@ -79,6 +94,9 @@ int count_nodes(node *root)
     }
     return 0;
 }
+/* 
+Realiza la creacion de un arbol desde cero
+ */
 node *create_tree()
 {
     node *root = NULL;
@@ -94,6 +112,9 @@ node *create_tree()
     (void)aux;
     return root;
 }
+/* 
+Algortimo para la impresion desde un preorden
+ */
 void Preorder(node *root)
 {
     if (root != NULL)
@@ -103,12 +124,18 @@ void Preorder(node *root)
         Preorder(root->right);
     }
 }
+/* 
+Realiza la impresion desde un preorden
+ */
 void print_preorder(node *root)
 {
     printf("\tPreorder: {");
     Preorder(root);
     printf("}\n");
 }
+/* 
+Algoritmo para la impresion en orden
+ */
 void Inorder(node *root)
 {
     if (root != NULL)
@@ -118,12 +145,18 @@ void Inorder(node *root)
         Inorder(root->right);
     }
 }
+/* 
+Ejecuta la impresion en orden
+ */
 void print_inorder(node *root)
 {
     printf("Inorder: {");
     Inorder(root);
     printf("}\n");
 }
+/* 
+Algoritmo que realiza la impresion post orden
+ */
 void Postorder(node *root)
 {
     if (root != NULL)
@@ -133,12 +166,18 @@ void Postorder(node *root)
         printf("%d, ", root->info);
     }
 }
+/* 
+Ejecuta la impresion post order
+ */
 void print_postorder(node *root)
 {
     printf("Postorder: {");
     Postorder(root);
     printf("}\n");
 }
+/* 
+Obtiene el tamaño del arbol
+ */
 int obtain_depth(node *root)
 {
     if (root == NULL)
@@ -150,19 +189,10 @@ int obtain_depth(node *root)
         // Obtiene el tamaño del arbol de lado derecho
         int right_depth = obtain_depth(root->left);
 
-        /* use the larger one */
+        // Usa unicamente el mas largo
         if (left_depth > right_depth)
             return (left_depth + 1);
         else
             return (right_depth + 1);
-    }
-}
-void free_node(node *root)
-{
-    if (root != NULL)
-    {
-        free_node(root->right);
-        free_node(root->left);
-        free(root);
     }
 }
