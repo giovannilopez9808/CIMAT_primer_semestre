@@ -20,7 +20,7 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 run:
-	./main.out
+	./main.out A_1000.mtx b_1000.vec
 
 valgrind:
 	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out test_matrix.txt test_result.txt

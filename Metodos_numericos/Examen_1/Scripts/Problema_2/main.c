@@ -58,7 +58,8 @@ int main(int argc, char *argv[])
     free(L);
     free(U);
     fclose(file_matrix);
-    // fclose(file_output);
+    fclose(file_output_matrix);
+    fclose(file_output_vec);
     fclose(file_vector);
     return 0;
 }

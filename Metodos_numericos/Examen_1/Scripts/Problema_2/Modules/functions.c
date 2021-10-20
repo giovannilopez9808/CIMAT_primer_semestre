@@ -1,12 +1,15 @@
 #include "functions.h"
+/*
+Realiza la impresion de las lineas en la terminal
+ */
 void print_lines()
 {
-    /*
-    Realiza la impresion de las lineas en la terminal
-     */
     printf("----------------------");
     printf("----------------------\n");
 }
+/*
+Realiza la impresion de las matrices en terminal
+ */
 void print_matrix(double *matrix, int *dimension_matrix)
 {
     for (int i = 0; i < dimension_matrix[0]; i++)
@@ -19,6 +22,9 @@ void print_matrix(double *matrix, int *dimension_matrix)
     }
     printf("\n");
 }
+/*
+Realiza la impresion de las matrices en un archivo
+ */
 void write_results(FILE *output, double *matrix, int *dimension)
 {
     fprintf(output, "%d %d\n", dimension[0], dimension[1]);
