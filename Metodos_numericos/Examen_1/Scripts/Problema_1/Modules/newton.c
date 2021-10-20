@@ -22,6 +22,8 @@ double obtain_new_x_newton(double (*f)(double), double x)
 /*
 Metodo de Newton para obtener la raiz de una funcion.
 (*f) -> funcion que recibe un dato double y devuelve un double
+tol_x -> Tolerancia para la diferencia absoluta de las posiciones consecutivas
+tol_f -> Tolerancia para el valor absoluto de fx
 x0 -> Valor aproximado de la raiz
  */
 void newton_method(double (*f)(double), double tol_x, double tol_f, double x0)

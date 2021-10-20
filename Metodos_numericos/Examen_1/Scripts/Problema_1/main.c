@@ -5,6 +5,9 @@ double f_x(double x)
 }
 int main()
 {
-    newton_method(f_x, 1e-6, 1e-6, -2);
+    newton_method(f_x,
+                  1e-7,
+                  1e-7,
+                  -2);
     return 0;
 }
