@@ -19,6 +19,18 @@ void print_matrix(double *matrix, int *dimension_matrix)
     }
     printf("\n");
 }
+void write_results(FILE *output, double *matrix, int *dimension)
+{
+    fprintf(output, "%d %d\n", dimension[0], dimension[1]);
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            fprintf(output, "%lf\t", *(matrix + j * dimension[0] + i));
+        }
+        fprintf(output, "\n");
+    }
+}
 /*
 Apertura y validacion del archivo
  */
