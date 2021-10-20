@@ -105,7 +105,7 @@ void Preorder(node *root)
 }
 void print_preorder(node *root)
 {
-    printf("Preorder: {");
+    printf("\tPreorder: {");
     Preorder(root);
     printf("}\n");
 }

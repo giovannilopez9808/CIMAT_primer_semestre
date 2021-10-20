@@ -7,4 +7,6 @@ typedef struct List
     char *key;
     struct List *next;
 } list;
+list *create_list(node *root, char *key);
+list *create_dummy_list();
 #endif

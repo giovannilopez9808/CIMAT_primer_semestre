@@ -17,16 +17,13 @@ int obtain_hash_index(char *key)
 void add_tree(hash_data *data, node *root, char *key)
 {
     int index = obtain_hash_index(key);
-    hash_data *hash_index = data + index;
-    list *list_input = hash_index->list;
-    while (list_input != NULL)
+    list *temp = create_list(root, key);
+    list *list_input = (data + index)->list;
+    while (list_input->next != NULL)
     {
-        list_input = (*list_input).next;
+        list_input = list_input->next;
     }
-    list_input = (list *)malloc(sizeof(list));
-    list_input->root = (node *)malloc(sizeof(node));
-    list_input->root = root;
-    list_input->key = key;
+    list_input->next = temp;
 }
 void create_hash_element(hash_data *data, char *key)
 {
@@ -36,30 +33,36 @@ void create_hash_element(hash_data *data, char *key)
 hash_data *initialize_hash_table()
 {
     hash_data *hash_table = (hash_data *)malloc(size * sizeof(hash_data));
-    add_tree(hash_table, obtain_set1(), "set1");
-    add_tree(hash_table, obtain_set2(), "set2");
-    add_tree(hash_table, obtain_set3(), "set3");
+    for (int i = 0; i < size; i++)
+    {
+        (hash_table + i)->list = create_dummy_list();
+    }
+    add_tree(hash_table, obtain_set1(), "set0");
+    add_tree(hash_table, obtain_set2(), "set1");
+    add_tree(hash_table, obtain_set3(), "tes0");
     return hash_table;
 }
 void print_all_the_trees(hash_data *data)
 {
+    hash_data *hash_aux;
+    list *list_aux;
+    int attempt;
     for (int i = 0; i < size; i++)
     {
-        while (data[i].list != NULL)
+        hash_aux = (data + i);
+        list_aux = hash_aux->list;
+        list_aux = list_aux->next;
+        attempt = 0;
+        while (list_aux != NULL)
         {
-            printf("Index: %d\n", i);
-            printf("Key: %s\n", data[i].list->key);
-            print_preorder(data[i].list->root);
-        }
-    }
-}
-void free_all_the_trees(hash_data *hash_table)
-{
-    for (int i = 0; i < size; i++)
-    {
-        if (hash_table[i].tree != NULL)
-        {
-            free_node(hash_table[i].tree);
+            if (attempt == 0)
+            {
+                printf("Index: %d\n", i);
+                attempt++;
+            }
+            printf("\tKey: %s\n", list_aux->key);
+            print_preorder(list_aux->root);
+            list_aux = list_aux->next;
         }
     }
 }
