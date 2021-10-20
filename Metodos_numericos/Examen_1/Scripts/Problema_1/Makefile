@@ -21,4 +21,3 @@ clean:
 
 run:
 	./main.out
-
