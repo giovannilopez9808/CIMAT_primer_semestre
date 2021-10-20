@@ -1,1 +1,34 @@
 \subsection*{Inciso c}
+
+El algoritmo de newton moficado haciendo uso de la ecuación \ref{eq:h_problema1} se encuentra en la carpeta \folder{Problema\_1}.
+
+Se uso como ejemplo la ecuación \ref{eq:f_problem1_incisoc}. En la tabla  \ref{table:problem1_parameters} se encuentran los parámetros usados para este ejemplo.
+
+
+\begin{equation}
+    f(x) = e^{2x-2}-2x+1 \label{eq:f_problem1_incisoc}
+\end{equation}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc} \hline
+        \textbf{tol\_x} & \textbf{tol\_f} \\   \hline
+        $10^{-6}$       & $10^{-6}$       \\  \hline
+    \end{tabular}
+    \caption{Parámetros usados para el ejemplo de la ecuación \ref{eq:f_problem1_incisoc}}
+    \label{table:problem1_parameters}
+\end{table}
+
+Los resultados para cada iteración se encuentran en la tabla \ref{table:problema1_results}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcc} \hline
+        \textbf{Iteración} & $\mathbf{x}$ & $\mathbf{|f(x)|}$ \\ \hline
+        1                  & 0.631487     & 0.215561          \\
+        2                  & 0.964490     & 0.002463          \\
+        3                  & 0.999589     & 0.000000          \\
+        4                  & 1.000000     & 0.000000          \\ \hline
+    \end{tabular}
+    \caption{Resultados del programa usando la ecuación \ref{eq:f_problem1_incisoc}}
+    \label{table:problema1_results}
+\end{table}
