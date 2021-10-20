@@ -38,7 +38,7 @@ void insert_node_on_tree(hash_data *hash_table)
     hash_aux = (hash_table + index);
     list_aux = hash_aux->list;
     list_aux = list_aux->next;
-    while (list_aux->root == NULL)
+    while (list_aux->next == NULL)
     {
         printf("Arbol no existe\n");
         printf("Introduce la key del arbol donde se insertara un nodo: ");
