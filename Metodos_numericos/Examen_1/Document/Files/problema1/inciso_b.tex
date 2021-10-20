@@ -1,0 +1,33 @@
+\subsection*{Inciso b}
+
+\textbf{Se cumple que el recíproco del inciso a, es decir, si $f\in C^1[a,b], x' \in (a,b), f(x')=0$ y $f'(x')\neq 0$ entonces $x'$ es un cero simple de $f$. Basado en esta afirmación, muestra que si la función $f(x)$ tiene un cero $x'$ de multiplicidad $m>1$, entonces $x'$ es un cero simple de la función}
+
+\begin{equation}
+    h(x) = \frac{f(x)}{f'(x)} \label{eq:h_problema1}
+\end{equation}
+
+Se tiene que $f$ puede escribirse como la ecuación \ref{eq:f_problema1}. Entonces, calculando su derivada se obtiene que:
+
+\begin{align*}
+    f'(x) & = m(x-x')^{m-1} q(x) +(x-x')^mq(x)                                    \\
+          & = (x-x')^{m}\left [  \left (\frac{m}{x-x'}\right ) q(x)+q'(x)\right ] \\
+          & = (x-x')^m \left ( \frac{mq(x)+q'(x)(x-x')}{x-x'}\right )
+\end{align*}
+
+Entonces, escribiendo la ecuación \ref{eq:h_problema1}. Se obtiene que:
+
+\begin{align*}
+    h(x) & = \frac{f(x)}{f'(x)}                                                           \\
+         & = \frac{(x-x')^mq(x)}{(x-x')^m \left ( \frac{mq(x)+q'(x)(x-x')}{x-x'}\right )} \\
+         & = \frac{q(x)(x-x')}{mq(x)+(x-x')q'(x)}
+\end{align*}
+
+Encontrando los valores para los cuales $h(x)=0$, se obtiene que:
+
+\begin{align*}
+    \frac{q(x)(x-x')}{mq(x)+(x-x')q'(x)} & = 0 \\
+    q(x)(x-x')                           & = 0 \\
+    q(x) =0 \qquad x-x'                  & =0  \\
+\end{align*}
+
+En donde se obtiene que un cero de $h$ es $x'$ con multiplicidad 1.
