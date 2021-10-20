@@ -3,12 +3,8 @@ IDIR=Modules/
 CFLAGS= -Wall -Wextra -Werror -O3 -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	binary_tree.c \
-		linked_list.c \
-		hash_table.c \
-		sets.c \
-		menu.c \
-		functions.c
+_FUNC=	functions.c\
+		solvers.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
@@ -24,5 +20,7 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 run:
-	./main.out
+	./main.out A_3134.mtx b_3134.vec
 
+valgrind:
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out A_3134.mtx b_3134.vec
