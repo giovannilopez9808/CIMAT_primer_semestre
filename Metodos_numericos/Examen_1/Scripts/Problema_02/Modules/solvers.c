@@ -157,42 +157,56 @@ void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], do
             // Obtiene el termino a_ij
             matrix_ij = *(matrix + i * dimension_matrix[0] + j);
             // Realiza la suma de los productos x_j*a_ij
+
             sum_ij += *(*solutions + j) * matrix_ij;
         }
         // Obtiene el termino x_i
         *(*solutions + i) = (result_i - sum_ij) / matrix_ii;
     }
 }
+/*
+Realiza la solucion de un sistema de ecuaciones usando la factorizacion LU
+ */
 void solve_with_LU(double *L, double *U, int *dimension, double *results, double **solutions)
 {
     double *vector_aux;
+    // Resuelve la matrizm triangular inferior
     solve_triangular_inferior_matrix(L,
                                      dimension,
                                      results,
                                      &vector_aux);
+    // Resuelve la triz triangular superior
     solve_triangular_superior_matrix(U,
                                      dimension,
                                      vector_aux,
                                      solutions);
     free(vector_aux);
 }
+/*
+Realiza el calculo de la matriz inversa por medio de resolver los n sistemas de ecuaciones formados con la matriz y los vectores columna de la matriz identidad
+ */
 void obtain_matrix_inverse(double *L, double *U, int *dimension, double **matrix_inverse)
 {
+    // Creacion de la matriz identidad
     *matrix_inverse = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     identity_matrix(*matrix_inverse, dimension);
+    // Creacion de los vectores auxiliares
     double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
     double *vector_aux;
     for (int i = 0; i < dimension[0]; i++)
     {
+        // Obtiene el vector columna de la matriz identidad
         obtain_vector_i(*matrix_inverse,
                         vector_i,
                         dimension,
                         i);
+        // Resuelve el sistema de ecuaciones
         solve_with_LU(L,
                       U,
                       dimension,
                       vector_i,
                       &vector_aux);
+        // Guarda el vector en la matriz inversa
         save_vector(matrix_inverse,
                     vector_aux,
                     dimension,

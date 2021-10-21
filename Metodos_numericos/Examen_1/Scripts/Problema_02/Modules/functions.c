@@ -108,6 +108,9 @@ void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimensio
         }
     }
 }
+/*
+Creacion de la matriz identidad dada su dimension
+ */
 void identity_matrix(double *matrix, int *dimension)
 {
     double *a_ij;

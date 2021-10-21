@@ -22,34 +22,43 @@ int main(int argc, char *argv[])
     file_vector = open_file(path_vector, "r");
     file_output_vec = open_file(path_output_vec, "w");
     file_output_matrix = open_file(path_output_matrix, "w");
+    // Lectura de la dimension de la matriz
     read_dimension(file_matrix,
                    dimension_matrix);
+    // Lectura de la dimension del vector
     read_dimension(file_vector,
                    dimension_vector);
+    // Lectura de la matriz
     read_matrix(file_matrix,
                 dimension_matrix,
                 &matrix);
+    // Lectura del vector
     read_matrix(file_vector,
                 dimension_vector,
                 &vector);
+    // Factorizacion de la forma de LU de la matriz
     obtain_LU_crout(matrix,
                     dimension_matrix,
                     &L,
                     &U);
+    // Solucion del sistema por medio de LU
     solve_with_LU(L,
                   U,
                   dimension_matrix,
                   vector,
                   &solution);
+    // Calculo de la matriz inversa
     obtain_matrix_inverse(L,
                           U,
                           dimension_matrix,
                           &matrix_inverse);
+    // Escritura de los resultados de la matriz inversa
     write_results(file_output_matrix,
                   matrix_inverse,
                   dimension_matrix);
     printf("Resultados escritos existosamente en el archivo: %s\n",
            path_output_matrix);
+    // Escritura de los resultados de la solucion del sistema
     write_results(file_output_vec,
                   solution,
                   dimension_vector);
