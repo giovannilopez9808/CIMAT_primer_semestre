@@ -1,0 +1,48 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -O3 -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+Fill_initial_values_U_matrix	Modules/functions.c	/^void Fill_initial_values_U_matrix(double *U, int *dimension_matrix)$/;"	f
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOLVERS_H	Modules/solvers.h	2;"	d
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	matrix_system.c\\$/;"	m
+convergence_eigenvalues	Modules/solvers.c	/^int convergence_eigenvalues(double lambda, double lambda_i, int attempt)$/;"	f
+copy_vector	Modules/solvers.c	/^void copy_vector(double *vector, double *vector_i, int dimension[])$/;"	f
+copy_vector_i	Modules/solvers.c	/^void copy_vector_i(double *vectors, double *vector, int dimension[], int n)$/;"	f
+copy_vectors	Modules/solvers.c	/^void copy_vectors(double **vectors, double *vector, int dimension[], int n)$/;"	f
+create_matrix_system	Modules/matrix_system.c	/^double *create_matrix_system(int dimension)$/;"	f
+functions_H	Modules/functions.h	2;"	d
+identity_matrix	Modules/functions.c	/^void identity_matrix(double *matrix, int *dimension)$/;"	f
+initialize_vector	Modules/solvers.c	/^void initialize_vector(double *vector, int dimension[])$/;"	f
+main	main.c	/^int main()$/;"	f
+normalize_vector	Modules/functions.c	/^void normalize_vector(double *vector, int *dimension)$/;"	f
+obatin_new_vector	Modules/solvers.c	/^void obatin_new_vector(double **vector, double *vectors, int dimension[], int n)$/;"	f
+obtain_Frobenius_norm	Modules/functions.c	/^double obtain_Frobenius_norm(double *matrix, int dimension[])$/;"	f
+obtain_LU_crout	Modules/functions.c	/^void obtain_LU_crout(double *matrix, int *dimension_matrix, double **L, double **U)$/;"	f
+obtain_cdot_multiplication	Modules/functions.c	/^double obtain_cdot_multiplication(double *vector1, double *vector2, int *dimension)$/;"	f
+obtain_multiplication_matrix	Modules/functions.c	/^void obtain_multiplication_matrix(double *A, double *B, double *AB, int dimension_matrix_A[], int dimension_matrix_B[])$/;"	f
+obtain_multiplication_vvT	Modules/functions.c	/^void obtain_multiplication_vvT(double *vector, int dimension[], double **matrix)$/;"	f
+obtain_n_max_eigenvalue	Modules/solvers.c	/^void obtain_n_max_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)$/;"	f
+obtain_n_min_eigenvalue	Modules/solvers.c	/^void obtain_n_min_eigenvalue(double *matrix, int dimension_matrix[], double **lambda, double **vectors, int n_lambdas)$/;"	f
+obtain_norm	Modules/functions.c	/^double obtain_norm(double *vector, int *dimension)$/;"	f
+obtain_vector_i	Modules/functions.c	/^void obtain_vector_i(double *vectors, double *vector, int *dimension, int n)$/;"	f
+open_file	Modules/functions.c	/^FILE *open_file(char *filename, char *mode)$/;"	f
+print_lambdas_and_vectors	Modules/functions.c	/^void print_lambdas_and_vectors(FILE *output_lambda, FILE *output_vector, double *lambda_sup, double *lambda_inf, double *vector_sup, double *vector_inf, int *dimension, int n)$/;"	f
+print_lines	Modules/functions.c	/^void print_lines()$/;"	f
+print_matrix	Modules/functions.c	/^void print_matrix(double *matrix, int *dimension_matrix)$/;"	f
+save_vector	Modules/functions.c	/^void save_vector(double **vectors, double *vector, int *dimension, int n)$/;"	f
+solve_triangular_inferior_matrix	Modules/functions.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_triangular_superior_matrix	Modules/functions.c	/^void solve_triangular_superior_matrix(double *matrix, int *dimension_matrix, double *results, double **solutions)$/;"	f
+system_H	Modules/matrix_system.h	2;"	d
+valid_solution	Modules/functions.c	/^void valid_solution(double number)$/;"	f
+validate_l_ii	Modules/functions.c	/^void validate_l_ii(double l_ii)$/;"	f

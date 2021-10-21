@@ -1,5 +1,18 @@
 #include "functions.h"
 /*
+Apertura y validacion del archivo
+ */
+FILE *open_file(char *filename, char *mode)
+{
+    FILE *file = fopen(filename, mode);
+    if (file == NULL)
+    {
+        printf("File error\n");
+        exit(1);
+    }
+    return file;
+}
+/*
 Realiza la impresion de las lineas en la terminal
  */
 void print_lines()
@@ -21,6 +34,32 @@ void print_matrix(double *matrix, int *dimension_matrix)
         printf("\n");
     }
     printf("\n");
+}
+void print_lambdas_and_vectors(FILE *output_lambda, FILE *output_vector, double *lambda_sup, double *lambda_inf, double *vector_sup, double *vector_inf, int *dimension, int n)
+{
+    fprintf(output_lambda, "%d %d\n", n * 2, 1);
+    for (int i = 0; i < n; i++)
+    {
+        fprintf(output_lambda, "%lf\n", *(lambda_sup + i));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        fprintf(output_lambda, "%lf\n", *(lambda_inf + i));
+    }
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            fprintf(output_vector, "%d %d %lf\n",i,j,*(vector_sup + j * dimension[0] + i));
+        }
+    }
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            fprintf(output_vector, "%d %d %lf\n",i+dimension[0],j,*(vector_inf + j * dimension[0] + i));
+        }
+    }
 }
 /*
 Realiza la multiplicacion de matrices
@@ -101,7 +140,7 @@ double obtain_norm(double *vector, int *dimension)
     norm = sqrt(norm);
     return norm;
 }
-void normalize_vector(double *vector, int dimension[])
+void normalize_vector(double *vector, int *dimension)
 {
     /*
     Realiza la normalizacion del vector dado
@@ -188,7 +227,7 @@ void validate_l_ii(double l_ii)
         exit(1);
     }
 }
-void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)
+void obtain_LU_crout(double *matrix, int *dimension_matrix, double **L, double **U)
 {
     /*
     Aplica la factorizacion LU aplicando la version de Crout
