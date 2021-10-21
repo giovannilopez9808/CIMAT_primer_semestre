@@ -8,6 +8,6 @@ int main()
     newton_method(f_x,
                   1e-7,
                   1e-7,
-                  -2);
+                  -10);
     return 0;
 }

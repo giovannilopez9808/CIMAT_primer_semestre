@@ -11,4 +11,4 @@
     Obtener: Los 10 valores propios más chicos y los valores propios correspondientes. Los 10 valores propios más grandes y los valores propios correspondientes.}
 
 
-Al ser una matriz muy grande y querer un número reducido de eigenvalores no es una buena elección utilizar el métodod de Jacobi, ya que calcularemos los 2000 eigenvalores, es por ello que se prefirio usar el método de deflación con potencia y potencia inversa para los eigenvalores mayores y menores respectivamente. Se uso una tolerancia de  $10^{-3}$ para los dos métodos.
+Al ser una matriz muy grande y querer un número reducido de eigenvalores no es una buena elección utilizar el métodod de Jacobi, ya que calcularemos los 2000 eigenvalores, es por ello que se prefirio usar el método de deflación con potencia y potencia inversa para los eigenvalores mayores y menores respectivamente. Se uso una tolerancia de  $10^{-4}$ para los dos métodos. El programa podría optimizarse usando la factorización de Cholesky en ves del uso de la factorización LU que se implemento en los métodos de la potencia inversa.
