@@ -12,27 +12,42 @@ int main(int argc, char *argv[])
     }
     char path_matrix[50] = "../Data/";
     char path_vector[50] = "../Data/";
+    // Creacion de los archivos resultados
+    // Matriz triangular superior
     char path_output_vec_sup[50] = "Output/x_3134_sup.vec";
+    // Matriz triangular inferior
     char path_output_vec_inf[50] = "Output/x_3134_inf.vec";
+    // Matriz triangular diagonal
     char path_output_vec_diag[50] = "Output/x_3134_diag.vec";
     strcat(path_matrix, argv[1]);
     strcat(path_vector, argv[2]);
-    FILE *file_matrix, *file_vector, *file_output_vec_sup, *file_output_vec_inf, *file_output_vec_diag;
+    FILE *file_matrix,
+         *file_vector,
+         *file_output_vec_sup,
+         *file_output_vec_inf,
+         *file_output_vec_diag;
     clock_t begin, end;
     double *matrix, *vector, *solution, time_spent;
     int dimension_matrix[2], dimension_vector[2];
+    // Apertura del archivo de la matriz
     file_matrix = open_file(path_matrix, "r");
+    // Apertura del archivo del vector columna
     file_vector = open_file(path_vector, "r");
+    // Apertura de los archivos de resultados
     file_output_vec_sup = open_file(path_output_vec_sup, "w");
     file_output_vec_inf = open_file(path_output_vec_inf, "w");
     file_output_vec_diag = open_file(path_output_vec_diag, "w");
+    // Lectura de dimension de la matriz diagonal
     read_diagonal_dimension(file_matrix,
                             dimension_matrix);
+    // Lectura de la dimension del vector
     read_dimension(file_vector,
                    dimension_vector);
+    // Lectura de los datos de la matriz
     read_diagonal_matrix(file_matrix,
                          dimension_matrix,
                          &matrix);
+    // Lectura de los datos del vector
     read_matrix(file_vector,
                 dimension_vector,
                 &vector);
