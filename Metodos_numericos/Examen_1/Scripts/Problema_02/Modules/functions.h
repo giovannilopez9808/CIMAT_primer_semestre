@@ -10,5 +10,6 @@ void identity_matrix(double *matrix, int *dimension);
 void obtain_vector_i(double *vectors, double *vector, int *dimension, int n);
 void save_vector(double **vectors, double *vector, int *dimension, int n);
 void write_results(FILE *output, double *matrix, int *dimension);
+void write_matrix_results(FILE *output, double *matrix, int *dimension);
 void print_lines();
 #endif

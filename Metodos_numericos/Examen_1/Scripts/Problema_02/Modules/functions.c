@@ -36,6 +36,19 @@ void write_results(FILE *output, double *matrix, int *dimension)
         }
         fprintf(output, "\n");
     }
+}/*
+Realiza la impresion de las matrices en un archivo
+ */
+void write_matrix_results(FILE *output, double *matrix, int *dimension)
+{
+    fprintf(output, "%d %d\n", dimension[0], dimension[1]);
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            fprintf(output, "%d %d %lf\n",i,j,*(matrix + j * dimension[0] + i));
+        }
+    }
 }
 /*
 Apertura y validacion del archivo

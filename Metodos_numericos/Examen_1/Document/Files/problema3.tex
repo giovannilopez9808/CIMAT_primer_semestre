@@ -1,0 +1,23 @@
+\section*{Problema 3}
+
+\textbf{Haz una comparación entre los métodos directos e iterativos para resolver el sistema de ecuaciones lineales con la matriz en A\_02.mtx y el vector en b\_02.vec con n = 3134. De acuerdo a tus resultados, ¿Cuál de los métodos es el más adecuado para este problema? Menciona los pros y contras de los métodos y emplea varios aspectos para medir el rendimiento como la memoria empleada, tiempo, iteraciones, error, etc.
+}
+
+La matriz contenida en el archivo \file{A\_3134.mtx} es una matriz diagonal, por ende se intuye que el mejor método para resolver el sistema de ecuaciones será usando el método para matrices triangulares. Se comprararan las soluciones usando el método para matrices triangulares superiores, inferiores y diagonales. Los métodos de Gauss y factorización de LU serán descartados ya que al final de sus procesos usan los métodos para matrices triangulares.
+
+Las comparaciones de tiempo de ejecución e iteraciones de cada método se encuentran en la tabla \ref{table:problem3_comparison}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcc} \hline
+        \textbf{Método}     & \textbf{Número de iteraciones} & \textbf{Tiempo (s)} \\ \hline
+        Triangular superior & 4909411                        & 0.090660            \\
+        Triangular inferior & 4909411                        & 0.073247            \\
+        Diagonal            & 3134                           & 0.000597            \\ \hline
+    \end{tabular}
+    \caption{Comparación en númro de iteraciones y tiempo de los métodos para matrcices diagonales, triangular superior y triangular inferior}
+    \label{table:problem3_comparison}
+\end{table}
+
+
+La comparación en memoria de cada método resulta en que el método de matrices diagonales ocupa menos memoria a comparación de los dos métodos, ya que este solo hace uso de los elementos en la diafonal, por ende podemos darle un vector con estos datos. En cambio, los métodos para matrices triangulares inferiores y superiores necesitan al menos la mitad de de una matriz cuadrada.

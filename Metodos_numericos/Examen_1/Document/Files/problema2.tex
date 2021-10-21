@@ -1,0 +1,12 @@
+\section*{Problema 2}
+\textbf{Se requiere resolver el sistema de ecuaciones lineales Ax = b. La matriz y el vector de términos independientes está en A\_01.mtx y b\_01.vec respectivamente. El sistema tiene n = 1000 variables. Obtener: La inversa de la matriz A y guardar la solución en un archivo la solución al sistema y de igual forma pon el resultado en un archivo. Menciona qué método o métodos usaste y por qué.}
+
+Al ser una matriz de gran tamaño, el resolverla usando el método de Gauss será tardado ya que tendra que transformar la matriz a una triangular superior y en seguida resolverla usando un método para la misma. Los términos de la diagonal de la matriz son más grandes que los términos aledaños, esto podria causar que se llegue a una indeterminación causando asi que el método falle. Es por ello que se decidio aplicar una factorización LU para en seguida resolver el sistema de una matriz triangular inferior y una traingular superior.
+
+Para obtener la inversa de la matriz de opto por resolver un sistema de ecuaciones de tal manera que:
+
+\begin{equation*}
+    Ax=I_n
+\end{equation*}
+
+donde $x$ es el n vector columna correspondiente a la matriz inversa de A y $I_n$ es el vector columna donde el elemento de la posición n hay un 1 y en las demás ceros.

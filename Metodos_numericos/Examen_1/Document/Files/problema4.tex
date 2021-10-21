@@ -1,0 +1,14 @@
+\section*{Problema 4}
+
+\textbf{
+    Se requiere resolver un problema de valores y vectores propios de una matriz que está formada por una discretización muy fina de un problema de difusión. Cada ecuación del sistema tiene la siguiente forma:
+}
+\begin{equation*}
+    -8x_{i-2} -8x_{i-1}+40x_{i}-8x_{i+1}-4x_{i+2}
+\end{equation*}
+
+\textbf{En los extremos de la matriz se eliminan los términos que quedan fuera (cuando el índice es negativo o mayor a 2000). La primer ecuación sería 40x\textsubscript{1}-8x\textsubscript{2}-4x\textsubscript{3}, la segunda -8x\textsubscript{1}+40x\textsubscript{2}-8x\textsubscript{3}-4x\textsubscript{4}. La penúltima sería -4x\textsubscript{1997}-8x\textsubscript{1998}+40x\textsubscript{1999}-8x\textsubscript{2000} y la última -4x\textsubscript{1998}-8x\textsubscript{1999}+40x\textsubscript{2000}.
+    Obtener: Los 10 valores propios más chicos y los valores propios correspondientes. Los 10 valores propios más grandes y los valores propios correspondientes.}
+
+
+Al ser una matriz muy grande y querer un número reducido de eigenvalores no es una buena elección utilizar el métodod de Jacobi, ya que calcularemos los 2000 eigenvalores, es por ello que se prefirio usar el método de deflación con potencia y potencia inversa para los eigenvalores mayores y menores respectivamente. Se uso una tolerancia de  $10^{-3}$ para los dos métodos.
