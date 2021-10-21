@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     (void)argc;
     if (argc != 3)
     {
-        printf("Archivos faltantes");
+        printf("Error al ejecutar\n./main.out 'archivo de la matrix' 'archivo del vector'\n");
         exit(0);
     }
     char path_matrix[50] = "../Data/";
@@ -48,9 +48,13 @@ int main(int argc, char *argv[])
     write_results(file_output_matrix,
                   matrix_inverse,
                   dimension_matrix);
+    printf("Resultados escritos existosamente en el archivo: %s\n",
+           path_output_matrix);
     write_results(file_output_vec,
                   solution,
                   dimension_vector);
+    printf("Resultados escritos existosamente en el archivo: %s\n",
+           path_output_vec);
     free(matrix);
     free(vector);
     free(solution);
