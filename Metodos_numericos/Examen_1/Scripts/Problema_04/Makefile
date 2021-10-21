@@ -3,12 +3,9 @@ IDIR=Modules/
 CFLAGS= -Wall -Wextra -Werror -O3 -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	binary_tree.c \
-		linked_list.c \
-		hash_table.c \
-		sets.c \
-		menu.c \
-		functions.c
+_FUNC=	matrix_system.c\
+		functions.c\
+		solvers.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
