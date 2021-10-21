@@ -29,7 +29,7 @@ int convergence_eigenvalues(double lambda, double lambda_i, int attempt)
     if (attempt != 0)
     {
         theta = fabs(lambda - lambda_i);
-        if (theta < 1e-3)
+        if (theta < 1e-5)
         {
             // Si se cumple la convergencia regresa un 0
             return 0;
