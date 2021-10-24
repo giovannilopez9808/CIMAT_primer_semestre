@@ -54,37 +54,99 @@
           Entonces calculando $EX_2|X_1=x$ se tiene lo siguiente:
 
           \begin{align*}
-              EX_2 | X_1=x & = E(\mu_2 + \sigma_2 \left ( \rho \mathcal{Z}_1  + \sqrt{1-\rho^2}\mathcal{Z}_2\right )|X_1=x)
+              E(X_2 | X_1=x) & = E(\mu_2 + \sigma_2 \left ( \rho \mathcal{Z}_1  + \sqrt{1-\rho^2}\mathcal{Z}_2\right )|X_1=x)
           \end{align*}
 
           por linealidad de la esperanza se obtiene lo siguiente:
 
           \begin{align*}
-              EX_2 | X_1=x & =E(\mu_2|X_1=x) + E(\sigma_2 \rho \mathcal{Z}_1|X_1=x) + E(\rho \sqrt{1-\rho^2}\mathcal{Z}_1|X_1=x)
+              E(X_2 | X_1=x) & =E(\mu_2|X_1=x) + E(\sigma_2 \rho \mathcal{Z}_1|X_1=x) + E(\rho \sqrt{1-\rho^2}\mathcal{Z}_1|X_1=x)
           \end{align*}
 
-          como $Z_1$ y $Z_2$ son distribuciones independientes de x entonces:
+          como $\mathcal{Z}_1$ y $\mathcal{Z}_2$ son distribuciones independientes de x entonces:
 
           \begin{align*}
-              EX_2 | X_1=x & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1 + \sigma_2 \sqrt{1-\rho^2}E(\mathcal{Z}_2)
+              E(X_2 | X_1=x) & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1 + \sigma_2 \sqrt{1-\rho^2}E(\mathcal{Z}_2)
           \end{align*}
 
-          como $EZ_2=0$ entonces:
+          como $E\mathcal{Z}_2=0$ entonces:
 
           \begin{align*}
-              EX_2 | X_1=x & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1               \\
-              EX_2 | X_1=x & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)
+              E(X_2 | X_1=x) & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1               \\
+              E(X_2 | X_1=x) & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)
           \end{align*}
 
           Para este caso se tiene que $\rho = \frac{\sqrt{3}}{3}, \mu_1=2, \mu_2 = -3,\sigma_1=1 ,\sigma_2 = \sqrt{3}$, entonces:
 
           \begin{align*}
-              EX_2 | X_1=2 & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)              \\
-                           & = -3 + \frac{\sqrt{3}}{1}\left (\frac{\sqrt{3}}{3}\right )(2-2) \\
-              EX_2 | X_1=2 & = -3
+              E(X_2 | X_1=2) & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)              \\
+                             & = -3 + \frac{\sqrt{3}}{1}\left (\frac{\sqrt{3}}{3}\right )(2-2) \\
+              E(X_2 | X_1=2) & = -3
           \end{align*}
 
           Observando el resultado uno podria llegar a equivocarse y decir que $X_2$ y $X_1$ son independientes, pero esto es una coincidendia condiconar a la variable $X_1$ con su promedio.
 
     \item \textbf{Encuentra un vector $\mathbf{v}$ tal que X\textsubscript{2} y X\textsubscript{2}-$\mathbf{v^T \begin{pmatrix} X_1 \\ X_3 \end{pmatrix}}$ sean independientes.}
+
+          Sea $Y=X_2 + v^T \begin{pmatrix}
+                  X_1 \\ X_3
+              \end{pmatrix}$, entonces, esta variable es igual a:
+
+          \begin{align*}
+              Y & = X_2 + v^T \begin{pmatrix}
+                  X_1 \\ X_3
+              \end{pmatrix}                        \\
+                & = X_2 + \begin{pmatrix}
+                  a & b
+              \end{pmatrix} \begin{pmatrix}
+                  X_1 \\ X_3
+              \end{pmatrix} \\
+              Y & = X_2 -aX_1 -b X_2
+          \end{align*}
+
+          Se tiene que si $X_2$ y $Y$ son independientes, entonces:
+
+          \begin{equation*}
+              EX_2Y = EX_2 EY
+          \end{equation*}
+
+          Calculando $EX_2Y$ se tiene que:
+
+          \begin{align*}
+              E(X_2Y) & = E(X_2^2-aX_1X_2-bX_2X_3)       \\
+                      & = EX_2^2+E(-aX_1X_2)+E(-bX_2X_3) \\
+                      & = EX_2^2-aEX_1X_2-bEX_2X_3       \\
+          \end{align*}
+
+          como las variables $X_i$ son independientes entre si, entonces:
+
+          \begin{equation}
+              EX_2Y = EX_2^2-aEX_1EX_2-bEX_1EX_3 \label{eq:EX2Y}
+          \end{equation}
+
+          Calculando $EX_2EY$ se tiene que:
+
+
+          \begin{align*}
+              EX_2EY & = EX_2 E(X_2-aX_1-bX_3)           \\
+                     & =EX_2( EX_2-aEX_1-bEX_3)          \\
+              EX_2EY & = (EX_2)^2 -aEX_1EX_2 - bEX_2EX_3
+          \end{align*}
+
+          entonces
+
+          \begin{equation}
+              EX_2EY  = (EX_2)^2 -aEX_1EX_2 - bEX_2EX_3 \label{eq:EX2EY}
+          \end{equation}
+
+          Igualando las ecuacione \ref{eq:EX2Y} y \ref{eq:EX2EY} se tiene lo siguiente:
+
+          \begin{align*}
+              EX_2Y                     - EX_2EY                          & =0  \\
+              EX_2^2-aEX_1EX_2-bEX_1EX_3 -(EX_2)^2 +aEX_1EX_2 + bEX_2EX_3 & = 0 \\
+              EX_2^2 -(EX_2)^2                                            & =0  \\
+              Var(X_2)                                                    & =0
+          \end{align*}
+
+          entonces, el vector $v$ para que $X_2$ y $Y$ sean independientes puede ser cualquiera, siempre y cuando $Var(X_2)=0$. Al ser $X_2 \sim \mathcal{N}(\mu,\sigma)$, la cual requiere que $\sigma>0$, entonces no existe un vector $v$.
 \end{enumerate}

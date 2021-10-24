@@ -8,9 +8,24 @@
           \begin{equation*}
               P(X=x) = \frac{M}{N} \left (1-\frac{M}{N}\right )^{x-1}, \qquad x=1,2,\dots
           \end{equation*}
+
+          Sea $Y$ una variable aleatoria tal que $Y\sim Geo\left (\frac{M}{N}\right )$, donde $\frac{M}{N}$ es la probabilidad de capturar a un animal marcado.
+
+          Al ser cada evento independiente del anterior, entonces se tendria que la probabilidad de capturar a x-1 animales no marcados es:
+
+          \begin{equation}
+              P(X=x-1) = \left (1-\frac{M}{N}\right )^{x-1}
+          \end{equation}
+
+          Y la probabilidad de capturar a un animal marcado en el x-esimo intento es $\frac{M}{N}$, por lo tanto, la probabilidad de capturar a x animales:
+
+          \begin{equation*}
+              P(X=x) = \frac{M}{N} \left (1-\frac{M}{N}\right )^{x-1}, \qquad x=1,2,\dots
+          \end{equation*}
+
     \item \textbf{Demuestra que:}
           \begin{equation*}
               \hat{\Theta}_n = \frac{M}{N} \sum_{i=1}^n X_i
           \end{equation*}
-          \textbf{es el estimador de Máximo verosimilitud. ¿Está insesgado?¿Qué puedes decir si $\mathcal{n\rightarrow \infty}$?}
+          \textbf{es el estimador de Máximo verosimilitud. ¿Está insesgado?¿Qué puedes decir si $\mathcal{N}\rightarrow \infty$?}
 \end{enumerate}
