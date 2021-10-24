@@ -1,1 +1,16 @@
 \section*{Problema 7}
+
+\textbf{Considera el siguiente método para estimar el tamaño (N) de una población de animales de un especie particular. Primero se capturan M animales, los marcan y son puestos de nuevo en libertad. Un tiempo más tarde se capturan animales hasta encontrar un animal marcado. Sea X el número total de animales capturados (X incluye el animal marcado). Después se dejan todos los animales en libertad. Se repite lo anterior de tal forma que se obtenga una muestra $\{x_1,x_2,\dots,x_n\}$ de X (así este procedimiento puede tardar bastante). Puedes suponer que en cada momento la probabilidad de capturar un animal marcado es siempre igual (así se supone que N es mucho mayor que M ).
+}
+
+\begin{enumerate}
+    \item \textbf{Demuestre que:}
+          \begin{equation*}
+              P(X=x) = \frac{M}{N} \left (1-\frac{M}{N}\right )^{x-1}, \qquad x=1,2,\dots
+          \end{equation*}
+    \item \textbf{Demuestra que:}
+          \begin{equation*}
+              \hat{\Theta}_n = \frac{M}{N} \sum_{i=1}^n X_i
+          \end{equation*}
+          \textbf{es el estimador de Máximo verosimilitud. ¿Está insesgado?¿Qué puedes decir si $\mathcal{n\rightarrow \infty}$?}
+\end{enumerate}
