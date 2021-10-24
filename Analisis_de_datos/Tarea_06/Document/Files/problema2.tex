@@ -29,9 +29,62 @@
           Calculando $Var(Y)$ se tiene lo siguiente:
 
           \begin{align*}
-              Var(Y) & = Var(X_1 + X_2 - X_3)                                                              \\
-                     & Var(X_1) + Var(X_2) + (-1)^2Var(X_3) +2Cov(X_1,X_2) +2Cov(X_2,-X_3) + 2Cov(X_1,X_3)
+              Var(Y) & = Var(X_1 + X_2 - X_3)                                                                \\
+                     & =Var(X_1) + Var(X_2) + (-1)^2Var(X_3) +2Cov(X_1,X_2) +2Cov(X_2,-X_3) + 2Cov(X_1,-X_3) \\
+                     & =Var(X_1) + Var(X_2) + Var(X_3) +2Cov(X_1,X_2) -2Cov(X_2,X_3) - 2Cov(X_1,X_3)         \\
+                     & = 1 +2 +3 + 2(1) - 2(2)-2(1)                                                          \\
+              Var(Y) & =   1
           \end{align*}
+
+          Entonces la distribución $X_1+X_2-X_3 \sim \mathcal{N}(-2,1)$.
+
     \item \textbf{Calcula EX\textsubscript{1}$|$X\textsubscript{2}=2}
+
+          Definamos a $X_1$ y $X_2$ como lo siguiente:
+
+          \begin{equation*}
+              \begin{cases}
+                  X_1 & = \mu_1 + \sigma_1 \mathcal{Z}_1                                                      \\
+                  X_2 & = \mu_2 + \sigma_2 \left ( \rho \mathcal{Z}_1  + \sqrt{1-\rho^2}\mathcal{Z}_2\right )
+              \end{cases}
+          \end{equation*}
+
+          donde $\mathcal{Z}_1 , \mathcal{Z}_2 \sim \mathcal{N}(0,1)$.
+
+          Entonces calculando $EX_2|X_1=x$ se tiene lo siguiente:
+
+          \begin{align*}
+              EX_2 | X_1=x & = E(\mu_2 + \sigma_2 \left ( \rho \mathcal{Z}_1  + \sqrt{1-\rho^2}\mathcal{Z}_2\right )|X_1=x)
+          \end{align*}
+
+          por linealidad de la esperanza se obtiene lo siguiente:
+
+          \begin{align*}
+              EX_2 | X_1=x & =E(\mu_2|X_1=x) + E(\sigma_2 \rho \mathcal{Z}_1|X_1=x) + E(\rho \sqrt{1-\rho^2}\mathcal{Z}_1|X_1=x)
+          \end{align*}
+
+          como $Z_1$ y $Z_2$ son distribuciones independientes de x entonces:
+
+          \begin{align*}
+              EX_2 | X_1=x & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1 + \sigma_2 \sqrt{1-\rho^2}E(\mathcal{Z}_2)
+          \end{align*}
+
+          como $EZ_2=0$ entonces:
+
+          \begin{align*}
+              EX_2 | X_1=x & =\mu_2 + \sigma_2 \rho \mathcal{Z}_1               \\
+              EX_2 | X_1=x & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)
+          \end{align*}
+
+          Para este caso se tiene que $\rho = \frac{\sqrt{3}}{3}, \mu_1=2, \mu_2 = -3,\sigma_1=1 ,\sigma_2 = \sqrt{3}$, entonces:
+
+          \begin{align*}
+              EX_2 | X_1=2 & = \mu_2 + \frac{\sigma_2}{\sigma_1} \rho (x-\mu_1)              \\
+                           & = -3 + \frac{\sqrt{3}}{1}\left (\frac{\sqrt{3}}{3}\right )(2-2) \\
+              EX_2 | X_1=2 & = -3
+          \end{align*}
+
+          Observando el resultado uno podria llegar a equivocarse y decir que $X_2$ y $X_1$ son independientes, pero esto es una coincidendia condiconar a la variable $X_1$ con su promedio.
+
     \item \textbf{Encuentra un vector $\mathbf{v}$ tal que X\textsubscript{2} y X\textsubscript{2}-$\mathbf{v^T \begin{pmatrix} X_1 \\ X_3 \end{pmatrix}}$ sean independientes.}
 \end{enumerate}
