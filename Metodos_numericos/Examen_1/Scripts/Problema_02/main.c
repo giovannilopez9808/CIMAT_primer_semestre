@@ -53,9 +53,9 @@ int main(int argc, char *argv[])
                           dimension_matrix,
                           &matrix_inverse);
     // Escritura de los resultados de la matriz inversa
-    write_matrix_results(file_output_matrix,
-                         matrix_inverse,
-                         dimension_matrix);
+    write_results(file_output_matrix,
+                  matrix_inverse,
+                  dimension_matrix);
     printf("Resultados escritos existosamente en el archivo: %s\n",
            path_output_matrix);
     // Escritura de los resultados de la solucion del sistema
