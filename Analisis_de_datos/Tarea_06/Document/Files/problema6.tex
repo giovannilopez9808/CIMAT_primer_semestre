@@ -1,3 +1,24 @@
 \section*{Problema 6}
 
-\textbf{Sea X una variable aleatoria que toma valores en \{1, 2, 4 \}. Define $\mathbf{\theta = (\theta_1, \theta_2, \theta_3)}$ donde $\mathbf{\theta_i = P(X=i)}$. Supongamos que tenemos una muestra con $\mathbf{n_i}$ observaciones igual a i. i=1,2,3. Calcula $\mathbf{l(\theta)}$ y el estimador de máxima verosimilitud.}
+\textbf{Sea X una variable aleatoria que toma valores en \{1, 2, 3\}. Define $\mathbf{\theta = (\theta_1, \theta_2, \theta_3)}$ donde $\mathbf{\theta_i = P(X=i)}$. Supongamos que tenemos una muestra con $\mathbf{n_i}$ observaciones igual a i. i=1,2,3. Calcula $\mathbf{l(\theta)}$ y el estimador de máxima verosimilitud.}
+
+Se tiene que la verosimilitud es la siguiente:
+
+\begin{equation*}
+    \mathcal{L} = \prod_i P(X=i)
+\end{equation*}
+
+entonces:
+
+\begin{align*}
+    \mathcal{L} & = \prod_i \theta_i^{n_i}                     \\
+    \mathcal{L} & = \theta_1^{n_1}\theta_2^{n_2}\theta_3^{n_3}
+\end{align*}
+
+por lo tanto la log-verosimilitud es:
+
+\begin{equation*}
+    l(\theta)= n_1 log(\theta_1) + n_2 log(\theta_2)+n_3 log(\theta_3)
+\end{equation*}
+
+donde $n=n_1+n_2+n_3$ y $\theta_1+\theta_2+\theta_3=1$.
