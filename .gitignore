@@ -10,3 +10,4 @@
 *.bl
 *.bbl
 *.blg
+build/
