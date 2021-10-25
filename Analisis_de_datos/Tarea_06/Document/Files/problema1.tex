@@ -3,3 +3,19 @@
 \begin{equation*}
     I(X,Y)=I(Y,X)
 \end{equation*}
+
+Se tiene que:
+
+\begin{equation*}
+    I(X,Y) = log \left (\frac{P(X|Y)}{P(Y)}\right )
+\end{equation*}
+
+aplicando la definición de $P(X|Y)$ se obtiene lo siguiente:
+
+\begin{align*}
+    I(X,Y) & = log \left (\frac{P(X|Y)}{P(Y)}\right )     \\
+           & = log \left (\frac{P(X,Y)}{P(Y)P(X)}\right ) \\
+           & = log \left (\frac{P(Y,X)}{P(Y)P(X)}\right ) \\
+           & = log \left (\frac{P(Y|X)}{P(X)}\right )     \\
+           & = I(Y,X)
+\end{align*}
