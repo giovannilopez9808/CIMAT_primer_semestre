@@ -1,0 +1,78 @@
+\section*{Problema 7}
+
+\textbf{Considera el siguiente método para estimar el tamaño (N) de una población de animales de un especie particular. Primero se capturan M animales, los marcan y son puestos de nuevo en libertad. Un tiempo más tarde se capturan animales hasta encontrar un animal marcado. Sea X el número total de animales capturados (X incluye el animal marcado). Después se dejan todos los animales en libertad. Se repite lo anterior de tal forma que se obtenga una muestra $\{x_1,x_2,\dots,x_n\}$ de X (así este procedimiento puede tardar bastante). Puedes suponer que en cada momento la probabilidad de capturar un animal marcado es siempre igual (así se supone que N es mucho mayor que M ).
+}
+
+\begin{enumerate}
+    \item \textbf{Demuestre que:}
+          \begin{equation*}
+              P(X=x) = \frac{M}{N} \left (1-\frac{M}{N}\right )^{x-1}, \qquad x=1,2,\dots
+          \end{equation*}
+
+          Sea $Y$ una variable aleatoria tal que $Y\sim Bernoulli\left (\frac{M}{N}\right )$, donde $\frac{M}{N}$ es la probabilidad de capturar a un animal marcado.
+
+          Al ser cada evento independiente del anterior, entonces se tendria que la probabilidad de capturar a x-1 animales no marcados es:
+
+          \begin{equation}
+              P(X=x-1) = \left (1-\frac{M}{N}\right )^{x-1}
+          \end{equation}
+
+          Y la probabilidad de capturar a un animal marcado en el x-esimo intento es $\frac{M}{N}$, por lo tanto, la probabilidad de capturar a x animales:
+
+          \begin{equation*}
+              P(X=x) = \frac{M}{N} \left (1-\frac{M}{N}\right )^{x-1}, \qquad x=1,2,\dots
+          \end{equation*}
+
+    \item \textbf{Demuestra que:}
+          \begin{equation*}
+              \hat{\Theta}_n = \frac{M}{N} \sum_{i=1}^n X_i
+          \end{equation*}
+          \textbf{es el estimador de Máximo verosimilitud. ¿Está insesgado?¿Qué puedes decir si $\mathcal{N}\rightarrow \infty$?}
+
+          Como $Y$ sigue una distribución de Bernoulli, entonces se tiene que la verosimilitud es:
+
+          \begin{equation*}
+              \mathcal{L} = \prod_i p^x (1-p)^{1-x}
+          \end{equation*}
+
+          lo cual se puede escribir Como
+
+          \begin{equation*}
+              \mathcal{L} = p^{\sum_i x_i} (1-p)^{n-\sum_i x_i}
+          \end{equation*}
+
+          por lo lanto, la log-verosimilitud es:
+
+          \begin{equation*}
+              log(l) = \sum_i x_i log(p) + (n-\sum_i x_i) log(1-p)
+          \end{equation*}
+
+          derivando esta expresión con respecto p, se obtiene que:
+
+          \begin{equation*}
+              \frac{d log(l)}{dp } = \frac{\sum\limits_i x_i}{p}  - \frac{n-\sum\limits_i x_i}{1-p}
+          \end{equation*}
+
+          igualando a 0 para encontrar el valor crítico se tiene lo siguiente:
+
+          \begin{align*}
+              \frac{d log(l)}{dp }                                                                    & = 0 \\
+              \frac{\sum\limits_i x_i}{p}  + \frac{n-\sum\limits_i x_i}{1-p}                          & = 0 \\
+              (1-p)\sum_i x_i - (n-\sum_i x_i) p                                                      & =0  \\
+              \sum_i x_i - np                                                                         & = 0 \\
+              \hat{p}                                                        = \frac{1}{n} \sum_i x_i &
+          \end{align*}
+
+          Calculando $Ep$, se obtiene lo siguiente:
+
+          \begin{align*}
+              E\hat{p} & = E\left (\frac{1}{n}\sum_i x_i\right )    \\
+                       & = \frac{1}{n} E \left (\sum_i x_i \right ) \\
+                       & = \frac{1}{n} \sum_i E x_i                 \\
+                       & = \frac{1}{n} \sum_i p                     \\
+                       & = \frac{1}{n} (np)                         \\
+                       & = p
+          \end{align*}
+
+          por lo tanto $\hat{p}$ es insesgado.
+\end{enumerate}
