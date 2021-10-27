@@ -99,3 +99,65 @@ void obtain_vector_i(double *vectors, double *vector, int *dimension, int n)
         *Vi_i = v_i;
     }
 }
+double *obtain_multiplication_vvT(double *vector, int *dimension)
+{
+    /*
+    Realiza la multiplicacion de un vector por su transpuesta, dando como
+    restultado una matriz de nxn
+     */
+    double *matrix = (double *)malloc(dimension[0] * dimension[0] * sizeof(double));
+    double *M_ij;
+    double v_i, v_j;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        v_i = *(vector + i);
+        for (int j = 0; j < dimension[0]; j++)
+        {
+            v_j = *(vector + j);
+            M_ij = (matrix + j * dimension[0] + i);
+            *M_ij = v_i * v_j;
+        }
+    }
+    return matrix;
+}
+void obtain_multiplication_matrix(double *A, double *B, double *AB, int *dimension_matrix_A, int *dimension_matrix_B)
+{
+    /*
+    Realiza la multiplicacion de matrices
+     */
+    double a_ik, b_kj, *AB_ij;
+    double sum;
+    for (int i = 0; i < dimension_matrix_A[0]; i++)
+    {
+        for (int j = 0; j < dimension_matrix_B[1]; j++)
+        {
+            sum = 0;
+            AB_ij = (AB + j * dimension_matrix_B[0] + i);
+            for (int k = 0; k < dimension_matrix_B[0]; k++)
+            {
+                a_ik = *(A + k * dimension_matrix_A[0] + i);
+                b_kj = *(B + j * dimension_matrix_B[0] + k);
+                sum += a_ik * b_kj;
+            }
+            *AB_ij = sum;
+        }
+    }
+}
+double *create_identity_matrix(int *dimension)
+{
+    double *matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *M_ij;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[0]; j++)
+        {
+            M_ij = (matrix + j * dimension[0] + i);
+            *M_ij = 0;
+            if (i == j)
+            {
+                *M_ij = 1;
+            }
+        }
+    }
+    return matrix;
+}

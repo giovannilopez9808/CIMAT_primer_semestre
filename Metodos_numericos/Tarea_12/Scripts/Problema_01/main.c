@@ -17,13 +17,9 @@ int main(int argv, char *argc[])
                 &matrix);
     q_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     r_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    Gram_Schmidt_orthonormalization(matrix,
-                                    q_matrix,
-                                    r_matrix,
-                                    dimension);
-    print_matrix(q_matrix,
-                 dimension);
-    print_matrix(r_matrix,
-                 dimension);
+    QR_decomposition(matrix,
+                     &r_matrix,
+                     &q_matrix,
+                     dimension);
     return 0;
 }
