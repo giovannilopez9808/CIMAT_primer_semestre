@@ -8,18 +8,22 @@ int main(int argv, char *argc[])
     char path_data[50] = "Data/";
     strcat(path_data, argc[1]);
     FILE *data = open_file(path_data, "r");
-    double *matrix, *q_matrix, *r_matrix;
+    double *matrix, *q_matrix = NULL, *r_matrix = NULL;
     int dimension[2];
     read_dimension(data,
                    dimension);
     read_matrix(data,
                 dimension,
                 &matrix);
-    q_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    r_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     QR_decomposition(matrix,
                      &r_matrix,
                      &q_matrix,
                      dimension);
+    print_matrix(r_matrix, dimension);
+    print_matrix(q_matrix, dimension);
+    free(q_matrix);
+    free(r_matrix);
+    free(matrix);
+    fclose(data);
     return 0;
 }

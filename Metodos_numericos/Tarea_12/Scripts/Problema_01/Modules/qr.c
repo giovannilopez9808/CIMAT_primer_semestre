@@ -53,6 +53,7 @@ double *obtain_Householder_matrix(double *vector, int *dimension)
             *H_ij = I - 2 * *H_ij / norm;
         }
     }
+    free(vector_H);
     return Householder_matrix;
 }
 void fill_Householder_matrix(double *matrix, double *matrix_H, int *dimension, int n)
@@ -75,6 +76,8 @@ void QR_decomposition(double *matrix, double **r_matrix, double **q_matrix, int 
 {
     double *sub_matrix = NULL, *vector = NULL, *householder, *householder_aux = NULL;
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    *q_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    *r_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     int sub_dimension[2];
     *q_matrix = create_identity_matrix(dimension);
     copy_matrix(matrix,
@@ -121,4 +124,5 @@ void QR_decomposition(double *matrix, double **r_matrix, double **q_matrix, int 
         free(sub_matrix);
         free(vector);
     }
+    free(matrix_aux);
 }
