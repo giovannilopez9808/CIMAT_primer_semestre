@@ -30,7 +30,9 @@ void obtain_eigen_with_QR(double *matrix, double **lambda, double **vectors, int
         free(q_matrix);
         free(r_matrix);
     }
-    print_matrix(*lambda, dimension);
-    print_matrix(*vectors, dimension);
+    print_matrix(*lambda,
+                 dimension);
+    print_matrix(*vectors,
+                 dimension);
     free(vectors_aux);
 }
