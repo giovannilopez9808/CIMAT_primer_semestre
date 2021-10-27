@@ -76,10 +76,9 @@ void QR_decomposition(double *matrix, double **r_matrix, double **q_matrix, int 
 {
     double *sub_matrix = NULL, *vector = NULL, *householder, *householder_aux = NULL;
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    *q_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     *r_matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    int sub_dimension[2];
     *q_matrix = create_identity_matrix(dimension);
+    int sub_dimension[2];
     copy_matrix(matrix,
                 *r_matrix,
                 dimension);
