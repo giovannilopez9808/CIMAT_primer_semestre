@@ -1,5 +1,5 @@
 #include "solvers.h"
-/* 
+/*
 Inicializa el eigenvector de con tosos sus elementos con valor a 1/sqrt(n)
  */
 void initialize_eigenvector(double *vector, int dimension)
@@ -11,7 +11,7 @@ void initialize_eigenvector(double *vector, int dimension)
         *V_i = 1 / sqrt(dimension);
     }
 }
-/* 
+/*
 Realiza la copia de los valores del vector_copy en vector
  */
 void copy_vector(double *vector, double *vector_copy, int dimension)
@@ -24,7 +24,7 @@ void copy_vector(double *vector, double *vector_copy, int dimension)
         *V_i = v_ci;
     }
 }
-/* 
+/*
 Realiza el calculo del cociente de Rayleight
  */
 double Rayleigh_quotient(double *matrix, double *vector, int *dimension_matrix, int *dimension_vector)
@@ -51,7 +51,7 @@ double Rayleigh_quotient(double *matrix, double *vector, int *dimension_matrix, 
     free(vector_aux);
     return quotient;
 }
-/* 
+/*
 Comprueba si el método de Rayleigh convergio, en la primer llamada de la funcion en el metodo no realiza la verifciacion
  */
 int convergence_rayleigh(double lambda, double lambda_aux, int attempt)
@@ -69,7 +69,7 @@ int convergence_rayleigh(double lambda, double lambda_aux, int attempt)
     }
     return 1;
 }
-/* 
+/*
 Metodo de Rayleigh para obtener un eigenpar usando el metodo de potencias
  */
 void Rayleigh_method(double *matrix, int dimension_matrix[], double *lambda, double **vector)
@@ -113,7 +113,7 @@ void Rayleigh_method(double *matrix, int dimension_matrix[], double *lambda, dou
     print_lines();
     free(vector_aux);
 }
-/* 
+/*
 Realiza la multiplicacion de vT A v para obtener la matriz del subespacio
  */
 void obtain_sub_matrix(double *matrix, double *vectors, int *dimension_matrix, int *dimension_vector, double *sub_matrix)
@@ -148,7 +148,7 @@ void obtain_sub_matrix(double *matrix, double *vectors, int *dimension_matrix, i
     }
     free(matrix_aux);
 }
-/* 
+/*
      Copia del vector i de la matriz de eigenvectores
       */
 void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
@@ -161,7 +161,7 @@ void obtain_vector_i(double *vectors, double *vector, int dimension[], int n)
         *Vi_i = v_i;
     }
 }
-/* 
+/*
 Escribe el vector n en la matriz de eigenvectores
  */
 void fill_vectors_solution(double *vectors, double *vector, int *dimension, int n)
@@ -174,75 +174,12 @@ void fill_vectors_solution(double *vectors, double *vector, int *dimension, int 
         *Vi_i = v_i;
     }
 }
-/* 
-Ortonomalizacion de los eigenvectores
- */
-void Gram_Schmidt_orthonormalization(double *vectors, int *dimension, int n)
-{
-    double cdot, vaux_jk, *V_ik;
-    // Inicializacion de los vectores auxiliares
-    double *vector_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *vector_i = (double *)malloc(dimension[0] * sizeof(double));
-    double *vector_j = (double *)malloc(dimension[0] * sizeof(double));
-    // Copia de los eigenvectores
-    copy_matrix(vectors, vector_aux, dimension);
-    // Desplazamiento de los vectores, omite el primero
-    for (int i = 1; i < n; i++)
-    {
-        // Copia del vector i
-        obtain_vector_i(vectors,
-                        vector_i,
-                        dimension,
-                        i);
-        // Desplazamiento con los demas vectores
-        for (int j = 0; j < i; j++)
-        {
-            // Copia del vector j
-            obtain_vector_i(vectors,
-                            vector_j,
-                            dimension,
-                            j);
-            // Producto punto del vector i y el vector j
-            cdot = obtain_cdot_multiplication(vector_i,
-                                              vector_j,
-                                              dimension);
-            //   Eliminacion de su contribucion en los elementos
-            for (int k = 0; k < dimension[0]; k++)
-            {
-                // Elemento k del vector i
-                V_ik = (vector_aux + i * dimension[0] + k);
-                // Elemento k del vector j
-                vaux_jk = *(vector_j + k);
-                // Eliminacion de sus contribuciones
-                *V_ik = *V_ik - cdot * vaux_jk;
-            }
-        }
-    }
-    // Guardado de los eigenvectores ortonormalizados
-    copy_matrix(vector_aux, vectors, dimension);
-    // Normalizacion de los vectores
-    for (int i = 0; i < n; i++)
-    {
-        obtain_vector_i(vectors,
-                        vector_i,
-                        dimension,
-                        i);
-        cdot = obtain_norm(vector_i,
-                           dimension);
-        for (int j = 0; j < dimension[0]; j++)
-        {
-            V_ik = (vectors + i * dimension[0] + j);
-            *V_ik /= cdot;
-        }
-    }
-    free(vector_i);
-    free(vector_j);
-    free(vector_aux);
-}
-/*
-Obtiene la posicion del elemento con mayor valor absoluto y checa si este es mayor o menor a la tolerancia definida.
- */
-int convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
+copd
+    /*
+    Obtiene la posicion del elemento con mayor valor absoluto y checa si este es mayor o menor a la tolerancia definida.
+     */
+    int
+    convergence_eigenvaues_jacobi(double *matrix, int dimension[], int pos[])
 {
     double m_ij;
     // Se supone que el elemento mayor se encuentra en la posicon i=1 j=2
@@ -317,7 +254,7 @@ double obtain_jacobi_angle(double *matrix, int *dimension, int *pos)
     double theta = atan2(2 * m_ij, m_ii - m_jj) / 2.0;
     return theta;
 }
-/* 
+/*
 Aplicacion del metodo de potencias y ortonormalizacion de Grim-Schmidt a todos los eigenvectores
  */
 void power_method_per_vector(double *matrix, double *vectors, int *dimension_matrix, int *dimension_vectors)
@@ -352,7 +289,7 @@ void power_method_per_vector(double *matrix, double *vectors, int *dimension_mat
     free(vector_i);
     free(vector_sol);
 }
-/* 
+/*
 Validacion de la convergencia del metodo de subespacio, si la diferencia de las sumas al duadrado de los valores en la diagonal son menores a 10e-6 entonces el metodo de detiene. En la primer iteracion no realiza la validacion
  */
 int convergence_sub_space(double *matrix, double *matrix_aux, int *dimension, int attempt)

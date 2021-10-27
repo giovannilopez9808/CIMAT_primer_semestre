@@ -39,7 +39,6 @@ void print_matrix(double *matrix, int dimension_matrix[])
     }
     printf("\n");
 }
-
 void valid_file(FILE *text_file)
 {
     /*
