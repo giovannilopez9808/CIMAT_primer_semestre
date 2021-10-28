@@ -85,6 +85,16 @@ void copy_matrix(double *matrix, double *matrix_copy, int *dimension)
         }
     }
 }
+void copy_vector(double *vector, double *vector_i, int *dimension)
+{
+    /*
+    Copia los valores del vector en el vector i
+     */
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        *(vector_i + i) = *(vector + i);
+    }
+}
 double obtain_cdot_multiplication(double *vector1, double *vector2, int *dimension)
 {
     /*

@@ -1,4 +1,47 @@
 #include "solver.h"
+void verification(double *matrix, double *lambda, double *vector, int *dimension)
+{
+    double *A_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *vec_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double down, up, *vectors_aux, *M_ij, a_ij, b_ij;
+    obtain_multiplication_matrix(matrix,
+                                 lambda,
+                                 A_lambda,
+                                 dimension,
+                                 dimension);
+    obtain_multiplication_matrix(vector,
+                                 lambda,
+                                 vec_lambda,
+                                 dimension,
+                                 dimension);
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[0]; j++)
+        {
+            a_ij = *(A_lambda + j * dimension[0] + i);
+            b_ij = *(vec_lambda + j * dimension[0] + i);
+            M_ij = (matrix_aux + j * dimension[0] + i);
+            *M_ij = a_ij - b_ij;
+        }
+    }
+    obtain_max_eigenvalue(A_lambda,
+                          dimension,
+                          &down,
+                          &vectors_aux);
+    free(vectors_aux);
+    obtain_max_eigenvalue(matrix_aux,
+                          dimension,
+                          &up,
+                          &vectors_aux);
+    free(vectors_aux);
+    down = sqrt(fabs(down));
+    up = sqrt(fabs(up));
+    printf("%lf\n", up / down);
+    free(A_lambda);
+    free(vec_lambda);
+    free(matrix_aux);
+}
 double *obtain_lambda_from_matrix(double *matrix, int *dimension)
 {
     double *lambda = (double *)malloc(dimension[0] * sizeof(double));
@@ -67,6 +110,10 @@ void obtain_eigen_with_QR(double *matrix, double **lambda, double **vectors, int
     printf("Numero de iteraciones: %d\n", attemp);
     *lambda = obtain_lambda_from_matrix(lambda_aux,
                                         dimension);
+    verification(matrix,
+                 *lambda,
+                 *vectors,
+                 dimension);
     free(vectors_aux);
     free(lambda_aux);
 }

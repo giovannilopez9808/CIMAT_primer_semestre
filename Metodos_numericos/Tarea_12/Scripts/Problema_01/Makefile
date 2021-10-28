@@ -5,6 +5,7 @@ LDFLAGS=-std=c11 -lm
 SOURCES=main.c
 _FUNC=	tools.c\
 		qr.c\
+		eigen.c\
 		solver.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
