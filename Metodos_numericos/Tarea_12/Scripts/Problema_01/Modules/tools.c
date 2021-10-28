@@ -166,6 +166,29 @@ void obtain_multiplication_matrix(double *A, double *B, double *AB, int *dimensi
         }
     }
 }
+void obtain_multiplication_ATA(double *A, double *ATA, int *dimension)
+{
+    /*
+    Realiza la multiplicacion de matrices
+     */
+    double a_ik, b_kj, *AB_ij;
+    double sum;
+    for (int i = 0; i < dimension[0]; i++)
+    {
+        for (int j = 0; j < dimension[1]; j++)
+        {
+            sum = 0;
+            AB_ij = (ATA + j * dimension[0] + i);
+            for (int k = 0; k < dimension[0]; k++)
+            {
+                a_ik = *(A + i * dimension[0] + k);
+                b_kj = *(A + j * dimension[0] + k);
+                sum += a_ik * b_kj;
+            }
+            *AB_ij = sum;
+        }
+    }
+}
 double *create_identity_matrix(int *dimension)
 {
     double *matrix = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));

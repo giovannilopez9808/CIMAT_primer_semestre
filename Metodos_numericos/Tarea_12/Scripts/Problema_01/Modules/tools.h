@@ -14,4 +14,5 @@ void obtain_multiplication_matrix(double *A, double *B, double *AB, int *dimensi
 double *create_identity_matrix(int *dimension);
 void print_file_matrix(FILE *file, double *matrix, int *dimension);
 void copy_vector(double *vector, double *vector_i, int *dimension);
+void obtain_multiplication_ATA(double *A, double *ATA, int *dimension);
 #endif

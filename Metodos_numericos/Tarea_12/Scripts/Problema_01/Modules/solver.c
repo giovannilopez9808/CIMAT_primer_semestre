@@ -4,6 +4,8 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
     double *A_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *vec_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *matrix_up = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *matrix_down = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double down, up, *vectors_aux, *M_ij, a_ij, b_ij;
     obtain_multiplication_matrix(matrix,
                                  lambda,
@@ -25,12 +27,18 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
             *M_ij = a_ij - b_ij;
         }
     }
-    obtain_max_eigenvalue(A_lambda,
+    obtain_multiplication_ATA(A_lambda,
+                              matrix_up,
+                              dimension);
+    obtain_multiplication_ATA(matrix_aux,
+                              matrix_down,
+                              dimension);
+    obtain_max_eigenvalue(matrix_down,
                           dimension,
                           &down,
                           &vectors_aux);
     free(vectors_aux);
-    obtain_max_eigenvalue(matrix_aux,
+    obtain_max_eigenvalue(matrix_up,
                           dimension,
                           &up,
                           &vectors_aux);
