@@ -45,7 +45,7 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
     free(vectors_aux);
     down = sqrt(fabs(down));
     up = sqrt(fabs(up));
-    printf("%lf\n", up / down);
+    printf("Verificación: %lf\n", up / down);
     free(A_lambda);
     free(vec_lambda);
     free(matrix_aux);
