@@ -6,9 +6,11 @@ int main()
     employee_s employee1;
     employee_c employee2;
     char name[40] = "giovanni";
-    employee2.set_name(name);
-    employee2.set_age(20);
-    employee2.print_age();
-    employee2.print_name();
+    cout << "Impreson usando estructuras" << endl;
+    init_employee(&employee1, 20, name);
+    print_information(employee1);
+    cout << "\nImpreson usando clases" << endl;
+    employee2.init_employee(20, name);
+    employee2.print_information();
     return 0;
 }

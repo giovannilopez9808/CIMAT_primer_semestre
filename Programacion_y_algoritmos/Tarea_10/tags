@@ -463,14 +463,28 @@ info_version	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	/^char const
 info_version	build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v
 info_version_internal	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
+init_employee	Modules/employee_class.cpp	/^void employee_c::init_employee(int age_input, char *name_input)$/;"	f	class:employee_c
+init_employee	Modules/employee_struct.cpp	/^void init_employee(employee_s *employee, int age, char *name)$/;"	f
 main	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
 main	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
 main	build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
 main	main.cpp	/^int main()$/;"	f
 name	Modules/employee_class.h	/^    char *name;$/;"	m	class:employee_c
 name	Modules/employee_struct.h	/^    char *name;$/;"	m	struct:Employee
+print_age	Modules/employee_class.cpp	/^void employee_c::print_age()$/;"	f	class:employee_c
+print_age	Modules/employee_struct.cpp	/^void print_age(employee_s employee)$/;"	f
+print_information	Modules/employee_class.cpp	/^void employee_c::print_information()$/;"	f	class:employee_c
+print_information	Modules/employee_struct.cpp	/^void print_information(employee_s employee)$/;"	f
+print_name	Modules/employee_class.cpp	/^void employee_c::print_name()$/;"	f	class:employee_c
+print_name	Modules/employee_struct.cpp	/^void print_name(employee_s employee)$/;"	f
+print_status	Modules/employee_class.cpp	/^void employee_c::print_status()$/;"	f	class:employee_c
+print_status	Modules/employee_struct.cpp	/^void print_status(employee_s employee)$/;"	f
 qnxnto	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 set_age	Modules/employee_class.cpp	/^void employee_c::set_age(int age_input)$/;"	f	class:employee_c
+set_age	Modules/employee_struct.cpp	/^void set_age(employee_s *employee, int age)$/;"	f
 set_name	Modules/employee_class.cpp	/^void employee_c::set_name(char *name_input)$/;"	f	class:employee_c
+set_name	Modules/employee_struct.cpp	/^void set_name(employee_s *employee, char *name)$/;"	f
+status	Modules/employee_class.h	/^    int status;$/;"	m	class:employee_c
+status	Modules/employee_struct.h	/^    int status;$/;"	m	struct:Employee
 volatile	build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
