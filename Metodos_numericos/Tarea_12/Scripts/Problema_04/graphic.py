@@ -17,6 +17,7 @@ x, y = np.loadtxt("output.txt",
 x_function = np.linspace(-4, 4, 1000)
 y_function = f(x_function)
 x_input, y_input = create_points()
+plt.subplots(figsize=(8, 5))
 plt.xlim(-4, 4)
 plt.ylim(-0.6, 0.6)
 plt.plot(x_input, y_input,
@@ -30,7 +31,7 @@ plt.plot(x, y,
          ls="--",
          marker=".")
 plt.plot(x_function, y_function,
-         color="#70e000",
+         color="#2196f3",
          label="$f\;(x)=\\dfrac{x}{1+x^2}$",
          alpha=0.5)
 plt.xticks(fontsize=12)
@@ -39,4 +40,4 @@ plt.yticks(fontsize=12)
 plt.legend(frameon=False,
            fontsize=14)
 plt.tight_layout()
-plt.show()
+plt.savefig("../../Document/Graphics/problema04a.png")
