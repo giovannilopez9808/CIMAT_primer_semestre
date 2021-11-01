@@ -1,33 +1,33 @@
 #include "solver.h"
 void verification(double *matrix, double *lambda, double *vector, int *dimension)
 {
-    double *A_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
-    double *vec_lambda = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *A_vector = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
+    double *lambda_vector = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_aux = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_up = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double *matrix_down = (double *)malloc(dimension[0] * dimension[1] * sizeof(double));
     double down, up, *vectors_aux, *M_ij, a_ij, b_ij;
     obtain_multiplication_matrix(matrix,
-                                 lambda,
-                                 A_lambda,
+                                 vector,
+                                 A_vector,
                                  dimension,
                                  dimension);
-    obtain_multiplication_matrix(vector,
-                                 lambda,
-                                 vec_lambda,
+    obtain_multiplication_matrix(lambda,
+                                 vector,
+                                 lambda_vector,
                                  dimension,
                                  dimension);
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = 0; j < dimension[0]; j++)
         {
-            a_ij = *(A_lambda + j * dimension[0] + i);
-            b_ij = *(vec_lambda + j * dimension[0] + i);
+            a_ij = *(A_vector + j * dimension[0] + i);
+            b_ij = *(lambda_vector + j * dimension[0] + i);
             M_ij = (matrix_aux + j * dimension[0] + i);
             *M_ij = a_ij - b_ij;
         }
     }
-    obtain_multiplication_ATA(A_lambda,
+    obtain_multiplication_ATA(A_vector,
                               matrix_up,
                               dimension);
     obtain_multiplication_ATA(matrix_aux,
@@ -46,8 +46,8 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
     down = sqrt(fabs(down));
     up = sqrt(fabs(up));
     printf("Verificación: %lf\n", up / down);
-    free(A_lambda);
-    free(vec_lambda);
+    free(A_vector);
+    free(lambda_vector);
     free(matrix_aux);
 }
 double *obtain_lambda_from_matrix(double *matrix, int *dimension)

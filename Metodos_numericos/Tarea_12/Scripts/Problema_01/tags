@@ -1,0 +1,47 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+QR_decomposition	Modules/qr.c	/^void QR_decomposition(double *matrix, double **r_matrix, double **q_matrix, int *dimension)$/;"	f
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
+convergence_eigen_QR	Modules/solver.c	/^int convergence_eigen_QR(double *matrix, int *dimension, int attempt)$/;"	f
+convergence_eigenvalues	Modules/eigen.c	/^int convergence_eigenvalues(double lambda, double lambda_i, int attempt)$/;"	f
+copy_matrix	Modules/tools.c	/^void copy_matrix(double *matrix, double *matrix_copy, int *dimension)$/;"	f
+copy_vector	Modules/tools.c	/^void copy_vector(double *vector, double *vector_i, int *dimension)$/;"	f
+create_identity_matrix	Modules/tools.c	/^double *create_identity_matrix(int *dimension)$/;"	f
+eigen_H	Modules/eigen.h	2;"	d
+fill_Householder_matrix	Modules/qr.c	/^void fill_Householder_matrix(double *matrix, double *matrix_H, int *dimension, int n)$/;"	f
+initialize_vector	Modules/eigen.c	/^void initialize_vector(double *vector, int *dimension)$/;"	f
+main	main.c	/^int main(int argv, char *argc[])$/;"	f
+normalize_vector	Modules/eigen.c	/^void normalize_vector(double *vector, int dimension[])$/;"	f
+obtain_Householder_matrix	Modules/qr.c	/^double *obtain_Householder_matrix(double *vector, int *dimension)$/;"	f
+obtain_Householder_vector	Modules/qr.c	/^void obtain_Householder_vector(double *vector, double **vector_H, int *dimension)$/;"	f
+obtain_cdot_multiplication	Modules/tools.c	/^double obtain_cdot_multiplication(double *vector1, double *vector2, int *dimension)$/;"	f
+obtain_eigen_with_QR	Modules/solver.c	/^void obtain_eigen_with_QR(double *matrix, double **lambda, double **vectors, int *dimension)$/;"	f
+obtain_lambda_from_matrix	Modules/solver.c	/^double *obtain_lambda_from_matrix(double *matrix, int *dimension)$/;"	f
+obtain_max_eigenvalue	Modules/eigen.c	/^void obtain_max_eigenvalue(double *matrix, int *dimension_matrix, double *lambda, double **vector)$/;"	f
+obtain_multiplication_ATA	Modules/tools.c	/^void obtain_multiplication_ATA(double *A, double *ATA, int *dimension)$/;"	f
+obtain_multiplication_matrix	Modules/tools.c	/^void obtain_multiplication_matrix(double *A, double *B, double *AB, int *dimension_matrix_A, int *dimension_matrix_B)$/;"	f
+obtain_multiplication_vvT	Modules/tools.c	/^double *obtain_multiplication_vvT(double *vector, int *dimension)$/;"	f
+obtain_sub_matrix	Modules/qr.c	/^void obtain_sub_matrix(double *matrix, double **sub_matrix, int *dimension_matrix, int n)$/;"	f
+obtain_vector_i	Modules/tools.c	/^void obtain_vector_i(double *vectors, double *vector, int *dimension, int n)$/;"	f
+open_file	Modules/tools.c	/^FILE *open_file(char *filename, char *mode)$/;"	f
+print_file_matrix	Modules/tools.c	/^void print_file_matrix(FILE *file, double *matrix, int *dimension)$/;"	f
+print_matrix	Modules/tools.c	/^void print_matrix(double *matrix, int *dimension)$/;"	f
+qr_H	Modules/qr.h	2;"	d
+read_dimension	Modules/tools.c	/^void read_dimension(FILE *file, int *dimension)$/;"	f
+read_matrix	Modules/tools.c	/^void read_matrix(FILE *file, int *dimension, double **matrix)$/;"	f
+solver_H	Modules/solver.h	2;"	d
+tools_H	Modules/tools.h	2;"	d
+verification	Modules/solver.c	/^void verification(double *matrix, double *lambda, double *vector, int *dimension)$/;"	f
