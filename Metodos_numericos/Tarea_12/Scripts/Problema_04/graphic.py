@@ -36,8 +36,8 @@ plt.plot(x_function, y_function,
          alpha=0.5)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
-
 plt.legend(frameon=False,
            fontsize=14)
 plt.tight_layout()
-plt.savefig("../../Document/Graphics/problema04a.png")
+plt.savefig("../../Document/Graphics/problema04a.png",
+            dpi=600)
