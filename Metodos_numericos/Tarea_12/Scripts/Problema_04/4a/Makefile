@@ -1,5 +1,5 @@
 CC=gcc
-IDIR=Modules/
+IDIR=../Modules/
 CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
@@ -20,4 +20,4 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out Eigen_3x3.txt
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out

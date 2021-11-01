@@ -4,8 +4,39 @@ double f(double x)
 {
     return x / (x * x + 1);
 }
+double r(double t)
+{
+    return exp(cos(t) - 2 * cos(4 * t) + pow(sin(t / 12), 5));
+}
+double xt(double t)
+{
+    double rt = r(t);
+    return rt * sin(t);
+}
+double yt(double t)
+{
+    double rt = r(t);
+    return rt * cos(t);
+}
 // Obtiene los puntos dada una funcion para realizar la interpolacion
-void obtain_points(double **x, double **y, int n)
+void obtain_t_points(double (*f)(double), double **x, double **y, int n)
+{
+    double *X_i, *Y_i;
+    // Creacion de la memoria
+    *x = (double *)malloc(n * sizeof(double));
+    *y = (double *)malloc(n * sizeof(double));
+    for (int i = 0; i < n; i++)
+    {
+        X_i = *x + i;
+        Y_i = *y + i;
+        // Puntos en x
+        *X_i = (double)i * pi / (12 * n / 25);
+        // Puntos en y
+        *Y_i = f(*X_i);
+    }
+}
+// Obtiene los puntos dada una funcion para realizar la interpolacion
+void obtain_points(double (*f)(double), double **x, double **y, int n)
 {
     double *X_i, *Y_i;
     // Creacion de la memoria
