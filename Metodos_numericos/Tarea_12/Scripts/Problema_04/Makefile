@@ -1,9 +1,10 @@
 CC=gcc
-IDIR=../Functions/
+IDIR=Modules/
 CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11
 LDFLAGS=-std=c11 -lm
 SOURCES=main.c
-_FUNC=	tools.c solvers.c
+_FUNC=	tools.c\
+		spline_cubic.c
 FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))
 OBJS=$(SOURCES:.c=.o)
 FOBJS=$(FUNC:.c=.o)
