@@ -28,10 +28,10 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
         }
     }
     obtain_multiplication_ATA(A_vector,
-                              matrix_up,
+                              matrix_down,
                               dimension);
     obtain_multiplication_ATA(matrix_aux,
-                              matrix_down,
+                              matrix_up,
                               dimension);
     obtain_max_eigenvalue(matrix_down,
                           dimension,
@@ -64,7 +64,7 @@ double *obtain_lambda_from_matrix(double *matrix, int *dimension)
 }
 int convergence_eigen_QR(double *matrix, int *dimension, int attempt)
 {
-    double sum = 0, tau = 1e-6, m_ij;
+    double max = 0, tau = 1e-6, m_ij;
     if (attempt != 0)
     {
         for (int i = 0; i < dimension[0] - 1; i++)
@@ -72,10 +72,13 @@ int convergence_eigen_QR(double *matrix, int *dimension, int attempt)
             for (int j = i + 1; j < dimension[0]; j++)
             {
                 m_ij = *(matrix + j * dimension[0] + i);
-                sum += fabs(m_ij);
+                if(max<fabs(m_ij))
+                {
+                max = fabs(m_ij);
+                }
             }
         }
-        if (sum < tau)
+        if (max < tau)
         {
             return 0;
         }
