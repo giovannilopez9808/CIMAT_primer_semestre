@@ -27,8 +27,8 @@ x_function, y_function = create_points(t_function)
 t_input = np.array([np.pi*i/12 for i in range(25)])
 x_input, y_input = create_points(t_input)
 plt.subplots(figsize=(8, 5))
-plt.xlim(-12, 12)
-plt.ylim(-4, 12)
+plt.xlim(-2, 2)
+plt.ylim(-2, 2)
 plt.plot(x_input, y_input,
          label="Input points",
          color="#007200",
@@ -48,5 +48,5 @@ plt.yticks(fontsize=12)
 plt.legend(frameon=False,
            fontsize=14)
 plt.tight_layout()
-plt.savefig("../../../Document/Graphics/problema04b.png",
+plt.savefig("../../../Document/Graphics/problema04b_zoom.png",
             dpi=300)

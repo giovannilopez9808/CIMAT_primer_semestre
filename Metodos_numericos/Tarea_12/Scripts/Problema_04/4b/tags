@@ -4,54 +4,89 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-CC	Makefile	/^CC=gcc$/;"	m
-CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
-EXEC	Makefile	/^EXEC= main.out$/;"	m
-FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
-FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
-Fill_initial_values_U_matrix	Modules/tools.c	/^void Fill_initial_values_U_matrix(double *U, int dimension_matrix[])$/;"	f
-IDIR	Makefile	/^IDIR=Modules\/$/;"	m
-LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
-OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
-SOURCES	Makefile	/^SOURCES=main.c$/;"	m
-_FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
-alpha	graphic.py	/^         alpha=0.5)$/;"	v
-color	graphic.py	/^         color="#007200",$/;"	v
-color	graphic.py	/^         color="#2196f3",$/;"	v
-color	graphic.py	/^         color="#c1121f",$/;"	v
-create_identity_matrix	Modules/tools.c	/^double *create_identity_matrix(int *dimension)$/;"	f
-create_points	Modules/tools.c	/^void create_points(double xi, double xf, double **x, int n)$/;"	f
-create_points	graphic.py	/^def create_points():$/;"	f
-dpi	graphic.py	/^            dpi=600)$/;"	v
-evaluate	Modules/spline_cubic.c	/^double evaluate(double x, double xi, double a, double b, double c, double d)$/;"	f
-f	Modules/tools.c	/^double f(double x)$/;"	f
-f	graphic.py	/^def f(x):$/;"	f
-fontsize	graphic.py	/^           fontsize=14)$/;"	v
-function_H	Modules/tools.h	2;"	d
-label	graphic.py	/^         label="$f\\;(x)=\\\\dfrac{x}{1+x^2}$",$/;"	v
-label	graphic.py	/^         label="Input points",$/;"	v
-label	graphic.py	/^         label="Spline cubic",$/;"	v
-ls	graphic.py	/^         ls="",$/;"	v
-ls	graphic.py	/^         ls="--",$/;"	v
-main	main.c	/^int main()$/;"	f
-marker	graphic.py	/^         marker=".")$/;"	v
-obtain_LU_crout	Modules/tools.c	/^void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)$/;"	f
-obtain_bi	Modules/spline_cubic.c	/^void obtain_bi(double *a, double *c, double *h, double **b, int n)$/;"	f
-obtain_ci	Modules/spline_cubic.c	/^void obtain_ci(double *h, double *f, double **c, int n)$/;"	f
-obtain_di	Modules/spline_cubic.c	/^void obtain_di(double *c, double *h, double **d, int n)$/;"	f
-obtain_fi	Modules/spline_cubic.c	/^void obtain_fi(double *a, double *h, double **f, int n)$/;"	f
-obtain_hi	Modules/spline_cubic.c	/^void obtain_hi(double *x, double **h, int n)$/;"	f
-obtain_matrix_h	Modules/spline_cubic.c	/^void obtain_matrix_h(double *h, double *f, double **H_matrix, double **g, int n)$/;"	f
-obtain_parameters	Modules/spline_cubic.c	/^void obtain_parameters(double *x, double *y, double **b, double **c, double **d, int n)$/;"	f
-obtain_points	Modules/tools.c	/^void obtain_points(double **x, double **y, int n)$/;"	f
-print_results	Modules/tools.c	/^void print_results(FILE *file, double *x, double *y, int n)$/;"	f
-solve_triangular_inferior_matrix	Modules/tools.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
-solve_triangular_superior_matrix	Modules/tools.c	/^void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
-solve_with_LU	Modules/tools.c	/^void solve_with_LU(double *L, double *U, int *dimension, double *results, double **solutions)$/;"	f
-spline_cubic_H	Modules/spline_cubic.h	2;"	d
-spline_cubic_f	Modules/spline_cubic.c	/^void spline_cubic_f(double *x, double **y, double *x_data, double *a, double *b, double *c, double *d, int n_data, int n)$/;"	f
-unpack	graphic.py	/^                  unpack=True)$/;"	v
-valid_solution	Modules/tools.c	/^void valid_solution(double number)$/;"	f
-validate_l_ii	Modules/tools.c	/^void validate_l_ii(double l_ii)$/;"	f
-x_function	graphic.py	/^x_function = np.linspace(-4, 4, 1000)$/;"	v
-y_function	graphic.py	/^y_function = f(x_function)$/;"	v
+CC	../4a/Makefile	/^CC=gcc$/;"	m
+CC	../4b/Makefile	/^CC=gcc$/;"	m
+CFLAGS	../4a/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+CFLAGS	../4b/Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	../4a/Makefile	/^EXEC= main.out$/;"	m
+EXEC	../4b/Makefile	/^EXEC= main.out$/;"	m
+FOBJS	../4a/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FOBJS	../4b/Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	../4a/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+FUNC	../4b/Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+Fill_initial_values_U_matrix	../Modules/tools.c	/^void Fill_initial_values_U_matrix(double *U, int dimension_matrix[])$/;"	f
+IDIR	../4a/Makefile	/^IDIR=..\/Modules\/$/;"	m
+IDIR	../4b/Makefile	/^IDIR=..\/Modules\/$/;"	m
+LDFLAGS	../4a/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+LDFLAGS	../4b/Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	../4a/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+OBJS	../4b/Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOURCES	../4a/Makefile	/^SOURCES=main.c$/;"	m
+SOURCES	../4b/Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	../4a/Makefile	/^_FUNC=	tools.c\\$/;"	m
+_FUNC	../4b/Makefile	/^_FUNC=	tools.c\\$/;"	m
+alpha	../4a/graphic.py	/^         alpha=0.5)$/;"	v
+alpha	../4b/graphic.py	/^         alpha=0.5)$/;"	v
+color	../4a/graphic.py	/^         color="#007200",$/;"	v
+color	../4a/graphic.py	/^         color="#2196f3",$/;"	v
+color	../4a/graphic.py	/^         color="#c1121f",$/;"	v
+color	../4b/graphic.py	/^         color="#007200",$/;"	v
+color	../4b/graphic.py	/^         color="#2196f3",$/;"	v
+color	../4b/graphic.py	/^         color="#c1121f",$/;"	v
+create_identity_matrix	../Modules/tools.c	/^double *create_identity_matrix(int *dimension)$/;"	f
+create_points	../4a/graphic.py	/^def create_points():$/;"	f
+create_points	../4b/graphic.py	/^def create_points(t):$/;"	f
+create_points	../Modules/tools.c	/^void create_points(double xi, double xf, double **x, int n)$/;"	f
+dpi	../4a/graphic.py	/^            dpi=600)$/;"	v
+dpi	../4b/graphic.py	/^            dpi=600)$/;"	v
+evaluate	../Modules/spline_cubic.c	/^double evaluate(double x, double xi, double a, double b, double c, double d)$/;"	f
+f	../4a/graphic.py	/^def f(x):$/;"	f
+f	../Modules/tools.c	/^double f(double x)$/;"	f
+fontsize	../4a/graphic.py	/^           fontsize=14)$/;"	v
+fontsize	../4b/graphic.py	/^           fontsize=14)$/;"	v
+function_H	../Modules/tools.h	2;"	d
+label	../4a/graphic.py	/^         label="$f\\;(x)=\\\\dfrac{x}{1+x^2}$",$/;"	v
+label	../4a/graphic.py	/^         label="Input points",$/;"	v
+label	../4a/graphic.py	/^         label="Spline cubic",$/;"	v
+label	../4b/graphic.py	/^         label="$f\\;(t)=(x(t),y(t))$",$/;"	v
+label	../4b/graphic.py	/^         label="Input points",$/;"	v
+label	../4b/graphic.py	/^         label="Spline cubic",$/;"	v
+ls	../4a/graphic.py	/^         ls="",$/;"	v
+ls	../4a/graphic.py	/^         ls="--",$/;"	v
+ls	../4b/graphic.py	/^         ls="",$/;"	v
+ls	../4b/graphic.py	/^         ls="--",$/;"	v
+main	../4a/main.c	/^int main()$/;"	f
+main	../4b/main.c	/^int main()$/;"	f
+marker	../4a/graphic.py	/^         marker=".")$/;"	v
+marker	../4b/graphic.py	/^         marker=".")$/;"	v
+obtain_LU_crout	../Modules/tools.c	/^void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)$/;"	f
+obtain_bi	../Modules/spline_cubic.c	/^void obtain_bi(double *a, double *c, double *h, double **b, int n)$/;"	f
+obtain_ci	../Modules/spline_cubic.c	/^void obtain_ci(double *h, double *f, double **c, int n)$/;"	f
+obtain_di	../Modules/spline_cubic.c	/^void obtain_di(double *c, double *h, double **d, int n)$/;"	f
+obtain_fi	../Modules/spline_cubic.c	/^void obtain_fi(double *a, double *h, double **f, int n)$/;"	f
+obtain_hi	../Modules/spline_cubic.c	/^void obtain_hi(double *x, double **h, int n)$/;"	f
+obtain_matrix_h	../Modules/spline_cubic.c	/^void obtain_matrix_h(double *h, double *f, double **H_matrix, double **g, int n)$/;"	f
+obtain_parameters	../Modules/spline_cubic.c	/^void obtain_parameters(double *x, double *y, double **b, double **c, double **d, int n)$/;"	f
+obtain_points	../Modules/tools.c	/^void obtain_points(double (*f)(double), double **x, double **y, int n)$/;"	f
+obtain_t_points	../Modules/tools.c	/^void obtain_t_points(double (*f)(double), double **x, double **y, int n)$/;"	f
+pi	../Modules/tools.h	6;"	d
+print_results	../Modules/tools.c	/^void print_results(FILE *file, double *x, double *y, int n)$/;"	f
+r	../4b/graphic.py	/^def r(t):$/;"	f
+r	../Modules/tools.c	/^double r(double t)$/;"	f
+solve_triangular_inferior_matrix	../Modules/tools.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_triangular_superior_matrix	../Modules/tools.c	/^void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
+solve_with_LU	../Modules/tools.c	/^void solve_with_LU(double *L, double *U, int *dimension, double *results, double **solutions)$/;"	f
+spline_cubic_H	../Modules/spline_cubic.h	2;"	d
+spline_cubic_f	../Modules/spline_cubic.c	/^void spline_cubic_f(double *x, double **y, double *x_data, double *a, double *b, double *c, double *d, int n_data, int n)$/;"	f
+t_function	../4b/graphic.py	/^t_function = np.linspace(0, 2*np.pi, 1000)$/;"	v
+t_input	../4b/graphic.py	/^t_input = np.array([np.pi*i\/12 for i in range(25)])$/;"	v
+unpack	../4a/graphic.py	/^                  unpack=True)$/;"	v
+unpack	../4b/graphic.py	/^                  unpack=True)$/;"	v
+valid_solution	../Modules/tools.c	/^void valid_solution(double number)$/;"	f
+validate_l_ii	../Modules/tools.c	/^void validate_l_ii(double l_ii)$/;"	f
+x_function	../4a/graphic.py	/^x_function = np.linspace(-4, 4, 1000)$/;"	v
+xt	../4b/graphic.py	/^def xt(t):$/;"	f
+xt	../Modules/tools.c	/^double xt(double t)$/;"	f
+y_function	../4a/graphic.py	/^y_function = f(x_function)$/;"	v
+yt	../4b/graphic.py	/^def yt(t):$/;"	f
+yt	../Modules/tools.c	/^double yt(double t)$/;"	f

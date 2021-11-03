@@ -3,7 +3,7 @@
 int main()
 {
     // Numero de puntos a generar para la interpolacion y la grafica
-    int n_data = 10, n = 200;
+    int n_data = 100, n = 200;
     FILE *output;
     // Archivo de salida
     output = fopen("Output/output.txt", "w");
