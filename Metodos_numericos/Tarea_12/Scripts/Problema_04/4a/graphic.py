@@ -12,12 +12,12 @@ def create_points():
     return x, y
 
 
-x, y = np.loadtxt("Output/output.txt",
+x, y = np.loadtxt("Output/output_17.txt",
                   unpack=True)
 x_function = np.linspace(-4, 4, 1000)
 y_function = f(x_function)
 x_input, y_input = create_points()
-plt.subplots(figsize=(8, 5))
+plt.subplots(figsize=(8, 4))
 plt.xlim(-4, 4)
 plt.ylim(-0.6, 0.6)
 plt.plot(x_input, y_input,
@@ -40,4 +40,4 @@ plt.legend(frameon=False,
            fontsize=14)
 plt.tight_layout()
 plt.savefig("../../../Document/Graphics/problema04a.png",
-            dpi=600)
+            dpi=300)
