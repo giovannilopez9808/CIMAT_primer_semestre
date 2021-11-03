@@ -47,18 +47,18 @@ void obtain_points(double (*f)(double), double **x, double **y, int n)
         X_i = *x + i;
         Y_i = *y + i;
         // Puntos en x
-        *X_i = ((double)i - 8) / 2;
+        *X_i =((double)i*17/n - 8.0)/(2.0);
         // Puntos en y
         *Y_i = f(*X_i);
     }
 }
 // Crea los puntos en x para evaluar en la interpolacion
-void create_points(double xi, double xf, double **x, int n)
+void create_points(double xi,double xf,double **x, int n)
 {
     *x = (double *)malloc(n * sizeof(double));
     for (int i = 0; i < n; i++)
     {
-        *(*x + i) = xi + (xf - xi) * (double)i / n;
+        *(*x + i) = xi + (xf-xi)*(double)i/n;
     }
 }
 // Imprime los puntos evaluados en la interpolacion en un archivo

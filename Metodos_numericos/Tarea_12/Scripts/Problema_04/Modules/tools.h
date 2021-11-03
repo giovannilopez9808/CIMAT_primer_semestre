@@ -7,7 +7,7 @@
 double f(double x);
 double xt(double t);
 double yt(double t);
-void create_points(double xi, double xf, double **x, int n);
+void create_points(double xi,double xf,double **x, int n);
 void obtain_t_points(double (*f)(double), double **x, double **y, int n);
 void obtain_points(double (*f)(double), double **x, double **y, int n);
 double *create_identity_matrix(int *dimension);
