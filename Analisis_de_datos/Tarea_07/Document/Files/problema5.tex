@@ -1,0 +1,11 @@
+\section*{Problema 5}
+
+\textbf{En este ejercicio usamos intervalos de confianza para entender mejor el desempeño de algoritmos. En general, el componente aleatorio puede entrar de dos maneras: en la dinámica del algoritmo o por los datos/parámetros de entrada.Calcula un intervalo de confianza de 95\% para el promedio del tiempoque los algoritmos quicksort y shellsort requieren para ordenar 10,000,000 números elegidos al azar de una distribución continua, basado en 100 corridas de cada algoritmo. Puedes usar la versión que está en R. Por ejemplo, para calcular el tiempode una corrida el código es:}
+
+\begin{verbatim}
+    system.time(x1 <- sort(x, method = "shell"), gcFirst = TRUE)[1]
+    system.time(x2 <- sort(x, method = "quick"), gcFirst = TRUE)[1]
+\end{verbatim}
+
+\textbf{con GcFirst = FIRST se libera primero la memoria (en caso de que sea
+    posible) Explica porque no importa de cual distribución se generan los números siempre y cuando que sean de una variable continua. Construye también un intervalo de confianza para la diferencia de sus tiempos de ejecución para un (mismo) conjunto.}
