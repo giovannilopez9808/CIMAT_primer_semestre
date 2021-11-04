@@ -1,14 +1,12 @@
 data = read.csv("output.csv")
-alpha = 1-0.9
-mu = mean(data$time)
-sigma = sd(data$time)
+diff = data$time_shell-data$time_quick
 n = nrow(data)
+alpha = 1-0.95
 z=-qnorm(alpha/2)
+mu = mean(diff)
+sigma = sd(diff)
 li = mu-z*sigma/sqrt(n)
 lf = mu+z*sigma/sqrt(n)
-print(c(li,lf))
-hist(data$time,
-     breaks=100,
-     xlim=c(4,8),
-     ylim=c(0,30),
-     main="")
+print(c("Promedio",round(mu,6)))
+print(c("Sigma",round(sigma**2,6)))
+print(c("IC",round(li,6),round(lf,6)))
