@@ -4,6 +4,32 @@
 
 \begin{enumerate}
     \item \textbf{¿Cuantas veces se debe ejecutar el programa para obtener un intervaloc de confianza de 95\% con un ancho menor que 2 s?}
+
+          Se tiene que un intervalo de confianza es:
+
+          \begin{equation*}
+              \left [ \frac{1}{n} \sum x_i - \frac{Z_{\alpha/2}\sigma}{\sqrt{n}},\frac{1}{n} \sum x_i + \frac{Z_{\alpha/2}\sigma}{\sqrt{n}} \right ]
+          \end{equation*}
+
+          entonces, el ancho del intervalo es:
+
+          \begin{equation*}
+              d = \frac{2Z_{\alpha/2}\sigma}{\sqrt{n}}
+          \end{equation*}
+
+          por ende:
+
+          \begin{equation*}
+              n = \frac{4Z_{\alpha/2}^2\sigma^2}{d^2}
+          \end{equation*}
+
+          por lo tanto:
+
+          \begin{align*}
+              n & = \frac{4(1.959964)^2(3.1)^2}{2^2} \\
+              n & = 36.9164
+          \end{align*}
+
     \item \textbf{En muchas situaciones, el interés no es tanto en el comportamiento promedio, si no en la variabilidad. Usando el hecho que para una muestra de una misma distribución normal con varianza $\sigma^2$}
           \begin{equation*}
               \frac{nS^2}{\sigma^2} \sim \chi_{n-1}^2
