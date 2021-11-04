@@ -5,4 +5,25 @@
 \end{equation*}
 
 \textbf{donde A es la matriz en cuestión. V y $\Lambda$ son, respectivamente, las matrices de eigenvectores y eigenvalores aproximados.}
+
+\subsection*{Criterio de paro}
+
+La condición establecida en el algoritmo implementado se basa en que el resultado de la multiplicación de las matrices RQ es simetrica. Entonces, se encuentra el valor máximo en la parte superior de la matriz. La tolerancia usada fue de 10$^{-6}$. Entonces el algoritmo se detendrá cuando el valor máximo sea menor a $10^{-6}$.
+
+\subsection*{Iteraciones requeridas y comprobación}
+
+Las iteraciones realizadas y la comprobación de cada matriz se encuentran la tabla \ref{table:iteraciones}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcc}\hline
+        Matriz               & Iteraciones & Comprobación \\  \hline
+        \file{Eigen\_3.txt}  & 27          & 1.052200     \\
+        \file{Eigen\_25.txt} & 622         & 0.998071     \\ \hline
+    \end{tabular}
+    \caption{Iteraciones realizadas y comprobaciones usando el algoritmo QR}
+    \label{table:iteraciones}
+\end{table}
+
+Para obtener el eigenvalor más grande se implemento el método de la potencia usando la misma tolerancia que el algoritmo QR.
 \pagebreak
