@@ -1,3 +1,51 @@
 \section*{Problema 6}
 
 \textbf{El pasado 27 de octubre la revista forbes publicó que según un sondeo entre 800 personas, 28.1\% de los mexicanos está muy de acuerdo con la reforma energética mientras 35.7\% está algo de acuerdo. Calcula un intervalo de 90\% de confianza para el porcentaje de la categoria muy de acuerdo.}
+
+Sea $x_i$ una variable aleatoria tal que:
+
+\begin{equation*}
+    P(x_i) = \begin{cases}
+        p   & \text{si} \; x=1 \\
+        1-p & \text{si} \; x=0
+    \end{cases}
+\end{equation*}
+
+es decir, $x \sim B(1,p)$. Entonces, si $X=x_1 + x_2 +x_3 +\dots + x_n$, donde $x_i$ es un individuo en la encuesta, se observa que $X$ mide el número de individuos que estas muy de acuerdo con la reforma. Por lo tanto, $X \sim B(n,p)$. Definimos a $\hat{theta}$ como:
+
+\begin{equation*}
+    \hat{\theta} = \frac{X}{n}
+\end{equation*}
+
+el cual representa la proporcion de individuos que estan muy de acuerdo con la reforma. Obteniendo la media y varianza de $\hat{\theta}$, se obtiene que:
+
+\begin{align*}
+    E(\hat{\theta}) = E\left (\frac{X}{n}\right ) = \frac{1}{n} EX = p \\
+    Var(\hat{\theta}) = Var \left (\frac{X}{n}\right ) = \frac{1}{n^2} Var(X) = \frac{p(1-p)}{n}
+\end{align*}
+
+Se tiene que
+
+\begin{equation*}
+    \frac{\hat{\theta}-p}{\sqrt{\frac{p(1-p)}{n}}} \sim \mathcal{N}(0,1)
+\end{equation*}
+
+entonces:
+
+\begin{equation*}
+    P\left (-z_{\alpha/2},\frac{\hat{\theta}-p}{\sqrt{\frac{p(1-p)}{n}}} , z_{\alpha/2}\right ) =1-\alpha
+\end{equation*}
+
+por lo tanto, el intervalo de confianza es:
+
+\begin{equation*}
+    \left ( p - z_{\alpha/2} \sqrt{ \frac{p(1-p)}{n}},p + z_{\alpha/2} \sqrt{ \frac{p(1-p)}{n}}\right )
+\end{equation*}
+
+para $\alpha=0.1$ se tiene que $z_{\alpha/2} = 1.644854$. Entonces, el intervalo de confianza para el porcentaje de las personas que estan muy de acuerdo con la reforma es:
+
+\begin{align*}
+    \left ( p - z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}}\right .              & ,\left .p + z_{\alpha/2} \sqrt{ \frac{p(1-p)}{n}}\right )              \\
+    \left (0.281 - (1.644854) \sqrt{ \frac{0.281(1-0.281)}{800}} \right . & \left ., 0.281 + (1.644854) \sqrt{\frac{0.281(1-0.281)}{800}} \right ) \\
+    (0.2548603                                                            & ,0.3071397)
+\end{align*}

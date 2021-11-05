@@ -32,8 +32,33 @@
 
     \item \textbf{En muchas situaciones, el interés no es tanto en el comportamiento promedio, si no en la variabilidad. Usando el hecho que para una muestra de una misma distribución normal con varianza $\sigma^2$}
           \begin{equation*}
-              \frac{nS^2}{\sigma^2} \sim \chi_{n-1}^2
+              \frac{(n-1)S^2}{\sigma^2} \sim \chi_{n-1}^2
           \end{equation*}
 
           \textbf{con $S^2 = \frac{1}{n}\sum (X_i-\bar{X})^2$ y $\chi_{n-1}^2$ una distribución chicuadrada, deriva un intervalo de confianza de 95\% para la varianza.}
+
+          Se tiene que
+
+          \begin{equation*}
+              P(\chi_{n-1,\alpha/2}^2\leq \frac{(n-1)S^2}{\sigma^2}\leq \chi_{n-1,1-\alpha/2}^2) = 1-\alpha
+          \end{equation*}
+
+
+          entonces:
+
+          \begin{equation*}
+              P\left (\frac{(n-1)S^2}{\chi_{n-1,\alpha/2}} \leq \sigma^2 \leq \frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}} \right )
+          \end{equation*}
+
+          por lo tanto, el intervalo de confianza para la varianza es:
+
+          \begin{equation*}
+              \left (\frac{(n-1)S^2}{\chi_{n-1,\alpha/2}},\frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}}\right )
+          \end{equation*}
+
+          Para un intervalo de confianza del 95\%, se tiene $\alpha = 0.05$. El intervalo de confianza para la varianza es:
+
+          \begin{equation*}
+              \left (\frac{(n-1)S^2}{\chi_{n-1,0.025}},\frac{(n-1)S^2}{\chi_{n-1,0.975}}\right )
+          \end{equation*}
 \end{enumerate}
