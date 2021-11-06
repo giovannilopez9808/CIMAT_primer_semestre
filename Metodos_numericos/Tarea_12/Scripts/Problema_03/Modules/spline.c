@@ -1,15 +1,10 @@
 #include "spline.h"
-double *evaluate_f(double (*f)(double), double *x, int n)
-{
-    double *y = (double *)malloc(n * sizeof(double));
-    for (int i = 0; i < n; i++)
-    {
-        *(y + i) = f(*(x + i));
-    }
-    return y;
-}
+/* 
+Realiza el calculo de los parametros usando el algoritmo de spline line dados una serie de puntos
+ */
 void spline_line(double *x, double *y, double **m, double **b, int n)
 {
+    // Inicializacion de la matrices de parametros
     *m = (double *)malloc((n - 1) * sizeof(double));
     *b = (double *)malloc((n - 1) * sizeof(double));
     double *Mi, *Bi, xi, xii, yi, yii;
@@ -21,7 +16,9 @@ void spline_line(double *x, double *y, double **m, double **b, int n)
         xii = *(x + i + 1);
         yi = *(y + i);
         yii = *(y + i + 1);
+        // Calculo de la pendiente
         *Mi = (yii - yi) / (xii - xi);
+        // Calculo de la ordenada al origen
         *Bi = yi - *Mi * xi;
     }
 }

@@ -3,7 +3,7 @@
 ## Organización de archivos
 
 ```bash
-├── Problema_01
+├├── Problema_01
 │  ├── Data
 │  │  ├── Eigen_3.txt
 │  │  ├── Eigen_25.txt
@@ -31,38 +31,51 @@
 │  ├── problema02a.py
 │  └── problema02b.py
 ├── Problema_03
-│  └── graphic.py
-├── Problema_04
-│  ├── 4a
-│  │  ├── graphic.py
-│  │  ├── main.c
-│  │  ├── Makefile
-│  │  ├── Output
-│  │  │  ├── output_17.txt
-│  │  │  └── output_34.txt
-│  │  └── tags
-│  ├── 4b
-│  │  ├── graphic.py
-│  │  ├── graphic_zoom.py
-│  │  ├── main.c
-│  │  ├── Makefile
-│  │  ├── Output
-│  │  │  ├── output_10.txt
-│  │  │  ├── output_25.txt
-│  │  │  ├── output_50.txt
-│  │  │  └── output_100.txt
-│  │  └── tags
-│  └── Modules
-│     ├── spline_cubic.c
-│     ├── spline_cubic.h
-│     ├── tools.c
-│     └── tools.h
-└── README.md
+│  ├── graphic.py
+│  ├── main.c
+│  ├── Makefile
+│  ├── Modules
+│  │  ├── spline.c
+│  │  ├── spline.h
+│  │  ├── tools.c
+│  │  └── tools.h
+│  ├── Output
+│  │  ├── output.txt
+│  │  ├── output_10.txt
+│  │  ├── output_25.txt
+│  │  ├── output_50.txt
+│  │  └── output_100.txt
+│  └── tags
+└── Problema_04
+   ├── 4a
+   │  ├── graphic.py
+   │  ├── main.c
+   │  ├── Makefile
+   │  ├── Output
+   │  │  ├── output_17.txt
+   │  │  └── output_34.txt
+   │  └── tags
+   ├── 4b
+   │  ├── graphic.py
+   │  ├── graphic_zoom.py
+   │  ├── main.c
+   │  ├── Makefile
+   │  ├── Output
+   │  │  ├── output_10.txt
+   │  │  ├── output_25.txt
+   │  │  ├── output_50.txt
+   │  │  └── output_100.txt
+   │  └── tags
+   └── Modules
+      ├── spline_cubic.c
+      ├── spline_cubic.h
+      ├── tools.c
+      └── tools.h
 ```
 
 ## Compilación
 
-Cada problema contiene un archivo ``Makefile``. Los programas con terminación ``.py`` realizan las gráficas mostradas en el documento.
+Cada problema contiene un archivo `Makefile`. Los programas con terminación `.py` realizan las gráficas mostradas en el documento.
 
 ## Ejecucción
 
@@ -76,6 +89,15 @@ La ejecucción del programa del problema 1 se realiza con el siguiente comando
 
 donde el `$nombre_del_archivo` puede ser `Eigen_3.txt` o `Eigen_25.txt`. Este generara dos archivos en la carpeta `Output` los cuales contienen los eigenvalores y eigenvectores.
 
+#### Problema 3
+
+La ejecucción del programa del problema 4 se realiza con el siguiente comando
+
+```
+.main.out
+```
+
+Este generara un archivo en la carpeta `Output`.
 
 #### Problema 4
 
@@ -86,5 +108,3 @@ La ejecucción del programa del problema 4 se realiza con el siguiente comando
 ```
 
 Este generara un archivo en la carpeta `Output`.
-
-

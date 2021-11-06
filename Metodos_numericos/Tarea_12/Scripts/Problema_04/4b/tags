@@ -27,23 +27,30 @@ _FUNC	../4a/Makefile	/^_FUNC=	tools.c\\$/;"	m
 _FUNC	../4b/Makefile	/^_FUNC=	tools.c\\$/;"	m
 alpha	../4a/graphic.py	/^         alpha=0.5)$/;"	v
 alpha	../4b/graphic.py	/^         alpha=0.5)$/;"	v
+alpha	../4b/graphic_zoom.py	/^         alpha=0.5)$/;"	v
 color	../4a/graphic.py	/^         color="#007200",$/;"	v
 color	../4a/graphic.py	/^         color="#2196f3",$/;"	v
 color	../4a/graphic.py	/^         color="#c1121f",$/;"	v
 color	../4b/graphic.py	/^         color="#007200",$/;"	v
 color	../4b/graphic.py	/^         color="#2196f3",$/;"	v
 color	../4b/graphic.py	/^         color="#c1121f",$/;"	v
+color	../4b/graphic_zoom.py	/^         color="#007200",$/;"	v
+color	../4b/graphic_zoom.py	/^         color="#2196f3",$/;"	v
+color	../4b/graphic_zoom.py	/^         color="#c1121f",$/;"	v
 create_identity_matrix	../Modules/tools.c	/^double *create_identity_matrix(int *dimension)$/;"	f
 create_points	../4a/graphic.py	/^def create_points():$/;"	f
 create_points	../4b/graphic.py	/^def create_points(t):$/;"	f
-create_points	../Modules/tools.c	/^void create_points(double xi, double xf, double **x, int n)$/;"	f
-dpi	../4a/graphic.py	/^            dpi=600)$/;"	v
-dpi	../4b/graphic.py	/^            dpi=600)$/;"	v
+create_points	../4b/graphic_zoom.py	/^def create_points(t):$/;"	f
+create_points	../Modules/tools.c	/^void create_points(double xi,double xf,double **x, int n)$/;"	f
+dpi	../4a/graphic.py	/^            dpi=300)$/;"	v
+dpi	../4b/graphic.py	/^            dpi=300)$/;"	v
+dpi	../4b/graphic_zoom.py	/^            dpi=300)$/;"	v
 evaluate	../Modules/spline_cubic.c	/^double evaluate(double x, double xi, double a, double b, double c, double d)$/;"	f
 f	../4a/graphic.py	/^def f(x):$/;"	f
 f	../Modules/tools.c	/^double f(double x)$/;"	f
 fontsize	../4a/graphic.py	/^           fontsize=14)$/;"	v
 fontsize	../4b/graphic.py	/^           fontsize=14)$/;"	v
+fontsize	../4b/graphic_zoom.py	/^           fontsize=14)$/;"	v
 function_H	../Modules/tools.h	2;"	d
 label	../4a/graphic.py	/^         label="$f\\;(x)=\\\\dfrac{x}{1+x^2}$",$/;"	v
 label	../4a/graphic.py	/^         label="Input points",$/;"	v
@@ -51,14 +58,20 @@ label	../4a/graphic.py	/^         label="Spline cubic",$/;"	v
 label	../4b/graphic.py	/^         label="$f\\;(t)=(x(t),y(t))$",$/;"	v
 label	../4b/graphic.py	/^         label="Input points",$/;"	v
 label	../4b/graphic.py	/^         label="Spline cubic",$/;"	v
+label	../4b/graphic_zoom.py	/^         label="$f\\;(t)=(x(t),y(t))$",$/;"	v
+label	../4b/graphic_zoom.py	/^         label="Input points",$/;"	v
+label	../4b/graphic_zoom.py	/^         label="Spline cubic",$/;"	v
 ls	../4a/graphic.py	/^         ls="",$/;"	v
 ls	../4a/graphic.py	/^         ls="--",$/;"	v
 ls	../4b/graphic.py	/^         ls="",$/;"	v
 ls	../4b/graphic.py	/^         ls="--",$/;"	v
+ls	../4b/graphic_zoom.py	/^         ls="",$/;"	v
+ls	../4b/graphic_zoom.py	/^         ls="--",$/;"	v
 main	../4a/main.c	/^int main()$/;"	f
 main	../4b/main.c	/^int main()$/;"	f
 marker	../4a/graphic.py	/^         marker=".")$/;"	v
 marker	../4b/graphic.py	/^         marker=".")$/;"	v
+marker	../4b/graphic_zoom.py	/^         marker=".")$/;"	v
 obtain_LU_crout	../Modules/tools.c	/^void obtain_LU_crout(double *matrix, int dimension_matrix[], double **L, double **U)$/;"	f
 obtain_bi	../Modules/spline_cubic.c	/^void obtain_bi(double *a, double *c, double *h, double **b, int n)$/;"	f
 obtain_ci	../Modules/spline_cubic.c	/^void obtain_ci(double *h, double *f, double **c, int n)$/;"	f
@@ -72,6 +85,7 @@ obtain_t_points	../Modules/tools.c	/^void obtain_t_points(double (*f)(double), d
 pi	../Modules/tools.h	6;"	d
 print_results	../Modules/tools.c	/^void print_results(FILE *file, double *x, double *y, int n)$/;"	f
 r	../4b/graphic.py	/^def r(t):$/;"	f
+r	../4b/graphic_zoom.py	/^def r(t):$/;"	f
 r	../Modules/tools.c	/^double r(double t)$/;"	f
 solve_triangular_inferior_matrix	../Modules/tools.c	/^void solve_triangular_inferior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
 solve_triangular_superior_matrix	../Modules/tools.c	/^void solve_triangular_superior_matrix(double *matrix, int dimension_matrix[], double *results, double **solutions)$/;"	f
@@ -79,14 +93,19 @@ solve_with_LU	../Modules/tools.c	/^void solve_with_LU(double *L, double *U, int 
 spline_cubic_H	../Modules/spline_cubic.h	2;"	d
 spline_cubic_f	../Modules/spline_cubic.c	/^void spline_cubic_f(double *x, double **y, double *x_data, double *a, double *b, double *c, double *d, int n_data, int n)$/;"	f
 t_function	../4b/graphic.py	/^t_function = np.linspace(0, 2*np.pi, 1000)$/;"	v
+t_function	../4b/graphic_zoom.py	/^t_function = np.linspace(0, 2*np.pi, 1000)$/;"	v
 t_input	../4b/graphic.py	/^t_input = np.array([np.pi*i\/12 for i in range(25)])$/;"	v
+t_input	../4b/graphic_zoom.py	/^t_input = np.array([np.pi*i\/12 for i in range(25)])$/;"	v
 unpack	../4a/graphic.py	/^                  unpack=True)$/;"	v
 unpack	../4b/graphic.py	/^                  unpack=True)$/;"	v
+unpack	../4b/graphic_zoom.py	/^                  unpack=True)$/;"	v
 valid_solution	../Modules/tools.c	/^void valid_solution(double number)$/;"	f
 validate_l_ii	../Modules/tools.c	/^void validate_l_ii(double l_ii)$/;"	f
 x_function	../4a/graphic.py	/^x_function = np.linspace(-4, 4, 1000)$/;"	v
 xt	../4b/graphic.py	/^def xt(t):$/;"	f
+xt	../4b/graphic_zoom.py	/^def xt(t):$/;"	f
 xt	../Modules/tools.c	/^double xt(double t)$/;"	f
 y_function	../4a/graphic.py	/^y_function = f(x_function)$/;"	v
 yt	../4b/graphic.py	/^def yt(t):$/;"	f
+yt	../4b/graphic_zoom.py	/^def yt(t):$/;"	f
 yt	../Modules/tools.c	/^double yt(double t)$/;"	f

@@ -39,5 +39,6 @@ plt.yticks(fontsize=12)
 plt.legend(frameon=False,
            fontsize=14)
 plt.tight_layout()
-plt.savefig("../../../Document/Graphics/problema04a.png",
-            dpi=300)
+# plt.savefig("../../../Document/Graphics/problema04a.png",
+#            dpi=300)
+plt.show()

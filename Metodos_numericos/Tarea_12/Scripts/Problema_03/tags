@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
+c	graphic.py	/^            c="#03071e",$/;"	v
+color	graphic.py	/^         color="#3f37c9",$/;"	v
+color	graphic.py	/^         color="#d00000",$/;"	v
+evaluate_f	Modules/tools.c	/^double *evaluate_f(double (*f)(double), double *x, int n)$/;"	f
+evaluate_spline	Modules/spline.c	/^double *evaluate_spline(double *x, int n, double *x_data, double *m, double *b, int n_data)$/;"	f
+f	graphic.py	/^def f(x):$/;"	f
+f	main.c	/^double f(double x)$/;"	f
+label	graphic.py	/^            label="Input")$/;"	v
+label	graphic.py	/^         label="$f\\;(x)$")$/;"	v
+label	graphic.py	/^         label="Spline line")$/;"	v
+linspace	Modules/tools.c	/^double *linspace(double xi, double xf, int n)$/;"	f
+main	main.c	/^int main()$/;"	f
+n	graphic.py	/^n = 100$/;"	v
+ncol	graphic.py	/^           ncol=3)$/;"	v
+open_file	Modules/tools.c	/^FILE *open_file(char *filename, char *mode)$/;"	f
+print_results	Modules/tools.c	/^void print_results(FILE *file, double *x, double *y, int n)$/;"	f
+spline_H	Modules/spline.h	2;"	d
+spline_line	Modules/spline.c	/^void spline_line(double *x, double *y, double **m, double **b, int n)$/;"	f
+tools_H	Modules/tools.h	2;"	d
+x_data	graphic.py	/^x_data = np.linspace(0, 5, n)$/;"	v
+x_fun	graphic.py	/^x_fun = np.linspace(0, 5, 200)$/;"	v
