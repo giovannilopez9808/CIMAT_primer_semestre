@@ -1,24 +1,32 @@
 import matplotlib.pyplot as plt
-n = 4
-n_test = 100
-xi = [0.1, 0.2, 0.3, 0.4]
-fi = [1.45, 1.8, 1.7, 2.0]
-a = [0 for i in range(n-1)]
-b = [0 for i in range(n-1)]
-for i in range(n-1):
-    a[i] = (fi[i+1]-fi[i])/(xi[i+1]-xi[i])
-    b[i] = fi[i]-a[i]*xi[i]
+import numpy as np
 
-x_test = [xi[0]+i*(xi[-1]-xi[0])/n_test for i in range(n_test)]
-y_test = [0 for i in range(n_test)]
 
-for i in range(n_test):
-    for j in range(n-1):
-        if(x_test[i] >= xi[j] and x_test[i] <= xi[j+1]):
-            y_test[i] = a[j]*x_test[i]+b[j]
+def f(x):
+    return x**2-4*x+10+2*np.sin(10*x)-5*np.cos(4*x)
+
+
+x_data = np.linspace(0, 5, 18)
+x_fun = np.linspace(0, 5, 200)
+x, y = np.loadtxt("Output/output.txt",
+                  unpack=True)
 plt.subplots(figsize=(8, 4))
-plt.xlim(xi[0], xi[-1])
-plt.plot(x_test, y_test, color="#4895ef")
-plt.scatter(xi, fi, c="#560bad")
+plt.xlim(x[0], x[-1])
+plt.ylim(-2, 18)
+plt.xticks(np.arange(0, 5.5, 0.5))
+plt.yticks(np.arange(-2, 20, 2))
+plt.plot(x, y,
+         color="#3f37c9",
+         label="Spline line")
+plt.plot(x_fun, f(x_fun),
+         color="#d00000",
+         label="$f(x)$")
+plt.scatter(x_data,
+            f(x_data),
+            c="#03071e",
+            label="Input")
+plt.legend(frameon=False,
+           ncol=3)
 plt.tight_layout()
-plt.savefig("../../Document/Graphics/problema3.png")
+plt.show()
+# plt.savefig("../../Document/Graphics/problema3.png")

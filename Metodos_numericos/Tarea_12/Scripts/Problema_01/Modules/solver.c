@@ -13,7 +13,7 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
                                  dimension,
                                  dimension);
     obtain_multiplication_matrix(lambda,
-                                 vector,
+            vector,
                                  lambda_vector,
                                  dimension,
                                  dimension);
