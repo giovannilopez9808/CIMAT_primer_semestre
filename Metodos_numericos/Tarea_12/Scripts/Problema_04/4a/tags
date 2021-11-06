@@ -41,8 +41,8 @@ create_identity_matrix	../Modules/tools.c	/^double *create_identity_matrix(int *
 create_points	../4a/graphic.py	/^def create_points():$/;"	f
 create_points	../4b/graphic.py	/^def create_points(t):$/;"	f
 create_points	../4b/graphic_zoom.py	/^def create_points(t):$/;"	f
-create_points	../Modules/tools.c	/^void create_points(double xi, double xf, double **x, int n)$/;"	f
-dpi	../4a/graphic.py	/^            dpi=600)$/;"	v
+create_points	../Modules/tools.c	/^void create_points(double xi,double xf,double **x, int n)$/;"	f
+dpi	../4a/graphic.py	/^            dpi=300)$/;"	v
 dpi	../4b/graphic.py	/^            dpi=300)$/;"	v
 dpi	../4b/graphic_zoom.py	/^            dpi=300)$/;"	v
 evaluate	../Modules/spline_cubic.c	/^double evaluate(double x, double xi, double a, double b, double c, double d)$/;"	f

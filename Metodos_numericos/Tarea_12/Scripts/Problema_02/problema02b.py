@@ -28,4 +28,5 @@ parameters = [1, -1, 1, -1, -1]
 plt.subplots(figsize=(8, 4))
 plot(parameters)
 plt.tight_layout()
-plt.savefig("../../Document/Graphics/problema02b.png")
+# plt.savefig("../../Document/Graphics/problema02b.png")
+plt.show()

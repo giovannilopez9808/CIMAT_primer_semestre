@@ -1,8 +1,13 @@
 #include "qr.h"
+/* 
+Obtiene la submatriz dado el número de filas que debe de tener
+ */
 void obtain_sub_matrix(double *matrix, double **sub_matrix, int *dimension_matrix, int n)
 {
+    // Definicion de la sub matriz
     *sub_matrix = (double *)malloc((dimension_matrix[0] - n) * (dimension_matrix[0] - n) * sizeof(double));
     double *Sub_m_ij, m_ij;
+    // Obtiene la submatriz desde 0-n
     for (int i = 0; i < dimension_matrix[0] - n; i++)
     {
         for (int j = 0; j < dimension_matrix[0] - n; j++)
@@ -13,6 +18,9 @@ void obtain_sub_matrix(double *matrix, double **sub_matrix, int *dimension_matri
         }
     }
 }
+/* 
+Aplica el metodo de Householder a los vectores para normalizarlos
+ */
 void obtain_Householder_vector(double *vector, double **vector_H, int *dimension)
 {
     *vector_H = (double *)malloc(dimension[0] * sizeof(double));
@@ -28,22 +36,29 @@ void obtain_Householder_vector(double *vector, double **vector_H, int *dimension
     v_1 = *(vector);
     *VH_1 = v_1 + norm;
 }
+/* 
+Aplica la normalizacion Householder a la matriz de eigenvectores
+ */
 double *obtain_Householder_matrix(double *vector, int *dimension)
 {
     double *vector_H = NULL, *H_ij, norm, I;
     int dimension_vector[2] = {dimension[0], 1};
+    // Obtiene el vector Householder
     obtain_Householder_vector(vector,
                               &vector_H,
                               dimension_vector);
+    //   Obtiene la norma del vector
     norm = obtain_cdot_multiplication(vector_H,
                                       vector_H,
                                       dimension_vector);
+    //   Realiza la multiplicacion del vector por su transpuesta
     double *Householder_matrix = obtain_multiplication_vvT(vector_H,
                                                            dimension);
     for (int i = 0; i < dimension[0]; i++)
     {
         for (int j = 0; j < dimension[0]; j++)
         {
+            // Inicializa la matriz
             H_ij = (Householder_matrix + j * dimension[0] + i);
             I = 0.0;
             if (i == j)
@@ -56,6 +71,9 @@ double *obtain_Householder_matrix(double *vector, int *dimension)
     free(vector_H);
     return Householder_matrix;
 }
+/* 
+Llena la matriz de Householder sobre una matriz identidad
+ */
 void fill_Householder_matrix(double *matrix, double *matrix_H, int *dimension, int n)
 {
     double *M_ij, mh_ij;
