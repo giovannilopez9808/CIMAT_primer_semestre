@@ -53,12 +53,31 @@
           por lo tanto, el intervalo de confianza para la varianza es:
 
           \begin{equation*}
-              \left (\frac{(n-1)S^2}{\chi_{n-1,\alpha/2}},\frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}}\right )
+              \left (\frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}},\frac{(n-1)S^2}{\chi_{n-1,\alpha/2}}\right )
           \end{equation*}
 
           Para un intervalo de confianza del 95\%, se tiene $\alpha = 0.05$. El intervalo de confianza para la varianza es:
 
           \begin{equation*}
-              \left (\frac{(n-1)S^2}{\chi_{n-1,0.025}},\frac{(n-1)S^2}{\chi_{n-1,0.975}}\right )
+              \left (\frac{(n-1)S^2}{\chi_{n-1,0.975}},\frac{(n-1)S^2}{\chi_{n-1,0.025}}\right )
+          \end{equation*}
+
+
+          Se tiene que:
+
+          \begin{equation*}
+              S^2 = \frac{n}{n-1}\sigma^2
+          \end{equation*}
+
+          entoces, el intervalo de confianza puede ser escrito de la siguiente maneras
+
+          \begin{equation*}
+              \left (\frac{(n)\sigma^2 }{\chi_{n-1,0.975}},\frac{(n)\sigma^2}{\chi_{n-1,0.025}}\right )
+          \end{equation*}
+
+          usando $n=40$ y $\sigma^2=3.1$, entonces el intervalo de confianza para la varianza es:
+
+          \begin{equation*}
+              (2.080177,5.111116)
           \end{equation*}
 \end{enumerate}
