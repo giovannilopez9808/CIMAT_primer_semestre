@@ -1,7 +1,7 @@
 \section*{Problema 1}
 \textbf{Programar el algoritmo QR para encontrar los eigenpares de las matrices \file{Eigen\_3.txt} y \file{Eigen\_25.txt}. Únicamente reportar: criterio de paro establecido, tolerancia utilizada, iteraciones requeridas, autovalores aproximados y la comprobación dada por}
 \begin{equation*}
-	\frac{||AV-\Lambda V||_2}{||AV||_2}
+	\frac{||AV-V\Lambda||_2}{||AV||_2}
 \end{equation*}
 
 \textbf{donde A es la matriz en cuestión. V y $\Lambda$ son, respectivamente, las matrices de eigenvectores y eigenvalores aproximados.}
@@ -22,8 +22,8 @@ Las iteraciones realizadas y la comprobación de cada matriz se encuentran la ta
 	\centering
 	\begin{tabular}{lcc}\hline
 		Matriz               & Iteraciones & Comprobación \\  \hline
-		\file{Eigen\_3.txt}  & 27          & 1.052200     \\
-		\file{Eigen\_25.txt} & 622         & 0.998071     \\ \hline
+		\file{Eigen\_3.txt}  & 27          & 0.000000     \\
+		\file{Eigen\_25.txt} & 622         & 0.000000     \\ \hline
 	\end{tabular}
 	\caption{Iteraciones realizadas y comprobaciones usando el algoritmo QR}
 	\label{table:iteraciones}
