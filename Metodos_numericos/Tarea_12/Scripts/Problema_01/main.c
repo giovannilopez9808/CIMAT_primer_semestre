@@ -15,8 +15,8 @@ int main(int argv, char *argc[])
     strcat(path_lambda_output, argc[1]);
     // Inicializacion de los output e inputs
     FILE *data = open_file(path_data, "r");
-    FILE *file_lambda = open_file(path_vector_output, "w");
-    FILE *file_vector = open_file(path_lambda_output, "w");
+    FILE *file_lambda = open_file(path_lambda_output, "w");
+    FILE *file_vector = open_file(path_vector_output, "w");
     // Inicializacion de las matrices
     double *matrix, *lambda, *vectors;
     int dimension_matrix[2], dimension_vector[2];

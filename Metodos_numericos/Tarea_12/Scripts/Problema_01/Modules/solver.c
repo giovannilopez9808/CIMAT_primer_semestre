@@ -15,8 +15,8 @@ void verification(double *matrix, double *lambda, double *vector, int *dimension
                                  A_vector,
                                  dimension,
                                  dimension);
-    obtain_multiplication_matrix(lambda,
-                                 vector,
+    obtain_multiplication_matrix(vector,
+                                 lambda,
                                  lambda_vector,
                                  dimension,
                                  dimension);
@@ -143,7 +143,7 @@ void obtain_eigen_with_QR(double *matrix, double **lambda, double **vectors, int
     *lambda = obtain_lambda_from_matrix(lambda_aux,
                                         dimension);
     verification(matrix,
-                 *lambda,
+                 lambda_aux,
                  *vectors,
                  dimension);
     free(vectors_aux);
