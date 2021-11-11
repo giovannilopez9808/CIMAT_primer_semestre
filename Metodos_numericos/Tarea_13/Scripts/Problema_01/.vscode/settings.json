@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "simpson_algorithm.h": "c",
+    "tools.h": "c"
+  }
+}
