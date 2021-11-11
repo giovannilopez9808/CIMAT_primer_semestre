@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "legendre_polynome.h": "c",
+    "tools.h": "c"
+  }
+}
