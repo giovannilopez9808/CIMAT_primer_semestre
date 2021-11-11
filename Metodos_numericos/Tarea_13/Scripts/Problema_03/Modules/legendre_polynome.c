@@ -62,7 +62,6 @@ double *obtain_weight(int n)
         root_i = *(roots + i);
         dpx = obtain_derivate(root_i, n);
         a_i = 2 / ((1 - root_i * root_i) * dpx * dpx);
-        printf("%lf %lf\n", root_i, a_i);
         *(weights + i) = a_i;
     }
     free(roots);

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gauss_quadrature.h": "c",
+        "legendre_polynome.h": "c"
+    }
+}

@@ -1,18 +1,33 @@
+#include "Modules/gauss_quadrature.h"
 #include "Modules/legendre_polynome.h"
-#include "Modules/newton.h"
 #include "Modules/tools.h"
-#include <string.h>
-int main(int argv, char *argc[])
+#include <math.h>
+double f1(double x)
 {
-    (void)argv;
-    int n = atoi(argc[1]);
-    char file[50] = "Output/";
-    strcat(file, argc[1]);
-    strcat(file, ".txt");
-    FILE *output = open_file(file, "w");
-    printf("Raices del polinomio de legendre de grado %d\n", n);
-    double *weights = obtain_weight(n);
-    free(weights);
-    fclose(output);
+    return x * cos(x);
+}
+double f2(double x)
+{
+    return x * exp(-x);
+}
+int main()
+{
+    int n_list[9] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+    char file_1[50] = "Output/f1.csv";
+    char file_2[50] = "Output/f2.csv";
+    double integral_1, integral_2;
+    FILE *output_1 = open_file(file_1, "w");
+    FILE *output_2 = open_file(file_2, "w");
+    fprintf(output_1, "n,result\n");
+    fprintf(output_2, "n,result\n");
+    for (int i = 0; i < 9; i++)
+    {
+        integral_1 = integrate_with_gauss(f1, pi, 0, n_list[i]);
+        integral_2 = integrate_with_gauss(f2, 0, -1, n_list[i]);
+        write_results(output_1, n_list[i], integral_1);
+        write_results(output_2, n_list[i], integral_2);
+    }
+    fclose(output_1);
+    fclose(output_2);
     return 0;
 }
