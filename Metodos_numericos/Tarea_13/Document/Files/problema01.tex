@@ -1,10 +1,20 @@
 \section*{Problema 1}
+
 \textbf{Implementa y evalúa las siguientes integrales usando la regla compuesta de Simpson 3/8 para n=\{3,6,9,12,15\} y muestra una gráfica de n contra el valor absoluto del error.}
 
+El integrando de $f(x)$ puede aproximarse como:
+
+\begin{equation}
+    \int_{a}^b f(x) = \frac{3h}{8} \sum_i^{n/3}  f(x_{3i-3})+3f(x_{3i-2})+3f(x_{3i-1}) +f(x_{3i}) \label{eq:problema1}
+\end{equation}
+
 \begin{enumerate}
-    \item \begin{equation*}
-              \int_{-1}^1 e^x dx
-          \end{equation*}
+    \item \begin{equation}
+              \int_{-1}^1 e^x dx \label{eq:problema1a}
+          \end{equation}
+
+          Usando la aproximación de Simpson (ecuación \ref{eq:problema1}) se obtuvieron los resultados mostrados en la tabla \ref{table:problema1a} y en la figura \ref{fig:problema1a}.
+
           \begin{table}[H]
               \centering
               \begin{tabular}{ccc} \hline
@@ -15,23 +25,30 @@
                   12              & 2.350425           & 0.000023            \\
                   15              & 2.350412           & 0.000010            \\ \hline
               \end{tabular}
+              \caption{Resultados y diferencia absoluta del algoritmo de la regla compuesta de Simpson 3/8 para diferentes valores de puntos dados.}
+              \label{table:problema1a}
           \end{table}
 
           \begin{figure}[H]
               \centering
               \begin{subfigure}[b]{8cm}
                   \includegraphics[width=8cm]{Graphics/problema01_fun_f1.png}
-                  \caption{}
+                  \caption{Resultados de la integral usando el algoritmo de la regla compuesta de Simpson.}
               \end{subfigure}
+              \hspace{0.25cm}
               \begin{subfigure}[b]{8cm}
                   \includegraphics[width=8cm]{Graphics/problema01_diff_f1.png}
-                  \caption{}
+                  \caption{Diferencia absoluta entre el algoritmo de Simpson y el valor análitico.}
               \end{subfigure}
-              \caption{}
+              \caption{Resultados usando el algoritmo de la regla compuesta de Simpson 3/8 con la ecuación \ref{eq:problema1a}.}
+              \label{fig:problema1a}
           \end{figure}
-    \item \begin{equation*}
-              \int_{-1}^{1} \frac{1}{x^2+1} dx
-          \end{equation*}
+
+    \item \begin{equation}
+              \int_{-1}^{1} \frac{1}{x^2+1} dx \label{eq:problema1b}
+          \end{equation}
+
+          Usando la aproximación de Simpson (ecuación \ref{eq:problema1}) se obtuvieron los resultados mostrados en la tabla \ref{table:problema1b} y en la figura \ref{fig:problema1b}.
 
           \begin{table}[H]
               \centering
@@ -43,19 +60,24 @@
                   12              & 1.570792           & 4.326795e-06        \\
                   15              & 1.570796           & 3.267949e-07        \\ \hline
               \end{tabular}
+              \caption{Resultados y diferencia absoluta del algoritmo de la regla compuesta de Simpson 3/8 para diferentes valores de puntos dados.}
+              \label{table:problema1b}
           \end{table}
 
           \begin{figure}[H]
               \centering
               \begin{subfigure}[b]{8cm}
                   \includegraphics[width=8cm]{Graphics/problema01_fun_f2.png}
-                  \caption{}
+                  \caption{Resultados de la integral usando el algoritmo de la regla compuesta de Simpson.}
               \end{subfigure}
               \begin{subfigure}[b]{8cm}
                   \includegraphics[width=8cm]{Graphics/problema01_diff_f2.png}
-                  \caption{}
+                  \caption{Diferencia absoluta entre el algoritmo de Simpson y el valor análitico.}
               \end{subfigure}
-              \caption{}
+              \caption{Resultados usando el algoritmo de la regla compuesta de Simpson 3/8 con la ecuación \ref{eq:problema1b}.}
+              \label{fig:problema1b}
           \end{figure}
 \end{enumerate}
+
+Considerando las figuras \ref{fig:problema1a} y \ref{fig:problema1b} se observa que a un mayor número de puntos se obtiene una mejor aproximación al valor análitico de la integral.
 
