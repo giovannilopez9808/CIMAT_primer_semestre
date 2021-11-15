@@ -1,0 +1,23 @@
+\section*{Problema 4}
+
+\textbf{Considera los siguientes datos de un estudio en Bélgica sobre la intención de voto entre 1000 parejas. Las variables $X_1$ , $X_2$ indican si la mujer, respectivamente el hombre, votará para un partido de la coalición (0) o de la oposición (1) en caso de que hubieran elecciones en ese momento.}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|cc}
+		        & $X_1=0$ & $X_1=1$ \\  \hline
+		$X_2=0$ & 245     & 170     \\
+		$X_2=1$ & 218     & 367
+	\end{tabular}
+\end{table}
+
+\begin{enumerate}
+	\item Calcula el oddsratio $\hat{R}$
+	\item Se puede mostrar que si el tamaño de la muestra va a $\infty$, la distribución de log( R̂) converge a una normal con promedio log($\hat{R}$), el verdadero log-oddsratio de la distribución subyacente, y con varianza
+
+	      \begin{equation*}
+		      \frac{1}{n_{0,0}} + \frac{1}{n_{0,1}} + \frac{1}{n_{1,0}} + \frac{1}{n_{1,1}}
+	      \end{equation*}
+
+	      donde $n_{i,j}$ es el número de  observaciones con $X_1=i$ y $X_2=j$. ¿Apoyas la hipótesis que la pareja vota de manera independiente ($\alpha=0.05$)?
+\end{enumerate}
