@@ -37,8 +37,8 @@ donde $\hat{\lambda}$ corresponde a la media aritmética.
 Calculando la segunda derivada de $log(\mathcal{L})$ para comprobar que el valor crítico ($\hat{\lambda}$) se trata de un máximo se obtiene lo siguiente:
 
 \begin{align*}
-	\frac{\partial^2 \log(\mathcal{L})}{\partial \lambda^2} & \geq 0 \\
-	-\frac{1}{\lambda^2} \sum x_i  \geq 0
+	\frac{\partial^2 \log(\mathcal{L})}{\partial \lambda^2} & < 0 \\
+	-\frac{1}{\lambda^2} \sum x_i  < 0
 \end{align*}
 
-como $\lambda^2 > 0$ y $x_i \in \{0,1,2,\dots\}$, entonces, la segunda derivada de $log(\mathcal{L})$ será siempre positiva, por lo tanto $log(\mathcal{L})$ es el estimador de máxima verosimilitud.
+como $\lambda^2 > 0$ y $x_i \in \{0,1,2,\dots\}$, entonces, la segunda derivada de $log(\mathcal{L})$ será siempre negativa, por lo tanto $log(\mathcal{L})$ es el estimador de máxima verosimilitud.
