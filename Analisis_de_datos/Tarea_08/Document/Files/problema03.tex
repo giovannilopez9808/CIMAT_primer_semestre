@@ -7,3 +7,38 @@
 \end{equation*}
 
 \textbf{Calcula el estimador de máxima verosimilitud para $\lambda$ en una muestra.}
+
+La función de máximo verosimilitud de la distribución es Poisson es:
+
+\begin{equation*}
+	\mathcal{L} = \prod_{i=1}^n e^{-\lambda} \frac{\lambda^x}{x!}
+\end{equation*}
+
+Entonces, la función log-verosimilitud es:
+
+\begin{align*}
+	log(\mathcal{L}) & = log\left (\prod_{i=1}^n e^{-\lambda} \frac{\lambda^x}{x!}\right )            \\
+	                 & = \sum_{i=1}^n log \left ( e^{-\lambda} \frac{\lambda^x}{x!}\right )           \\
+	                 & = \sum_{i=1}^n \left [ log(e^{-\lambda})+ log(\lambda^{x_i}) -log(x!) \right ] \\
+	                 & = \sum_{i=1}^n \left [ -\lambda +x_i log(\lambda) -log(x_i)\right ]            \\
+	log(\mathcal{L}) & = -\lambda n + log(\lambda) \sum x_i - \sum log(x_i!)
+\end{align*}
+
+Por lo que calculando el valor crítico de $log(\mathcal{L})$ se obtiene que:
+
+\begin{align*}
+	\frac{\partial \log(\mathcal{L})}{\partial \lambda} & = 0                    \\
+	-n  + \frac{\sum x_i}{\lambda}                      & = 0                    \\
+	\hat{\lambda}                                       & = \frac{1}{n} \sum x_i
+\end{align*}
+
+donde $\hat{\lambda}$ corresponde a la media aritmética.
+
+Calculando la segunda derivada de $log(\mathcal{L})$ para comprobar que el valor crítico ($\hat{\lambda}$) se trata de un máximo se obtiene lo siguiente:
+
+\begin{align*}
+	\frac{\partial^2 \log(\mathcal{L})}{\partial \lambda^2} & \geq 0 \\
+	-\frac{1}{\lambda^2} \sum x_i  \geq 0
+\end{align*}
+
+como $\lambda^2 > 0$ y $x_i \in \{0,1,2,\dots\}$, entonces, la segunda derivada de $log(\mathcal{L})$ será siempre positiva, por lo tanto $log(\mathcal{L})$ es el estimador de máxima verosimilitud.
