@@ -32,7 +32,7 @@ ggplot(
             "Exterior"
         )
     )
-ggsave("../problema07_histogram_2.png",
+ggsave("problema07_histogram_2.png",
     height = 1000,
     width = 1200,
     limitsize = FALSE,

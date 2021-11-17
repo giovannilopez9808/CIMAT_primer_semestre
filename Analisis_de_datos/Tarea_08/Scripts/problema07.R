@@ -14,7 +14,11 @@ mu <- mean(data$difference)
 print(obtain_ci(0.1))
 print(obtain_ci(0.05))
 print(obtain_ci(0.01))
-data_long <- data %>% gather(lane, value, outer.lane:inner.lane)
+data_long <- data %>% gather(
+    lane,
+    value,
+    outer.lane:inner.lane
+)
 theme_set(theme_classic())
 plot <- ggplot(
     data = data_long,
@@ -49,7 +53,7 @@ sigma <- sqrt((sigmax + sigmay) / n)
 meanx <- mean(data$inner.lane)
 meany <- mean(data$outer.lane)
 t_d <- (meanx - meany) / sigma
-print(c(t_d, pt(t_d, n - 1, lower.tail = FALSE)))
+print(c(t_d, pnorm(t_d, lower.tail = FALSE)))
 plot <- ggplot(
     data,
     aes(difference)
