@@ -44,7 +44,22 @@ El cual es un estimador insesgado para $Var(\bar{X}-\bar{Y})$, entonces, se pued
 	T_d = \frac{\bar{X}-\bar{Y}}{S_d}
 \end{equation*}
 
-El calculo de $T_d$ con los datos, da como resultado $1.2343$. El cual es un valor lejano a 0, por ende, la hipótesis es rechaza. Otra manera de comprobar esto es obteniendo el intervalo de confianza para las diferencias de tiempos de una misma carrera. La frecuencia de las diferencias de tiempos se muestra en la figura \ref{fig:problema07_histogram}.
+El calculo de $T_d$ con los datos, da como resultado $1.2343$. El cual es un valor lejano a 0, por ende, la hipótesis es rechaza. Otra manera de comprobar esto es obteniendo el intervalo de confianza para las diferencias de tiempos de una misma carrera. En la tabla \ref{table:problema7_intervalo_de_confianza} se muestran los intervalos de confianza para diferentes valores de $\alpha$. La hipótesis es aceptada en unicamente para $\alpha = 0.1$, esto es debido a que el el valor de 0 esta contenido en el intervalo. En cambio para $\alpha=0.05,0.01$ la hipótesis será rechazada.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc} \hline
+		$\mathbf{\alpha}$ & \textbf{Límite inferior} & \textbf{Límite superior} \\ \hline
+		0.1               & -1.5177627               & -0.1249646               \\
+		0.05              & -1.66300079              & 0.02027351               \\
+		0.01              & -1.9672386               & 0.3245113                \\ \hline
+	\end{tabular}
+	\caption{Intervalos de confianza para difentes valores de $\alpha$.}
+	\label{table:problema7_intervalo_de_confianza}
+\end{table}
+
+La frecuencia de las diferencias de tiempos se muestra en la figura \ref{fig:problema07_histogram}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{Graphics/problema07_histogram.png}

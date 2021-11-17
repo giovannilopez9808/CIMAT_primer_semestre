@@ -6,15 +6,15 @@
 Sea X una variable aleatoria tal que $X\sim Bern(0.5)$, entonces se tiene que $\mu=0.5$ y $\sigma^2 = 0.25$. Entonces el valor de  t para la distribución t-student es:
 
 \begin{equation*}
-    t_{100,\alpha} = \frac{0.58-\mu}{\frac{\sigma}{\sqrt{n}}}
+    Z_{\alpha} = \frac{\mu_{H0}-\mu}{\frac{\sigma}{\sqrt{n}}}
 \end{equation*}
 
 entonces
 
 \begin{align*}
-    t_{100,\alpha} & = \frac{0.58-0.5}{\frac{0.5}{\sqrt{100}}} \\
-                   & = \frac{0.08}{0.05}                       \\
-    t_{100,\alpha} & = 1.6
+    Z_{\alpha} & = \frac{0.58-0.5}{\frac{0.5}{\sqrt{100}}} \\
+               & = \frac{0.08}{0.05}                       \\
+    Z_{\alpha} & = 1.6
 \end{align*}
 
-por lo tanto usando la función \script{pt} con $t_{100,\alpha}$ se obtiene que el nivel de significancia es $\alpha=0.05639257$.
+por lo tanto usando la función \script{pnorm(1.6,lower.tail=F)} con $Z_{\alpha}$ se obtiene que el nivel de significancia es $\alpha=0.05479929$.
