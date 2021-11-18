@@ -32,4 +32,26 @@
 	      \end{equation*}
 
 	      donde $n_{i,j}$ es el número de  observaciones con $X_1=i$ y $X_2=j$. ¿Apoyas la hipótesis que la pareja vota de manera independiente ($\alpha=0.05$)?
+
+	      Calculando los intervalos de confianza, se tiene que:
+
+	      \begin{align*}
+		      \sigma^2 & = \frac{1}{n_{0,0}} + \frac{1}{n_{0,1}} + \frac{1}{n_{1,0}} + \frac{1}{n_{1,1}} \\
+		               & = \frac{1}{245} + \frac{1}{367} + \frac{1}{218} + \frac{1}{170}                 \\
+		               & = 0.01727594
+	      \end{align*}
+
+	      entonces:
+	      \begin{align*}
+		      cu & = exp(log(\hat{R}) + z_{\alpha/2} \sigma) \\
+		         & = exp(0.8863266 + (1.644854)(0.131438) )  \\
+		         & = exp(1.102523)                           \\
+		      cu & = 3.011754                                \\
+		      ci & = exp(log(\hat{R}) - z_{\alpha/2} \sigma) \\
+		         & = exp(0.8863266 - (1.644854)(0.131438) )  \\
+		         & = exp(0.6701303)                          \\
+		      ci & = 1.954492
+	      \end{align*}
+
+	      entonces el intervalo de confianza es $[1.954492,3.011754]$. Como este intervalo es mayor a 1, entonces, se puede interpretar como que si la mujer vota por una coalición, el hombre votara por una
 \end{enumerate}
