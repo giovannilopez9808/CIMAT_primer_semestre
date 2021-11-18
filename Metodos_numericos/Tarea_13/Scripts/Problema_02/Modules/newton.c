@@ -5,7 +5,7 @@ Calcula la derivada del polinimio de legendre dada una x
  */
 double obtain_derivate(double x, int i)
 {
-    double h = 1e-7;
+    double h = 1e-6;
     double pxi = legende_polynome(x, i);
     double pxj = legende_polynome(x + h, i);
     return (pxj - pxi) / h;

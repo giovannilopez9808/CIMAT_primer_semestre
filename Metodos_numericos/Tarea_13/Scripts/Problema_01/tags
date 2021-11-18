@@ -1,0 +1,35 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
+data	graphic.py	/^    data = pd.read_csv("{}{}".format(parameters["path data"],$/;"	v
+dataset	graphic.py	/^    dataset = parameters["datasets"][function]$/;"	v
+f1	graphic.py	/^def f1(x: float) -> float:$/;"	f
+f1	main.c	/^double f1(double x)$/;"	f
+f2	graphic.py	/^def f2(x: float) -> float:$/;"	f
+f2	main.c	/^double f2(double x)$/;"	f
+index_col	graphic.py	/^                       index_col=0)$/;"	v
+main	main.c	/^int main()$/;"	f
+obtain_h	Modules/simpson_algorithm.c	/^double obtain_h(double b, double a, int n)$/;"	f
+obtain_xi	Modules/simpson_algorithm.c	/^double obtain_xi(double a, int i, double h)$/;"	f
+open_file	Modules/tools.c	/^FILE *open_file(char *filename, char *mode)$/;"	f
+parameters	graphic.py	/^parameters = {"path data": "Output\/",$/;"	v
+plot	graphic.py	/^def plot(data: DataFrame, label_data: str, result: float, y_limits: str, dataset: dict, path: str, name: str) -> None:$/;"	f
+print_text	graphic.py	/^def print_text(data: DataFrame) -> None:$/;"	f
+result	graphic.py	/^    result = quad(dataset["function"], -1, 1)[0]$/;"	v
+simpson_H	Modules/simpson_algorithm.h	2;"	d
+simpson_method	Modules/simpson_algorithm.c	/^double simpson_method(double (*f)(double), double a, double b, int n)$/;"	f
+tools_H	Modules/tools.h	2;"	d
+write_results	Modules/tools.c	/^void write_results(FILE *output, int n, double result)$/;"	f

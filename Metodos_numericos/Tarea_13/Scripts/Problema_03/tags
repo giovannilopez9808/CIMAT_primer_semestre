@@ -1,0 +1,44 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	legendre_polynome.c\\$/;"	m
+change_x	Modules/gauss_quadrature.c	/^double change_x(double x, double b, double a)$/;"	f
+convergence	Modules/newton.c	/^int convergence(double x, int i)$/;"	f
+data	graphic.py	/^    data = pd.read_csv("{}{}".format(parameters["path data"],$/;"	v
+dataset	graphic.py	/^    dataset = parameters["datasets"][function]$/;"	v
+f1	graphic.py	/^def f1(x: float) -> float:$/;"	f
+f1	main.c	/^double f1(double x)$/;"	f
+f2	graphic.py	/^def f2(x: float) -> float:$/;"	f
+f2	main.c	/^double f2(double x)$/;"	f
+gauss_quadrature_H	Modules/gauss_quadrature.h	2;"	d
+index_col	graphic.py	/^                       index_col=0)$/;"	v
+integrate_with_gauss	Modules/gauss_quadrature.c	/^double integrate_with_gauss(double (*f)(double), double b, double a, int n)$/;"	f
+legende_polynome	Modules/legendre_polynome.c	/^double legende_polynome(double x, int n)$/;"	f
+legendre_H	Modules/legendre_polynome.h	2;"	d
+main	main.c	/^int main()$/;"	f
+newton_H	Modules/newton.h	2;"	d
+newton_method	Modules/newton.c	/^double newton_method(double x, int n)$/;"	f
+obtain_ai	Modules/legendre_polynome.c	/^double obtain_ai(int i, int n)$/;"	f
+obtain_derivate	Modules/legendre_polynome.c	/^double obtain_derivate(double x, int i)$/;"	f
+obtain_roots	Modules/legendre_polynome.c	/^double *obtain_roots(int n)$/;"	f
+obtain_weight	Modules/legendre_polynome.c	/^double *obtain_weight(int n)$/;"	f
+open_file	Modules/tools.c	/^FILE *open_file(char *filename, char *mode)$/;"	f
+parameters	graphic.py	/^parameters = {"path data": "Output\/",$/;"	v
+pi	Modules/legendre_polynome.h	5;"	d
+plot	graphic.py	/^def plot(data: DataFrame, label: str, limits: str, result: float, dataset: dict, path: str, name: str) -> None:$/;"	f
+result	graphic.py	/^    result = 0$/;"	v
+result	graphic.py	/^    result = quad(dataset["function"],$/;"	v
+tools_H	Modules/tools.h	2;"	d
+write_results	Modules/tools.c	/^void write_results(FILE *output, int n, double result)$/;"	f
