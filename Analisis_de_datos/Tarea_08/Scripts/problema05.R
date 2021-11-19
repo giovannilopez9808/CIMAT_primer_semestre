@@ -1,6 +1,9 @@
-library(ggplot2)
-library(Rlab)
-nboot <- 100
+suppressPackageStartupMessages({
+    library(ggplot2)
+    library(Rlab)
+})
+alpha <- 0.05
+nboot <- 1000
 n <- 100
 counts <- matrix(0, n)
 for (i in 1:n) {
@@ -22,24 +25,33 @@ data_bootstrap <- matrix(
 delta <- colMeans(data_bootstrap) - mu
 quantiles <- quantile(
     delta,
-    c(0.1, 0.9)
+    c(alpha / 2, 1 - alpha / 2)
 )
 ci <- mu - c(
-    quantiles[2],
-    quantiles[1]
+    quantiles[1],
+    quantiles[2]
 )
+
 theme_set(theme_classic())
 ggplot(
-    data.frame(x = delta),
+    data.frame(x = counts),
     aes(x = counts)
 ) +
-    geom_density() +
+    geom_density(
+        colour = "#560bad",
+        fill = "#3f37c9",
+        alpha = 0.5,
+    ) +
     ylab("Densidad") +
     xlab("Número de cambios")
 ggsave("problema05.png",
-    height = 1000,
+    height = 750,
     width = 1200,
     limitsize = FALSE,
     units = "px"
 )
 print(c(mu, ci))
+
+sigma <- sqrt(var(counts))
+p_value <- pt((abs(42 - mu) / (sigma / sqrt(n))), n - 1)
+print(p_value)
