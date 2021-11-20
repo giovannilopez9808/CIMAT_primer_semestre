@@ -41,13 +41,12 @@ for (data_person in data)
         data.frame(x = data_person),
         aes(x = data_person)
     ) +
-        geom_histogram(
+        geom_density(
             aes(y = ..count..),
-            bins = 5,
             fill = colors[i],
             alpha = 0.5,
         ) +
-        ylab("Frecuencia") +
+        ylab("Densidad") +
         xlab("Número de Taza")
     ggsave(name,
         height = 750,

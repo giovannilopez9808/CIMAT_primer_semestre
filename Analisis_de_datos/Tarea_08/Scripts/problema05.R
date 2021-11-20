@@ -53,5 +53,6 @@ ggsave("problema05.png",
 print(c(mu, ci))
 
 sigma <- sqrt(var(counts))
-p_value <- pt((abs(42 - mu) / (sigma / sqrt(n))), n - 1)
-print(p_value)
+p_value <- pnorm((abs(42 - mu) / (sqrt(sigma) / sqrt(n))),lower.tail=F)
+options(digits=22)
+print(c(mu,sigma,p_value))
