@@ -18,8 +18,8 @@
 
     Output, double VALUE[N], the prescribed value of U(X(:),T0).
 */
-void f(double a, double b, double t0, double t, int n, double x[],
-       double value[])
+void f(double a, double b, double t0, double t, int n, double *x,
+       double *value)
 {
   (void)a;
   (void)b;
@@ -75,7 +75,7 @@ void f(double a, double b, double t0, double t, int n, double x[],
     0, no singularity detected.
     nonzero, the factorization failed on the INFO-th step.
 */
-int r83_np_fa(int n, double a[])
+int r83_np_fa(int n, double *a)
 
 {
   int i;
@@ -132,7 +132,7 @@ int r83_np_fa(int n, double a[])
 
     Output, double R83_NP_SL[N], the solution of the linear system.
 */
-double *r83_np_sl(int n, double a_lu[], double b[])
+double *r83_np_sl(int n, double *a_lu, double *b)
 {
   double *x;
   x = (double *)malloc(n * sizeof(double));
@@ -169,58 +169,13 @@ double *r83_np_sl(int n, double a_lu[], double b[])
     Input, double X[N], the positions where initial data is needed.
     Output, double VALUE[N], the prescribed value of U(X,T0).
 */
-void obtain_u0(double a, double b, double t0, int n, double x[], double value[])
+void obtain_u0(double u0, double *vector, int n)
 {
-  int i;
-  (void)a;
-  (void)b;
-  (void)t0;
-  (void)x;
-  for (i = 0; i < n; i++)
+  for (int i = 0; i < n; i++)
   {
-    value[i] = 100.0;
+    vector[i] = u0;
   }
   return;
-}
-/*
-  Purpose:
-    obtain_ua returns the Dirichlet boundary condition at the left endpoint.
-
-  Parameters:
-    Input, double A, B, the left and right endpoints
-    Input, double T0, the initial time.
-    Input, double T, the current time.
-    Output, double obtain_ua, the prescribed value of U(A,T).
-*/
-double obtain_ua(double a, double b, double t0, double t)
-{
-  (void)a;
-  (void)b;
-  (void)t;
-  (void)t0;
-  double value;
-  value = 20.0;
-  return value;
-}
-/*
-  Purpose:
-    obtain_ub returns the Dirichlet boundary condition at the right endpoint.
-
-  Parameters:
-    Input, double A, B, the left and right endpoints
-    Input, double T0, the initial time.
-    Input, double T, the current time.
-    Output, double obtain_ub, the prescribed value of U(B,T).
-*/
-double obtain_ub(double a, double b, double t0, double t)
-{
-  (void)a;
-  (void)b;
-  (void)t0;
-  (void)t;
-  double value;
-  value = 2000.0;
-  return value;
 }
 /*
   The matrix A does not change with time.  We can set it once,
@@ -284,43 +239,43 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system()
+void solve_system(Parameters parameters)
 {
   double *a, *b, *fvec, *x, *t, *u;
   int i, j, x_num, t_num;
   char *u_file = "u.txt";
   double k, x_max, x_min, x_delta, t_max, t_min, t_delta;
-  k = 5.0E-07;
+  k = parameters.k;
   //   Set X values.
-  x_min = 0.0;
-  x_max = 0.3;
-  x_num = 50;
+  x_min = parameters.x_min;
+  x_max = parameters.x_max;
+  x_num = parameters.x_num;
   x_delta = (x_max - x_min) / (double)(x_num - 1);
   x = linspace(x_min, x_max, x_num);
   //   Set T values.
-  t_min = 0.0;
-  t_max = 100000.0;
-  t_num = 101;
+  t_min = parameters.t_min;
+  t_max = parameters.t_max;
+  t_num = parameters.t_num;
   t_delta = (t_max - t_min) / (double)(t_num - 1);
   t = linspace(t_min, t_max, t_num);
   b = (double *)malloc(x_num * sizeof(double));
   fvec = (double *)malloc(x_num * sizeof(double));
   // Set the initial data, for time T_MIN.
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  obtain_u0(x_min, x_max, t_min, x_num, x, u);
+  obtain_u0(parameters.u0, u, x_num);
   a = define_A_matrix(k, t_delta, x_delta, x_num);
   // Factor the matrix.
   r83_np_fa(x_num, a);
-  for (j = 0; j < t_num; j++)
+  for (j = 1; j < t_num; j++)
   {
     //   Set the right hand side B.
-    b[0] = obtain_ua(x_min, x_max, t_min, t[j]);
+    b[0] = parameters.ua;
     f(x_min, x_max, t_min, t[j - 1], x_num, x, fvec);
     for (i = 1; i < x_num - 1; i++)
     {
       b[i] = u[i + (j - 1) * x_num] + t_delta * fvec[i];
     }
-    b[x_num - 1] = obtain_ub(x_min, x_max, t_min, t[j]);
+    b[x_num - 1] = parameters.ub;
     free(fvec);
     fvec = r83_np_sl(x_num, a, b);
     for (i = 0; i < x_num; i++)
@@ -329,8 +284,6 @@ void solve_system()
     }
   }
   r8mat_write(u_file, x_num, t_num, u);
-  printf("\n");
-  printf("  U data written to \"%s\".\n", u_file);
   free(a);
   free(b);
   free(fvec);

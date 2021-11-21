@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -Wall -Wextra -Werror -pedantic -ansi -std=c11$/;"	m
+EXEC	Makefile	/^EXEC= main.out$/;"	m
+FOBJS	Makefile	/^FOBJS=$(FUNC:.c=.o)$/;"	m
+FUNC	Makefile	/^FUNC=$(patsubst %,$(IDIR)%,$(_FUNC))$/;"	m
+IDIR	Makefile	/^IDIR=Modules\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-std=c11 -lm$/;"	m
+OBJS	Makefile	/^OBJS=$(SOURCES:.c=.o)$/;"	m
+SOURCES	Makefile	/^SOURCES=main.c$/;"	m
+_FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
+aspect	graphics.py	/^           aspect="auto",$/;"	v
+cmap	graphics.py	/^           cmap="inferno")$/;"	v
+data	graphics.py	/^data = np.loadtxt("u.txt")$/;"	v
+data	graphics.py	/^data = np.transpose(data)$/;"	v
+define_A_matrix	Modules/heat_equation.c	/^double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)$/;"	f
+f	Modules/heat_equation.c	/^void f(double a, double b, double t0, double t, int n, double x[],$/;"	f
+heat_equation_H	Modules/heat_equation.h	2;"	d
+linspace	Modules/tools.c	/^double *linspace(double a, double b, int n)$/;"	f
+main	main.c	/^int main()$/;"	f
+obtain_u0	Modules/heat_equation.c	/^void obtain_u0(double a, double b, double t0, int n, double x[], double value[])$/;"	f
+obtain_ua	Modules/heat_equation.c	/^double obtain_ua(double a, double b, double t0, double t)$/;"	f
+obtain_ub	Modules/heat_equation.c	/^double obtain_ub(double a, double b, double t0, double t)$/;"	f
+r83_np_fa	Modules/heat_equation.c	/^int r83_np_fa(int n, double a[])$/;"	f
+r83_np_sl	Modules/heat_equation.c	/^double *r83_np_sl(int n, double a_lu[], double b[])$/;"	f
+r8mat_write	Modules/tools.c	/^void r8mat_write(char *output_filename, int m, int n, double table[])$/;"	f
+solve_system	Modules/heat_equation.c	/^void solve_system()$/;"	f
+time	graphics.py	/^time = np.linspace(0, 1, 101)$/;"	v
+tools_H	Modules/tools.h	2;"	d

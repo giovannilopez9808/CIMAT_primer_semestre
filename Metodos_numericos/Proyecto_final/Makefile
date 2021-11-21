@@ -20,7 +20,7 @@ clean:
 	rm -f $(OBJS) $(FOBJS) $(EXEC)
 
 valgrind:
-	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out test.txt
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./main.out
 
 run:
-	./main.out test.txt
+	./main.out
