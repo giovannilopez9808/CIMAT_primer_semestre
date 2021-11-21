@@ -1,45 +1,31 @@
 #include "heat_equation.h"
-
 /*
   Purpose:
     F returns the right hand side of the heat equation.
 
   Parameters:
-
     Input, double A, B, the left and right endpoints.
-
     Input, double T0, the initial time.
-
     Input, double T, the current time.
-
-    Input, int N, the number of points.
-
+    Input, int N, the number of point.
     Input, double X[N], the current spatial positions.
 
     Output, double VALUE[N], the prescribed value of U(X(:),T0).
 */
-void f(double a, double b, double t0, double t, int n, double *x,
-       double *value)
+void create_vector(double value, double *vector, int n)
 {
-  (void)a;
-  (void)b;
-  (void)t0;
-  (void)t;
-  (void)n;
-  (void)x;
   int i;
 
-  for (i = 0; i < n; i++)
+  for (i = 1; i < n - 1; i++)
   {
-    value[i] = 0.0;
+    vector[i] = value;
   }
-  return;
 }
 
 /*
   Purpose:
 
-    R83_NP_FA factors a R83 system without pivoting.
+    obtain_factorization factors a R83 system without pivoting.
 
   Discussion:
 
@@ -52,7 +38,7 @@ void f(double a, double b, double t0, double t, int n, double *x,
     the matrix is not singular, and it is liable to make larger
     errors.
 
-    R83_NP_FA and R83_NP_SL may be preferable to the corresponding
+    obtain_factorization and solve_matrix may be preferable to the corresponding
     LINPACK routine SGTSL for tridiagonal systems, which factors and solves
     in one step, and does not save the factorization.
 
@@ -71,48 +57,41 @@ void f(double a, double b, double t0, double t, int n, double *x,
     Input/output, double A[3*N].
     On input, the tridiagonal matrix.  On output, factorization information.
 
-    Output, int R83_NP_FA, singularity flag.
+    Output, int obtain_factorization, singularity flag.
     0, no singularity detected.
     nonzero, the factorization failed on the INFO-th step.
 */
-int r83_np_fa(int n, double *a)
+int obtain_factorization(int n, double *a)
 
 {
-  int i;
-
-  for (i = 1; i <= n - 1; i++)
+  for (int i = 1; i < n; i++)
   {
     if (a[1 + (i - 1) * 3] == 0.0)
     {
       printf("\n");
-      printf("R83_NP_FA - Fatal error!\n");
+      printf("obtain_factorization - Fatal error!\n");
       printf("  Zero pivot on step %d\n", i);
       return i;
     }
-    /*
-      Store the multiplier in L.
-    */
+    // Store the multiplier in L.
     a[2 + (i - 1) * 3] = a[2 + (i - 1) * 3] / a[1 + (i - 1) * 3];
-    /*
-      Modify the diagonal entry in the next column.
-    */
+    // Modify the diagonal entry in the next column.
     a[1 + i * 3] = a[1 + i * 3] - a[2 + (i - 1) * 3] * a[0 + i * 3];
   }
 
   if (a[1 + (n - 1) * 3] == 0.0)
   {
     printf("\n");
-    printf("R83_NP_FA - Fatal error!\n");
+    printf("obtain_factorization - Fatal error!\n");
     printf("  Zero pivot on step %d\n", n);
     return n;
   }
-
   return 0;
 }
 
 /*
   Purpose:
-    R83_NP_SL solves a R83 system factored by R83_NP_FA.
+    solve_matrix solves a R83 system factored by obtain_factorization.
 
   Discussion:
     The R83 storage format is used for a tridiagonal matrix.
@@ -123,42 +102,42 @@ int r83_np_fa(int n, double *a)
   Parameters:
     Input, int N, the order of the matrix.
     N must be at least 2.
-    Input, double A_LU[3*N], the LU factors from R83_NP_FA.
+    Input, double matrix[3*N], the LU factors from obtain_factorization.
     Input, double B[N], the right hand side of the linear system.
     On output, B contains the solution of the linear system.
     Input, int JOB, specifies the system to solve.
     0, solve A * x = b.
     nonzero, solve A' * x = b.
 
-    Output, double R83_NP_SL[N], the solution of the linear system.
+    Output, double solve_matrix[N], the solution of the linear system.
 */
-double *r83_np_sl(int n, double *a_lu, double *b)
+double *solve_matrix(int n, double *matrix, double *vector)
 {
   double *x;
   x = (double *)malloc(n * sizeof(double));
   for (int i = 0; i < n; i++)
   {
-    x[i] = b[i];
+    x[i] = vector[i];
   }
   // Solve L * Y = B.
   for (int i = 1; i < n; i++)
   {
-    x[i] = x[i] - a_lu[2 + (i - 1) * 3] * x[i - 1];
+    x[i] = x[i] - matrix[2 + (i - 1) * 3] * x[i - 1];
   }
-  //   Solve U * X = Y.
+  // Solve U * X = Y.
   for (int i = n; 1 <= i; i--)
   {
-    x[i - 1] = x[i - 1] / a_lu[1 + (i - 1) * 3];
-    if (1 < i)
+    x[i - 1] = x[i - 1] / matrix[1 + (i - 1) * 3];
+    if (i > 1)
     {
-      x[i - 2] = x[i - 2] - a_lu[0 + (i - 1) * 3] * x[i - 1];
+      x[i - 2] = x[i - 2] - matrix[0 + (i - 1) * 3] * x[i - 1];
     }
   }
   return x;
 }
 /*
   Purpose:
-    obtain_u0 returns the initial condition at the starting time.
+    set_initial_state returns the initial condition at the starting time.
 
   Parameters:
 
@@ -169,13 +148,15 @@ double *r83_np_sl(int n, double *a_lu, double *b)
     Input, double X[N], the positions where initial data is needed.
     Output, double VALUE[N], the prescribed value of U(X,T0).
 */
-void obtain_u0(double u0, double *vector, int n)
+void set_initial_state(Parameters parameters, double x_delta, double t_delta, double *vector, int n, double (*fxt)(double, double))
 {
+  double f;
   for (int i = 0; i < n; i++)
   {
-    vector[i] = u0;
+    f = fxt(i * x_delta + parameters.x_min,
+            i * t_delta + parameters.t_min);
+    vector[i] = f + parameters.u0;
   }
-  return;
 }
 /*
   The matrix A does not change with time.  We can set it once,
@@ -185,9 +166,9 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
 {
   double w = k * t_delta / x_delta / x_delta;
   double *a = (double *)malloc(3 * x_num * sizeof(double));
-  a[0 + 0 * 3] = 0.0;
-  a[1 + 0 * 3] = 1.0;
-  a[0 + 1 * 3] = 0.0;
+  a[0] = 0.0;
+  a[1] = 1.0;
+  a[3] = 0.0;
   for (int i = 1; i < x_num - 1; i++)
   {
     a[2 + (i - 1) * 3] = -w;
@@ -201,11 +182,9 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
 }
 /*
   Purpose:
-
     MAIN is the main program for FD1D_HEAT_IMPLICIT.
 
   Discussion:
-
     FD1D_HEAT_IMPLICIT solves the 1D heat equation with an implicit method.
 
     This program solves
@@ -219,7 +198,7 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
 
     over the time interval [T0,T1] with initial conditions
 
-      U(X,T0) = obtain_u0(X)
+      U(X,T0) = set_initial_state(X)
 
     The code uses the finite difference method to approximate the
     second derivative in space, and an implicit backward Euler approximation
@@ -239,10 +218,10 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters parameters)
+void solve_system(Parameters parameters, double (*fxt)(double, double))
 {
   double *a, *b, *fvec, *x, *t, *u;
-  int i, j, x_num, t_num;
+  int x_num, t_num;
   char *u_file = "u.txt";
   double k, x_max, x_min, x_delta, t_max, t_min, t_delta;
   k = parameters.k;
@@ -262,25 +241,25 @@ void solve_system(Parameters parameters)
   fvec = (double *)malloc(x_num * sizeof(double));
   // Set the initial data, for time T_MIN.
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  obtain_u0(parameters.u0, u, x_num);
+  set_initial_state(parameters, x_delta, t_delta, u, x_num, fxt);
   a = define_A_matrix(k, t_delta, x_delta, x_num);
   // Factor the matrix.
-  r83_np_fa(x_num, a);
-  for (j = 1; j < t_num; j++)
+  obtain_factorization(x_num, a);
+  for (int i = 1; i < t_num; i++)
   {
     //   Set the right hand side B.
     b[0] = parameters.ua;
-    f(x_min, x_max, t_min, t[j - 1], x_num, x, fvec);
-    for (i = 1; i < x_num - 1; i++)
-    {
-      b[i] = u[i + (j - 1) * x_num] + t_delta * fvec[i];
-    }
     b[x_num - 1] = parameters.ub;
-    free(fvec);
-    fvec = r83_np_sl(x_num, a, b);
-    for (i = 0; i < x_num; i++)
+    create_vector(0.0, fvec, x_num);
+    for (int j = 1; j < x_num - 1; j++)
     {
-      u[i + j * x_num] = fvec[i];
+      b[j] = u[j + (i - 1) * x_num] + t_delta * fvec[j];
+    }
+    free(fvec);
+    fvec = solve_matrix(x_num, a, b);
+    for (int j = 0; j < x_num; j++)
+    {
+      u[j + i * x_num] = fvec[j];
     }
   }
   r8mat_write(u_file, x_num, t_num, u);
