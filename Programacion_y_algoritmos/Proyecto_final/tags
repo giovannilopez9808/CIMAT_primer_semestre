@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Tensor	Modules/tensor.h	/^Tensor<type>::Tensor($/;"	f	class:Tensor
+Tensor	Modules/tensor.h	/^Tensor<type>::Tensor()$/;"	f	class:Tensor
+Tensor	Modules/tensor.h	/^class Tensor$/;"	c
+diff	Modules/tensor.h	/^Tensor<type> *Tensor<type>::diff(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
+div	Modules/tensor.h	/^Tensor<type> *Tensor<type>::div(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
+f1	main.cpp	/^void f1(Tensor<double> &val)$/;"	f
+get_data	Modules/tensor.h	/^type *Tensor<type>::get_data()$/;"	f	class:Tensor
+m_cols	Modules/tensor.h	/^    size_t m_cols;$/;"	m	class:Tensor
+m_data	Modules/tensor.h	/^    std::shared_ptr<type> m_data;$/;"	m	class:Tensor
+m_ranks	Modules/tensor.h	/^    size_t m_ranks;$/;"	m	class:Tensor
+m_rows	Modules/tensor.h	/^    size_t m_rows;$/;"	m	class:Tensor
+main	main.cpp	/^int main()$/;"	f
+mult	Modules/tensor.h	/^Tensor<type> *Tensor<type>::mult(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
+operator *	Modules/tensor.h	/^Tensor<type> *Tensor<type>::operator*(const Tensor<type> &operand)$/;"	f	class:Tensor
+operator +	Modules/tensor.h	/^Tensor<type> *Tensor<type>::operator+(const Tensor<type> &operand)$/;"	f	class:Tensor
+operator -	Modules/tensor.h	/^Tensor<type> *Tensor<type>::operator-(const Tensor<type> &operand)$/;"	f	class:Tensor
+operator /	Modules/tensor.h	/^Tensor<type> *Tensor<type>::operator\/(const Tensor<type> &operand)$/;"	f	class:Tensor
+sum	Modules/tensor.h	/^Tensor<type> *Tensor<type>::sum(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
+tensor_H	Modules/tensor.h	2;"	d
+~Tensor	Modules/tensor.h	/^Tensor<type>::~Tensor()$/;"	f	class:Tensor
