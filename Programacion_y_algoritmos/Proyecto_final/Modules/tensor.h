@@ -32,6 +32,8 @@ public:
     Tensor<type> *operator-(const Tensor<type> &operand);
     Tensor<type> *operator/(const Tensor<type> &operand);
     size_t get_ranks();
+    size_t get_cols();
+    size_t get_rows();
     type *get_data();
     ~Tensor();
 };
@@ -59,16 +61,16 @@ Tensor<type> *Tensor<type>::operator/(const Tensor<type> &operand)
 template <typename type>
 type *Tensor<type>::get_data()
 {
-    m_data.get();
+    return m_data.get();
 }
 template <typename type>
 Tensor<type> *Tensor<type>::sum(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)
 {
     const auto pa = a.get();
     const auto pb = b.get();
-    Tensor<type> tensor(m_rank, m_cols, m_rows);
+    Tensor<type> tensor(m_ranks, m_cols, m_rows);
     const auto result = tensor.m_data.get();
-    for (int n = 0; n < m_rank * m_cols * m_rows; n++)
+    for (int n = 0; n < m_ranks * m_cols * m_rows; n++)
     {
         result[n] = pa[n] + pb[n];
     }
@@ -79,9 +81,9 @@ Tensor<type> *Tensor<type>::diff(std::shared_ptr<type[]> a, std::shared_ptr<type
 {
     const auto pa = a.get();
     const auto pb = b.get();
-    Tensor<type> tensor(m_rank, m_cols, m_rows);
+    Tensor<type> tensor(m_ranks, m_cols, m_rows);
     const auto result = tensor.m_data.get();
-    for (int n = 0; n < m_rank * m_cols * m_rows; n++)
+    for (int n = 0; n < m_ranks * m_cols * m_rows; n++)
     {
         result[n] = pa[n] - pb[n];
     }
@@ -93,9 +95,9 @@ Tensor<type> *Tensor<type>::mult(std::shared_ptr<type[]> a, std::shared_ptr<type
 {
     const auto pa = a.get();
     const auto pb = b.get();
-    Tensor<type> tensor(m_rank, m_cols, m_rows);
+    Tensor<type> tensor(m_ranks, m_cols, m_rows);
     const auto result = tensor.m_data.get();
-    for (int n = 0; n < m_rank * m_cols * m_rows; n++)
+    for (int n = 0; n < m_ranks * m_cols * m_rows; n++)
     {
         result[n] = pa[n] * pb[n];
     }
@@ -107,9 +109,9 @@ Tensor<type> *Tensor<type>::div(std::shared_ptr<type[]> a, std::shared_ptr<type[
 {
     const auto pa = a.get();
     const auto pb = b.get();
-    Tensor<type> tensor(m_rank, m_cols, m_rows);
+    Tensor<type> tensor(m_ranks, m_cols, m_rows);
     const auto result = tensor.m_data.get();
-    for (int n = 0; n < m_rank * m_cols * m_rows; n++)
+    for (int n = 0; n < m_ranks * m_cols * m_rows; n++)
     {
         result[n] = pa[n] / pb[n];
     }
@@ -142,6 +144,17 @@ Tensor<type>::Tensor(
     m_data = std::make_shared<type>(new Tensor[m_ranks * m_rows * m_cols]);
 }
 template <typename type>
+Tensor<type>::Tensor(type *data,
+                     size_t ranks,
+                     size_t cols,
+                     size_t rows)
+{
+    m_ranks = ranks;
+    m_cols = cols;
+    m_rows = rows;
+    m_data = std::make_shared<type>(*data);
+}
+template <typename type>
 Tensor<type>::Tensor(
     const Tensor &copy)
 {
@@ -153,5 +166,20 @@ Tensor<type>::Tensor(
 template <typename type>
 Tensor<type>::~Tensor()
 {
+}
+template <typename type>
+size_t Tensor<type>::get_ranks()
+{
+    return m_ranks;
+}
+template <typename type>
+size_t Tensor<type>::get_cols()
+{
+    return m_cols;
+}
+template <typename type>
+size_t Tensor<type>::get_rows()
+{
+    return m_rows;
 }
 #endif
