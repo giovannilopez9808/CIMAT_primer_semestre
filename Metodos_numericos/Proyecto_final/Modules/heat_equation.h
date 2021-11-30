@@ -8,5 +8,5 @@ typedef struct Parameters_t
     double t_min, t_max, t_num;
     double k, u0, ua, ub;
 } Parameters;
-void solve_system(Parameters, double (*fxt)(double, double));
+void solve_system(Parameters);
 #endif

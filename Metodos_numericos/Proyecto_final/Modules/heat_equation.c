@@ -148,14 +148,11 @@ double *solve_matrix(int n, double *matrix, double *vector)
     Input, double X[N], the positions where initial data is needed.
     Output, double VALUE[N], the prescribed value of U(X,T0).
 */
-void set_initial_state(Parameters parameters, double x_delta, double t_delta, double *vector, int n, double (*fxt)(double, double))
+void set_initial_state(Parameters parameters, double *vector, int n)
 {
-  double f;
   for (int i = 0; i < n; i++)
   {
-    f = fxt(i * x_delta + parameters.x_min,
-            i * t_delta + parameters.t_min);
-    vector[i] = f + parameters.u0;
+    vector[i] =parameters.u0;
   }
 }
 /*
@@ -218,7 +215,7 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters parameters, double (*fxt)(double, double))
+void solve_system(Parameters parameters)
 {
   double *a, *b, *fvec, *x, *t, *u;
   int x_num, t_num;
@@ -241,7 +238,7 @@ void solve_system(Parameters parameters, double (*fxt)(double, double))
   fvec = (double *)malloc(x_num * sizeof(double));
   // Set the initial data, for time T_MIN.
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  set_initial_state(parameters, x_delta, t_delta, u, x_num, fxt);
+  set_initial_state(parameters,u, x_num);
   a = define_A_matrix(k, t_delta, x_delta, x_num);
   // Factor the matrix.
   obtain_factorization(x_num, a);
@@ -250,7 +247,7 @@ void solve_system(Parameters parameters, double (*fxt)(double, double))
     //   Set the right hand side B.
     b[0] = parameters.ua;
     b[x_num - 1] = parameters.ub;
-    create_vector(0.0, fvec, x_num);
+    create_vector(1.0, fvec, x_num);
     for (int j = 1; j < x_num - 1; j++)
     {
       b[j] = u[j + (i - 1) * x_num] + t_delta * fvec[j];
