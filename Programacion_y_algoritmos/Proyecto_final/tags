@@ -6,11 +6,15 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Tensor	Modules/tensor.h	/^Tensor<type>::Tensor($/;"	f	class:Tensor
 Tensor	Modules/tensor.h	/^Tensor<type>::Tensor()$/;"	f	class:Tensor
+Tensor	Modules/tensor.h	/^Tensor<type>::Tensor(type *data,$/;"	f	class:Tensor
 Tensor	Modules/tensor.h	/^class Tensor$/;"	c
 diff	Modules/tensor.h	/^Tensor<type> *Tensor<type>::diff(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
 div	Modules/tensor.h	/^Tensor<type> *Tensor<type>::div(std::shared_ptr<type[]> a, std::shared_ptr<type[]> b)$/;"	f	class:Tensor
 f1	main.cpp	/^void f1(Tensor<double> &val)$/;"	f
+get_cols	Modules/tensor.h	/^size_t Tensor<type>::get_cols()$/;"	f	class:Tensor
 get_data	Modules/tensor.h	/^type *Tensor<type>::get_data()$/;"	f	class:Tensor
+get_ranks	Modules/tensor.h	/^size_t Tensor<type>::get_ranks()$/;"	f	class:Tensor
+get_rows	Modules/tensor.h	/^size_t Tensor<type>::get_rows()$/;"	f	class:Tensor
 m_cols	Modules/tensor.h	/^    size_t m_cols;$/;"	m	class:Tensor
 m_data	Modules/tensor.h	/^    std::shared_ptr<type> m_data;$/;"	m	class:Tensor
 m_ranks	Modules/tensor.h	/^    size_t m_ranks;$/;"	m	class:Tensor

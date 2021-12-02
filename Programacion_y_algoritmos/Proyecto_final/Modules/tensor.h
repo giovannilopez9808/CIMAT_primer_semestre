@@ -1,11 +1,12 @@
 #ifndef tensor_H
 #define tensor_H
+#include <iostream>
 #include <memory>
 template <typename type>
 class Tensor
 {
 private:
-    std::shared_ptr<type> m_data;
+    std::shared_ptr<type[]> m_data;
     size_t m_ranks;
     size_t m_cols;
     size_t m_rows;
@@ -152,7 +153,7 @@ Tensor<type>::Tensor(type *data,
     m_ranks = ranks;
     m_cols = cols;
     m_rows = rows;
-    m_data = std::make_shared<type>(*data);
+    m_data = std::shared_ptr<type[]>(data);
 }
 template <typename type>
 Tensor<type>::Tensor(
