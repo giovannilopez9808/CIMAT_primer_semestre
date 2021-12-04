@@ -1,9 +1,4 @@
 #include "Modules/heat_equation.h"
-double fxt(double x, double t)
-{
-    double fx = exp(5 * x) - exp(-0.5 * t);
-    return fx;
-}
 int main()
 {
     Parameters parameters;
@@ -17,6 +12,6 @@ int main()
     parameters.u0 = 0;
     parameters.ua = 0;
     parameters.ub = 0;
-    solve_system(parameters, fxt);
+    solve_system(parameters);
     return 0;
 }
