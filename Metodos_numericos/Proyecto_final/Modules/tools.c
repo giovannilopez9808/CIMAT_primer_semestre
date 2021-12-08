@@ -1,5 +1,5 @@
 #include "tools.h"
-void write_results(char *output_filename, int m, int n, double table[])
+void write_results(char *output_filename, int m, int n, double *table)
 /*
   Purpose:
     write_results writes an R8MAT file.

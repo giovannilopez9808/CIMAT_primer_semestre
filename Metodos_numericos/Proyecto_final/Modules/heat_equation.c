@@ -13,7 +13,13 @@ void create_vector(double value, double *vector, int n)
     vector[i] = value;
   }
 }
+/*
+  Validación del proceso de factorizacion de matriz. Si el valor es cero, el programa se detiene.
 
+  Parametros:
+    Input, double* matrix, matriz que se va a factorizar
+    Input, int i, posicion del valor a checar
+ */
 void valid_obtain_factorization(double *matrix, int i)
 {
   if (matrix[1 + (i - 1) * 3] == 0.0)
@@ -153,52 +159,57 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters Parametros)
+void solve_system(Parameters parameters)
 {
-  double *a, *b, *fvec, *x, *t, *u;
+  double *matrix, *b, *fvec, *x, *t, *u;
   int x_num, t_num;
-  char *u_file = "u.txt";
+  char *u_file = "Output/output.txt";
   double k, x_max, x_min, x_delta, t_max, t_min, t_delta;
-  k = Parametros.k;
-  //   Set X values.
-  x_min = Parametros.x_min;
-  x_max = Parametros.x_max;
-  x_num = Parametros.x_num;
+  k = parameters.k;
+  // Guardado de los datos espaciales
+  x_min = parameters.x_min;
+  x_max = parameters.x_max;
+  x_num = parameters.x_num;
   x_delta = (x_max - x_min) / (double)(x_num - 1);
   x = linspace(x_min, x_max, x_num);
-  //   Set T values.
-  t_min = Parametros.t_min;
-  t_max = Parametros.t_max;
-  t_num = Parametros.t_num;
+  // Guardado de los valores temporales
+  t_min = parameters.t_min;
+  t_max = parameters.t_max;
+  t_num = parameters.t_num;
   t_delta = (t_max - t_min) / (double)(t_num - 1);
   t = linspace(t_min, t_max, t_num);
   b = (double *)malloc(x_num * sizeof(double));
   fvec = (double *)malloc(x_num * sizeof(double));
-  // Set the initial data, for time T_MIN.
+  // Datos iniciales para el tiempo t_min
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  set_initial_state(Parametros, u, x_num);
-  a = define_A_matrix(k, t_delta, x_delta, x_num);
-  // Factor the matrix.
-  obtain_factorization(x_num, a);
+  set_initial_state(parameters, u, x_num);
+  matrix = define_A_matrix(k, t_delta, x_delta, x_num);
+  // Factorizacion de la matriz tridiagonal
+  obtain_factorization(x_num, matrix);
   for (int i = 1; i < t_num; i++)
   {
-    //   Set the right hand side B.
-    b[0] = Parametros.ua;
-    b[x_num - 1] = Parametros.ub;
+    // Definicion del vector B
+    b[0] = parameters.ua;
+    b[x_num - 1] = parameters.ub;
+    // Creacion del vector
     create_vector(1.0, fvec, x_num);
+    // Aporte temporal
     for (int j = 1; j < x_num - 1; j++)
     {
       b[j] = u[j + (i - 1) * x_num] + t_delta * fvec[j];
     }
     free(fvec);
-    fvec = solve_matrix(x_num, a, b);
+    // Solucion del sistema
+    fvec = solve_matrix(x_num, matrix, b);
+    // Guardado de los resultados
     for (int j = 0; j < x_num; j++)
     {
       u[j + i * x_num] = fvec[j];
     }
   }
+  // Escritura de los resultados en un archivo
   write_results(u_file, x_num, t_num, u);
-  free(a);
+  free(matrix);
   free(b);
   free(fvec);
   free(t);
