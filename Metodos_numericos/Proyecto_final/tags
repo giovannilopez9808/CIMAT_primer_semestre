@@ -22,16 +22,14 @@ create_vector	Modules/heat_equation.c	/^void create_vector(double value, double 
 data	graphics.py	/^data = np.loadtxt("u.txt")$/;"	v
 data	graphics.py	/^data = np.transpose(data)$/;"	v
 define_A_matrix	Modules/heat_equation.c	/^double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)$/;"	f
-fxt	main.c	/^double fxt(double x, double t)$/;"	f
 heat_equation_H	Modules/heat_equation.h	2;"	d
 k	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
 linspace	Modules/tools.c	/^double *linspace(double a, double b, int n)$/;"	f
 main	main.c	/^int main()$/;"	f
-obtain_factorization	Modules/heat_equation.c	/^int obtain_factorization(int n, double *a)$/;"	f
-r8mat_write	Modules/tools.c	/^void r8mat_write(char *output_filename, int m, int n, double table[])$/;"	f
-set_initial_state	Modules/heat_equation.c	/^void set_initial_state(Parameters parameters, double x_delta, double t_delta, double *vector, int n, double (*fxt)(double, double))$/;"	f
+obtain_factorization	Modules/heat_equation.c	/^void obtain_factorization(int dimension, double *matrix)$/;"	f
+set_initial_state	Modules/heat_equation.c	/^void set_initial_state(Parameters parameters, double *vector, int n)$/;"	f
 solve_matrix	Modules/heat_equation.c	/^double *solve_matrix(int n, double *matrix, double *vector)$/;"	f
-solve_system	Modules/heat_equation.c	/^void solve_system(Parameters parameters, double (*fxt)(double, double))$/;"	f
+solve_system	Modules/heat_equation.c	/^void solve_system(Parameters Parametros)$/;"	f
 t_max	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
 t_min	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
 t_num	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
@@ -40,6 +38,8 @@ tools_H	Modules/tools.h	2;"	d
 u0	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
 ua	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
 ub	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
+valid_obtain_factorization	Modules/heat_equation.c	/^void valid_obtain_factorization(double *matrix, int i)$/;"	f
+write_results	Modules/tools.c	/^void write_results(char *output_filename, int m, int n, double table[])$/;"	f
 x_max	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
 x_min	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
 x_num	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
