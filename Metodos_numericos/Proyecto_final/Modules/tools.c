@@ -1,8 +1,8 @@
 #include "tools.h"
-void r8mat_write(char *output_filename, int m, int n, double table[])
+void write_results(char *output_filename, int m, int n, double table[])
 /*
   Purpose:
-    R8MAT_WRITE writes an R8MAT file.
+    write_results writes an R8MAT file.
   Discussion:
     An R8MAT is an array of R8's.
   Parameters:
@@ -19,7 +19,7 @@ void r8mat_write(char *output_filename, int m, int n, double table[])
   if (!output)
   {
     printf("\n");
-    printf("R8MAT_WRITE - Fatal error!\n");
+    printf("write_results - Fatal error!\n");
     printf("  Could not open the output file.\n");
     return;
   }

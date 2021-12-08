@@ -46,92 +46,74 @@ void obtain_factorization(int dimension, double *matrix)
 }
 
 /*
-  Purpose:
-    solve_matrix solves a R83 system factored by obtain_factorization.
-
-  Discussion:
-    The R83 storage format is used for a tridiagonal matrix.
-    The superdiagonal is stored in entries (1,2:N), the diagonal in
-    entries (2,1:N), and the subdiagonal in (3,1:N-1).  Thus, the
-    original matrix is "collapsed" vertically into the array.
+  Resuelve el sistema de ecuaciones obtenido de la matriz de la funcion obtain_factorization
 
   Parametros:
-    Input, int N, the order of the matrix.
-    N must be at least 2.
-    Input, double matrix[3*N], the LU factors from obtain_factorization.
-    Input, double B[N], the right hand side of the linear system.
-    On output, B contains the solution of the linear system.
-    Input, int JOB, specifies the system to solve.
-    0, solve A * x = b.
-    nonzero, solve A' * x = b.
-
-    Output, double solve_matrix[N], the solution of the linear system.
+    Input, int n, dimension de la matriz.
+    Input, double* matrix, factorizacion LU de obtain_factorization.
+    Input, double* vector, vector del lado izquierdo del sistema lienal.
+    Output, double* solution, solucion del sistema de ecuaciones.
 */
 double *solve_matrix(int n, double *matrix, double *vector)
 {
-  double *x;
-  x = (double *)malloc(n * sizeof(double));
+  double *solution;
+  solution = (double *)malloc(n * sizeof(double));
   for (int i = 0; i < n; i++)
   {
-    x[i] = vector[i];
+    solution[i] = vector[i];
   }
-  // Solve L * Y = B.
+  // Resuelve L * Y = B.
   for (int i = 1; i < n; i++)
   {
-    x[i] = x[i] - matrix[2 + (i - 1) * 3] * x[i - 1];
+    solution[i] = solution[i] - matrix[2 + (i - 1) * 3] * solution[i - 1];
   }
-  // Solve U * X = Y.
+  // Resuelve U * X = Y.
   for (int i = n; 1 <= i; i--)
   {
-    x[i - 1] = x[i - 1] / matrix[1 + (i - 1) * 3];
+    solution[i - 1] = solution[i - 1] / matrix[1 + (i - 1) * 3];
     if (i > 1)
     {
-      x[i - 2] = x[i - 2] - matrix[0 + (i - 1) * 3] * x[i - 1];
+      solution[i - 2] = solution[i - 2] - matrix[0 + (i - 1) * 3] * solution[i - 1];
     }
   }
-  return x;
+  return solution;
 }
 /*
-  Purpose:
-    set_initial_state returns the initial condition at the starting time.
+  Crea el estado inicial del sistema
 
   Parametros:
-
-    Input, double A, B, the left and right endpoints
-    Input, double T0, the initial time.
-    Input, double T, the current time.
-    Input, int N, the number of points where initial data is needed.
-    Input, double X[N], the positions where initial data is needed.
-    Output, double VALUE[N], the prescribed value of U(X,T0).
+    Input, Parameters parameters, estructura que contiene valor del estado inicial
+    Input, int n, numero de puntos.
+    Input, double* vector, datos de cada posicion.
 */
-void set_initial_state(Parameters Parametros, double *vector, int n)
+void set_initial_state(Parameters parameters, double *vector, int n)
 {
   for (int i = 0; i < n; i++)
   {
-    vector[i] = Parametros.u0;
+    vector[i] = parameters.u0;
   }
 }
 /*
-  The matrix A does not change with time.  We can set it once,
-  factor it once, and solve repeatedly.
+  La matriz A no cambia en el tiempo
 */
 double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
 {
+  // Definicion de w
   double w = k * t_delta / x_delta / x_delta;
-  double *a = (double *)malloc(3 * x_num * sizeof(double));
-  a[0] = 0.0;
-  a[1] = 1.0;
-  a[3] = 0.0;
+  double *matrix = (double *)malloc(3 * x_num * sizeof(double));
+  matrix[0] = 0.0;
+  matrix[1] = 1.0;
+  matrix[3] = 0.0;
   for (int i = 1; i < x_num - 1; i++)
   {
-    a[2 + (i - 1) * 3] = -w;
-    a[1 + i * 3] = 1.0 + 2.0 * w;
-    a[0 + (i + 1) * 3] = -w;
+    matrix[2 + (i - 1) * 3] = -w;
+    matrix[1 + i * 3] = 1.0 + 2.0 * w;
+    matrix[0 + (i + 1) * 3] = -w;
   }
-  a[2 + (x_num - 2) * 3] = 0.0;
-  a[1 + (x_num - 1) * 3] = 1.0;
-  a[2 + (x_num - 1) * 3] = 0.0;
-  return a;
+  matrix[2 + (x_num - 2) * 3] = 0.0;
+  matrix[1 + (x_num - 1) * 3] = 1.0;
+  matrix[2 + (x_num - 1) * 3] = 0.0;
+  return matrix;
 }
 /*
   Purpose:
@@ -215,7 +197,7 @@ void solve_system(Parameters Parametros)
       u[j + i * x_num] = fvec[j];
     }
   }
-  r8mat_write(u_file, x_num, t_num, u);
+  write_results(u_file, x_num, t_num, u);
   free(a);
   free(b);
   free(fvec);
