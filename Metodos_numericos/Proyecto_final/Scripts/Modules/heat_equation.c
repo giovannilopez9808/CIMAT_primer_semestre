@@ -192,7 +192,7 @@ void solve_system(Parameters parameters)
     b[0] = parameters.ua;
     b[x_num - 1] = parameters.ub;
     // Creacion del vector
-    create_vector(1.0, fvec, x_num);
+    create_vector(0, fvec, x_num);
     // Aporte temporal
     for (int j = 1; j < x_num - 1; j++)
     {
