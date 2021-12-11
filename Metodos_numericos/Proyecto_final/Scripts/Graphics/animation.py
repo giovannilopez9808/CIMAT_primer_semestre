@@ -34,6 +34,7 @@ def create_animation(path="Temp/", path_output="Output/", name="animation", dele
 
 
 def plot(data: np.array, iteration: int, path="Temp/"):
+    mkdir(path)
     n = len(str(np.shape(data)[0]))
     data_to_plot = data[iteration]
     min_value = np.min(data)

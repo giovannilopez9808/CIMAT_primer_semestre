@@ -6,11 +6,14 @@
     Input, int n, numero de puntos.
     Input, double* vector, posiciones.
 */
-void create_vector(double value, double *vector, int n)
+void create_vector(Parameters parameters, double (*f)(double, double), double t, double *vector, int n)
 {
+  double dx = (parameters.x_max - parameters.x_min) / parameters.x_num;
+  double x;
   for (int i = 1; i < n - 1; i++)
   {
-    vector[i] = value;
+    x = parameters.x_min + dx * i;
+    vector[i] = f(x, t);
   }
 }
 /*
@@ -92,20 +95,23 @@ double *solve_matrix(int n, double *matrix, double *vector)
     Input, int n, numero de puntos.
     Input, double* vector, datos de cada posicion.
 */
-void set_initial_state(Parameters parameters, double *vector, int n)
+void set_initial_state(Parameters parameters, double (*f)(double, double), double *vector, int n)
 {
+  double dx = (parameters.x_max - parameters.x_min) / parameters.x_num;
+  double x;
   for (int i = 0; i < n; i++)
   {
-    vector[i] = parameters.u0;
+    x = parameters.x_min + dx * i;
+    vector[i] = f(x, 0);
   }
 }
 /*
   La matriz A no cambia en el tiempo
 */
-double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
+double *define_A_matrix(double k, double dt, double dx, int x_num)
 {
   // Definicion de w
-  double w = k * t_delta / x_delta / x_delta;
+  double w = k * dt / dx / dx;
   double *matrix = (double *)malloc(3 * x_num * sizeof(double));
   matrix[0] = 0.0;
   matrix[1] = 1.0;
@@ -159,44 +165,45 @@ double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters parameters)
+void solve_system(Parameters parameters, double (*f)(double, double))
 {
   double *matrix, *b, *fvec, *x, *t, *u;
   int x_num, t_num;
   char *u_file = "Output/output.txt";
-  double k, x_max, x_min, x_delta, t_max, t_min, t_delta;
+  double k, x_max, x_min, dx, t_max, t_min, dt, ti;
   k = parameters.k;
   // Guardado de los datos espaciales
   x_min = parameters.x_min;
   x_max = parameters.x_max;
   x_num = parameters.x_num;
-  x_delta = (x_max - x_min) / (double)(x_num - 1);
+  dx = (x_max - x_min) / (double)(x_num - 1);
   x = linspace(x_min, x_max, x_num);
   // Guardado de los valores temporales
   t_min = parameters.t_min;
   t_max = parameters.t_max;
   t_num = parameters.t_num;
-  t_delta = (t_max - t_min) / (double)(t_num - 1);
+  dt = (t_max - t_min) / (double)(t_num - 1);
   t = linspace(t_min, t_max, t_num);
   b = (double *)malloc(x_num * sizeof(double));
   fvec = (double *)malloc(x_num * sizeof(double));
   // Datos iniciales para el tiempo t_min
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  set_initial_state(parameters, u, x_num);
-  matrix = define_A_matrix(k, t_delta, x_delta, x_num);
+  set_initial_state(parameters, f, u, x_num);
+  matrix = define_A_matrix(k, dt, dx, x_num);
   // Factorizacion de la matriz tridiagonal
   obtain_factorization(x_num, matrix);
   for (int i = 1; i < t_num; i++)
   {
+    ti = parameters.x_min + dt * i;
     // Definicion del vector B
     b[0] = parameters.ua;
     b[x_num - 1] = parameters.ub;
     // Creacion del vector
-    create_vector(0, fvec, x_num);
+    create_vector(parameters, f, ti, fvec, x_num);
     // Aporte temporal
     for (int j = 1; j < x_num - 1; j++)
     {
-      b[j] = u[j + (i - 1) * x_num] + t_delta * fvec[j];
+      b[j] = u[j + (i - 1) * x_num] + dt * fvec[j];
     }
     free(fvec);
     // Solucion del sistema

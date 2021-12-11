@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "heat_equation.h": "c",
-    "type_traits": "c"
+    "type_traits": "c",
+    "math.h": "c"
   }
 }

@@ -1,17 +1,20 @@
 #include "Modules/heat_equation.h"
+double f(double x, double t)
+{
+    return 10 * exp(-(x * x - t)) + 10;
+}
 int main()
 {
     Parameters parameters;
     parameters.x_min = 0.0;
-    parameters.x_max = 100;
+    parameters.x_max = 100.0;
     parameters.x_num = 100;
     parameters.t_min = 0.0;
-    parameters.t_max = 10.0;
+    parameters.t_max = 3.0;
     parameters.t_num = 200;
-    parameters.k = 334;
-    parameters.u0 = -23;
-    parameters.ua = 13;
-    parameters.ub = 100;
-    solve_system(parameters);
+    parameters.k = 1000;
+    parameters.ua = 100;
+    parameters.ub = 0;
+    solve_system(parameters, f);
     return 0;
 }

@@ -6,7 +6,7 @@ typedef struct Parameters_t
 {
     double x_min, x_max, x_num;
     double t_min, t_max, t_num;
-    double k, u0, ua, ub;
+    double k, ua, ub;
 } Parameters;
-void solve_system(Parameters);
+void solve_system(Parameters, double (*f)(double, double));
 #endif
