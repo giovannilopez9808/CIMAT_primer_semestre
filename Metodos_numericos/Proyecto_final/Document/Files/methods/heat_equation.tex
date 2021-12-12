@@ -1,11 +1,9 @@
 \subsection{Ecuación de transferencia de calor}
 
-La ecuación \ref{eq:heat_equation} es empleada para modelar de manera unidimensional la evolución del tiempo.
+La ecuación \ref{eq:heat_equation} es la ecuación de transferencia de calor homogenea. El término $k^2$ es una constante que representa la difusión térmica del sistema. El valor de $k^2$ depende de la conductividad del material, su densidad y del calor específico. La función $\mathcal{U}(x,t)$ representa el flujo del calor, la cual debe satisfacer a la ecuación \ref{eq:heat_equation}.
 
 \begin{equation}
     \frac{\partial \mathcal{U}(x,t)}{\partial t} = k^2 \frac{\partial^2 \mathcal{U}(x,t)}{\partial x^2} \label{eq:heat_equation}
 \end{equation}
-
-Donde $k^2$ es una constante que representa la difusión térmica del sistema que se quiere modelar. La funct
 
 \subsection{Condiciones iniciales y condiciones de contorno}
