@@ -1,9 +1,22 @@
-\subsection{Ecuación de transferencia de calor}
+\subsection{Ecuación de calor}
 
-La ecuación \ref{eq:heat_equation} es la ecuación de transferencia de calor homogenea. El término $k^2$ es una constante que representa la difusión térmica del sistema. El valor de $k^2$ depende de la conductividad del material, su densidad y del calor específico. La función $\mathcal{U}(x,t)$ representa el flujo del calor, la cual debe satisfacer a la ecuación \ref{eq:heat_equation}.
+\subsubsection{Ecuación de calor homogénea}
+
+La ecuación \ref{eq:heat_equation_homogeneous} es la ecuación de transferencia de calor homogénea. El término $k^2$ es una constante que representa la difusión térmica del sistema. El valor de $k^2$ depende de la conductividad del material, su densidad y del calor específico. La función $u(x,t)$ representa el flujo del calor, la cual debe satisfacer a la ecuación \ref{eq:heat_equation_homogeneous}.
 
 \begin{equation}
-    \frac{\partial \mathcal{U}(x,t)}{\partial t} = k^2 \frac{\partial^2 \mathcal{U}(x,t)}{\partial x^2} \label{eq:heat_equation}
+    \frac{\partial u(x,t)}{\partial t} = k^2 \frac{\partial^2 u(x,t)}{\partial x^2} \label{eq:heat_equation_homogeneous}
 \end{equation}
 
-\subsection{Condiciones iniciales y condiciones de contorno}
+donde $u(a,0)=0$ y $u(b,0)=0$ para $a\leq x \leq b$
+
+\subsubsection{Ecuación de calor no homogénea}
+
+
+La forma más general de tener a la ecuación de calor no homogenea se encuentra descrita en la ecuación \ref{eq:heat_equation_no_homogeneous}.
+
+\begin{equation}
+    \frac{\partial u(x,t)}{\partial t} = k^2 \frac{\partial^2 u(x,t)}{\partial x^2}+F(x,t) \label{eq:heat_equation_no_homogeneous}
+\end{equation}
+
+donde $F(x,t)$ es una función conocida, $u(a,t)=g(x)$, $u(b,t)=h(x)$, $u(x,0)=j(x)$ para $a\leq x \leq b$.
