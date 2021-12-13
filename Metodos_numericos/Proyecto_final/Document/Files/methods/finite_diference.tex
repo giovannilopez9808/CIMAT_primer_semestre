@@ -1,1 +1,45 @@
 \subsection{Método de diferencias finitas}
+
+Los métodos que involucran la diferencia de la aproximación cocientes puede ser utilizada para ciertos casos de problemas de contorno. Considerando la ecuación \ref{eq:example}
+
+\begin{equation}
+    x'' = p(t)x'(t)+q(t)x(t)+r(t) \label{eq:example}
+\end{equation}
+
+sonre el intervalo $[a,b]$ con las condiciones de frontera $x(a)=\alpha$ y $x(b)=\beta$. Empleamos una partición sobre el intervalo $[a,b]$ usando los puntos $a=t_0 < t_1 < \dots < t_N=b$, donde h es el número de elementos de la partición y $t_i = a+ih$ para $i=0,1,\dots ,N$. Utilizando aproximaciónes de la diferencia central, se obtiene que la ecuación \ref{eq:example} puede ser escrita en la ecuación \ref{eq:example_2}.
+
+\begin{equation}
+    \frac{x_{j+1}-2x_j +x_{j-1}}{h^2} = p(t_j) \left (\frac{x_{j+1}-x_{j-1}}{2h}\right ) + q(t_j)x_j + r(t_j) \label{eq:example_2}
+\end{equation}
+
+Usando $p_j=p(t_j),\; q_j=(t_j)$ y $r_j=r(t_j)$, esto produce la ecuación \ref{eq:example_3}.
+
+\begin{equation}
+    \left (-\frac{h}{2}p_j -1\right ) x_{j-1} + (2+h^2q_j)x_j + \left (\frac{h}{2}p_j-1\right ) x_{j+1} = -h^2r_j \label{eq:example_3}
+\end{equation}
+
+La ecuación \ref{eq:example_3} puede ser descrita en un sistema matricial. En la ecuación \ref{eq:example_matrix} se muestra este sistema.
+
+\scriptsize
+\begin{equation}
+    \begin{bmatrix}
+        2+h^2q_1          & \frac{h}{2}p_1-1                                                                                                \\
+        \frac{-h}{2}p_2-1 & 2+h^2q_2          & \frac{h}{2}p_2-1      &                       &                      & 0                    \\
+                          & \frac{-h}{2}p_j-1 & 2+h^2q_j              & \frac{h}{2}p_j-1                                                    \\
+        0                 &                   & \frac{-h}{2}p_{N-2}-1 & 2+h^2q_{N-2}          & \frac{h}{2}p_{N-2}-1                        \\
+                          &                   &                       & \frac{-h}{2}p_{N-1}-1 & 2+h^2q_{N-1}         & \frac{h}{2}p_{N-1}-1
+    \end{bmatrix}\begin{bmatrix}
+        x_1 \\ x_2 \\ x_j \\ x_{N-2} \\ x_{N-1}
+    \end{bmatrix} = \begin{bmatrix}
+        -h^2r_1+e_0     \\
+        -h^2r_2         \\
+        -h^2r_j         \\
+        -h^2r_{N-2}     \\
+        -h^2r_{N-1}+e_N \\
+    \end{bmatrix}
+    \label{eq:example_matrix}
+\end{equation}
+\normalsize
+donde \begin{equation*}
+    e_0 \left (\frac{h}{2}p_1+1\right ) \alpha \qquad e_N = \left (-\frac{h}{2}p_{N-1}+1\right )\beta
+\end{equation*}

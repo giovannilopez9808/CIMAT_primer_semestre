@@ -1,1 +1,96 @@
-\subsection{Solución para sistemas de matrices tridiagonales}
+\subsubsection{Factorización LU de una matriz triagonal}
+
+Sea una matriz de tamaño $n \times n$, tal que su forma esta descrita como en la ecuación \ref{eq:tri_matrix}\cite{el_2003}.
+
+\begin{equation}
+    A= \begin{pmatrix}
+        b_1    & c_1    & 0      & 0       & 0       & 0       \\
+        a_2    & b_2    & c_2    & 0       & 0       & 0       \\
+        0      & a_3    & b_3    & c_3     & 0       & 0       \\
+        0      & 0      & \ddots & \ddots  & \ddots  & 0       \\
+        \vdots & \vdots & \ddots & a_{n-1} & b_{n-1} & c_{n-1} \\
+        0      & 0      & \cdots & 0       & a_n     & b_n
+    \end{pmatrix}
+    \label{eq:tri_matrix}
+\end{equation}
+
+entonces, esta se puede descomponer en dos matrices diagonales, de tal forma que:
+\scriptsize
+\begin{equation}
+    A = \begin{bmatrix}
+        b_1    & c_1    & 0      & 0       & 0       & 0       \\
+        a_2    & b_2    & c_2    & 0       & 0       & 0       \\
+        0      & a_3    & b_3    & c_3     & 0       & 0       \\
+        0      & 0      & \ddots & \ddots  & \ddots  & 0       \\
+        \vdots & \vdots & \ddots & a_{n-1} & b_{n-1} & c_{n-1} \\
+        0      & 0      & \cdots & 0       & a_n     & b_n
+    \end{bmatrix} =
+    \begin{bmatrix}
+        1        & 0        & 0      & 0            & 0        & 0 \\
+        \alpha_2 & 1        & 0      & 0            & 0            \\
+        0        & \alpha_3 & 1      & 0            & 0        & 0 \\
+        0        & 0        & \ddots & \ddots       & \ddots   & 0 \\
+        \vdots   & \vdots   & \ddots & \alpha_{n-1} & 1        & 0 \\
+        0        & 0        & \cdots & 0            & \alpha_n & 1
+    \end{bmatrix}\begin{bmatrix}
+        \beta_1 & c_1     & 0       & 0      & 0           & 0       \\
+        0       & \beta_2 & c_2     & 0      & 0           & 0       \\
+        0       & 0       & \beta_3 & c_3    & 0           & 0       \\
+        0       & 0       & \ddots  & \ddots & \ddots      & 0       \\
+        \vdots  & \vdots  & \ddots  & 0      & \beta_{n-1} & c_{n-1} \\
+        0       & 0       & \cdots  & 0      & 0           & \beta_n
+    \end{bmatrix}
+\end{equation}
+\normalsize
+
+donde $b_1 = \beta_1$, por ende, los términos $a_j$ y $b_j$ pueden ser calculados con las ecuaciones \ref{eq:a_j} y \ref{eq:b_j}.
+
+\begin{align}
+    a_j = \alpha_j \beta_{j-1}  \label{eq:a_j} \\
+    b_j = \alpha_j c_{j-1} + \beta_j \label{eq:b_j}
+\end{align}
+
+\subsection{Aproximación para la ecuación de calor no homogénea}
+
+Usando el intervalo espacial $[a,b]$ y temporal $[t_0,t_n]$, se tiene que las condiciones de frontera son:
+
+\begin{align}
+    u(a,t) = u_a(t)  \nonumber \\
+    u(b,t) = u_b(t)            \\
+    u(x,0) = u_0(x) \nonumber
+\end{align}
+
+Se tiene que la forma en diferencias finitas de la ecuación \ref{eq:heat_equation_no_homogeneous} es:
+\small
+\begin{equation}
+    \frac{u(x,t+dt) -u(x,t)}{dt} = F(x,t+dt) + k^2 \left (\frac{u(x-dx,t+dt)-2U(x,t+dt)+u(x+dx,t+dt)}{(dx)^2} \right )
+\end{equation}
+\normalsize
+
+el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
+\scriptsize
+\begin{equation}
+    \begin{bmatrix}
+        0  & 1    &
+        -w & 1+2w & -w               \\
+           & -w   & 1+2w & -w        \\
+           &      & -w   & 1+2w & -w \\
+           &      & 0    & 0    & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        u_a(t)       \\
+        u(x-dx,t+dt) \\
+        u(x,t+dt)    \\
+        u(x+dx,t+dt) \\
+        u_b(t)
+    \end{bmatrix} = \begin{bmatrix}
+        u_a(t)           \\
+        u(x-dx,t)+F(x,t) \\
+        u(x,t)+F(x,t)    \\
+        u(x+dx,t)+F(x,t) \\
+        u_b(t)
+    \end{bmatrix} \label{eq:heat_matrix}
+\end{equation}
+\normalsize
+
+donde $w=k^2\frac{dt}{(dt)^2}$. La ecuación \ref{eq:heat_matrix}, es una ecuación de la forma $Ax=b$, donde la matriz A, es una matriz tridiagonal de tamaño n, donde n es el número de intervalos en el segmento $[a,b]$.
