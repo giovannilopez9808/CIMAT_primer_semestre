@@ -203,7 +203,7 @@ void solve_system(Parameters parameters, double (*f)(double, double))
     // Aporte temporal
     for (int j = 1; j < x_num - 1; j++)
     {
-      b[j] = u[j + (i - 1) * x_num] + dt * fvec[j];
+      b[j] = u[j + (i - 1) * x_num] + fvec[j];
     }
     free(fvec);
     // Solucion del sistema
