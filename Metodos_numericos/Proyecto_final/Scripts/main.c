@@ -38,7 +38,7 @@ Parameters select_dataset(int select)
         parameters.ua = 0;
         parameters.ub = 0;
         parameters.f0 = f0_1;
-        parameters.f = f_1;
+        parameters.f = f_2;
         break;
     case 2:
         parameters.x_min = 0.0;
@@ -64,7 +64,7 @@ Parameters select_dataset(int select)
         parameters.ua = 0;
         parameters.ub = 0;
         parameters.f0 = f0_1;
-        parameters.f = f_2;
+        parameters.f = f_1;
         break;
     case 4:
         parameters.x_min = 0.0;
@@ -86,7 +86,7 @@ Parameters select_dataset(int select)
 }
 int main()
 {
-    Parameters parameters = select_dataset(4);
+    Parameters parameters = select_dataset(3);
     solve_system(parameters);
     return 0;
 }

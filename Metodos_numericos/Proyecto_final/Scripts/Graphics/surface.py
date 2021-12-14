@@ -16,6 +16,8 @@ def obtain_relative_difference(data1: np.array, data2: np.array):
 
 
 def same_plot(ax: plt.axes, xlim: float):
+    ax.set_ylabel("Tiempo")
+    ax.set_xlabel("Posición")
     ax.view_init(26, 37)
     ax.set_xlim(0, xlim)
     ax.set_ylim(0, 1)
@@ -31,7 +33,7 @@ def obtain_xy(data: np.array, xlim: float):
     return x, y
 
 
-def f1(x: np.array, y: np.array):
+def f3(x: np.array, y: np.array):
     z = np.exp(-np.pi**2*y)*np.sin(np.pi*x) + x*(1 - x) * np.sin(10*y)
     return z
 
@@ -41,7 +43,7 @@ def f2(x: np.array, y: np.array):
     return z
 
 
-def f3(x: np.array, y: np.array):
+def f1(x: np.array, y: np.array):
     z = np.exp(-np.pi**2*y)*np.sin(np.pi*x)
     return z
 
