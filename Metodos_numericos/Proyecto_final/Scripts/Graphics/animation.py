@@ -16,6 +16,7 @@ def create_animation(path="Temp/", path_output="Output/", name="animation", dele
     """
         Funcion que ejecuta la creacion de la animacion
     """
+    print("Creación del video en {}".format(path_output))
     mkdir(path)
     filenames = sorted(os.listdir(path))
     filenames = [path+filename for filename in filenames if ".png" in filename]
@@ -25,7 +26,6 @@ def create_animation(path="Temp/", path_output="Output/", name="animation", dele
                                           fps=fps,)
     movie.write_videofile(output_file,
                           logger=None)
-    print("Creación del video en {}".format(path_output))
     os.system("mv {}{}.mp4 {}".format(path,
                                       name,
                                       path_output))
@@ -40,13 +40,15 @@ def plot(data: np.array, iteration: int, path="Temp/"):
     min_value = np.min(data)
     max_value = np.max(data)
     plt.plot(data_to_plot)
+    plt.xlabel("Posicion")
     plt.ylim(min_value, max_value)
+    plt.title("Iteracion {}".format(i))
     plt.savefig("{}{}".format(path,
                               str(iteration).zfill(n)))
     plt.clf()
 
 
-data = np.loadtxt("../Output/output_1.txt")
+data = np.loadtxt("../Output/output_3.txt")
 n = np.shape(data)[0]
 for i in range(n):
     plot(data, i)
