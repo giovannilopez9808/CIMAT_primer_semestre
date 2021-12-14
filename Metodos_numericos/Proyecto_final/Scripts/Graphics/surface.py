@@ -2,6 +2,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def obtain_relative_difference(data1: np.array, data2: np.array):
+    n, m = np.shape(data1)
+    diff = 0
+    l = 0
+    for i in range(n):
+        for j in range(m):
+            i1 = data1[i, j]
+            i2 = data2[i, j]
+            diff += np.abs((i1-i2)/max(i2, 1))
+            l += 1
+    return 100*diff/l
+
+
 def same_plot(ax: plt.axes, xlim: float):
     ax.view_init(26, 37)
     ax.set_xlim(0, xlim)
@@ -59,7 +72,7 @@ parameters = {"path data": "../Output/",
                         "file graphics": "surface_4.png"}
               }}
 
-dataset = parameters["datasets"]["4"]
+dataset = parameters["datasets"]["1"]
 f = dataset["function"]
 data = np.loadtxt("{}{}".format(parameters["path data"],
                                 dataset["file data"]))
@@ -75,8 +88,8 @@ ax2.plot_surface(x, y, data,
                  cmap="inferno")
 ax1.set_title("Solución análitica")
 ax2.set_title("Solución numérica")
-same_plot(ax1,dataset["xlim"])
-same_plot(ax2,dataset["xlim"])
+same_plot(ax1, dataset["xlim"])
+same_plot(ax2, dataset["xlim"])
 fig.colorbar(surf,
              ax=ax2,
              shrink=0.5,
@@ -85,3 +98,5 @@ fig.tight_layout()
 plt.savefig("{}{}".format(parameters["path graphics"],
                           dataset["file graphics"]),
             dpi=300)
+print("La diferencia relativa en el dataset es:")
+print(obtain_relative_difference(data, z))

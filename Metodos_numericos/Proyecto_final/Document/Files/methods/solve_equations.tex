@@ -84,10 +84,10 @@ el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
         u(x+dx,t+dt) \\
         u_b(t)
     \end{bmatrix} = \begin{bmatrix}
-        u_a(t)           \\
-        u(x-dx,t)+F(x,t) \\
-        u(x,t)+F(x,t)    \\
-        u(x+dx,t)+F(x,t) \\
+        u_a(t)             \\
+        u(x-dx,t)+F(x,t)dt \\
+        u(x,t)+F(x,t)dt    \\
+        u(x+dx,t)+F(x,t)dt \\
         u_b(t)
     \end{bmatrix} \label{eq:heat_matrix}
 \end{equation}
@@ -111,7 +111,7 @@ El algoritmo \ref{alg:heat_equation} es fue el implementado para obtener la solu
     \caption{Aproximacion a la solución de la ecuación de calor no homogénea dependiente del tiempo usando diferencias finitas.}
     \label{alg:heat_equation}
     \KwInput{$t_0,t_n,x_0,x_m,n,m$}
-    \KwOutput{$u_{x,t}$}
+    \KwOutput{$u(x,t)$}
     $u(x,0) \gets$ initial\_state($f(x)$) \\
     $u(x_0,0),u(x_m,0) \gets$ set\_boundary\_contidions()\\
     matrix\_a $\gets$ create\_matriz\_A()\\
