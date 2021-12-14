@@ -1,4 +1,4 @@
-\subsubsection{Factorización LU de una matriz triagonal}
+\subsubsection{Factorización LU de una matriz triagonal\label{sec:LU_factorization}}
 
 Sea una matriz de tamaño $n \times n$, tal que su forma esta descrita como en la ecuación \ref{eq:tri_matrix}\cite{el_2003}.
 
@@ -71,7 +71,7 @@ el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
 \scriptsize
 \begin{equation}
     \begin{bmatrix}
-        0  & 1    &
+        0  & 1    &                  \\
         -w & 1+2w & -w               \\
            & -w   & 1+2w & -w        \\
            &      & -w   & 1+2w & -w \\
@@ -93,4 +93,34 @@ el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
 \end{equation}
 \normalsize
 
-donde $w=k^2\frac{dt}{(dt)^2}$. La ecuación \ref{eq:heat_matrix}, es una ecuación de la forma $Ax=b$, donde la matriz A, es una matriz tridiagonal de tamaño n, donde n es el número de intervalos en el segmento $[a,b]$.
+donde $w=k^2\frac{dt}{(dt)^2}$. La ecuación \ref{eq:heat_matrix}, es una ecuación de la forma $Ax=b$, donde la matriz A, es una matriz tridiagonal de tamaño $n \times n$, donde  es el número de intervalos en el segmento $[a,b]$.
+
+El sistema de ecuaciones mostrado en la ecuación \ref{eq:heat_matrix}, puede serr resuelto usando una factorización LU, como fue mostrado en la sección \ref{sec:LU_factorization}. Lo cual llevara a que el sistema sea resuelto usando el siguiente esquema:
+\begin{equation}
+    \begin{cases}
+        Ux=y \\
+        Ly=b
+    \end{cases} \label{eq:matrix_diagonal_sistem}
+\end{equation}
+
+El esquema de la ecuación \ref{eq:matrix_diagonal_sistem} es un sistema de ecuaciones lineales diagonales, llevando a si, una optimización en la solución del sistema en general. Los elementos de la matriz A de la ecuación \ref{eq:heat_matrix} son dependientes unicamente del elemento espacial del sistema. Por lo que el proceso de factorización LU puede realizarse una única vez al momento de definirse el valor del parámetro $w$.
+
+El algoritmo \ref{alg:heat_equation} es fue el implementado para obtener la solución aproximada de la ecuación de calor no homogénea dependiente del tiempo.
+
+\begin{algorithm}[H]
+    \caption{Aproximacion a la solución de la ecuación de calor no homogénea dependiente del tiempo usando diferencias finitas.}
+    \label{alg:heat_equation}
+    \KwInput{$t_0,t_n,x_0,x_m,n,m$}
+    \KwOutput{$u_{x,t}$}
+    $u(x,0) \gets$ initial\_state($f(x)$) \\
+    $u(x_0,0),u(x_m,0) \gets$ set\_boundary\_contidions()\\
+    matrix\_a $\gets$ create\_matriz\_A()\\
+    matrix\_a $\gets$ LU\_decomposition(matrix\_a)\\
+    \For{$i=1,n$}
+    {
+    \For{$j=1,m$}{
+    $b_j \gets u(x_j,t_{i-1})+F(x_j)$\\
+    }
+    $u(x,t_i) \gets$ solve\_system(matrix\_A,b)
+    }
+\end{algorithm}
