@@ -107,6 +107,13 @@ void set_initial_state(Parameters parameters, double (*f)(double), double *vecto
 }
 /*
   La matriz A no cambia en el tiempo
+  Parametros:
+    Input, double k, constante de la ecuación diferencial
+    Input, double dt, diferencial del tiempo
+    Input, double dx, diferencial del espacio
+    Input, double x_num, numero de elementos en el espacio
+    Output, double* matrix, matriz que contiene la informacion del espacio de la ecuacion de calor
+
 */
 double *define_A_matrix(double k, double dt, double dx, int x_num)
 {
@@ -128,42 +135,7 @@ double *define_A_matrix(double k, double dt, double dx, int x_num)
   return matrix;
 }
 /*
-  Purpose:
-    MAIN is the main program for FD1D_HEAT_IMPLICIT.
-
-  Discussion:
-    FD1D_HEAT_IMPLICIT solves the 1D heat equation with an implicit method.
-
-    This program solves
-
-      dUdT - k * d2UdX2 = F(X,T)
-
-    over the interval [A,B] with boundary conditions
-
-      U(A,T) = obtain_ua(T),
-      U(B,T) = obtain_ub(T),
-
-    over the time interval [T0,T1] with initial conditions
-
-      U(X,T0) = set_initial_state(X)
-
-    The code uses the finite difference method to approximate the
-    second derivative in space, and an implicit backward Euler approximation
-    to the first derivative in time.
-
-    The finite difference form can be written as
-
-      U(X,T+dt) - U(X,T)                  ( U(X-dx,T) - 2 U(X,T) + U(X+dx,T) )
-      ------------------  = F(X,T) + k *  ------------------------------------
-               dt                                   dx * dx
-
-    so that we have the following linear system for the values of U at time T+dt:
-
-            -     k * dt / dx / dx   * U(X-dt,T+dt)
-      + ( 1 + 2 * k * dt / dx / dx ) * U(X,   T+dt)
-            -     k * dt / dx / dx   * U(X+dt,T+dt)
-      =               dt             * F(X,   T+dt)
-      +                                U(X,   T)
+  Funcion principal que ejecuta la solución a la ecuacion de calor no homogénea
 */
 void solve_system(Parameters parameters)
 {

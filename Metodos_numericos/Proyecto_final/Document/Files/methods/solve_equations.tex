@@ -68,7 +68,7 @@ Se tiene que la forma en diferencias finitas de la ecuación \ref{eq:heat_equati
 \normalsize
 
 el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
-\scriptsize
+\small
 \begin{equation}
     \begin{bmatrix}
         0  & 1    &                  \\
@@ -119,8 +119,8 @@ El algoritmo \ref{alg:heat_equation} es fue el implementado para obtener la solu
     \For{$i=1,n$}
     {
     \For{$j=1,m$}{
-    $b_j \gets u(x_j,t_{i-1})+F(x_j)$\\
+    $b_j \gets u(x_j,t_{i-1})+F(x_j)dt$\\
     }
-    $u(x,t_i) \gets$ solve\_system(matrix\_A,b)
+    $u(x,t_i) \gets$ solve\_system(matrix\_a,b)
     }
 \end{algorithm}

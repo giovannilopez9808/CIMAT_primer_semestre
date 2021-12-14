@@ -30,10 +30,10 @@ Parameters select_dataset(int select)
     case 1:
         parameters.x_min = 0.0;
         parameters.x_max = 1.0;
-        parameters.x_num = 20;
+        parameters.x_num = 100;
         parameters.t_min = 0.0;
         parameters.t_max = 1.0;
-        parameters.t_num = 20;
+        parameters.t_num = 100;
         parameters.k = 1;
         parameters.ua = 0;
         parameters.ub = 0;
@@ -43,10 +43,10 @@ Parameters select_dataset(int select)
     case 2:
         parameters.x_min = 0.0;
         parameters.x_max = 1.0;
-        parameters.x_num = 20;
+        parameters.x_num = 100;
         parameters.t_min = 0.0;
         parameters.t_max = 1.0;
-        parameters.t_num = 20;
+        parameters.t_num = 100;
         parameters.k = 1 / (pi * pi);
         parameters.ua = 0;
         parameters.ub = 0;
@@ -56,10 +56,10 @@ Parameters select_dataset(int select)
     case 3:
         parameters.x_min = 0.0;
         parameters.x_max = 1.0;
-        parameters.x_num = 20;
+        parameters.x_num = 100;
         parameters.t_min = 0.0;
         parameters.t_max = 1.0;
-        parameters.t_num = 20;
+        parameters.t_num = 100;
         parameters.k = 1;
         parameters.ua = 0;
         parameters.ub = 0;

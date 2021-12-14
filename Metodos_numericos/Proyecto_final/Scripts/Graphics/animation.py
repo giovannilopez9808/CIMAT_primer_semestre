@@ -46,7 +46,7 @@ def plot(data: np.array, iteration: int, path="Temp/"):
     plt.clf()
 
 
-data = np.loadtxt("../Output/output.txt")
+data = np.loadtxt("../Output/output_1.txt")
 n = np.shape(data)[0]
 for i in range(n):
     plot(data, i)
