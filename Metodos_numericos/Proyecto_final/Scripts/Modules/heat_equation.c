@@ -165,13 +165,16 @@ double *define_A_matrix(double k, double dt, double dx, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters parameters, double (*f0)(double), double (*f)(double, double))
+void solve_system(Parameters parameters)
 {
   double *matrix, *b, *fvec, *x, *t, *u;
   int x_num, t_num;
   char *u_file = "Output/output.txt";
   double k, x_max, x_min, dx, t_max, t_min, dt, ti;
+  double (*f0)(double) = parameters.f0;
+  double (*f)(double, double) = parameters.f;
   k = parameters.k;
+
   // Guardado de los datos espaciales
   x_min = parameters.x_min;
   x_max = parameters.x_max;
