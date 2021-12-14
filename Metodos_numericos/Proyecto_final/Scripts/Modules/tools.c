@@ -1,31 +1,18 @@
 #include "tools.h"
 void write_results(char *output_filename, int m, int n, double *table)
-/*
-  Purpose:
-    write_results writes an R8MAT file.
-  Discussion:
-    An R8MAT is an array of R8's.
-  Parameters:
-    Input, char *OUTPUT_FILENAME, the output filename.
-    Input, int M, the spatial dimension.
-    Input, int N, the number of points.
-    Input, double TABLE[M*N], the table data.
-*/
 {
   int i, j;
   FILE *output;
+  // Apertura del archivo
   output = fopen(output_filename, "wt");
-
   if (!output)
   {
     printf("\n");
-    printf("write_results - Fatal error!\n");
-    printf("  Could not open the output file.\n");
+    printf("write_results - Error\n");
+    printf("\tNo pudo generarse el archivo\n");
     return;
   }
-  /*
-    Write the data.
-  */
+  // Escritura de la informacion
   for (j = 0; j < n; j++)
   {
     for (i = 0; i < m; i++)
@@ -34,13 +21,13 @@ void write_results(char *output_filename, int m, int n, double *table)
     }
     fprintf(output, "\n");
   }
-  /*
-    Close the file.
-  */
+  // Cierre del archivo
   fclose(output);
-
   return;
 }
+/*
+  Creacion de una serie de elementos dado su elemento inicial, final y el numero de elementos totales de la serie
+ */
 double *linspace(double a, double b, int n)
 {
   double *x = (double *)malloc(n * sizeof(double));

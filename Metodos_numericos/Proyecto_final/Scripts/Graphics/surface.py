@@ -74,7 +74,7 @@ parameters = {"path data": "../Output/",
                         "file graphics": "surface_4.png"}
               }}
 
-dataset = parameters["datasets"]["4"]
+dataset = parameters["datasets"]["3"]
 f = dataset["function"]
 data = np.loadtxt("{}{}".format(parameters["path data"],
                                 dataset["file data"]))
