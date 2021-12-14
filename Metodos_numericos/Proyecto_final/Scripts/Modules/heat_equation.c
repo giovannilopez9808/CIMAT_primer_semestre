@@ -95,14 +95,14 @@ double *solve_matrix(int n, double *matrix, double *vector)
     Input, int n, numero de puntos.
     Input, double* vector, datos de cada posicion.
 */
-void set_initial_state(Parameters parameters, double (*f)(double, double), double *vector, int n)
+void set_initial_state(Parameters parameters, double (*f)(double), double *vector, int n)
 {
   double dx = (parameters.x_max - parameters.x_min) / parameters.x_num;
   double x;
-  for (int i = 0; i < n; i++)
+  for (int i = 1; i < n - 1; i++)
   {
     x = parameters.x_min + dx * i;
-    vector[i] = f(x, 0);
+    vector[i] = f(x);
   }
 }
 /*
@@ -111,7 +111,7 @@ void set_initial_state(Parameters parameters, double (*f)(double, double), doubl
 double *define_A_matrix(double k, double dt, double dx, int x_num)
 {
   // Definicion de w
-  double w = k * dt / dx / dx;
+  double w = k * dt / (dx * dx);
   double *matrix = (double *)malloc(3 * x_num * sizeof(double));
   matrix[0] = 0.0;
   matrix[1] = 1.0;
@@ -165,7 +165,7 @@ double *define_A_matrix(double k, double dt, double dx, int x_num)
       =               dt             * F(X,   T+dt)
       +                                U(X,   T)
 */
-void solve_system(Parameters parameters, double (*f)(double, double))
+void solve_system(Parameters parameters, double (*f0)(double), double (*f)(double, double))
 {
   double *matrix, *b, *fvec, *x, *t, *u;
   int x_num, t_num;
@@ -188,22 +188,19 @@ void solve_system(Parameters parameters, double (*f)(double, double))
   fvec = (double *)malloc(x_num * sizeof(double));
   // Datos iniciales para el tiempo t_min
   u = (double *)malloc(x_num * t_num * sizeof(double));
-  set_initial_state(parameters, f, u, x_num);
+  set_initial_state(parameters, f0, u, x_num);
   matrix = define_A_matrix(k, dt, dx, x_num);
   // Factorizacion de la matriz tridiagonal
   obtain_factorization(x_num, matrix);
   for (int i = 1; i < t_num; i++)
   {
-    ti = parameters.x_min + dt * i;
-    // Definicion del vector B
-    b[0] = parameters.ua;
-    b[x_num - 1] = parameters.ub;
+    ti = parameters.t_min + dt * i;
     // Creacion del vector
     create_vector(parameters, f, ti, fvec, x_num);
     // Aporte temporal
     for (int j = 1; j < x_num - 1; j++)
     {
-      b[j] = u[j + (i - 1) * x_num] + fvec[j];
+      b[j] = u[j + (i - 1) * x_num] + dt * fvec[j];
     }
     free(fvec);
     // Solucion del sistema
