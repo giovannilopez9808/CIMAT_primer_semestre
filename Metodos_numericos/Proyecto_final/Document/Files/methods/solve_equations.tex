@@ -43,7 +43,7 @@ el cual, puede ser escrito en la ecuación \ref{eq:heat_matrix}.
 
 donde $w=k^2\frac{dt}{(dt)^2}$. La ecuación \ref{eq:heat_matrix}, es una ecuación de la forma $Ax=b$, donde la matriz A, es una matriz tridiagonal de tamaño $n \times n$, donde  es el número de intervalos en el segmento $[a,b]$.
 
-El sistema de ecuaciones mostrado en la ecuación \ref{eq:heat_matrix}, puede serr resuelto usando una factorización LU, como fue mostrado en la sección \ref{sec:LU_factorization}. Lo cual llevara a que el sistema sea resuelto usando el siguiente esquema:
+El sistema de ecuaciones mostrado en la ecuación \ref{eq:heat_matrix}, puede ser resuelto usando una factorización LU, como fue mostrado en la sección \ref{sec:LU_factorization}. Lo cual llevara a que se obtenga la solución del sistema usando la solución de sistemas matriciales triangulares (ecuación \ref{eq:matrix_diagonal_sistem}).
 \begin{equation}
     \begin{cases}
         Ux=y \\
@@ -51,9 +51,9 @@ El sistema de ecuaciones mostrado en la ecuación \ref{eq:heat_matrix}, puede se
     \end{cases} \label{eq:matrix_diagonal_sistem}
 \end{equation}
 
-El esquema de la ecuación \ref{eq:matrix_diagonal_sistem} es un sistema de ecuaciones lineales diagonales, llevando a si, una optimización en la solución del sistema en general. Los elementos de la matriz A de la ecuación \ref{eq:heat_matrix} son dependientes unicamente del elemento espacial del sistema. Por lo que el proceso de factorización LU puede realizarse una única vez al momento de definirse el valor del parámetro $w$.
+Al ser la ecuación \ref{eq:matrix_diagonal_sistem} un sistema de ecuaciones lineales triangulares, se puede implementar una optimización en la solución del sistema. Los elementos de la matriz A de la ecuación \ref{eq:heat_matrix} son dependientes unicamente del elemento espacial del sistema. Por lo que el proceso de factorización LU puede realizarse una única vez al momento de definirse el valor del parámetro $w$.
 
-El algoritmo \ref{alg:heat_equation} es fue el implementado para obtener la solución aproximada de la ecuación de calor no homogénea dependiente del tiempo.
+El algoritmo \ref{alg:heat_equation} fue el implementado para obtener la solución aproximada del sistema.
 
 \begin{algorithm}[H]
     \caption{Aproximacion a la solución de la ecuación de calor no homogénea dependiente del tiempo usando diferencias finitas.}
