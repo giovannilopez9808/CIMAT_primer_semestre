@@ -16,30 +16,63 @@ Parameters	Modules/heat_equation.h	/^} Parameters;$/;"	t	typeref:struct:Paramete
 Parameters_t	Modules/heat_equation.h	/^typedef struct Parameters_t$/;"	s
 SOURCES	Makefile	/^SOURCES=main.c$/;"	m
 _FUNC	Makefile	/^_FUNC=	tools.c\\$/;"	m
-aspect	graphics.py	/^           aspect="auto",$/;"	v
-cmap	graphics.py	/^           cmap="inferno")$/;"	v
-create_vector	Modules/heat_equation.c	/^void create_vector(double value, double *vector, int n)$/;"	f
-data	graphics.py	/^data = np.loadtxt("u.txt")$/;"	v
-data	graphics.py	/^data = np.transpose(data)$/;"	v
-define_A_matrix	Modules/heat_equation.c	/^double *define_A_matrix(double k, double t_delta, double x_delta, int x_num)$/;"	f
+aspect	Graphics/colormap.py	/^           aspect="auto",$/;"	v
+aspect	Graphics/surface.py	/^             aspect=13)$/;"	v
+ax	Graphics/surface.py	/^             ax=ax2,$/;"	v
+cmap	Graphics/colormap.py	/^           cmap="inferno")$/;"	v
+cmap	Graphics/surface.py	/^                        cmap="inferno")$/;"	v
+cmap	Graphics/surface.py	/^                 cmap="inferno")$/;"	v
+create_animation	Graphics/animation.py	/^def create_animation(path="Temp\/", path_output="Output\/", name="animation", delete=True, fps=10):$/;"	f
+create_vector	Modules/heat_equation.c	/^void create_vector(Parameters parameters, double (*f)(double, double), double t, double *vector, int n)$/;"	f
+data	Graphics/animation.py	/^data = np.loadtxt("..\/Output\/output_3.txt")$/;"	v
+data	Graphics/colormap.py	/^data = np.loadtxt("..\/Output\/output.txt")$/;"	v
+data	Graphics/colormap.py	/^data = np.transpose(data)$/;"	v
+data	Graphics/surface.py	/^data = np.loadtxt("{}{}".format(parameters["path data"],$/;"	v
+dataset	Graphics/surface.py	/^dataset = parameters["datasets"]["3"]$/;"	v
+define_A_matrix	Modules/heat_equation.c	/^double *define_A_matrix(double k, double dt, double dx, int x_num)$/;"	f
+dpi	Graphics/surface.py	/^            dpi=300)$/;"	v
+f	Graphics/surface.py	/^f = dataset["function"]$/;"	v
+f	Modules/heat_equation.h	/^    double (*f)(double, double);$/;"	m	struct:Parameters_t
+f0	Modules/heat_equation.h	/^    double (*f0)(double);$/;"	m	struct:Parameters_t
+f0_1	main.c	/^double f0_1(double x)$/;"	f
+f0_4	main.c	/^double f0_4(double x)$/;"	f
+f1	Graphics/surface.py	/^def f1(x: np.array, y: np.array):$/;"	f
+f2	Graphics/surface.py	/^def f2(x: np.array, y: np.array):$/;"	f
+f3	Graphics/surface.py	/^def f3(x: np.array, y: np.array):$/;"	f
+f4	Graphics/surface.py	/^def f4(x: np.array, y: np.array):$/;"	f
+f_1	main.c	/^double f_1(double x, double t)$/;"	f
+f_2	main.c	/^double f_2(double x, double t)$/;"	f
+f_4	main.c	/^double f_4(double x, double t)$/;"	f
+figsize	Graphics/surface.py	/^                               figsize=(10, 4),$/;"	v
 heat_equation_H	Modules/heat_equation.h	2;"	d
-k	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
+k	Modules/heat_equation.h	/^    double k, ua, ub;$/;"	m	struct:Parameters_t
 linspace	Modules/tools.c	/^double *linspace(double a, double b, int n)$/;"	f
 main	main.c	/^int main()$/;"	f
+mkdir	Graphics/animation.py	/^def mkdir(path="", name=""):$/;"	f
+n	Graphics/animation.py	/^n = np.shape(data)[0]$/;"	v
 obtain_factorization	Modules/heat_equation.c	/^void obtain_factorization(int dimension, double *matrix)$/;"	f
-set_initial_state	Modules/heat_equation.c	/^void set_initial_state(Parameters parameters, double *vector, int n)$/;"	f
+obtain_relative_difference	Graphics/surface.py	/^def obtain_relative_difference(data1: np.array, data2: np.array):$/;"	f
+obtain_xy	Graphics/surface.py	/^def obtain_xy(data: np.array, xlim: float):$/;"	f
+parameters	Graphics/surface.py	/^parameters = {"path data": "..\/Output\/",$/;"	v
+pi	Modules/heat_equation.h	5;"	d
+plot	Graphics/animation.py	/^def plot(data: np.array, iteration: int, path="Temp\/"):$/;"	f
+same_plot	Graphics/surface.py	/^def same_plot(ax: plt.axes, xlim: float):$/;"	f
+select_dataset	main.c	/^Parameters select_dataset(int select)$/;"	f
+set_initial_state	Modules/heat_equation.c	/^void set_initial_state(Parameters parameters, double (*f)(double), double *vector, int n)$/;"	f
+shrink	Graphics/surface.py	/^             shrink=0.5,$/;"	v
 solve_matrix	Modules/heat_equation.c	/^double *solve_matrix(int n, double *matrix, double *vector)$/;"	f
-solve_system	Modules/heat_equation.c	/^void solve_system(Parameters Parametros)$/;"	f
+solve_system	Modules/heat_equation.c	/^void solve_system(Parameters parameters)$/;"	f
+subplot_kw	Graphics/surface.py	/^                               subplot_kw={"projection": "3d"})$/;"	v
+surf	Graphics/surface.py	/^surf = ax1.plot_surface(x, y, z,$/;"	v
 t_max	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
 t_min	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
 t_num	Modules/heat_equation.h	/^    double t_min, t_max, t_num;$/;"	m	struct:Parameters_t
-time	graphics.py	/^time = np.linspace(0, 1, 101)$/;"	v
 tools_H	Modules/tools.h	2;"	d
-u0	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
-ua	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
-ub	Modules/heat_equation.h	/^    double k, u0, ua, ub;$/;"	m	struct:Parameters_t
+ua	Modules/heat_equation.h	/^    double k, ua, ub;$/;"	m	struct:Parameters_t
+ub	Modules/heat_equation.h	/^    double k, ua, ub;$/;"	m	struct:Parameters_t
 valid_obtain_factorization	Modules/heat_equation.c	/^void valid_obtain_factorization(double *matrix, int i)$/;"	f
-write_results	Modules/tools.c	/^void write_results(char *output_filename, int m, int n, double table[])$/;"	f
+write_results	Modules/tools.c	/^void write_results(char *output_filename, int m, int n, double *table)$/;"	f
 x_max	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
 x_min	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
 x_num	Modules/heat_equation.h	/^    double x_min, x_max, x_num;$/;"	m	struct:Parameters_t
+z	Graphics/surface.py	/^z = f(x, y)$/;"	v
