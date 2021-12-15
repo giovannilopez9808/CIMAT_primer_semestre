@@ -1,0 +1,39 @@
+\begin{frame}
+    \huge
+    \misc{
+        \textbf{Método de diferencias finitas}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \begin{align*}
+            x'' = p(t)x'(t)                            & + q(t) x(t) +r(t)                                             \\
+                                                       & \downarrow                                                    \\
+            \frac{x_{j+1}-2x_j+x_{j-1}}{h^2}  = p(t_j) & \left ( \frac{x_{j+1}-x_{j-1}}{2h}\right ) +q(t_j)x_j +r(t_j)
+        \end{align*}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \scriptsize
+        \begin{equation*}
+            \begin{bmatrix}
+                2+h^2q_1          & \frac{h}{2}p_1-1                                                                                                \\
+                \frac{-h}{2}p_2-1 & 2+h^2q_2          & \frac{h}{2}p_2-1      &                       &                      & 0                    \\
+                                  & \frac{-h}{2}p_j-1 & 2+h^2q_j              & \frac{h}{2}p_j-1                                                    \\
+                0                 &                   & \frac{-h}{2}p_{N-2}-1 & 2+h^2q_{N-2}          & \frac{h}{2}p_{N-2}-1                        \\
+                                  &                   &                       & \frac{-h}{2}p_{N-1}-1 & 2+h^2q_{N-1}         & \frac{h}{2}p_{N-1}-1
+            \end{bmatrix}\begin{bmatrix}
+                x_1 \\ x_2 \\ x_j \\ x_{N-2} \\ x_{N-1}
+            \end{bmatrix} = \begin{bmatrix}
+                -h^2r_1+e_0     \\
+                -h^2r_2         \\
+                -h^2r_j         \\
+                -h^2r_{N-2}     \\
+                -h^2r_{N-1}+e_N \\
+            \end{bmatrix}
+        \end{equation*}
+    }
+\end{frame}

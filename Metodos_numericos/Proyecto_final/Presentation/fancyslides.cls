@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fancyslides}[2013/04/23 my custom beamer slides class]
 
-\LoadClass{beamer}
+\LoadClass[aspectratio=169]{beamer}
 
 
 %%%% this is a~custom class for preparing presentations
@@ -62,7 +62,7 @@
 \newcommand{\customtextcol}[1]{#1} %text inside boxes and dots
 
 \newcommand{\slogan}[1]{\Huge \MakeUppercase{#1}} %text inside boxes and dots
-\newcommand{\fbckg}[1]{\usebackgroundtemplate{\includegraphics[width=\paperwidth]{#1}}}%frame background
+\newcommand{\fbckg}[1]{\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{#1}}}%frame background
 
 \newcommand{\thankyou}{\pointedsl{thank you}} %% thank you slide
 
@@ -118,19 +118,27 @@
   \begin{mybox}
 \pgfsetfillopacity{1}
 \begin{center}
-{\Huge \titlephrase
+{\huge \titlephrase
    
 }
     
 \end{center}
 \end{mybox}
 
-\vspace{-1.5cm}
+\vspace{-1cm}
 
 \pgfsetfillopacity{0.60}
 \begin{mybox2}
 \pgfsetfillopacity{0.80}
-\name \ $\bullet$ \  \affil \ $\bullet$ \ \email
+\name \ $\bullet$ \  \affil
+\end{mybox2}
+
+\vspace{-1cm}
+
+\begin{mybox2}
+  \begin{flushright}
+    \today
+  \end{flushright}
 \end{mybox2}
 \end{frame}
 }

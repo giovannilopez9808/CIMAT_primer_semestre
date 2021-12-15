@@ -1,0 +1,36 @@
+\fbckg{background/white}
+\begin{frame}
+    \Huge
+    \misc{Ecuaciones diferenciales\\parciales}
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \textbf{Ecuación diferencial parcial:}\\
+        Una ecuación que contiene derivadas parciales de una o más variables dependientes de dos o más variables independientes.
+        \begin{align*}
+            \frac{\partial u }{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} & \qquad \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f(x,y) \\
+        \end{align*}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \textbf{Condiciones de contorno}\\
+        En el caso que se tenga una función dependiente de dos variables como $u(x,t)$.
+        \begin{itemize}
+            \item \textbf{Dirichlet}
+                  \begin{equation*}
+                      u(a,t)=g(a) \qquad u(b,t)=h(b) \qquad a<x<b
+                  \end{equation*}
+
+            \item \textbf{Neumann}
+                  \begin{equation*}
+                      \frac{d u(a,t)}{dx}=g(a) \qquad \frac{d u(b,t)}{dx}=h(b) \qquad a<x<b
+                  \end{equation*}
+
+            \item \textbf{Mixtas}
+                  El sistema se encuentra bajo las condiciones de contorno de Neumann y Dirichlet al mismo tiempo.
+        \end{itemize}
+    }
+\end{frame}

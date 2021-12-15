@@ -1,0 +1,88 @@
+\begin{frame}
+    \huge
+    \misc{
+        \textbf{Ecuación de calor dependiente del tiempo}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \textbf{Euación de calor homogénea}
+        \begin{equation*}
+            \frac{\partial u}{\partial t} = k^2 \frac{\partial^2 u}{\partial x^2}
+        \end{equation*}
+        donde $u(a,0)=0$ y $u(b,0)=0$ para $a\leq x \leq b$.
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \textbf{Euación de calor no homogénea}
+        \begin{equation*}
+            \frac{\partial u}{\partial t} = k^2 \frac{\partial^2 u}{\partial x^2} + F(x,t)
+        \end{equation*}
+        donde $F(x,t)$ es una función conocida, $u(a,t)=g(t)$, $u(b,t)=h(t)$, $u(x,0)=j(x)$ para $a\leq x \leq b$.
+    }
+\end{frame}
+
+
+\begin{frame}
+    \misc{
+        \textbf{Aproximación para la ecuación de calor no homogénea}
+        \small
+        \begin{equation*}
+            \frac{u(x,t+dt) -u(x,t)}{dt} = F(x,t+dt) + k^2 \left (\frac{u(x-dx,t+dt)-2U(x,t+dt)+u(x+dx,t+dt)}{(dx)^2} \right )
+        \end{equation*}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        \small
+        \begin{equation*}
+            \begin{bmatrix}
+                0  & 1    &                  \\
+                -w & 1+2w & -w               \\
+                   & -w   & 1+2w & -w        \\
+                   &      & -w   & 1+2w & -w \\
+                   &      & 0    & 0    & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                u_a(t)       \\
+                u(x-dx,t+dt) \\
+                u(x,t+dt)    \\
+                u(x+dx,t+dt) \\
+                u_b(t)
+            \end{bmatrix} = \begin{bmatrix}
+                u_a(t)             \\
+                u(x-dx,t)+F(x,t)dt \\
+                u(x,t)+F(x,t)dt    \\
+                u(x+dx,t)+F(x,t)dt \\
+                u_b(t)
+            \end{bmatrix} \label{eq:heat_matrix}
+        \end{equation*}
+        donde $w=k^2\frac{dt}{(dt)^2}$.
+    }
+\end{frame}
+
+
+\begin{frame}
+    \textcolor{black}{
+        \begin{algorithm}[H]
+            \caption{Aproximacion a la solución de la ecuación de calor no homogénea dependiente del tiempo usando diferencias finitas.}
+            \label{alg:heat_equation}
+            \KwInput{$t_0,t_n,x_0,x_m,n,m,f(x),F(x,t)$}
+            \KwOutput{$u(x,t)$}
+            $u(x,0) \gets$ initial\_state($f(x)$) \\
+            $u(x_0,0),u(x_m,0) \gets$ set\_boundary\_contidions()\\
+            matrix\_a $\gets$ create\_matriz\_A()\\
+            matrix\_a $\gets$ LU\_decomposition(matrix\_a)\\
+            \For{$i=1,n$}
+            {
+            \For{$j=1,m$}{
+            $b_j \gets u(x_j,t_{i-1})+F(x_j,t_{i-1})dt$\\
+            }
+            $u(x,t_i) \gets$ solve\_system(matrix\_a,b)
+            }
+        \end{algorithm}}
+\end{frame}

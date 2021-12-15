@@ -1,0 +1,58 @@
+\begin{frame}
+    \huge
+    \misc{
+        \textbf{Factorización LU}
+    }
+\end{frame}
+
+\begin{frame}
+    \misc{
+        Sea una matriz de tamaño $n \times n$, tal que su forma esta descrita como:
+        \begin{equation*}
+            A= \begin{pmatrix}
+                b_1    & c_1    & 0      & 0       & 0       & 0       \\
+                a_2    & b_2    & c_2    & 0       & 0       & 0       \\
+                0      & a_3    & b_3    & c_3     & 0       & 0       \\
+                0      & 0      & \ddots & \ddots  & \ddots  & 0       \\
+                \vdots & \vdots & \ddots & a_{n-1} & b_{n-1} & c_{n-1} \\
+                0      & 0      & \cdots & 0       & a_n     & b_n
+            \end{pmatrix}
+        \end{equation*}
+    }
+\end{frame}
+
+
+\begin{frame}
+    \small
+    \misc{
+        \begin{equation*}
+            A=
+            \begin{bmatrix}
+                1        & 0        & 0      & 0            & 0        & 0 \\
+                \alpha_2 & 1        & 0      & 0            & 0            \\
+                0        & \alpha_3 & 1      & 0            & 0        & 0 \\
+                0        & 0        & \ddots & \ddots       & \ddots   & 0 \\
+                \vdots   & \vdots   & \ddots & \alpha_{n-1} & 1        & 0 \\
+                0        & 0        & \cdots & 0            & \alpha_n & 1
+            \end{bmatrix}\begin{bmatrix}
+                \beta_1 & c_1     & 0       & 0      & 0           & 0       \\
+                0       & \beta_2 & c_2     & 0      & 0           & 0       \\
+                0       & 0       & \beta_3 & c_3    & 0           & 0       \\
+                0       & 0       & \ddots  & \ddots & \ddots      & 0       \\
+                \vdots  & \vdots  & \ddots  & 0      & \beta_{n-1} & c_{n-1} \\
+                0       & 0       & \cdots  & 0      & 0           & \beta_n
+            \end{bmatrix}
+        \end{equation*}
+    }
+\end{frame}
+
+
+\begin{frame}
+    \misc{
+        donde $b_1 = \beta_1$, por ende, los términos $a_j$ y $b_j$ pueden ser calculados con las ecuaciones:
+        \begin{align*}
+            a_j = \alpha_j \beta_{j-1} \\
+            b_j = \alpha_j c_{j-1} + \beta_j
+        \end{align*}
+    }
+\end{frame}
